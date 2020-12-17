@@ -93,15 +93,7 @@ namespace PerrysArt
 
         public override Brush TileBrush => Brushes.Brown;
     }
-    public class Snow : Tile
-    {
-        public const char TileLetter = 'S';
 
-        public Snow() : base() { }
-        public Snow(int colIndex, int rowIndex) : base(colIndex, rowIndex) { }
-
-        public override Brush TileBrush => Brushes.White;
-    }
     public class AmmoPack : DrawableObject
     {
         public const char TileLetter = 'A';

@@ -8,7 +8,7 @@ namespace PerrysArt
         public static Random _rand = new Random();
         public static Bitmap _treeImage = new Bitmap("TreeTester.png");
         public static Bitmap _tree1Image = new Bitmap("PerrysArtTree1.png");
-        public static Bitmap _tree2Image = new Bitmap("PerrysArtChristmasTree.png");//111111111111111111111111111111111111
+        public static Bitmap _tree2Image = new Bitmap("PerrysArtChristmasTree.png");
         public const char TileLetter = 'T';
 
         private int _treeType = _rand.Next(3);
