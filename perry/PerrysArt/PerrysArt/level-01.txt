@@ -1,0 +1,35 @@
+﻿OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO|
+O         T                  W        GLGO|
+O T       TTT         t      WWWW      G O|
+O                               WW    T  O|
+O   WWWWWWWW                     WW  T   O|
+O T WBBBBBBW  TTT       TT    T   W      O|
+OTT WBgLGgBW  T     T   TT        W    T O|
+OTT WBGLGLBW        TT           WW T    O|
+O T WBGGGGBW    V V  T           W    P  O|
+O   WBLGLgBW T            V   T WW   T   O|
+O   WBG GLBW      T T           W    T   O|
+O   WBBB BBW     TTTTT    V  T  W        O|
+O   WWWWWWWW     TTTTTT         W     TT O|
+O              WWTTTTT     T    W  T   T O|
+O    T     T  WWWWTTT     TTT   W TT     O|
+O    T      TTWWWW         T    W        O|
+O              WW              WW    TT  O|
+O             T           WWWWWW         O|
+OT     TTT                W  T WWW  WEW  O|
+OTT     TT            TT WW T    WW W WW O|
+OT      T  V V V      TTWW  T     WWW  WWO|
+O                 TT   WW      T         O|
+O          V V V   TT  E            TT   O|
+O                 TTT WW            T    O|
+O                  T WW                  O|
+O   TT        T     WW   V V V           O|
+O  TTTT      TTT    W T TT    GG         O|
+O  TTTTT      T     W TTT  V GLLG    TT  O|
+O   TTTT      WWW   W TTTV   GLLLG    T  O|
+OW    T      WW WW WW         GGG        O|
+OWW          W   WWW      T              O|
+O W       W  W           TTT   TTT       O|
+O WW     WWW W       TTT  T              O|
+O  W     WTWWW      TTTT  T              O|
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO|
