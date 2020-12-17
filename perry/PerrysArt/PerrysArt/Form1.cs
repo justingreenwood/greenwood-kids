@@ -21,19 +21,11 @@ namespace PerrysArt
         AmmoPack ammopack = new AmmoPack();
         
         Controls controls = new Controls();
-        //Lava lava = new Lava();
-        //Wall wall = new Wall();
-        //Water water = new Water();
-        //Tree tree = new Tree();
         List<Tile> backgroundTiles = new List<Tile>();
-        //List<Wall> wall = new List<Wall>();
-        //List<Tree> tree = new List<Tree>();
-        //List<Bridge> bridge = new List<Bridge>();
         List<Bullet> bullets = new List<Bullet>();
-        //List<Lava> lava = new List<Lava>();
         List<BadGuy> badGuys = new List<BadGuy>();
-        List<Gold> golds = new List<Gold>();
-        //List<Water> water = new List<Water>();
+        List<Gold> golds = new List<Gold>(); 
+
         public FormMyGame()
         {
             InitializeComponent();
@@ -58,6 +50,7 @@ namespace PerrysArt
                 this.BackColor = Color.White;
             }
 
+            // this determines which level we start with.
             var lines = File.ReadAllLines("level-01.txt");
             int apple = _rand.Next(2);
             if (apple == 0)
