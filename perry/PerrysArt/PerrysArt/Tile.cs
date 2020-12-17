@@ -83,9 +83,7 @@ namespace PerrysArt
         public override Brush TileBrush => Brushes.Navy;
     }
     public class Door : Tile
-    {
-        public static Bitmap _DoorImage = new Bitmap("ClosedDoor.png");
-        public static Bitmap _DoorImage2 = new Bitmap("ClosedDoor2.png");        
+    {       
         public const char TileLetter = 'D';
 
         public Door() : base() { }

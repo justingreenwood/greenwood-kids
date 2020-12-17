@@ -16,6 +16,7 @@ namespace PerrysArt
     {
         private static Random _rand = new Random();
         private float _zoom = 1.0f;
+        int Score;
         int alivebadguys = 0;        
         Dude dude = new Dude();
         AmmoPack ammopack = new AmmoPack();
@@ -182,6 +183,7 @@ namespace PerrysArt
                                 baddude.IsAlive = false;
                                 b.IsDead = true;
                                 alivebadguys--;
+                                Score++;
                             }
                         }
                         for (var k = backgroundTiles.Count - 1; k >= 0; k--)
@@ -250,6 +252,7 @@ namespace PerrysArt
                 {
                     dude.Treasure += golds[i].Coins;
                     golds.RemoveAt(i);
+                    Score+=5;
                 }
             }
 
@@ -264,11 +267,7 @@ namespace PerrysArt
                     }
 
                     b.Move(this.ClientSize.Width, this.ClientSize.Height);
-                    //if (b.Distance > 1000)
-                    //{
-                    //    b.IsDead = true;
-                    //    badGuys.Remove(b);
-                    //}
+                    
                 }
             }
 
@@ -393,7 +392,7 @@ namespace PerrysArt
 
             if (dude.IsAlive)
             {
-                g.DrawString($"Badguys {alivebadguys} - Treasure: {dude.Treasure} - Ammo: {dude.Ammo} -  Controls: {controls}", SystemFonts.DefaultFont, Brushes.White, 5, 5);           
+                g.DrawString($"Score {Score} - Badguys {alivebadguys} - Treasure: {dude.Treasure} - Ammo: {dude.Ammo} -  Controls: {controls}", SystemFonts.DefaultFont, Brushes.White, 5, 5);           
                 dude.DrawMe(g, _zoom);
             }
             else
