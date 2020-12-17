@@ -1,0 +1,12 @@
+d=60
+For n=1 To 60
+  GraphicsWindow.BrushColor = "blue"
+  Shapes.AddText(d)
+  Program.Delay(1000)
+  GraphicsWindow.BrushColor = "white"
+  Shapes.AddText(d)
+  d=d-1
+EndFor
+GraphicsWindow.Clear()
+GraphicsWindow.BrushColor = "green"
+GraphicsWindow.DrawText(500,250,"THE END")

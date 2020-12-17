@@ -1,0 +1,124 @@
+basePath = "E:\Small Basic\Andromeda\"
+GraphicsWindow.Height = 500
+GraphicsWindow.Width = 1000
+GraphicsWindow.DrawImage(basePath + "backdrop.png", 1,1)
+GraphicsWindow.MouseMove = onMouseMove
+
+gameIsRunning = "yes"
+timeLeftInSeconds = 60.0
+numberOfRectangles = 15
+player["x"] = 5
+player["y"] = 250
+player["h"] = 29
+player["w"] = 30
+player["score"] = 0
+isPlayerColliding = "no"
+SetupBoxLocations()
+
+While (gameIsRunning = "yes")
+  DrawGame()
+  Program.Delay(50)
+  timeLeftInSeconds = timeLeftInSeconds - 0.05  
+  If (timeLeftInSeconds <= 0) Then
+    gameIsRunning = "no"
+    GraphicsWindow.ShowMessage("Your time has run out!", "Game Over")
+    ShowEndGraphics()
+  EndIf
+EndWhile
+
+Sub onMouseMove
+  player["x"] = Mouse.MouseX - GraphicsWindow.Left - 32
+  player["y"] = Mouse.MouseY - GraphicsWindow.Top - 50
+  
+  'collision code
+  isPlayerColliding = "no"
+  x = player["x"]
+  y = player["y"]
+  h = player["h"]
+  w = player["w"]
+  For p=1 To numberOfRectangles
+    If(isPlayerColliding ="no") Then
+      x2=rectangles[p]["x"] 
+      y2=rectangles[p]["y"] 
+      h2=rectangles[p]["h"] 
+      w2=rectangles[p]["w"]
+      seeifcollide()
+      isPlayerColliding = collision
+    Else
+      Goto JumpOutOfLoop
+    EndIf
+  EndFor
+  JumpOutOfLoop:
+  
+EndSub
+  
+Sub DrawGame
+  If (isPlayerColliding = "yes") then
+    GraphicsWindow.BackgroundColor="darkblue"
+  Else
+   GraphicsWindow.DrawImage(basePath + "backdrop.png", 100,100)
+  EndIf
+  
+  GraphicsWindow.Clear()
+  
+  For s=1 To Array.GetItemCount(rectangles)
+    GraphicsWindow.PenColor = rectangles[s]["c"]
+    GraphicsWindow.DrawRectangle(rectangles[s]["x"],rectangles[s]["y"],rectangles[s]["w"],rectangles[s]["h"])
+  EndFor  
+  GraphicsWindow.DrawImage(basePath + "girl.png", player["x"], player["y"])
+  
+  GraphicsWindow.BrushColor = "white"
+  GraphicsWindow.DrawText(10, 10, Math.Floor(timeLeftInSeconds))
+EndSub
+
+Sub SetupBoxLocations
+  For s=1 To numberOfRectangles
+    collide = "yes"
+    While(collide = "yes")
+      collide = "no" 
+      x=Math.GetRandomNumber(975)
+      y=Math.GetRandomNumber(490)
+      h=10
+      w=25
+      If (s>1) Then
+        For p=1 To (s-1)
+          If(collide ="no") Then
+            x2=rectangles[p]["x"] 
+            y2=rectangles[p]["y"] 
+            h2=rectangles[p]["h"] 
+            w2=rectangles[p]["w"]
+            seeifcollide()
+            collide = collision  
+          EndIf
+        EndFor
+      EndIf
+    EndWhile
+    
+    rectangles[s]["x"] =x
+    rectangles[s]["y"] =y
+    rectangles[s]["h"] =h
+    rectangles[s]["w"] =w
+    rectangles[s]["c"] = "yellow"
+  EndFor
+EndSub
+
+Sub seeifcollide
+  collision = "no"  
+  doesxcollide = "no"
+  doesycollide = "no"
+  If (( x >= x2 And x <= (x2 + w2) ) Or ( (x+w) >= x2 And (x+w) <= (x2 + w2) ) Or (x < x2 And (x+w) > (x2 + w2) )) then 
+    doesxcollide = "yes"
+  EndIf
+  If (( y >= y2 And y <= (y2 + h2) ) Or ( (y+h) >= y2 And (y+h) <= (y2 + h2) ) Or (y < y2 And (y+h) > (y2 + h2) )) then 
+    doesycollide = "yes"
+  EndIf 
+  If (doesxcollide = "yes" And doesycollide = "yes") Then
+    collision = "yes"
+  EndIf
+EndSub  
+
+Sub ShowEndGraphics
+  GraphicsWindow.Clear()
+  GraphicsWindow.BrushColor = "limegreen"
+  GraphicsWindow.DrawText(500,250,"THE END")
+EndSub  

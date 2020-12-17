@@ -1,0 +1,432 @@
+TextWindow.Title="!? Live 24 Hours As A Character ?!"
+'*********************************************************************************************'
+TextWindow.ForegroundColor="green"
+TextWindow.BackgroundColor="gray"
+TextWindow.WriteLine(" LIVE A DAY AS A MADE-UP CHARACTER ")
+Program.Delay(100)
+
+TextWindow.ForegroundColor="red"
+TextWindow.BackgroundColor="black"
+
+ReAskWouldYouLikeToPlay:
+TextWindow.WriteLine(" Would you like to play?( Y or N )")
+TextWindow.ForegroundColor="white"
+WouldYouLikeToPlay=TextWindow.Read()
+If WouldYouLikeToPlay="Y" Or WouldYouLikeToPlay="y" Then
+   TextWindow.ForegroundColor="green"
+   TextWindow.WriteLine(" Ok. Give me a minute to set it up!")
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(2000)
+   TextWindow.Clear()
+  Goto QuestionAsking
+ElseIf  WouldYouLikeToPlay="N" Or WouldYouLikeToPlay="n" Then
+  TextWindow.ForegroundColor="yellow"
+  TextWindow.Write(" Oh, okay..... ")
+  Program.Delay(1000)
+  TextWindow.WriteLine("Have a fabulicious day!")
+  Program.Delay(2000)
+  Program.End()
+Else
+  TextWindow.ForegroundColor="blue"
+  TextWindow.WriteLine(" That is not an eligible answer! Try again!")
+  TextWindow.ForegroundColor="red"
+  Goto ReAskWouldYouLikeToPlay
+EndIf
+
+QuestionAsking:
+TextWindow.ForegroundColor="blue"
+
+TextWindow.WriteLine(" What would you like your name to be?")
+TextWindow.ForegroundColor="white"
+charactername=TextWindow.Read()
+
+If charactername="Lorial" Or charactername="Aurora" Or charactername="Kenya" Then
+  TextWindow.ForegroundColor="cyan"
+  TextWindow.WriteLine(" Hey, I think I know you.... I saw you in the mirror just a second ago......")
+EndIf
+
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" Give me a nickname for your character.")
+TextWindow.ForegroundColor="white"
+characternickname=TextWindow.Read()
+
+GenderQuestion:
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" What is your gender? ( male or female)")
+TextWindow.ForegroundColor="white"
+charactergender=TextWindow.Read()
+
+If charactergender<>"male" And charactergender<>"female" And charactergender<> "an identify squirrel" Then
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine ( "You buttnose spy, I request that you answer this question correctly!!")
+  Goto GenderQuestion
+EndIf
+
+ConfirmationQuestion:
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" So, your name is "+charactername+", but you also go by "+characternickname+". You are "+charactergender+". Is this correct? ( y or n )")
+TextWindow.ForegroundColor="white"
+Confirmation=TextWindow.Read()
+
+If Confirmation="y" Or Confirmation="Y" Then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" Great!! Let me just set the actual game part up for you!")
+ElseIf Confirmation="n" or Confirmation="N" then
+  Goto QuestionAsking
+Else
+  TextWindow.ForegroundColor="magenta"
+  TextWindow.WriteLine(" I don't care if you are male, female, an identify squirrel, or one of Aurora Josephine Greenwood's parents! You have to tell me Y or N!")
+  Program.Delay(1000)
+  TextWindow.ForegroundColor="red"
+  Goto ConfirmationQuestion
+Endif
+
+
+Program.Delay(100)
+TextWindow.ForegroundColor="cyan"
+TextWindow.WriteLine(" LOADING!")
+Program.Delay(200)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" Loading complete! Enjoy!")
+Program.Delay(1000)
+TextWindow.Clear()
+
+
+If charactergender="male" Then
+  Goto BeginningofActualGameForBoys
+ElseIf charactergender="female" then
+  Goto BeginningofActualGameForGirls
+Else
+  Goto BeginningofActualGameForIdentifySquirrels
+  Endif
+
+BeginningofActualGameForBoys:
+TextWindow.ForegroundColor="green"
+
+TextWindow.WriteLine(" You open your eyes inside a large forest! You have never been here before, and do not remember how you got here.")
+Program.Delay(3000)
+
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" You hear growling behind you..................................................................")
+Program.Delay(4000)
+
+TextWindow.ForegroundColor=" magenta"
+TextWindow.WriteLine(" You turn to see what is making the noise. It is a dragvern were-bear wearing a royal purple cravat while he chews on a live dryad!!! You reach for a weapon of some type, but you have none.")
+
+TextWindow.ForegroundColor="gray"
+TextWindow.WriteLine(" Do you:")
+TextWindow.WriteLine(" (1) Run for your life!")
+TextWindow.WriteLine(" (2) Scream for your mommy!")
+TextWindow.WriteLine(" (3) Try to attack the monster.")
+TextWindow.WriteLine(" (4) Attempt to rescue dryad.")
+
+TextWindow.ForegroundColor="white"
+ImportantGameQuestion1=TextWindow.Read()
+
+If ImportantGameQuestion1="1" Then
+  TextWindow.ForegroundColor="cyan"
+  TextWindow.WriteLine(" You began to run away, praying that the monster was not as fast and hungry as you thought he was. As you ran, you heard the dryad's last scream for help before the fatal munch.")
+  Goto GameScenario1
+ElseIf ImportantGameQuestion1="2" Then
+  TextWindow.ForegroundColor="blue"
+  TextWindow.WriteLine(" You screamed as the monster bent down and swallowed you whole. After eating, the monster looked for a place to take a nap after such a large meal, and you were gently rocked to sleep as you slowly were digested by the stomach acid.")
+  Goto GameScenario2
+ElseIf ImportantGameQuestion1="3" then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" You lunged at the monster!! He was taken by surprise, but he managed to bite your head off. Was this really the fate you wanted?")
+  Goto GameScenario3
+ElseIf ImportantGameQuestion1="4" then
+  TextWindow.ForegroundColor="yellow"
+  TextWindow.WriteLine(" You reached for the dryad and managed to rescue her! She was missing both of her legs, so you had to carry her like a sack of potatoes as you escaped.")
+  Goto GameScenario4
+Else
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine(" TRY THAT AGAIN, DUMBDONKEY!!")
+  Goto BeginningofActualGameForBoys
+EndIf
+
+BeginningofActualGameForGirls:
+TextWindow.ForegroundColor="cyan"
+TextWindow.WriteLine(" You open your eyes on a beach. You can feel the tide pulling in and out at your feet, and the sand underneath you seems soft.")
+Program.Delay(300)
+
+TextWindow.ForegroundColor="green"
+TextWindow.WriteLine(" As you sit up, you spot a large dragon with black scales. He has patterns of red dancing up his back, and scars go up his side and across one purpley-red eye.")
+Program.Delay(500)
+
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" As your gaze rolls down to his feet, you notice large steel chains around his forelegs. You realize that he is walking towards you. Maybe he wasn't as friendly as he looks.......")
+
+TextWindow.ForegroundColor="gray"
+TextWindow.WriteLine(" Do you:")
+TextWindow.WriteLine("(A) Run away!")
+TextWindow.WriteLine("(B) Stay there.")
+TextWindow.WriteLine("(C) Scream for help!")
+TextWindow.WriteLine("(D) Kick its dragon butt!")
+
+TextWindow.ForegroundColor="white"
+ImportantGameQuestion2=TextWindow.Read()
+
+If ImportantGameQuestion2="A" Or ImportantGameQuestion2="a" Then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" You run away into a crowd. He manages to escape his chains, but he does not catch you.")
+  Goto GameScenarioA
+ElseIf ImportantGameQuestion2="B" or ImportantGameQuestion2="b" then
+  TextWindow.ForegroundColor="magenta"
+  TextWindow.WriteLine(" You stood there. He wasn't going to hurt you. As the dragon slowly struggled in his chains, you started to doubt that he didn't want to eat you. As he was freed, you turned to escape, but he bent over to swallow you whole. You clenched your eyes shut as...........Somebody ran over and shoved you and was swallowed instead. Or were they? IT WAS A MIRACLE! The person who saved you had escaped the dragon's mouth!!")
+  Goto GameScenarioB
+ElseIf ImportantGameQuestion2="C" or ImportantGameQuestion2="c" then
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine(" You screamed for help, and a bunch of people rushed over to help, but it was too late. The dragon killed you and all of them. Good job. You just got yourself and a bunch of innocent people killed.")
+  Goto GameScenarioC
+  ElseIf ImportantGameQuestion2="D" or ImportantGameQuestion2="d" then
+  TextWindow.ForegroundColor="yellow"
+  TextWindow.WriteLine(" You dove at the dragon and aimed for the scar on his eye. You managed to injure him, but you were so close to his mouth, that he easily flung you into the air and ate you.")
+  Goto GameScenarioD
+Else
+  TextWindow.WriteLine(" Excuse me?! Redo that, %^&$&^*&^!")
+EndIf 
+
+BeginningofActualGameForIdentifySquirrels:
+TextWindow.ForegroundColor="yellow"
+TextWindow.BackgroundColor="black"
+TextWindow.WriteLine(" You wake up inside a cage.... As you look around, you see a bunch of people bidding for you. A man in a zoo uniform is leading the auction, and you realize what they want. They want to be the owners of the rarest squirrel in existence..")
+Program.Delay(900)
+TextWindow.ForegroundColor="gray"
+TextWindow.WriteLine(" Do you:")
+TextWindow.WriteLine(" (One) Attempt to escape the cage by breaking the lock.")
+TextWindow.WriteLine(" (Two) Go between the bars.")
+TextWindow.WriteLine(" (Three) Hiss at the people.")
+TextWindow.WriteLine(" (Four) Stay perfectly still.")
+TextWindow.WriteLine(" (Five) Turn into something else. ")
+TextWindow.WriteLine(" (Six) Turn invisible.")
+
+TextWindow.ForegroundColor="white"
+ImportantGameQuestion3=TextWindow.Read()
+
+If ImportantGameQuestion3="one" Or ImportantGameQuestion3="One" Then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" You attempt to escape, but the lock is special for magical-squirrel catching. You are sold to a hunter who slaughters and stuffs you.")
+  Program.Delay(600)
+  Goto GameScenarioOne
+ElseIf ImportantGameQuestion3="two" or ImportantGameQuestion3="Two" then
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine(" You turn into a worm and squirm through. The people think you turned invisible and don't notice. A hunter takes the cage, not realizing it is empty. You are FREE!")
+  Program.Delay(500)
+  Goto GameScenarioTwo
+ElseIf ImportantGameQuestion3="three" or ImportantGameQuestion3="Three" then
+    TextWindow.ForegroundColor="gray"
+    TextWindow.WriteLine(" You hiss at the audience. A couple people leave, but not enough of them for you to be safe quite yet. You do get trapped in a way that you can't escape, because of it, though. A little girl ends up buying you for her big brother.")
+    Program.Delay(400)
+    Goto GameScenarioThree
+ElseIf ImportantGameQuestion3="Four" or ImportantGameQuestion3="four" then
+    TextWindow.ForegroundColor="blue"
+    TextWindow.WriteLine(" You stood still. You weren't going to be killed, and it'd be easier to escape when there weren't so many people around. After another hour or so, a young billionaire gives the highest bid and takes you home with him.")
+    Program.Delay(1000)
+    Goto GameScenarioFour
+  ElseIf ImportantGameQuestion3="Five" or ImportantGameQuestion3="five" then
+    TextWindow.ForegroundColor="cyan"
+    TextWindow.WriteLine(" You turned into a mouse, escaped, then turned back to your true form right outside of the building. You rushed towards your forest home and hoped nobody had noticed you were missing.")
+    Program.Delay(800)
+    Goto GameScenarioFive
+  ElseIf ImportantGameQuestion3="six" or ImportantGameQuestion3="Six" then
+    TextWindow.ForegroundColor="magenta"
+    TextWindow.WriteLine(" The people know you can turn invisible, but check around for you just in case. They also block the exits from the building, including the small ones. You are bought by a zoo where they put you in a glass tank that is magic-proof.")
+    Program.Delay(300)
+    Goto GameScenarioSix
+  Else
+    TextWindow.ForegroundColor="black"
+    TextWindow.BackgroundColor="red"
+    TextWindow.WriteLine(" That is not an answer, dumby. Please give me one of the options.")
+    Goto BeginningofActualGameForIdentifySquirrels
+    EndIf
+
+GameScenario1:
+TextWindow.ForegroundColor="green"
+TextWindow.WriteLine(" You wake up in a cold sweat. You can still hear the screaming, and as you look over, you realize that it is your alarm clock. You turn it off and notice your driver's license right beside it. As you climb out of bed, you hear someone calling for you   from downstairs.")
+
+TextWindow.ForegroundColor="gray"
+TextWindow.WriteLine("Do you:")
+TextWindow.WriteLine("(1) Get dressed.")
+TextWindow.WriteLine("(2) Go downstairs.")
+TextWindow.WriteLine("(3) Look at the ID on your nightstand.")
+
+TextWindow.ForegroundColor="white"
+ImportantGameQuestion4=TextWindow.Read()
+
+If ImportantGameQuestion4="1" Then
+  Goto GameScenario5
+ElseIf ImportantGameQuestion4="2" then
+  Goto GameScenario6
+ElseIf ImportantGameQuestion4="3" then
+  Goto GameScenario7
+Else
+  TextWindow.ForegroundColor="red"
+  TextWindow.Write(" I gave you one job. I gave you just that ONE job, and you messed it up.")
+  Goto GameScenario1
+EndIf
+
+GameScenario2:
+TextWindow.ForegroundColor="yellow"
+TextWindow.WriteLine(" You realize that you aren't falling asleep. YOU'RE WAKING UP! When you open your eyes, you see your older sister, Amara, standing over you with a bucket of water. Even though you were very clearly awake, she dumped it over your head. 'Good morning, "+characternickname+"!!', she yelled as she ran away laughing. You wiped the water off of your face and looked around the room. EVERYTHING WAS BLURRY!! You put on your glasses, then noticed that your brothers, Jake and Carl, had set up another mirror.")
+
+TextWindow.ForegroundColor="gray"
+TextWindow.WriteLine(" Do you:")
+TextWindow.WriteLine(" (1) Look into the mirror.")
+TextWindow.WriteLine(" (2) Smash your glasses on purpose.")
+TextWindow.WriteLine(" (3) Change out of your wet pajamas.")
+TextWindow.WriteLine(" (4) Tattle on your sister.")
+
+TextWindow.ForegroundColor="white"
+ImportantGameQuestion5=TextWindow.Read()
+
+If ImportantGameQuestion5="1" Then
+  Goto GameScenario8
+ElseIf ImportantGameQuestion5="2" then
+  Goto GameScenario9
+ElseIf ImportantGameQuestion5="3" then
+  goto GameScenario10
+ElseIf ImportantGameQuestion5="4" then
+  Goto GameScenario11
+Else
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine(" Do this right, you brainless puddle of goose spittle.")
+  Goto GameScenario2
+  EndIf
+
+GameScenario3:
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" G ")
+Program.Delay(1000)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" A ")
+Program.Delay(900)
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" M ")
+Program.Delay(800)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" E ")
+Program.Delay(700)
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine("  ")
+Program.Delay(500)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" O ")
+Program.Delay(400)
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" V ")
+Program.Delay(300)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" E ")
+Program.Delay(200)
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" R ")
+Program.Delay(100)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" ! ")
+Program.Delay(2000)
+Program.End()
+
+GameScenario4:
+TextWindow.ForegroundColor="cyan"
+TextWindow.WriteLine(" You reach an elven village. One of the residents kindly offers to lead you to the local healer.")
+
+TextWindow.ForegroundColor="gray"
+TextWindow.WriteLine(" Do you: ")
+TextWindow.WriteLine("(1) Follow the kind man.")
+TextWindow.WriteLine("(2) Say that you'll find it yourself.")
+TextWindow.WriteLine("(3) Ignore him and walk past.")
+TextWindow.WriteLine("(4) Hand him the girl and leave.")
+
+TextWIndow.ForegroundColor="white"
+ImportantGameQuestion6=TextWindow.Read()
+
+If ImportantGameQuestion6="1" Then
+  TextWindow.ForegroundColor="yellow"
+  TextWindow.WriteLine(" You follow the man to a small house surrounded by gardens. He knocks on the door, and a young woman opens it.")
+  Goto GameScenario12
+ElseIf ImportantGameQuestion6="2" then
+  TextWindow.ForegroundColor="cyan"
+  TextWindow.WriteLine(" The man gives you an understanding smile, but tells you which paths to take anyway.")
+  Goto GameScenario13
+ElseIf ImportantGameQuestion6="3" then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" You ignored the man and trudged past.")
+  Goto GameScenario14
+ElseIf ImportantGameQuestion6="4" then
+  TextWindow.ForegroundColor="blue"
+  TextWindow.WriteLine(" You had saved the girl's life out of human decency, but this was as far as you were going to take her. You explained this to the man and left the village. There had to be another one somewhere...")
+  Goto GameScenario15
+Else
+  TextWindow.WriteLine(" I apologize for any problems this may cause, but I really need you to answer with one of the options I have provided for you.")
+EndIf
+
+GameScenarioA:
+TextWindow.ForegroundColor="green"
+TextWindow.WriteLine(" You finally make it out of the crowd and find yourself in front of a dress shop. You look down at your tattered, sand-covered, and generally wet clothes. Should you stop by there?")
+
+TextWindow.ForegroundColor="gray"
+TextWindow.WriteLine(" Do you:")
+TextWindow.WriteLine("(A) Go into the shop.")
+TextWindow.WriteLine("(B) Stand there and think about it.")
+TextWindow.WriteLine("(C) Just leave.")
+
+TextWIndow.ForegroundColor="white"
+ImportantGameQuestion7=TextWindow.Read()
+
+If ImportantGameQuestion7="A" Or ImportantGameQuestion7="a" Then
+  Goto GameScenarioE
+ElseIf ImportantGameQuestion7="B" Or ImportantGameQuestion7="b" Then
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine(" A tall teenage girl looks over to you and yells,' Idiot, don't just stand there! Do something!' You move, but it was too late. The dragon appeared, dove down faster than the speed of light, and ate you up in one bite.")
+  Goto GameScenarioF
+ElseIf ImportantGameQuestion7="C" Or ImportantGameQuestion7="c" Then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" You begin to leave, then notice a tall hairy man. ")
+  Goto GameScenarioG
+Else
+  TextWindow.ForegroundColor="cyan"
+  TextWindow.WriteLine(" A girl you recognize as Aurora Greenwood waves a wand and then.........")
+EndIf
+
+GameScenarioB:
+TextWindow.ForegroundColor="yellow"
+TextWindow.WriteLine(" Your savior picked you up over one shoulder and ran. You were too startled to struggle, so you let the person carry you until you reached a small clinic, where your savior set you down on an examination table.")
+TextWindow.WriteLine(" A woman in a healer's uniform walked in, and when she noticed you, she yelled, ' Archer Kenneth Adenine Guanine Thymine Cytosine Blair! Who'd you hit with your new car this time!'")
+TextWindow.WriteLine(" ' Mom! I didn't hit anyone with my car. Why the again?' As he talks, you turn and finally get a good look at the person who saved your life.")
+TextWindow.WriteLine(" Archer was a decently tall boy with slightly puffy short black hair and pale skin. He had a well faded scar across one of his almond shaped grey-green eyes.")
+TextWindow.WriteLine(" Archer's mother rushed over to you and checked for any wounds. There were none, though she did think you needed to rest for a bit.")
+
+TextWindow.ForegroundColor="gray"
+
+GameScenarioC:
+GameScenarioD:
+GameScenarioOne:
+GameScenarioTwo:
+GameScenarioThree:
+GameScenarioFour:
+GameScenarioFive:
+GameScenarioSix:
+GameScenario5:
+GameScenario6:
+GameScenario7:
+GameScenario8:
+GameScenario9:
+GameScenario10:
+GameScenario11:
+GameScenario12:
+GameScenario13:
+GameScenario14:
+GameScenario15:
+GameScenarioE:
+GameScenarioF:
+GameScenarioG:
+TextWindow.ForegroundColor="green"
+TextWindow.WriteLine("'Fred?!' You cried in shock.")
+TextWindow.WriteLine( "The man turned to you, his face full of the same feeling. 'How do you know my name, miss?'")

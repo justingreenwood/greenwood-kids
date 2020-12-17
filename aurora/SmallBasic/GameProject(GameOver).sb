@@ -1,0 +1,31 @@
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" G ")
+Program.Delay(1000)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" A ")
+Program.Delay(900)
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" M ")
+Program.Delay(800)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" E ")
+Program.Delay(700)
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine("  ")
+Program.Delay(500)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" O ")
+Program.Delay(400)
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" V ")
+Program.Delay(300)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" E ")
+Program.Delay(200)
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" R ")
+Program.Delay(100)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" ! ")
+Program.Delay(2000)
+Program.End()

@@ -1,0 +1,89 @@
+collisions = 0
+For s=1 To 15
+  
+  collision = "yes"
+  While (collision = "yes")
+    collision = "no"
+    
+    _x1=Math.GetRandomNumber(500)
+    _y1=Math.GetRandomNumber(300)
+    _h1=10
+    _w1=25
+    
+    _x2=210
+    _y2=210
+    _h2=100
+    _w2=100      
+    CheckCollision()
+    collision = _collision
+    
+    If (s > 1) Then
+      For p=1 To (s-1)
+        If (collision = "no") then
+          _x2=rectangles[p]["x"]
+          _y2=rectangles[p]["y"]
+          _h2=rectangles[p]["h"]
+          _w2=rectangles[p]["w"]          
+          CheckCollision()
+          collision = _collision
+        EndIf
+      EndFor
+    EndIf
+    
+    If (collision = "yes") Then
+      TextWindow.WriteLine("OOPS! There's a collision.")
+      collisions = collisions + 1
+    EndIf
+    
+  EndWhile
+  
+  rectangles[s]["x"] = _x1
+  rectangles[s]["y"] = _y1
+  rectangles[s]["h"] = _h1
+  rectangles[s]["w"] = _w1
+    
+  If (collision = "yes") Then
+    rectangles[s]["c"] = "black"
+  Else
+    rectangles[s]["c"] = GraphicsWindow.GetRandomColor()
+  EndIf
+  
+EndFor
+  
+GraphicsWindow.FillRectangle(210, 210, 100, 100)
+For s=1 To Array.GetItemCount(rectangles)
+    GraphicsWindow.PenColor = rectangles[s]["c"]
+    GraphicsWindow.DrawRectangle(rectangles[s]["x"],rectangles[s]["y"],rectangles[s]["w"],rectangles[s]["h"])
+EndFor
+
+TextWindow.WriteLine("Number of collisions." + collisions)
+
+'_x1
+'_y1
+'_h1
+'_w1
+'_x2
+'_y2
+'_h2
+'_w2
+'_collision
+Sub CheckCollision
+  _collision = "no"  
+  isXColliding = "no"
+  isYColliding = "no"
+  
+  'left or right side
+  If (( _x1 >= _x2 And _x1 <= (_x2 + _w2) ) Or ( (_x1+_w1) >= _x2 And (_x1+_w1) <= (_x2 + _w2) )) then 
+    isXColliding = "yes"
+  EndIf
+  
+  'top or bottom side
+  If (( _y1 >= _y2 And _y1 <= (_y2 + _h2) ) Or ( (_y1+_h1) >= _y2 And (_y1+_h1) <= (_y2 + _h2) )) then 
+    isYColliding = "yes"
+  EndIf
+  
+  If (isXColliding = "yes" And isYColliding = "yes") Then
+    _collision = "yes"
+  EndIf
+      
+EndSub

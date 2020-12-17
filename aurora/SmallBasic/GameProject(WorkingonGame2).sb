@@ -1,0 +1,107 @@
+TextWindow.Title="!? Live As A Character ?!"
+'*********************************************************************************************'
+TextWindow.ForegroundColor="green"
+TextWindow.BackgroundColor="gray"
+TextWindow.WriteLine(" LIVE A DAY AS A MADE-UP CHARACTER ")
+Program.Delay(100)
+
+TextWindow.ForegroundColor="red"
+TextWindow.BackgroundColor="black"
+
+ReAskWouldYouLikeToPlay:
+TextWindow.WriteLine(" Would you like to play?( Y or N )")
+TextWindow.ForegroundColor="white"
+WouldYouLikeToPlay=TextWindow.Read()
+If WouldYouLikeToPlay="Y" Or WouldYouLikeToPlay="y" Then
+   TextWindow.ForegroundColor="green"
+   TextWindow.WriteLine(" Ok. Give me a minute to set it up!")
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(2000)
+   TextWindow.Clear()
+  Goto QuestionAsking
+ElseIf  WouldYouLikeToPlay="N" Or WouldYouLikeToPlay="n" Then
+  TextWindow.ForegroundColor="yellow"
+  TextWindow.Write(" Oh, okay..... ")
+  Program.Delay(1000)
+  TextWindow.WriteLine("Have a fabulicious day!")
+  Program.Delay(2000)
+  Program.End()
+Else
+  TextWindow.ForegroundColor="blue"
+  TextWindow.WriteLine(" That is not an eligible answer! Try again!")
+  TextWindow.ForegroundColor="red"
+  Goto ReAskWouldYouLikeToPlay
+EndIf
+
+QuestionAsking:
+TextWindow.ForegroundColor="blue"
+
+TextWindow.WriteLine(" What would you like your name to be?")
+TextWindow.ForegroundColor="white"
+charactername=TextWindow.Read()
+
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" Give me a nickname for your character.")
+TextWindow.ForegroundColor="white"
+characternickname=TextWindow.Read()
+
+GenderQuestion:
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" What is your gender? ( male or female)")
+TextWindow.ForegroundColor="white"
+charactergender=TextWindow.Read()
+
+If charactergender<>"male" And charactergender<>"female" And charactergender<> "an identify squirrel" Then
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine ( "You buttnose spy, I request that you answer this question correctly!!")
+  Goto GenderQuestion
+EndIf
+
+ConfirmationQuestion:
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" So, your name is "+charactername+", but you also go by "+characternickname+". You are "+charactergender+". Is this correct? ( y or n )")
+TextWindow.ForegroundColor="white"
+Confirmation=TextWindow.Read()
+
+If Confirmation="y" Or Confirmation="Y" Then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" Great!! Let me just set the actual game part up for you!")
+ElseIf Confirmation="n" or Confirmation="N" then
+  Goto QuestionAsking
+Else
+  TextWindow.ForegroundColor="magenta"
+  TextWindow.WriteLine(" I don't care if you are male, female, an identify squirrel, or one of Aurora Josephine Greenwood's parents! You have to tell me Y or N!")
+  Program.Delay(1000)
+  TextWindow.ForegroundColor="red"
+  Goto ConfirmationQuestion
+  Endif
+
+Program.Delay(100)
+TextWindow.ForegroundColor="cyan"
+TextWindow.WriteLine(" LOADING!")
+Program.Delay(200)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" Loading complete! Enjoy!")
+Program.Delay(1000)
+TextWindow.Clear()
+
+'Any array that I have to make will be under here!
+
+BeginningofActualGame:
+TextWindow.ForegroundColor="red"
+
+TextWindow.WriteLine(" You open your eyes inside a large forest! You have never been here before, and do not remember how you got here.")
+Program.Delay(3000)
+
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" You hear growling behind you..................................................................")
+Program.Delay(4000)
+
+TextWindow.ForegroundColor=" magenta"
+TextWindow.WriteLine(" You turn to see what is making the noise. It is a dragvern were-bear wearing a royal purple cravat!!! You scream and reach for a weapon, but you have none....")

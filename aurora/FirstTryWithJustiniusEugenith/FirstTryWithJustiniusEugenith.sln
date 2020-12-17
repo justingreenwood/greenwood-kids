@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FirstTryWithJustiniusEugenith", "FirstTryWithJustiniusEugenith\FirstTryWithJustiniusEugenith.csproj", "{3947E3BD-F4E2-4960-A89F-3DE64D9218B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FreeAndProud", "FreeAndProud\FreeAndProud.csproj", "{93E7FD25-9536-4312-9916-2F935005DF57}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3947E3BD-F4E2-4960-A89F-3DE64D9218B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3947E3BD-F4E2-4960-A89F-3DE64D9218B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3947E3BD-F4E2-4960-A89F-3DE64D9218B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3947E3BD-F4E2-4960-A89F-3DE64D9218B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93E7FD25-9536-4312-9916-2F935005DF57}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93E7FD25-9536-4312-9916-2F935005DF57}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93E7FD25-9536-4312-9916-2F935005DF57}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93E7FD25-9536-4312-9916-2F935005DF57}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {259503B6-7663-44B1-AF6F-1A51E4F0B3FF}
+	EndGlobalSection
+EndGlobal

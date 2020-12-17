@@ -1,0 +1,200 @@
+TextWindow.Title="!? Live 24 Hours As A Character ?!"
+'*********************************************************************************************'
+TextWindow.ForegroundColor="green"
+TextWindow.BackgroundColor="gray"
+TextWindow.WriteLine(" LIVE A DAY AS A MADE-UP CHARACTER ")
+Program.Delay(100)
+
+TextWindow.ForegroundColor="red"
+TextWindow.BackgroundColor="black"
+
+ReAskWouldYouLikeToPlay:
+TextWindow.WriteLine(" Would you like to play?( Y or N )")
+TextWindow.ForegroundColor="white"
+WouldYouLikeToPlay=TextWindow.Read()
+If WouldYouLikeToPlay="Y" Or WouldYouLikeToPlay="y" Then
+   TextWindow.ForegroundColor="green"
+   TextWindow.WriteLine(" Ok. Give me a minute to set it up!")
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(2000)
+   TextWindow.Clear()
+  Goto QuestionAsking
+ElseIf  WouldYouLikeToPlay="N" Or WouldYouLikeToPlay="n" Then
+  TextWindow.ForegroundColor="yellow"
+  TextWindow.Write(" Oh, okay..... ")
+  Program.Delay(1000)
+  TextWindow.WriteLine("Have a fabulicious day!")
+  Program.Delay(2000)
+  Program.End()
+Else
+  TextWindow.ForegroundColor="blue"
+  TextWindow.WriteLine(" That is not an eligible answer! Try again!")
+  TextWindow.ForegroundColor="red"
+  Goto ReAskWouldYouLikeToPlay
+EndIf
+
+QuestionAsking:
+TextWindow.ForegroundColor="blue"
+
+TextWindow.WriteLine(" What would you like your name to be?")
+TextWindow.ForegroundColor="white"
+charactername=TextWindow.Read()
+
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" Give me a nickname for your character.")
+TextWindow.ForegroundColor="white"
+characternickname=TextWindow.Read()
+
+GenderQuestion:
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" What is your gender? ( male or female)")
+TextWindow.ForegroundColor="white"
+charactergender=TextWindow.Read()
+
+If charactergender<>"male" And charactergender<>"female" And charactergender<> "an identify squirrel" Then
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine ( "You buttnose spy, I request that you answer this question correctly!!")
+  Goto GenderQuestion
+EndIf
+
+ConfirmationQuestion:
+TextWindow.ForegroundColor="red"
+TextWindow.WriteLine(" So, your name is "+charactername+", but you also go by "+characternickname+". You are "+charactergender+". Is this correct? ( y or n )")
+TextWindow.ForegroundColor="white"
+Confirmation=TextWindow.Read()
+
+If Confirmation="y" Or Confirmation="Y" Then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" Great!! Let me just set the actual game part up for you!")
+ElseIf Confirmation="n" or Confirmation="N" then
+  Goto QuestionAsking
+Else
+  TextWindow.ForegroundColor="magenta"
+  TextWindow.WriteLine(" I don't care if you are male, female, an identify squirrel, or one of Aurora Josephine Greenwood's parents! You have to tell me Y or N!")
+  Program.Delay(1000)
+  TextWindow.ForegroundColor="red"
+  Goto ConfirmationQuestion
+Endif
+
+
+Program.Delay(100)
+TextWindow.ForegroundColor="cyan"
+TextWindow.WriteLine(" LOADING!")
+Program.Delay(200)
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" Loading complete! Enjoy!")
+Program.Delay(1000)
+TextWindow.Clear()
+
+
+If charactergender="male" Then
+  Goto BeginningofActualGameForBoys
+ElseIf charactergender="female" then
+  Goto BeginningofActualGameForGirls
+Else
+  Goto BeginningofActualGameForIdentifySquirrels
+  Endif
+
+BeginningofActualGameForBoys:
+TextWindow.ForegroundColor="red"
+
+TextWindow.WriteLine(" You open your eyes inside a large forest! You have never been here before, and do not remember how you got here.")
+Program.Delay(3000)
+
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" You hear growling behind you..................................................................")
+Program.Delay(4000)
+
+TextWindow.ForegroundColor=" magenta"
+TextWindow.WriteLine(" You turn to see what is making the noise. It is a dragvern were-bear wearing a royal purple cravat while he chews on a live dryad!!! You reach for a weapon of some type, but you have none.")
+
+TextWindow.ForegroundColor="gray"
+TextWindow.WriteLine(" Do you:")
+TextWindow.WriteLine(" (1) Run for your life!")
+TextWindow.WriteLine(" (2) Scream for your mommy!")
+TextWindow.WriteLine(" (3) Try to attack the monster.")
+TextWindow.WriteLine(" (4) Attempt to rescue dryad.")
+
+TextWindow.ForegroundColor="white"
+ImportantGameQuestion1=TextWindow.Read()
+
+If ImportantGameQuestion1="1" Then
+  TextWindow.ForegroundColor="cyan"
+  TextWindow.WriteLine(" You began to run away, praying that the monster was not as fast and hungry as you thought he was. As you ran, you heard the dryad's last scream for help before the fatal munch.")
+  Goto GameScenario1
+ElseIf ImportantGameQuestion1="2" Then
+  TextWindow.ForegroundColor="blue"
+  TextWindow.WriteLine(" You screamed as the monster bent down and swallowed you whole. After eating, the monster looked for a place to take a nap after such a large meal, and you were gently rocked to sleep as you slowly were digested by the stomach acid.")
+  Goto GameScenario2
+ElseIf ImportantGameQuestion1="3" then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" You lunged at the monster!! He was taken by surprise, but he managed to bite your head off. Was this really the fate you wanted?")
+  Goto GameScenario3
+ElseIf ImportantGameQuestion1="4" then
+  TextWindow.ForegroundColor="yellow"
+  TextWindow.WriteLine(" You reached for the dryad and managed to rescue her! She was missing both of her legs, so you had to carry her like a sack of potatoes as you escaped.")
+  Goto GameScenario4
+Else
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine(" TRY THAT AGAIN, DUMBDONKEY!!")
+  Goto BeginningofActualGameForBoys
+EndIf
+
+BeginningofActualGameForGirls:
+TextWindow.ForegroundColor="cyan"
+TextWindow.WriteLine(" You open your eyes on a beach. You can feel the tide pulling in and out at your feet, and the sand underneath you seems soft.")
+Program.Delay(300)
+
+TextWindow.ForegroundColor="green"
+TextWindow.WriteLine(" As you sit up, you spot a large dragon with black scales. He has patterns of red dancing up his back, and scars go up his side and across one purpley-red eye.")
+Program.Delay(500)
+
+TextWindow.ForegroundColor="blue"
+TextWindow.WriteLine(" As your gaze rolls down to his feet, you notice large steel chains around his forelegs. You realize that he is walking towards you. Maybe he wasn't as friendly as he looks.......")
+
+TextWindow.ForegroundColor="gray"
+TextWindow.WriteLine(" Do you:")
+TextWindow.WriteLine("(A) Run away!")
+TextWindow.WriteLine("(B) Stay there.")
+TextWindow.WriteLine("(C) Scream for help!")
+TextWindow.WriteLine("(D) Kick its dragon butt!")
+
+TextWindow.ForegroundColor="white"
+ImportantGameQuestion2=TextWindow.Read()
+
+If ImportantGameQuestion2="A" Or ImportantGameQuestion2="a" Then
+  TextWindow.ForegroundColor="green"
+  TextWindow.WriteLine(" You run away into a crowd. He manages to escape his chains, but he does not catch you.")
+  Goto GameScenarioA
+ElseIf ImportantGameQuestion2="B" or ImportantGameQuestion2="b" then
+  TextWindow.ForegroundColor="magenta"
+  TextWindow.WriteLine(" You stood there. He wasn't going to hurt you. As the dragon slowly struggled in his chains, you started to doubt that he didn't want to eat you. As he was freed, you turned to escape, but he bent over to swallow you whole. You clenched your eyes shut as...........Somebody ran over and shoved you and was swallowed instead. Or were they? IT WAS A MIRACLE! The person who saved you had escaped the dragon's mouth!!")
+  Goto GameScenarioB
+ElseIf ImportantGameQuestion2="C" or ImportantGameQuestion2="c" then
+  TextWindow.ForegroundColor="red"
+  TextWindow.WriteLine(" You screamed for help, and a bunch of people rushed over to help, but it was too late. The dragon killed you and all of them. Good job. You just got yourself and a bunch of innocent people killed.")
+  Goto GameScenarioC
+  ElseIf ImportantGameQuestion2="D" or ImportantGameQuestion2="d" then
+  TextWindow.ForegroundColor="yellow"
+  TextWindow.WriteLine(" You dove at the dragon and aimed for the scar on his eye. You managed to injure him, but you were so close to his mouth, that he easily flung you into the air and ate you.")
+  Goto GameScenarioD
+Else
+  TextWindow.WriteLine(" Excuse me?! Redo that, %^&$&^*&^!")
+EndIf 
+
+BeginningofActualGameForIdentifySquirrels:
+
+GameScenario1:
+GameScenario2:
+GameScenario3:
+GameScenario4:
+GameScenarioA:
+GameScenarioB:
+GameScenarioC:
+GameScenarioD:

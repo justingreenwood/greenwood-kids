@@ -1,0 +1,39 @@
+TextWindow.Title="!? The Daily Life of a Different Person ?!"
+'*********************************************************************************************'
+TextWindow.ForegroundColor="green"
+TextWindow.BackgroundColor="gray"
+TextWindow.WriteLine(" LIVE A DAY AS A DIFFERENT PERSON ")
+Program.Delay(100)
+TextWindow.ForegroundColor="red"
+TextWindow.BackgroundColor="black"
+TextWindow.WriteLine(" Would you like to play?( Y or N )")
+ReAskWouldYouLikeToPlay:
+WouldYouLikeToPlay=TextWindow.Read()
+If WouldYouLikeToPlay="Y" Or WouldYouLikeToPlay="y" Then
+   TextWindow.WriteLine(" Ok. Give me a minute to set it up!")
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(100)
+   TextWindow.Write(" Loading............")
+   Program.Delay(2000)
+   TextWindow.Clear()
+  Goto BeginningOfActualGame
+ElseIf  WouldYouLikeToPlay="N" Or WouldYouLikeToPlay="n" Then
+  TextWindow.ForegroundColor="yellow"
+  TextWindow.Write(" Oh, okay..... ")
+  Program.Delay(1000)
+  TextWindow.WriteLine("Have a fabulicious day!")
+  Program.Delay(2000)
+  Program.End()
+Else
+  TextWindow.Write(" That is not an eligible answer! Try again!")
+  Goto ReAskWouldYouLikeToPlay
+EndIf
+
+BeginningofActualGame:
+TextWindow.ForegroundColor="yellow"
+
+TextWindow.WriteLine(" You open your eyes in a strange room.
