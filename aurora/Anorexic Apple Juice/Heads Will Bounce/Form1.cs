@@ -12,7 +12,8 @@ namespace Heads_Will_Bounce
 {
     public partial class Form1 : Form
     {
-        private const int TickDistance = 1;
+        private static Image _head1Image = new Bitmap("AuroraSprite1.png");
+        private const int TickDistance = 10;
         private static Random _random = new Random();
 
         private Character _dude = new Character();
@@ -65,6 +66,7 @@ namespace Heads_Will_Bounce
 
             g.FillEllipse(brush, _dude.SizeAndLocation);
             g.DrawEllipse(Pens.Black, _dude.SizeAndLocation);
+            g.DrawImage(_head1Image, _dude.SizeAndLocation);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
