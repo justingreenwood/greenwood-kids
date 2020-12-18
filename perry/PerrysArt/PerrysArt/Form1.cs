@@ -405,7 +405,6 @@ namespace PerrysArt
             {
                 g.DrawString("YOU WIN!", SystemFonts.DefaultFont, Brushes.DarkRed, 400, 340);
                 System.Threading.Thread.Sleep(2000);
-                this.Close();
                 Application.Exit();
             }
 

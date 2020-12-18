@@ -13,21 +13,21 @@ O   WBBB BBW     TTTTT    V  T  W        O|
 O   WWWWWWWW     TTTTTT         W     TT O|
 O              WWTTTTT     T    W  T   T O|
 O    T     T  WWWWTTT     TTT   W TT     O|
-O    T      TTWWWW         T    W        O|
-O              WW              WW    TT  O|
+O  TTTT     TTWWWW         T    W        O|
+O   T        TTWW              WW    TT  O|
 O             T           WWWWWW         O|
-OT     TTT                W  T WWW  WEW  O|
-OTT     TT            TT WW T    WW W WW O|
+OT     TTT           T    W  T WWW  WEW  O|
+OTT     TT           TTT WW T    WW W WW O|
 OT      T  V V V      TTWW  T     WWW  WWO|
-O                 TT   WW      T         O|
-O          V V V   TT  E            TT   O|
-O                 TTT WW            T    O|
-O                  T WW                  O|
-O   TT        T     WW   V V V           O|
+O    T            TT   WW      T         O|
+O   TTT    V V V  TTT  E      TT    TT   O|
+O     T          TTTT WW      T     T    O|
+O            T     T WW                  O|
+O   TT      TTT     WW   V V V           O|
 O  TTTT      TTT    W T TT    GG         O|
-O  TTTTT      T     W TTT  V GLLG    TT  O|
+O  TTTTT      TT    W TTT  V GLLG    TT  O|
 O   TTTT      WWW   W TTTV   GLLLG    T  O|
-OW    T      WW WW WW         GGG        O|
+OW    T      WW WW WW  T      GGG        O|
 OWW          W   WWW      T              O|
 O W       W  W           TTT   TTT       O|
 O WW     WWW W       TTT  T              O|

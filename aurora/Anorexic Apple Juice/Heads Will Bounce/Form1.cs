@@ -75,7 +75,7 @@ namespace Heads_Will_Bounce
             var brush = new SolidBrush(_dude.Color);
 
 
-            g.DrawImage(_head1Image, new Rectangle(50, yThingy,300, 300));
+            g.DrawImage(_head2Image, new Rectangle(235, 0, 400, 400));
 
             g.FillEllipse(brush, _dude.SizeAndLocation);
             g.DrawEllipse(Pens.Black, _dude.SizeAndLocation);

@@ -65,17 +65,18 @@
             // pictureBox16
             // 
             this.pictureBox16.Image = global::frustraion.Properties.Resources.IMG_0417;
-            this.pictureBox16.Location = new System.Drawing.Point(43, 346);
+            this.pictureBox16.Location = new System.Drawing.Point(78, 490);
             this.pictureBox16.Name = "pictureBox16";
             this.pictureBox16.Size = new System.Drawing.Size(130, 100);
             this.pictureBox16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox16.TabIndex = 15;
             this.pictureBox16.TabStop = false;
+            this.pictureBox16.Click += new System.EventHandler(this.pictureBox16_Click);
             // 
             // pictureBox15
             // 
             this.pictureBox15.Image = global::frustraion.Properties.Resources.IMG_0454;
-            this.pictureBox15.Location = new System.Drawing.Point(101, 362);
+            this.pictureBox15.Location = new System.Drawing.Point(398, 426);
             this.pictureBox15.Name = "pictureBox15";
             this.pictureBox15.Size = new System.Drawing.Size(130, 100);
             this.pictureBox15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -95,7 +96,7 @@
             // pictureBox13
             // 
             this.pictureBox13.Image = global::frustraion.Properties.Resources.IMG_0455;
-            this.pictureBox13.Location = new System.Drawing.Point(198, 345);
+            this.pictureBox13.Location = new System.Drawing.Point(662, 579);
             this.pictureBox13.Name = "pictureBox13";
             this.pictureBox13.Size = new System.Drawing.Size(130, 100);
             this.pictureBox13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -115,7 +116,7 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = global::frustraion.Properties.Resources.IMG_0461;
-            this.pictureBox11.Location = new System.Drawing.Point(276, 362);
+            this.pictureBox11.Location = new System.Drawing.Point(456, 203);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(130, 100);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -125,7 +126,7 @@
             // pictureBox10
             // 
             this.pictureBox10.Image = global::frustraion.Properties.Resources.IMG_0466;
-            this.pictureBox10.Location = new System.Drawing.Point(624, 177);
+            this.pictureBox10.Location = new System.Drawing.Point(705, 68);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(130, 100);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -135,7 +136,7 @@
             // pictureBox9
             // 
             this.pictureBox9.Image = global::frustraion.Properties.Resources.IMG_0465;
-            this.pictureBox9.Location = new System.Drawing.Point(624, 362);
+            this.pictureBox9.Location = new System.Drawing.Point(1026, 283);
             this.pictureBox9.Name = "pictureBox9";
             this.pictureBox9.Size = new System.Drawing.Size(130, 100);
             this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -145,7 +146,7 @@
             // pictureBox8
             // 
             this.pictureBox8.Image = global::frustraion.Properties.Resources.IMG_0463;
-            this.pictureBox8.Location = new System.Drawing.Point(384, 346);
+            this.pictureBox8.Location = new System.Drawing.Point(681, 190);
             this.pictureBox8.Name = "pictureBox8";
             this.pictureBox8.Size = new System.Drawing.Size(130, 100);
             this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -175,7 +176,7 @@
             // pictureBox5
             // 
             this.pictureBox5.Image = global::frustraion.Properties.Resources.IMG_0464;
-            this.pictureBox5.Location = new System.Drawing.Point(496, 283);
+            this.pictureBox5.Location = new System.Drawing.Point(662, 345);
             this.pictureBox5.Name = "pictureBox5";
             this.pictureBox5.Size = new System.Drawing.Size(130, 100);
             this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -185,7 +186,7 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = global::frustraion.Properties.Resources.IMG_0470;
-            this.pictureBox4.Location = new System.Drawing.Point(384, 190);
+            this.pictureBox4.Location = new System.Drawing.Point(922, 490);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(130, 100);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -205,7 +206,7 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = global::frustraion.Properties.Resources.IMG_0473;
-            this.pictureBox2.Location = new System.Drawing.Point(218, 170);
+            this.pictureBox2.Location = new System.Drawing.Point(939, 86);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(130, 100);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -227,7 +228,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1239, 691);
             this.Controls.Add(this.pictureBox16);
             this.Controls.Add(this.pictureBox15);
             this.Controls.Add(this.pictureBox14);

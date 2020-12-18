@@ -1,9 +1,0 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
-    <RootNamespace>Don_t_Forget_Me__I_Swear_I_ll_Remember_Your_Name_</RootNamespace>
-  </PropertyGroup>
-
-</Project>

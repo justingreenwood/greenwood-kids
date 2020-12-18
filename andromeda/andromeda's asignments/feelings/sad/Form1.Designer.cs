@@ -119,9 +119,9 @@
             // PictureBox
             // 
             this.PictureBox.ErrorImage = global::sad.Properties.Resources.Emoticon_Bugged_Noise_Loud_icon;
-            this.PictureBox.Location = new System.Drawing.Point(-4, 253);
+            this.PictureBox.Location = new System.Drawing.Point(12, 338);
             this.PictureBox.Name = "PictureBox";
-            this.PictureBox.Size = new System.Drawing.Size(331, 194);
+            this.PictureBox.Size = new System.Drawing.Size(130, 100);
             this.PictureBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.PictureBox.TabIndex = 0;
             this.PictureBox.TabStop = false;
