@@ -13,8 +13,12 @@ namespace Heads_Will_Bounce
     public partial class Form1 : Form
     {
         private static Image _head1Image = new Bitmap("AuroraSprite1.png");
+        private static Image _head2Image = new Bitmap("AuroraSprite2.png");
         private const int TickDistance = 10;
         private static Random _random = new Random();
+        
+        private bool isFirstHead = true;
+        private int yThingy = 50;
 
         private Character _dude = new Character();
         private Keys _currentKey = Keys.None;
@@ -47,9 +51,15 @@ namespace Heads_Will_Bounce
 
         private void GameTimer_Tick(object sender, EventArgs e)
         {
+            yThingy++;
             switch (_currentKey)
             {
-                case Keys.C: _dude.Color = Color.FromArgb(100, _random.Next(256), _random.Next(256), _random.Next(256)); break;
+                case Keys.C: 
+                    _dude.Color = Color.FromArgb(100, _random.Next(256), _random.Next(256), _random.Next(256)); 
+                    break;
+                case Keys.X: 
+                    isFirstHead = !isFirstHead; 
+                    break;
                 case Keys.Up: _dude.Top -= TickDistance; break;
                 case Keys.Down: _dude.Top += TickDistance; break;
                 case Keys.Left: _dude.Left -= TickDistance; break;
@@ -64,9 +74,15 @@ namespace Heads_Will_Bounce
         {
             var brush = new SolidBrush(_dude.Color);
 
+
+            g.DrawImage(_head1Image, new Rectangle(50, yThingy,300, 300));
+
             g.FillEllipse(brush, _dude.SizeAndLocation);
             g.DrawEllipse(Pens.Black, _dude.SizeAndLocation);
-            g.DrawImage(_head1Image, _dude.SizeAndLocation);
+            if (isFirstHead)
+                g.DrawImage(_head1Image, _dude.SizeAndLocation);
+            else
+                g.DrawImage(_head2Image, _dude.SizeAndLocation);
         }
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
