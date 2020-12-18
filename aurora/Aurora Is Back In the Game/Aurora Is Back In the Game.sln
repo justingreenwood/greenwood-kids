@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora Is Back In the Game", "Aurora Is Back In the Game\Aurora Is Back In the Game.csproj", "{A717A185-E739-4BA4-9615-FD5494D700FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A717A185-E739-4BA4-9615-FD5494D700FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A717A185-E739-4BA4-9615-FD5494D700FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A717A185-E739-4BA4-9615-FD5494D700FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A717A185-E739-4BA4-9615-FD5494D700FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {15C4032B-8EFB-4A92-8415-C323E84BBA61}
+	EndGlobalSection
+EndGlobal

@@ -41,7 +41,7 @@ namespace sad
                     currentImage = 0;
                 }
                 Panel1.Refresh();
-                images.Draw(myGraphics, 10, 10, currentImage);
+                //images.Draw(myGraphics, 10, 10, currentImage);
                 PictureBox.Image = images.Images[currentImage];
                 
             }

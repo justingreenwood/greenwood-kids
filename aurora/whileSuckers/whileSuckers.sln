@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "whileSuckers", "whileSuckers\whileSuckers.csproj", "{CCADB398-135E-4BB2-B670-E26838CF381A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CCADB398-135E-4BB2-B670-E26838CF381A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCADB398-135E-4BB2-B670-E26838CF381A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCADB398-135E-4BB2-B670-E26838CF381A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCADB398-135E-4BB2-B670-E26838CF381A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3EA3CE32-1398-487E-8E54-B94E131214F2}
+	EndGlobalSection
+EndGlobal

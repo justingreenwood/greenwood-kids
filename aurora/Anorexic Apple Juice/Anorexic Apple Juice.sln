@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barnham", "Hello, My Old Friend\Barnham.csproj", "{905BED21-099B-485A-9AC6-67F486EDB0E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heads Will Bounce", "Heads Will Bounce\Heads Will Bounce.csproj", "{6245060E-666F-4670-B4FF-BC51F7592F59}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{905BED21-099B-485A-9AC6-67F486EDB0E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{905BED21-099B-485A-9AC6-67F486EDB0E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{905BED21-099B-485A-9AC6-67F486EDB0E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{905BED21-099B-485A-9AC6-67F486EDB0E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6245060E-666F-4670-B4FF-BC51F7592F59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6245060E-666F-4670-B4FF-BC51F7592F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6245060E-666F-4670-B4FF-BC51F7592F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6245060E-666F-4670-B4FF-BC51F7592F59}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {374E16F9-CE04-4F5F-BD9B-27A744B6D9EC}
+	EndGlobalSection
+EndGlobal
