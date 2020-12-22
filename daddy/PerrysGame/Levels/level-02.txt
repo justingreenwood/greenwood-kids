@@ -1,0 +1,35 @@
+﻿OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO|
+O     W                          SSSWWWQQO|
+O    WW      T T       V V       SSSWWWQQO|
+O    W      TTTTT   V        T   SSSWWWQQO|
+O    W      TTTTT        V  TT    SSSWWWQO|
+O T  WW WWW  TTT                 SSSSWWWQO|
+O TT  WWW WW  T BBBBB            SSSSWWWQO|
+O    GGG   WWW BB t BB           SSSWWWQQO|
+O   GLLLG V  WBB   TTBTT    V   SSSWWWQQQO|
+O    GLG    WWB   TTTBTTTTT     SSSWWWQQQO|
+O     G  WWEW B   TTTBTTTT      SSSWWWQQQO|
+O       WWBDB B    TBB          SSSSWWWQQO|
+O      WW B BBB V   B       T    SSSSWWWQO|
+OP    WWBBB         B      TTT   SSSSWWWQO|
+O     W B     BBB   D  V         SSSWWWQQO|
+O    WWBB   V BtD   B     T     SSSWWWQQQO|
+O    WBB  V V BBB  BB  TTTTT    SSSWWWQQQO|
+O   WWB V         VB     T      SSSSWWWQQO|
+O   WVB V   T   V  B  V         SSSSWWWQQO|
+O  WW BDBB        BB         V   SSSWWWQQO|
+OWWWWWWEWBB   BBBBB       T      SSSWWWQQO|
+O       WWBBBBBWWWWW      T      SSSSWWWQO|
+O        WBBWWWWT  WW          SSSSSSWWWQO|
+O   V    WWWWT  T   WW         SSSSSWWWQQO|
+O      V    TTTTTTT  WWW   T   SSSSSWWWQQO|
+O            TTTTTTT   W        SSSSSWWWQO|
+O        T             WW   V   SSSSSWWWQO|
+O    TTTTT  V           W       SSSSWWWQQO|
+O  TTTTTTTT   V     V   WW     SSSSSWWWQQO|
+O   TTTTTT               W     SSSSWWWQQQO|
+O    TTtTT       V       WW     SSSWWWQQQO|
+O      V      T           W     SSSWWWQQQO|
+O             TTT         WWWW  SSSWWWQQQO|
+O              T             WWWWWWWWQQQQO|
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO|
