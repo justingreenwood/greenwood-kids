@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "funstuff", "funstuff\funstu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "list(mytodo)", "list(mytodo)\list(mytodo).csproj", "{350C118C-19F2-4EB8-A822-FAB4992FF6E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "easy stuff for evy", "easy stuff for evy\easy stuff for evy.csproj", "{841408D2-1705-473A-94FA-6A73C8CDE396}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "easy stuff for evy", "easy stuff for evy\easy stuff for evy.csproj", "{841408D2-1705-473A-94FA-6A73C8CDE396}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "grapefruit", "grapefruit\grapefruit.csproj", "{8E2CE2EF-6486-4919-85B0-E6DAEFCB72BE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{841408D2-1705-473A-94FA-6A73C8CDE396}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{841408D2-1705-473A-94FA-6A73C8CDE396}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{841408D2-1705-473A-94FA-6A73C8CDE396}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E2CE2EF-6486-4919-85B0-E6DAEFCB72BE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E2CE2EF-6486-4919-85B0-E6DAEFCB72BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E2CE2EF-6486-4919-85B0-E6DAEFCB72BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E2CE2EF-6486-4919-85B0-E6DAEFCB72BE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

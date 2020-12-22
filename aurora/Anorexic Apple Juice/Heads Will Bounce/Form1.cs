@@ -77,8 +77,7 @@ namespace Heads_Will_Bounce
 
             g.DrawImage(_head2Image, new Rectangle(235, 0, 400, 400));
 
-            g.FillEllipse(brush, _dude.SizeAndLocation);
-            g.DrawEllipse(Pens.Black, _dude.SizeAndLocation);
+           
             if (isFirstHead)
                 g.DrawImage(_head1Image, _dude.SizeAndLocation);
             else
