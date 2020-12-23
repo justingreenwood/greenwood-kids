@@ -9,7 +9,7 @@ namespace PerrysArt
 {
     public class Bullet
     {
-        public static Bitmap BulletImage = new Bitmap("Weapon.png");
+        
         public int X = 0;
         public int Y = 0;
         public int HorizontalSpeed = 0;
@@ -49,7 +49,7 @@ namespace PerrysArt
         }
         public void DrawMe(Graphics g, float zoom = 1)
         {
-            g.DrawImage(BulletImage, GetRect(zoom));
+            g.DrawImage(Drawings.BulletImage, GetRect(zoom));
         }
     }
 }

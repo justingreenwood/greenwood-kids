@@ -53,8 +53,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DrawableObject.cs" />
-    <Compile Include="Tree.cs" />
-    <Compile Include="Tile.cs" />
+    <Compile Include="Drawings.cs" />
+    <Compile Include="Tiles\AmmoPack.cs" />
+    <Compile Include="Tiles\Border.cs" />
+    <Compile Include="Tiles\Bridge.cs" />
+    <Compile Include="Tiles\DeepWater.cs" />
+    <Compile Include="Tiles\Door.cs" />
+    <Compile Include="Tiles\Grass.cs" />
+    <Compile Include="Tiles\Lava.cs" />
+    <Compile Include="Tiles\Sand.cs" />
+    <Compile Include="Tiles\Wall.cs" />
+    <Compile Include="Tiles\Water.cs" />
+    <Compile Include="Tiles\Tree.cs" />
+    <Compile Include="Tiles\Gold.cs" />
     <Compile Include="Controls.cs" />
     <Compile Include="BadGuy.cs" />
     <Compile Include="Dude.cs" />
@@ -93,13 +104,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Badguy.png">
+    <Content Include="Picture\Badguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ClosedDoor.png">
+    <Content Include="Picture\ClosedDoor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="ClosedDoor2.png">
+    <Content Include="Picture\ClosedDoor2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Greg-Barnes-Vampire-Hunter-Pistol.ico" />
@@ -109,22 +120,22 @@
     <Content Include="level-01.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="PerrysArtBorder.png">
+    <Content Include="Picture\PerrysArtBorder.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="PerrysArtChristmasTree.png">
+    <Content Include="Picture\PerrysArtChristmasTree.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="PerrysArtTree1.png">
+    <Content Include="Picture\PerrysArtTree1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Player.png">
+    <Content Include="Picture\Player.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="TreeTester.png">
+    <Content Include="Picture\TreeTester.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Weapon.png">
+    <Content Include="Picture\Weapon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

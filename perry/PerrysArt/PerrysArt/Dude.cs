@@ -9,7 +9,7 @@ namespace PerrysArt
 {
     public class Dude : DrawableObject
     {
-        public static Bitmap DudeImage = new Bitmap("Player.png");
+        
         public const char CharacterLetter = 'P';
         public Dude()
         {
@@ -39,7 +39,7 @@ namespace PerrysArt
 
         public override void DrawMe(Graphics g, float zoom = 1)
         {
-            g.DrawImage(DudeImage, GetRect(zoom));
+            g.DrawImage(Drawings.DudeImage, GetRect(zoom));
         }
     }
 }

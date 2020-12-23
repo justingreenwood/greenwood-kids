@@ -10,7 +10,7 @@ namespace PerrysArt
     public class BadGuy : DrawableObject
     {
         private static Random _rand = new Random();
-        public static Bitmap BadguyImage = new Bitmap("Badguy.png");
+        
 
         public const char CharacterLetter = 'V';
         
@@ -121,7 +121,7 @@ namespace PerrysArt
                 }
                 else if (DateTime.Now.Month == 12) 
                 {
-                    g.DrawImage(BadguyImage, GetRect(zoom));
+                    g.DrawImage(Drawings.BadguyImage, GetRect(zoom));
                 }
                 else if (DateTime.Now.Month == 10)
                 {
@@ -133,7 +133,7 @@ namespace PerrysArt
                 }
                 else
                 {
-                    g.DrawImage(BadguyImage, GetRect(zoom));
+                    g.DrawImage(Drawings.BadguyImage, GetRect(zoom));
                 }
             }
             else

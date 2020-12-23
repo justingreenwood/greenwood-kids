@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace Heads_Will_Bounce
 {
+    //I'd like to edit this later, so that our sprite moves around along with all of the bouncers!
+    // Also, use Aseprite to make a new sprite background, and some good heads to make bounce around!
     public partial class Form1 : Form
     {
         private static Image _head1Image = new Bitmap("AuroraSprite1.png");
