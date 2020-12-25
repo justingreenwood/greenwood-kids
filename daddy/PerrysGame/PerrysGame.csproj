@@ -53,7 +53,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseClasses\DrawableObject.cs" />
+    <Compile Include="BaseClasses\IGameController.cs" />
     <Compile Include="BaseClasses\Tile.cs" />
+    <Compile Include="Level.cs" />
+    <Compile Include="MasterControl.cs" />
+    <Compile Include="StartupGameController.cs" />
+    <Compile Include="MainGameController.cs" />
+    <Compile Include="ScreenInfo.cs" />
     <Compile Include="TileObjects\AmmoPack.cs" />
     <Compile Include="TileObjects\Border.cs" />
     <Compile Include="TileObjects\Bridge.cs" />

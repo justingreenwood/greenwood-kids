@@ -10,5 +10,10 @@ namespace PerrysGame
     public static class Tools
     {
         public static Random Random = new Random();
+
+        public static Color RandomColor()
+        {
+            return Color.FromArgb(Random.Next(256), Random.Next(256), Random.Next(256));
+        }
     }
 }
