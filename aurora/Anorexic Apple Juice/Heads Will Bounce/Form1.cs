@@ -16,7 +16,7 @@ namespace Heads_Will_Bounce
     {
         private static Image _head1Image = new Bitmap("AuroraSprite1.png");
         private static Image _head2Image = new Bitmap("AuroraSprite2.png");
-        private const int TickDistance = 10;
+        private const int TickDistance = 20;
         private static Random _random = new Random();
         
         private bool isFirstHead = true;

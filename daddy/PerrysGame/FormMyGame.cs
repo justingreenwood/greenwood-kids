@@ -43,6 +43,7 @@ namespace PerrysGame
                     _currentGame = _menu;
                     break;
                 case GameStateChangeEventType.Play:
+                    _mainGame = new MainGameController();
                     _currentGame = _mainGame;
                     break;
                 case GameStateChangeEventType.Quit:
