@@ -9,6 +9,6 @@ namespace PerrysArt
         public Grass() : base() { }
         public Grass(int colIndex, int rowIndex) : base(colIndex, rowIndex) { }
 
-        public override Brush TileBrush => Brushes.Lime;
+        public override Brush TileBrush => Brushes.LimeGreen;
     }
 }
