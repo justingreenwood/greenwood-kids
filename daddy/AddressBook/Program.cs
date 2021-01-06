@@ -86,6 +86,7 @@ namespace AddressBook
             }
             return addresses;
         }
+
         public static void SaveAddressesToFile(List<Address> addresses)
         {
             var lines = new List<string>();

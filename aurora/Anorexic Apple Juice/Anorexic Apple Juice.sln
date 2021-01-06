@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Barnham", "Hello, My Old Fr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heads Will Bounce", "Heads Will Bounce\Heads Will Bounce.csproj", "{6245060E-666F-4670-B4FF-BC51F7592F59}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Aurora's Address Book", "Aurora's Address Book\Aurora's Address Book.csproj", "{690F75FD-F61D-4DDD-BF22-6E12B9BB3209}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{6245060E-666F-4670-B4FF-BC51F7592F59}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6245060E-666F-4670-B4FF-BC51F7592F59}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6245060E-666F-4670-B4FF-BC51F7592F59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{690F75FD-F61D-4DDD-BF22-6E12B9BB3209}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{690F75FD-F61D-4DDD-BF22-6E12B9BB3209}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{690F75FD-F61D-4DDD-BF22-6E12B9BB3209}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{690F75FD-F61D-4DDD-BF22-6E12B9BB3209}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
