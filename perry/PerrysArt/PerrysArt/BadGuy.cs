@@ -21,9 +21,9 @@ namespace PerrysArt
             Size = 15;
         }
 
-        //public int Speed = 4;
+        public bool WasHit = false;
         public int LastKnownDirection = 0;
-        
+        public int health = 45;
         public int DistanceToWalk = 0;
         public int VerticalDice = 0;
         public int HorizontalDice = 0;
@@ -126,10 +126,6 @@ namespace PerrysArt
                 else if (DateTime.Now.Month == 10)
                 {
                     g.FillRectangle(Brushes.HotPink, GetRect(zoom));
-                }
-                else if(DateTime.Now.Month == 11)
-                {
-                    g.FillRectangle(Brushes.Red, GetRect(zoom));
                 }
                 else
                 {

@@ -180,8 +180,13 @@ namespace PerrysArt
                         {
                             if (baddude.IsAlive && b.GetRect(_zoom).IntersectsWith(baddude.GetRect(_zoom)))
                             {
-                                baddude.IsAlive = false;
+                                baddude.health -= _rand.Next(10,15);
                                 b.IsDead = true;
+                                baddude.WasHit = true;
+                            }//Come Back Later
+                            if(baddude.health <= 0)
+                            {
+                                baddude.IsAlive = false;
                                 alivebadguys--;
                                 Score++;
                             }
@@ -412,11 +417,6 @@ namespace PerrysArt
 
 
 
-
-            //if (AddBad.Isalive)
-            //{
-            //    g.DrawEllipse(Pens.Gray, AddBad.Rect);
-            //}
             if (ammopack.IsAlive)
             {
                 g.FillRectangle(Brushes.Green, ammopack.GetRect(_zoom));

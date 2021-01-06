@@ -17,8 +17,8 @@ namespace PerrysArt
             Y = 100;
             Size = 15;
         }
-
-        public int Ammo = 50;
+        public int Health = 100;
+        public int Ammo = 100;
         public int Treasure = 0;
         public bool IsRunning = false;
         public bool IsInWater = false;

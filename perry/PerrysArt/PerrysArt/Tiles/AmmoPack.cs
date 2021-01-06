@@ -14,7 +14,7 @@ namespace PerrysArt
             this.IsAlive = false;
         }
 
-        public int Ammo = 100;
+        public int Ammo = 10;
         public int ReviveAmmo = 0;
 
         public override void DrawMe(Graphics g, float zoom = 1)
