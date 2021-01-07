@@ -11,6 +11,22 @@ namespace Aurora_s_Address_Book
         {
             var addresses = GrabAddresses();
 
+             static List<Address> GrabAddresses()
+            {
+                var linesArray = File.ReadAllLines("MyAddresses.txt");
+                var lines = new List<string>(linesArray);
+                var addresses = new List<Address>();
+
+                foreach (var line in lines)
+                {
+                    var address = new Address(line);
+                    addresses.Add(address);
+                }
+                return addresses;
+            }
+
+
+
 
         }
     }
