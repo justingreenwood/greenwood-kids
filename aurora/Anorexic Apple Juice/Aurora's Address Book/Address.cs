@@ -25,7 +25,24 @@ namespace Aurora_s_Address_Book
             }
             else
             {
-                throw new Exception("Not enough data!");
+                throw new Exception("FIRE! FIRE! FIRE!");
             }
         }
+
+        public string NAME;
+        public string Occupation;
+        public string Address1;
+        public string CityStateZip;
+        public string Phone;
+        public string Email;
+
+        public string ToFileString()
+        {
+            return $"{NAME}|{Occupation}|{Address1}|{CityStateZip}|{Phone}|{Email}";
+        }
+        public override string ToString()
+        {
+            return $"{NAME}\r\n{Occupation}\r\n{Address1}\r\n{CityStateZip}\r\n{Phone}\r\n{Email}";
+        }
+    }
 }

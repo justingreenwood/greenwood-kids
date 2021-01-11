@@ -8,3 +8,6 @@ Kingston, Seth Connor|Lead Bodyguard|1001 Golden Lane|Royal District, Aerin 5614
 Goodwin, Clint Harris|Bodyguard|243 Silver Street|Royal District, Aerin 56148|(808)-243-9006|clint.goodwin@aerinpost.com
 Exist, Does Not|Placeholder|38478 Taco Bell Lane|Burrito, Power Bowl 88391|(234)-534-4564|I.HEART.BURRITOS@libertybell.com
 Sycamore, Elise Rachel|Unemployed|The Bostonius|Wherever It Lands|(816)-182-1284|e.r.descole@gmail.com
+Wright, Cassiopeia Rheya|Prosecutor|45628 Justice Lane|AA Land|(312)-343-1426|prosecutor.wright@aamail.com
+Butz, Indigo Clarissa|Detective|25325 Lentil Road|AA Land|(493)-234-1828|stinkybutzforevah@aamail.com
+Edgeworth, Myla Giselle|Defense Attorney|59239 Evidence Street|AA LAND|(312)-234-1934|myla.g.edgeworth@aamail.com
