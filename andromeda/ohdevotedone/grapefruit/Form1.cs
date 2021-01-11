@@ -15,11 +15,9 @@ namespace grapefruit
         public rue()
         {
             InitializeComponent();
+            char i;
         }
 
-        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Close Screen;
-        }
+       
     }
 }
