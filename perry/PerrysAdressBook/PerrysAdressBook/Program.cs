@@ -86,27 +86,94 @@ namespace PerrysAdressBook
                 }
                 else if (key.Key == ConsoleKey.R)
                 {
-                    Console.Write("Which would you like to remove?  ");
-                    if (int.TryParse(Console.ReadLine(), out int Removed))
-                    {
-                        addresses.RemoveAt(Removed - 1);
-                        SaveToFile(addresses);
-                    }
-                    else
-                    {
-                        Console.WriteLine("That is not a number, IDIOT!");
-                    }
+                        Console.Write("Which would you like to remove?  ");
+                        if (int.TryParse(Console.ReadLine(), out int Removed))
+                        { 
+                                    addresses.RemoveAt(Removed - 1);
+                                    SaveToFile(addresses);  
+                        }
+                        else
+                        {
+                            Console.WriteLine("That is not a number, IDIOT!");
+                        } 
                 }
                 else if (key.Key == ConsoleKey.C)
                 {
                     Console.Write("Which would you like to change?  ");
-                    int Changed = Console.Read();
-                    Console.Write("First name(1), last name(2), street addres(3), city(4), state(5), zipcode(6), phone number(7), or email address(8)? ");
-                    var v = Console.ReadKey();
+                    if (int.TryParse(Console.ReadLine(), out int Changed))
+                    {
+                        Console.Write("First name(1), last name(2), street addres(3), city(4), state(5), zipcode(6), phone number(7), or email address(8)? ");
+                        var v = Console.ReadKey();
+                        Console.WriteLine();
+                        if (v.Key == ConsoleKey.D1)
+                        {
+                            var fart = addresses[Changed - 1];
+                            Console.Write("Type in first name. ");
+                            var stupid = Console.ReadLine();
+                            fart.firstname = (stupid);
+                        }
+                        else if(v.Key == ConsoleKey.D2)
+                        {
+                            var fart = addresses[Changed - 1];
+                            Console.Write("Type in last name. ");
+                            var stupid = Console.ReadLine();
+                            fart.lastname = (stupid);
+                        }
+                        else if (v.Key == ConsoleKey.D3)
+                        {
+                            var fart = addresses[Changed - 1];
+                            Console.Write("Type in street address. ");
+                            var stupid = Console.ReadLine();
+                            fart.streetaddress = (stupid);
+                        }
+                        else if (v.Key == ConsoleKey.D4)
+                        {
+                            var fart = addresses[Changed - 1];
+                            Console.Write("Type in city. ");
+                            var stupid = Console.ReadLine();
+                            fart.city = (stupid);
+                        }
+                        else if (v.Key == ConsoleKey.D5)
+                        {
+                            var fart = addresses[Changed - 1];
+                            Console.Write("Type in state. ");
+                            var stupid = Console.ReadLine();
+                            fart.state = (stupid);
+                        }
+                        else if (v.Key == ConsoleKey.D6)
+                        {
+                            var fart = addresses[Changed - 1];
+                            Console.Write("Type in zipcode. ");
+                            var stupid = Console.ReadLine();
+                            fart.zipcode = (stupid);
+                        }
+                        else if (v.Key == ConsoleKey.D7)
+                        {
+                            var fart = addresses[Changed - 1];
+                            Console.Write("Type in phone number. ");
+                            var stupid = Console.ReadLine();
+                            fart.phonenumber = (stupid);
+                        }
+                        else if (v.Key == ConsoleKey.D8)
+                        {
+                            var fart = addresses[Changed - 1];
+                            Console.Write("Type in email address. ");
+                            var stupid = Console.ReadLine();
+                            fart.emailaddress = (stupid);
+                        }
+                        else
+                        {
+                            Console.WriteLine("That is not valid.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("That is not a number, STUPID!");
+                    }
                 }
                 else
                 {
-
+                    Console.WriteLine("That is not valid.");
                 }
             }
         }
