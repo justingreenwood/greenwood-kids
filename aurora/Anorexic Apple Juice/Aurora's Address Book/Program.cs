@@ -41,6 +41,12 @@ namespace Aurora_s_Address_Book
                             Console.WriteLine($"[{TacoBell}]***");
                             Console.WriteLine(address);
                             Console.WriteLine("------------------------------------");
+                            Console.WriteLine("What do you want to change?");
+                            var ChangeWhat = Console.ReadLine();
+                            //if (ChangeWhat="A",)
+                            //{
+
+                            //}
                         }
                         else
                         {
