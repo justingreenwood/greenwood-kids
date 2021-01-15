@@ -63,10 +63,11 @@ namespace Aurora_s_Address_Book
                                 else if (ChangeWhat.Key == ConsoleKey.A)
                                 {
                                     Console.WriteLine("!");
-                                    Console.WriteLine("What should the address be?");
+                                    Console.WriteLine("UGH! TELL ME WHAT IT IS SUPPOSED TO BE THEN?!");
                                     Console.ReadLine();
-                                    Console.WriteLine(" Oh, ok!");
+                                    Console.WriteLine(" THANK YOU!");
                                     //Tomorrow, I will have to ask my dad to explain more!
+                                    // I must not forget to notify my dad!
                                 }
                                 else if (ChangeWhat.Key == ConsoleKey.Q)
                                 {
