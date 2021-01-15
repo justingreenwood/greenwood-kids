@@ -18,6 +18,7 @@ namespace PerrysArt
             Size = 15;
         }
         public int Health = 100;
+        public bool isInvincible = false;
         public int Ammo = 100;
         public int Treasure = 0;
         public bool IsRunning = false;

@@ -39,7 +39,7 @@ namespace PerrysAdressBook
             Console.WriteLine("");
             while (isrunning)
             {
-                Console.Write("Do you want to (A)dd adress, (R)emove address, (C)hange address, (V)iew all, or (E)xit.   ");
+                Console.Write("Do you want to (A)dd adress, (R)emove address, (C)hange address, (V)iew all, (S)ave changes, or (E)xit.   ");
                 var key = Console.ReadKey();
                 Console.WriteLine("");
                 if (key.Key == ConsoleKey.A)
@@ -71,13 +71,13 @@ namespace PerrysAdressBook
                     xy.emailaddress = xg;
                     addresses.Add(xy);
 
-                    SaveToFile(addresses);
+                    //SaveToFile(addresses);
                 }
                 else if (key.Key == ConsoleKey.V)
                 {
                     for (int i = 0; i < addresses.Count; i++)
                     {
-                        Console.WriteLine($"({i+1}) {addresses[i]}");
+                        Console.WriteLine($"({i + 1}) {addresses[i]}");
                     }
                 }
                 else if (key.Key == ConsoleKey.E)
@@ -86,16 +86,16 @@ namespace PerrysAdressBook
                 }
                 else if (key.Key == ConsoleKey.R)
                 {
-                        Console.Write("Which would you like to remove?  ");
-                        if (int.TryParse(Console.ReadLine(), out int Removed))
-                        { 
-                                    addresses.RemoveAt(Removed - 1);
-                                    SaveToFile(addresses);  
-                        }
-                        else
-                        {
-                            Console.WriteLine("That is not a number, IDIOT!");
-                        } 
+                    Console.Write("Which would you like to remove?  ");
+                    if (int.TryParse(Console.ReadLine(), out int Removed))
+                    {
+                        addresses.RemoveAt(Removed - 1);
+                        //SaveToFile(addresses);
+                    }
+                    else
+                    {
+                        Console.WriteLine("That is not a number, IDIOT!");
+                    }
                 }
                 else if (key.Key == ConsoleKey.C)
                 {
@@ -112,7 +112,7 @@ namespace PerrysAdressBook
                             var stupid = Console.ReadLine();
                             fart.firstname = (stupid);
                         }
-                        else if(v.Key == ConsoleKey.D2)
+                        else if (v.Key == ConsoleKey.D2)
                         {
                             var fart = addresses[Changed - 1];
                             Console.Write("Type in last name. ");
@@ -170,6 +170,10 @@ namespace PerrysAdressBook
                     {
                         Console.WriteLine("That is not a number, STUPID!");
                     }
+                }
+                else if (key.Key == ConsoleKey.S)
+                {
+                    SaveToFile(addresses);
                 }
                 else
                 {
