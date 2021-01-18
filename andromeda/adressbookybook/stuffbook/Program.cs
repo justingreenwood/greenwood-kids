@@ -16,7 +16,7 @@ namespace stuffbook
             for (int i = 0;i<rows.Length;i++)
             {
                 string row = rows[i];
-                var columns = row.Split('/');
+                var columns = row.Split('~');
                 if (columns.Length == 6)
                 {
                     var a = new Class1();
@@ -50,14 +50,39 @@ namespace stuffbook
                 else if (chose.Key == ConsoleKey.L)
                 {
                     Console.WriteLine("here is list");
+                   ;
                 }
                 else if (chose.Key == ConsoleKey.A)
                 {
                     Console.WriteLine("cool");
+                    Console.WriteLine("enter firstname");
+                    Console.ReadLine();
+                    Console.WriteLine("enter lastname");
+                    Console.ReadLine();
+                    Console.WriteLine("enter street num");
+                    Console.ReadLine();
+                    Console.WriteLine("enter city");
+                    Console.ReadLine();
+                    Console.WriteLine("enter state");
+                    Console.ReadLine();
+                    Console.WriteLine("enter zip");
+                    Console.ReadLine();
                 }
                 else if (chose.Key == ConsoleKey.R)
                 {
+                    Console.WriteLine("which one"); 
                     Console.WriteLine("are you sure");
+                    Console.WriteLine("y/n");
+                    ConsoleKeyInfo o;
+                    o = Console.ReadKey();
+                    if(o.Key== ConsoleKey.Y)
+                    {
+                        Console.WriteLine("all gone");
+                    }
+                    else
+                    {
+                        Console.WriteLine("okay dokay");
+                    }
                 }
                 else
                 {

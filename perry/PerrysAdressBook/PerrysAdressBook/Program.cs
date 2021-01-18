@@ -39,7 +39,7 @@ namespace PerrysAdressBook
             Console.WriteLine("");
             while (isrunning)
             {
-                Console.Write("Do you want to (A)dd adress, (R)emove address, (C)hange address, (V)iew all, (S)ave changes, or (E)xit.   ");
+                Console.Write("Do you want to (A)dd address, (R)emove address, (C)hange address, (V)iew all, (S)ave changes, or (E)xit.   ");
                 var key = Console.ReadKey();
                 Console.WriteLine("");
                 if (key.Key == ConsoleKey.A)
@@ -86,15 +86,27 @@ namespace PerrysAdressBook
                 }
                 else if (key.Key == ConsoleKey.R)
                 {
-                    Console.Write("Which would you like to remove?  ");
-                    if (int.TryParse(Console.ReadLine(), out int Removed))
+                    bool good = true;
+                    while (good)
                     {
-                        addresses.RemoveAt(Removed - 1);
-                        //SaveToFile(addresses);
-                    }
-                    else
-                    {
-                        Console.WriteLine("That is not a number, IDIOT!");
+
+                        Console.Write("Which would you like to remove? (0)Cancel  ");
+                        if (int.TryParse(Console.ReadLine(), out int Removed))
+                        {
+                            if (Removed != 0 && Removed <= (addresses.Count))
+                            {
+                                addresses.RemoveAt(Removed - 1);
+                            }
+                            else
+                            {
+                                Console.WriteLine("That is not valid.");
+                            }
+                            good = false;
+                        }
+                        else
+                        {
+                            Console.WriteLine("That is not a number, IDIOT!");
+                        }
                     }
                 }
                 else if (key.Key == ConsoleKey.C)
