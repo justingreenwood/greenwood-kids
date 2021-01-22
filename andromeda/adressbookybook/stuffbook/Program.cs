@@ -57,7 +57,7 @@ namespace stuffbook
                         Console.ForegroundColor = ConsoleColor.Magenta;
                         Console.WriteLine($"____________________________________");
                         if (isOdd) Console.ForegroundColor = ConsoleColor.DarkBlue;
-                        else Console.ForegroundColor = ConsoleColor.DarkCyan;
+                        else Console.ForegroundColor = ConsoleColor.DarkGray;
                         Console.WriteLine($"({z + 1}) {addresslist[z]}");
                     }
                     Console.ForegroundColor = ConsoleColor.Magenta;
@@ -72,26 +72,10 @@ namespace stuffbook
 
                     aa.firstname = AskForInfo("Enter First Name: ");
                     aa.lastname = AskForInfo("Enter Last Name: ");
-
-
-                    Console.Write("enter street num");
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    var an = Console.ReadLine();
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    aa.streetnum = an;
-
-                    Console.Write("enter city");
-                    var ac = Console.ReadLine();
-                    aa.city = ac;
-
-                    Console.Write("enter state");
-                    var at = Console.ReadLine();
-                    aa.state = at;
-
-                    Console.Write("enter zip");
-                    var az = Console.ReadLine();
-                    aa.zip = az;
-
+                    aa.streetnum = AskForInfo("Enter Street Number: ");
+                    aa.city = AskForInfo("Enter City: ");
+                    aa.state = AskForInfo("Enter State: ");
+                    aa.zip= AskForInfo("Enter Zip Code: ");
                     addresslist.Add(aa);
                 }
                 else if (chose.Key == ConsoleKey.R)
@@ -129,7 +113,7 @@ namespace stuffbook
         public static string AskForInfo(string question)
         {
             Console.Write(question);
-            Console.ForegroundColor = ConsoleColor.Magenta;
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             var answer = Console.ReadLine();
             Console.ForegroundColor = ConsoleColor.Green;
             return answer;

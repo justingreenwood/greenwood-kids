@@ -185,7 +185,7 @@ namespace PerrysArt
                                     b.IsDead = true;
 
                                     // enemy was hit. reduce his health
-                                    baddude.health -= _rand.Next(10, 15);
+                                    baddude.health -= _rand.Next(10, 25);
                                     baddude.WasHit = true;
 
                                     if (baddude.health <= 0)

@@ -19,7 +19,7 @@ namespace PerrysArt
         }
         public int Health = 100;
         public bool isInvincible = false;
-        public int Ammo = 100;
+        public int Ammo = 200;
         public int Treasure = 0;
         public bool IsRunning = false;
         public bool IsInWater = false;

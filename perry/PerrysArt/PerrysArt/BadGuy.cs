@@ -25,7 +25,7 @@ namespace PerrysArt
         public bool WasHit = false;
 
         public int LastKnownDirection = 0;
-        public int health = 45;
+        public int health = 50;
         public int DistanceToWalk = 0;
         public int VerticalDice = 0;
         public int HorizontalDice = 0;
