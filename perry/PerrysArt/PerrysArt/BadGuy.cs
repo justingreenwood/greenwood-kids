@@ -10,7 +10,7 @@ namespace PerrysArt
     public class BadGuy : DrawableObject
     {
         private static Random _rand = new Random();
-        
+
 
         public const char CharacterLetter = 'V';
         
@@ -21,7 +21,9 @@ namespace PerrysArt
             Size = 15;
         }
 
+        private int WasHitCounter = 0;
         public bool WasHit = false;
+
         public int LastKnownDirection = 0;
         public int health = 45;
         public int DistanceToWalk = 0;
@@ -115,6 +117,11 @@ namespace PerrysArt
         {
             if (IsAlive)
             {
+                if (WasHit)
+                {
+                    WasHitCounter = 5;
+                    WasHit = false;
+                }
                 if (DateTime.Now.Day == 29 && DateTime.Now.Month == 06)
                 {
                     g.FillRectangle(Brushes.Black, GetRect(zoom));
@@ -129,7 +136,15 @@ namespace PerrysArt
                 }
                 else
                 {
-                    g.DrawImage(Drawings.BadguyImage, GetRect(zoom));
+                    if (WasHitCounter > 0)
+                    {
+                        g.FillRectangle(Brushes.HotPink, GetRect(zoom));
+                        --WasHitCounter;
+                    }
+                    else
+                    {
+                        g.DrawImage(Drawings.BadguyImage, GetRect(zoom));
+                    }
                 }
             }
             else
