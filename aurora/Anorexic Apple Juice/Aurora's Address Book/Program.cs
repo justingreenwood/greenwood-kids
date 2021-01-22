@@ -67,16 +67,35 @@ namespace Aurora_s_Address_Book
 
         public static void Add(List<Address> addresses)
         {
-            //var newAddress = new Address();
 
-            //newAddress.NAME = "poop, head";
-            //newAddress.Address1 = "113232 Poop street";
-            //newAddress.CityStateZip = "Beverly Hills, CA 90210";
-            //newAddress.Email = "poop@head.com";
-            //newAddress.Occupation = "Poop cleaner";
-            //newAddress.Phone = "(317)123-1234";
+            var newAddresses = new Address();
 
-            //addresses.Add(newAddress);
+            Console.WriteLine(" What is the person's name? ( Sorted last name, first name middle name )");
+            var AddName = Console.ReadLine();
+            newAddresses.NAME = AddName;
+
+            Console.WriteLine(" What is this person's house number and street?");
+            var AddHomeAddress = Console.ReadLine();
+            newAddresses.Address1 = AddHomeAddress;
+
+            Console.WriteLine("What city/town, state, and zip code?");
+            var AddCSZ = Console.ReadLine();
+            newAddresses.CityStateZip = AddCSZ;
+
+            Console.WriteLine(" What is this person's email address?");
+            var AddEmail = Console.ReadLine();
+            newAddresses.Email = AddEmail;
+
+            Console.WriteLine(" May I have an occupation for this person?");
+            var AddJob = Console.ReadLine();
+            newAddresses.Occupation = AddJob;
+
+            Console.WriteLine(" May I have this person's phone number?");
+            var AddNumber = Console.ReadLine();
+            newAddresses.Phone = AddNumber;
+
+            addresses.Add(newAddresses);
+
         }
 
         public static void Delete(List<Address> addresses)
@@ -108,6 +127,11 @@ namespace Aurora_s_Address_Book
             }
 
             File.WriteAllLines("MyAddresses.txt", lines);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("Saving....");
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
+            Console.WriteLine("Saving complete!");
+            Console.ForegroundColor = ConsoleColor.Black;
         }
 
         static List<Address> GrabAddresses()
