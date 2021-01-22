@@ -7,162 +7,43 @@ namespace Aurora_s_Address_Book
 {
     class Program
     {
+        //All of it works amazingly well as far as I can tell.
         static void Main(string[] args)
         {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.Clear();
+            
+            Console.WriteLine("                                                 RANDOM PROGRAMMING AND WHATEVER ELSE!");
+            Console.WriteLine("");
+            Console.ForegroundColor = ConsoleColor.Black;
             var addresses = GrabAddresses();
 
             ConsoleKeyInfo KeY;
             do
             {
-                Console.Write("Choose [L]ist, [E]dit, or type a record number or [Q]uit:");
+                Console.Write("Choose [L]ist, [E]dit, [A]dd, [D]elete, [S]ave, or type a record number or [Q]uit:");
                 KeY = Console.ReadKey();
                 Console.WriteLine();
                 if (KeY.Key == ConsoleKey.L)
                 {
-                    Console.WriteLine("------------------------------------");
-                    for (var i = 0; i < addresses.Count; i++)
-                    {
-                        var address = addresses[i];
-                        Console.WriteLine($"[{i + 1}]");
-                        Console.WriteLine(address);
-                        Console.WriteLine("------------------------------------");
-                    }
+                    ShowList(addresses);
                 }
-                if (KeY.Key == ConsoleKey.E)
+                else if (KeY.Key == ConsoleKey.E)
                 {
-                    Console.Write("Type a record number to edit: ");
-                    var numAsString = Console.ReadLine();
-                    if (int.TryParse(numAsString, out var TacoBell))
-                    {
-                        if (TacoBell > 0 && TacoBell <= addresses.Count)
-                        {
-                            var address = addresses[TacoBell - 1];
-                            Console.WriteLine("------------------------------------");
-                            Console.WriteLine($"[{TacoBell}]***");
-                            Console.WriteLine(address);
-                            ConsoleKeyInfo ChangeWhat;
-                            do
-                            {
-                                Console.WriteLine("------------------------------------");
-                                Console.WriteLine("What do you want to change?");
-                                Console.WriteLine(" [N]ame");
-                                Console.WriteLine(" [A]ddress");
-                                Console.WriteLine(" [O]ccupation");
-                                Console.WriteLine(" [P]hone Number");
-                                Console.WriteLine(" [C]ity State Zip");
-                                Console.WriteLine(" [E]-mail Address");
-                                Console.WriteLine(" [Q]uit");
-                                ChangeWhat = Console.ReadKey();
-                                if (ChangeWhat.Key == ConsoleKey.N)
-                                {
-                                    Console.WriteLine("!");
-                                    Console.WriteLine("Would you mind just typing the name in. Don't forget that it MUST be sorted by last comma first middle.");
-                                    var newName = Console.ReadLine();
-                                    if (string.IsNullOrWhiteSpace(newName))
-                                    {
-                                        Console.WriteLine(" Nothing is changed because you didn't put in a name!");
-                                    }
-                                    else
-                                    {
-                                        address.NAME = newName;
-                                        Console.WriteLine(" If it is sorted incorrectly, you will pay!");
-                                    }
-                                }
-                                else if (ChangeWhat.Key == ConsoleKey.A)
-                                {
-                                    Console.WriteLine("!");
-                                    Console.WriteLine("UGH! TELL ME WHAT IT IS SUPPOSED TO BE THEN?!");
-                                    var NewHouseAddress = Console.ReadLine();
-                                    if (string.IsNullOrWhiteSpace(NewHouseAddress))
-                                    {
-                                        Console.WriteLine(" You didn't tell me what it was supposed to be! For that, you are expelled!");
-                                    }
-                                    else
-                                    {
-
-                                        address.Address1 = NewHouseAddress;
-                                        Console.WriteLine(" THANK YOU!");
-
-                                    }
-
-                                }
-                                else if (ChangeWhat.Key == ConsoleKey.Q)
-                                {
-                                    Console.WriteLine("!");
-                                    Console.WriteLine("Quitting in process......");
-                                }
-                                else if (ChangeWhat.Key == ConsoleKey.O) 
-                                {
-                                    Console.WriteLine("!");
-                                    Console.WriteLine("I'm sorry. What is this person's real occupation?");
-                                    var NewJob=Console.ReadLine();
-                                    if (string.IsNullOrWhiteSpace(NewJob))
-                                    {
-                                        Console.WriteLine(" Either you have no brain or you're messing with me.");
-                                    }
-                                    else
-                                    {
-                                        address.Occupation = NewJob;
-                                        Console.WriteLine("Alright, I will put that into the system.");
-                                    }
-                                }
-                                else if (ChangeWhat.Key == ConsoleKey.P)
-                                {
-                                    Console.WriteLine("!");
-                                    Console.WriteLine("I apologize for the inconvenience I must have caused for you. What is the correct phone number?");
-                                    var NewNumber = Console.ReadLine();
-                                    if(string.IsNullOrWhiteSpace(NewNumber))
-                                    {
-                                        Console.WriteLine("I know where your family lives. Do not test me!");
-                                    }
-                                    else
-                                    {
-                                        address.Phone = NewNumber;
-                                        Console.WriteLine("Right away, sire.");
-                                    }
-                                }
-                                else if (ChangeWhat.Key == ConsoleKey.E)
-                                {
-                                    Console.WriteLine("!");
-                                    Console.WriteLine("I was sure that that was the correct e-mail address... Well, maybe I was wrong. What is the e-mail address?");
-                                    var NewEmail = Console.ReadLine();
-                                    if(string.IsNullOrWhiteSpace(NewEmail))
-                                    {
-                                        Console.WriteLine("You test my patience.");
-                                    }
-                                    else
-                                    {
-                                        address.Email = NewEmail;
-                                        Console.WriteLine("Oh, alright.");
-                                    }
-                                }
-                                else if (ChangeWhat.Key == ConsoleKey.C)
-                                {
-                                    Console.WriteLine("!");
-                                    Console.WriteLine("There must be a typo somewhere. Well, don't fret. Just type in the correct city, state, and zip code.");
-                                    var NewCityStateZip = Console.ReadLine();
-                                    if (string.IsNullOrWhiteSpace(NewCityStateZip))
-                                    {
-                                        Console.WriteLine("Of course, you changed your mind.");
-                                    }
-                                    else
-                                    {
-                                        address.CityStateZip = NewCityStateZip;
-                                        Console.WriteLine("I thank you for your co-operation during this time. Have a fabulicious day.");
-                                    }
-                                }
-                                else
-                                {
-                                    Console.WriteLine("!");
-                                    Console.WriteLine("Either you are testing my patience, or you have the brain of a sun-addled bullfrog during mating season!");
-                                }
-                            } while (ChangeWhat.Key != ConsoleKey.Q);
-                        }
-                        else
-                        {
-                            Console.WriteLine($"There is no {TacoBell}! What kind of an idiot do you think I am?!");
-                        }
-                    }
+                    EditAddress.Edit(addresses);
+                }
+                else if (KeY.Key == ConsoleKey.A)
+                {
+                    Add(addresses);
+                }
+                else if (KeY.Key == ConsoleKey.D)
+                {
+                    Delete(addresses);
+                }
+                else if (KeY.Key == ConsoleKey.S)
+                {
+                    SaveTheAddresses(addresses);
                 }
                 else if (int.TryParse(KeY.KeyChar.ToString(), out var TacoBell))
                 {
@@ -182,9 +63,42 @@ namespace Aurora_s_Address_Book
                 }
 
             } while (KeY.Key != ConsoleKey.Q);
-
-            SaveTheAddresses(addresses);
         }
+
+        public static void Add(List<Address> addresses)
+        {
+            //var newAddress = new Address();
+
+            //newAddress.NAME = "poop, head";
+            //newAddress.Address1 = "113232 Poop street";
+            //newAddress.CityStateZip = "Beverly Hills, CA 90210";
+            //newAddress.Email = "poop@head.com";
+            //newAddress.Occupation = "Poop cleaner";
+            //newAddress.Phone = "(317)123-1234";
+
+            //addresses.Add(newAddress);
+        }
+
+        public static void Delete(List<Address> addresses)
+        {
+        }
+
+        public static void ShowList(List<Address> addresses)
+        {
+            Console.ForegroundColor = ConsoleColor.DarkBlue;
+            Console.WriteLine("------------------------------------");
+            for (var i = 0; i < addresses.Count; i++)
+            {
+                var address = addresses[i];
+                Console.WriteLine($"[{i + 1}]");
+                Console.WriteLine(address);
+                Console.WriteLine("------------------------------------");
+
+            }
+            Console.ForegroundColor = ConsoleColor.Black;
+        }
+
+        
         public static void SaveTheAddresses(List<Address> addresses)
         {
             var lines = new List<string>();
@@ -193,7 +107,7 @@ namespace Aurora_s_Address_Book
                 lines.Add(address.ToFileString());
             }
 
-            File.WriteAllLines("addresses.txt", lines);
+            File.WriteAllLines("MyAddresses.txt", lines);
         }
 
         static List<Address> GrabAddresses()

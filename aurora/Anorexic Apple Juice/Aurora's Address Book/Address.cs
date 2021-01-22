@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Aurora_s_Address_Book
 {
-    class Address
+    public class Address
     {
         public Address()
         {

@@ -175,20 +175,29 @@ namespace PerrysArt
                     if (!b.IsDead)
                     {
                         b.Move();
-
                         foreach (var baddude in badGuys)
                         {
-                            if (baddude.IsAlive && b.GetRect(_zoom).IntersectsWith(baddude.GetRect(_zoom)))
+                            if (baddude.IsAlive)
                             {
-                                baddude.health -= _rand.Next(10,15);
-                                b.IsDead = true;
-                                baddude.WasHit = true;
-                            }//Come Back Later
-                            if(baddude.health <= 0)
-                            {
-                                baddude.IsAlive = false;
-                                alivebadguys--;
-                                Score++;
+                                if (b.GetRect(_zoom).IntersectsWith(baddude.GetRect(_zoom)))
+                                {
+                                    // kill the bullet
+                                    b.IsDead = true;
+
+                                    // enemy was hit. reduce his health
+                                    baddude.health -= _rand.Next(10, 15);
+                                    baddude.WasHit = true;
+
+                                    if (baddude.health <= 0)
+                                    {
+                                        // crap - he's dead
+                                        baddude.IsAlive = false;
+                                        alivebadguys--;
+                                        Score++;
+                                        
+                                    }
+                                }
+
                             }
                         }
                         for (var k = backgroundTiles.Count - 1; k >= 0; k--)
@@ -203,9 +212,6 @@ namespace PerrysArt
 
                                 }
                             }
-                            
-
-
                         }
                         if (b.IsDead || b.Distance > 300)
                         {
