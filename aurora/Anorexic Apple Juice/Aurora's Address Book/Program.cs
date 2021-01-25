@@ -100,6 +100,15 @@ namespace Aurora_s_Address_Book
 
         public static void Delete(List<Address> addresses)
         {
+            Console.Write("Type a record number to delete: ");
+            var numAsString = Console.ReadLine();
+            if (int.TryParse(numAsString, out var TacoBell))
+            {
+                if (TacoBell > 0 && TacoBell <= addresses.Count)
+                {
+                    addresses.RemoveAt(TacoBell-1);
+                }
+            }
         }
 
         public static void ShowList(List<Address> addresses)
