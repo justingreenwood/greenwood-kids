@@ -35,7 +35,7 @@ namespace stuffbook
             while (isplaying)
             {
 
-                Console.WriteLine("(Q)uit,(S)ave,(L)ist,(A)dd,(R)emove");
+                Console.WriteLine("(Q)uit,(S)ave,(L)ist,(A)dd,(R)emove,(E)dit");
                 chose = Console.ReadKey();
 
                 Console.WriteLine();
@@ -43,11 +43,13 @@ namespace stuffbook
                 {
                     isplaying = false;
                 }
+
                 else if (chose.Key == ConsoleKey.S)
                 {
                     Console.WriteLine("......................");
                     SaveToFile(addresslist);
                 }
+                
                 else if (chose.Key == ConsoleKey.L)
                 {
                     Console.WriteLine("here is list");
@@ -102,6 +104,15 @@ namespace stuffbook
                             Console.WriteLine("are you sure");
                         }
                     }
+                }
+                else if (chose.Key == ConsoleKey.E)
+                {
+                    Console.WriteLine("What do you want to edit");
+                    var eor = Console.ReadLine();
+                    Console.WriteLine("Which part(last name,first name, zip, streat, city,state)");
+                    var rer = Console.ReadLine();
+                    Console.WriteLine("write name");
+                    var er = Console.ReadLine();
                 }
                 else
                 {

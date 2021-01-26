@@ -14,7 +14,7 @@ namespace Aurora_s_Address_Book
             Console.BackgroundColor = ConsoleColor.White;
             Console.Clear();
             
-            Console.WriteLine("                                                 RANDOM PROGRAMMING AND WHATEVER ELSE!");
+            Console.WriteLine("                                                 ***RANDOM PROGRAMMING AND WHATEVER ELSE!***");
             Console.WriteLine("");
             Console.ForegroundColor = ConsoleColor.Black;
             var addresses = GrabAddresses();
@@ -107,6 +107,7 @@ namespace Aurora_s_Address_Book
                 if (TacoBell > 0 && TacoBell <= addresses.Count)
                 {
                     addresses.RemoveAt(TacoBell-1);
+                    Console.WriteLine(" It has been deleted.If you want it to stay that way, please save.");
                 }
             }
         }
