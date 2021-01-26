@@ -108,11 +108,62 @@ namespace stuffbook
                 else if (chose.Key == ConsoleKey.E)
                 {
                     Console.WriteLine("What do you want to edit");
-                    var eor = Console.ReadLine();
-                    Console.WriteLine("Which part(last name,first name, zip, streat, city,state)");
-                    var rer = Console.ReadLine();
-                    Console.WriteLine("write name");
-                    var er = Console.ReadLine();
+                   if (int.TryParse(Console.ReadLine(), out int eor)) 
+                   {
+                        Console.WriteLine("Which part(first name(0),last name(1), street(2), city(3),state(4), zip(5))");
+                        var rer = Console.ReadKey();
+                        if (rer.Key == ConsoleKey.D0)
+                        {
+                            var changedadress = addresslist[eor];
+                            Console.WriteLine("write  first name");
+                            var er = Console.ReadLine();
+                            changedadress.lastname = (er);
+                        }
+                        else if (rer.Key == ConsoleKey.D1)
+                        {
+                            var changedadress = addresslist[eor];
+                            Console.WriteLine("write last name");
+                            var er = Console.ReadLine();
+                            changedadress.firstname = (er);
+                        }
+
+                        else if (rer.Key == ConsoleKey.D2)
+                        {
+                            var changedadress = addresslist[eor];
+                            Console.WriteLine("write street");
+                            var er = Console.ReadLine();
+                            changedadress.streetnum = (er);
+                        }
+                        else if (rer.Key == ConsoleKey.D3)
+                        {
+                            var changedadress = addresslist[eor];
+                            Console.WriteLine("write city");
+                            var er = Console.ReadLine();
+                            changedadress.city = (er);
+                        }
+                        else if (rer.Key == ConsoleKey.D4)
+                        {
+                            var changedadress = addresslist[eor];
+                            Console.WriteLine("write state");
+                            var er = Console.ReadLine();
+                            changedadress.state = (er);
+                        }
+                        else if (rer.Key == ConsoleKey.D5)
+                        {
+                            var changedadress = addresslist[eor];
+                            Console.WriteLine("write zip");
+                            var er = Console.ReadLine();
+                            changedadress.zip = (er);
+                        }
+                        else
+                        {
+                            Console.WriteLine("not valid");
+                        }
+                   }
+                    else
+                    {
+                        Console.WriteLine("not valid");
+                    }
                 }
                 else
                 {
