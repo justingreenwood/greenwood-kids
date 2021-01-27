@@ -100,6 +100,7 @@ namespace Aurora_s_Address_Book
 
         public static void Delete(List<Address> addresses)
         {
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.Write("Type a record number to delete: ");
             var numAsString = Console.ReadLine();
             if (int.TryParse(numAsString, out var TacoBell))
@@ -108,6 +109,7 @@ namespace Aurora_s_Address_Book
                 {
                     addresses.RemoveAt(TacoBell-1);
                     Console.WriteLine(" It has been deleted.If you want it to stay that way, please save.");
+                    Console.ForegroundColor = ConsoleColor.Black;
                 }
             }
         }

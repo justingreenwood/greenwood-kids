@@ -8,6 +8,7 @@ namespace Aurora_s_Address_Book
     {
         public static void Edit(List<Address> addresses)
         {
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
             Console.Write("Type a record number to edit: ");
             var numAsString = Console.ReadLine();
             if (int.TryParse(numAsString, out var TacoBell))
@@ -15,6 +16,7 @@ namespace Aurora_s_Address_Book
                 if (TacoBell > 0 && TacoBell <= addresses.Count)
                 {
                     var address = addresses[TacoBell - 1];
+                    Console.ForegroundColor = ConsoleColor.Black;
                     Console.WriteLine("------------------------------------");
                     Console.WriteLine($"[{TacoBell}]***");
                     Console.WriteLine(address);
@@ -22,6 +24,7 @@ namespace Aurora_s_Address_Book
                     do
                     {
                         Console.WriteLine("------------------------------------");
+                        Console.ForegroundColor = ConsoleColor.DarkRed;
                         Console.WriteLine("What do you want to change?");
                         Console.WriteLine(" [N]ame");
                         Console.WriteLine(" [A]ddress");
@@ -30,7 +33,9 @@ namespace Aurora_s_Address_Book
                         Console.WriteLine(" [C]ity State Zip");
                         Console.WriteLine(" [E]-mail Address");
                         Console.WriteLine(" [Q]uit");
+                        Console.ForegroundColor = ConsoleColor.Blue;
                         ChangeWhat = Console.ReadKey();
+                        Console.ForegroundColor = ConsoleColor.Black;
                         if (ChangeWhat.Key == ConsoleKey.N)
                         {
                             Console.WriteLine("!");
@@ -138,6 +143,7 @@ namespace Aurora_s_Address_Book
                 }
                 else
                 {
+                    Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.WriteLine($"There is no {TacoBell}! What kind of an idiot do you think I am?!");
                 }
             }
