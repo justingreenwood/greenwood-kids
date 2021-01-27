@@ -425,8 +425,7 @@ namespace PerrysArt
 
             if (ammopack.IsAlive)
             {
-                g.FillRectangle(Brushes.Green, ammopack.GetRect(_zoom));
-                g.DrawRectangle(Pens.Black, ammopack.GetRect(_zoom));
+                g.DrawImage(Drawings.AmmopackImage, ammopack.GetRect(_zoom));
             }
 
             foreach (var gold in golds)

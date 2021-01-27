@@ -138,7 +138,8 @@ namespace PerrysArt
                 {
                     if (WasHitCounter > 0)
                     {
-                        g.FillRectangle(Brushes.HotPink, GetRect(zoom));
+                        //g.FillRectangle(Brushes.HotPink, GetRect(zoom));
+                        g.DrawImage(Drawings.HitbadguyImage, GetRect(zoom));
                         --WasHitCounter;
                     }
                     else

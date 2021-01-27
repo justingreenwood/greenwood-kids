@@ -16,5 +16,8 @@ namespace PerrysArt
         public static Bitmap treeImage = new Bitmap("Picture/TreeTester.png");
         public static Bitmap tree1Image = new Bitmap("Picture/PerrysArtTree1.png");
         public static Bitmap tree2Image = new Bitmap("Picture/PerrysArtChristmasTree.png");
+        public static Bitmap WallImage = new Bitmap("Picture/Wall.png");
+        public static Bitmap AmmopackImage = new Bitmap("Picture/Ammopack.png");
+        public static Bitmap HitbadguyImage = new Bitmap("Picture/HitBadguy.png");
     }
 }
