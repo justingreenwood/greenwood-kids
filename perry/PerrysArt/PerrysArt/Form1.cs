@@ -425,7 +425,7 @@ namespace PerrysArt
 
             if (ammopack.IsAlive)
             {
-                g.DrawImage(Drawings.AmmopackImage, ammopack.GetRect(_zoom));
+                g.DrawImage(Drawings.AmmopackImage, ammopack.GetRect (_zoom));
             }
 
             foreach (var gold in golds)
@@ -451,7 +451,7 @@ namespace PerrysArt
                 }
                 else
                 {
-                    g.DrawEllipse(Pens.Red, b.GetRect(_zoom));
+                    g.DrawImage(Drawings.DeadBadguyImage, b.GetRect(_zoom));
                 }
             }
             

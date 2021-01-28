@@ -19,5 +19,6 @@ namespace PerrysArt
         public static Bitmap WallImage = new Bitmap("Picture/Wall.png");
         public static Bitmap AmmopackImage = new Bitmap("Picture/Ammopack.png");
         public static Bitmap HitbadguyImage = new Bitmap("Picture/HitBadguy.png");
+        public static Bitmap DeadBadguyImage = new Bitmap("Picture/DeadBadguy.png");
     }
 }
