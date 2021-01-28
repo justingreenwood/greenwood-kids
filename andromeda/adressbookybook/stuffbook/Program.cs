@@ -52,7 +52,7 @@ namespace stuffbook
                 
                 else if (chose.Key == ConsoleKey.L)
                 {
-                    Console.WriteLine("here is list");
+                    Console.WriteLine("Here is list");
                     for (int z = 0; z < addresslist.Count; z++)
                     {
                         var isOdd = ((z % 2) == 1); // The remainder of z / 2
@@ -85,89 +85,90 @@ namespace stuffbook
                     bool good = true;
                     while (good)
                     {
-                        Console.WriteLine("which one");
+                        Console.WriteLine("Which one");
                         if (int.TryParse(Console.ReadLine(), out int Removed))
                         {
                             if (Removed != 0 && Removed <= (addresslist.Count))
                             {
                                 addresslist.RemoveAt(Removed - 1);
-                                Console.WriteLine("all gone");
+                                Console.WriteLine("All gone");
                             }
                             else
                             {
-                                Console.WriteLine("okay dokay");
+                                Console.WriteLine("Okay Dokay");
                             }
                             good = false;
                         }
                         else
                         {
-                            Console.WriteLine("are you sure");
+                            Console.WriteLine("Are you sure");
                         }
                     }
                 }
                 else if (chose.Key == ConsoleKey.E)
                 {
                     Console.WriteLine("What do you want to edit");
-                   if (int.TryParse(Console.ReadLine(), out int eor)) 
+                   if (int.TryParse(Console.ReadLine(), out int eor) && eor > 0 && eor <= addresslist.Count)
                    {
+                        var changedadress = addresslist[eor - 1];
                         Console.WriteLine("Which part(first name(0),last name(1), street(2), city(3),state(4), zip(5))");
                         var rer = Console.ReadKey();
                         if (rer.Key == ConsoleKey.D0)
                         {
-                            var changedadress = addresslist[eor];
-                            Console.WriteLine("write  first name");
+                            Console.WriteLine("Write  first name"); 
+                            Console.WriteLine("");
                             var er = Console.ReadLine();
                             changedadress.lastname = (er);
                         }
                         else if (rer.Key == ConsoleKey.D1)
                         {
-                            var changedadress = addresslist[eor];
-                            Console.WriteLine("write last name");
+                            Console.WriteLine("Write last name");
+                            Console.WriteLine("");
                             var er = Console.ReadLine();
                             changedadress.firstname = (er);
                         }
 
                         else if (rer.Key == ConsoleKey.D2)
                         {
-                            var changedadress = addresslist[eor];
-                            Console.WriteLine("write street");
+                            Console.WriteLine("Write street");
+                            Console.WriteLine("");
                             var er = Console.ReadLine();
                             changedadress.streetnum = (er);
                         }
                         else if (rer.Key == ConsoleKey.D3)
                         {
-                            var changedadress = addresslist[eor];
-                            Console.WriteLine("write city");
+                            Console.WriteLine("Write city");
+                            Console.WriteLine("");
                             var er = Console.ReadLine();
                             changedadress.city = (er);
                         }
                         else if (rer.Key == ConsoleKey.D4)
                         {
-                            var changedadress = addresslist[eor];
-                            Console.WriteLine("write state");
+                            Console.WriteLine("Write state");
+                            Console.WriteLine("");
                             var er = Console.ReadLine();
                             changedadress.state = (er);
                         }
                         else if (rer.Key == ConsoleKey.D5)
                         {
-                            var changedadress = addresslist[eor];
-                            Console.WriteLine("write zip");
+                            Console.WriteLine("Write zip");
+                            Console.WriteLine("");
                             var er = Console.ReadLine();
                             changedadress.zip = (er);
                         }
                         else
                         {
-                            Console.WriteLine("not valid");
+                            Console.WriteLine("Not valid");
                         }
                    }
                     else
                     {
-                        Console.WriteLine("not valid");
+                        Console.WriteLine("Invalid");
                     }
                 }
                 else
                 {
-                    Console.WriteLine("you dumb; you really dumb");
+                    Console.WriteLine("You dumb; you really dumb");
                 }
             }
         }
