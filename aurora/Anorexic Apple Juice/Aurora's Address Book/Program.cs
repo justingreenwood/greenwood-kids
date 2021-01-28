@@ -128,9 +128,12 @@ namespace Aurora_s_Address_Book
 
                 if (num < addresses.Count && (num % 3) == 0)
                 {
+                    Console.ForegroundColor = ConsoleColor.Blue;
                     Console.WriteLine("Press any key to continue (press q to stop paging)...");
+                    Console.ForegroundColor = ConsoleColor.DarkBlue;
                     if (Console.ReadKey().Key == ConsoleKey.Q)
                     {
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
                         break;
                     }
                 }
