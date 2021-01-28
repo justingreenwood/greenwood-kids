@@ -120,11 +120,20 @@ namespace Aurora_s_Address_Book
             Console.WriteLine("------------------------------------");
             for (var i = 0; i < addresses.Count; i++)
             {
+                var num = (i + 1);
                 var address = addresses[i];
-                Console.WriteLine($"[{i + 1}]");
+                Console.WriteLine($"[{num}]");
                 Console.WriteLine(address);
-                Console.WriteLine("------------------------------------");
+                Console.WriteLine($"------------------------------------");
 
+                if (num < addresses.Count && (num % 3) == 0)
+                {
+                    Console.WriteLine("Press any key to continue (press q to stop paging)...");
+                    if (Console.ReadKey().Key == ConsoleKey.Q)
+                    {
+                        break;
+                    }
+                }
             }
             Console.ForegroundColor = ConsoleColor.Black;
         }
