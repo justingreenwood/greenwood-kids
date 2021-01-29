@@ -14,6 +14,7 @@ namespace Heads_Will_Bounce
     // Also, use Aseprite to make a new sprite background, and some good heads to make bounce around!
     //I will discuss these things with my father when the time comes.....
     // I will ask on MONDAY! It'll be better that way.
+    // I really will!
     public partial class Form1 : Form
     {
         private static Image _head1Image = new Bitmap("AuroraSprite1.png");
