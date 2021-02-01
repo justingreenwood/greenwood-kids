@@ -17,6 +17,14 @@ namespace PerrysArt
         }
         public void DrawTheGame(Graphics g)
         {
+            g.FillRectangle(Brushes.Gray, 330, 280, 150, 50);
+            g.DrawString("(P)lay", SystemFonts.CaptionFont, Brushes.Black, 360, 295);
+            g.FillRectangle(Brushes.Gray, 330, 360, 150, 50);
+            g.DrawString("(L)oad", SystemFonts.CaptionFont, Brushes.Black, 360, 375);
+            g.FillRectangle(Brushes.Gray, 330, 440, 150, 50);
+            g.DrawString("(V)iew High Score", SystemFonts.CaptionFont, Brushes.Black, 360, 455);
+            g.FillRectangle(Brushes.Gray, 330, 520, 150, 50);
+            g.DrawString("(E)xit", SystemFonts.CaptionFont, Brushes.Black, 360, 535);
         }
 
         public void KeyDown(object sender, KeyEventArgs e)
@@ -25,10 +33,23 @@ namespace PerrysArt
 
         public void KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.V)//els
+            {
+                
+            }
+            else if (e.KeyCode == Keys.E)
+            {
+                Application.Exit();
+            }
+            else if (e.KeyCode == Keys.L)
+            {
+
+            }
+            else if (e.KeyCode == Keys.P)
             {
                 _form.StartupMainGame();
             }
+
         }
 
         public void Start(string startInfo = null)
