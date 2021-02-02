@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Heads_Will_Bounce
 {
-
+    //I added and removed, added and removed, but nothing could change.
     public partial class Form1 : Form
     {
         private static Image _head1Image = new Bitmap("AuroraSprite1.png");
