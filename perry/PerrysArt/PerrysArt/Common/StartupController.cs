@@ -39,7 +39,7 @@ namespace PerrysArt
             {
                 
             }
-            else if (e.KeyCode == Keys.E)
+            else if (e.KeyCode == Keys.Q)
             {
                 Application.Exit();
             }
