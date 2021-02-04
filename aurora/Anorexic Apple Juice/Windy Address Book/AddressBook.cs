@@ -22,6 +22,29 @@ namespace Windy_Address_Book
 
         }
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
 
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void SaveButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -31,5 +31,55 @@ namespace Windy_Address_Book
         {
 
         }
+
+        private void NameLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OccupationLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OccupationTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddressTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AddressLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EmailLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void EmailTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PhoneLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PhoneTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -52,6 +52,7 @@
             this.EditButton.TabIndex = 0;
             this.EditButton.Text = "Edit";
             this.EditButton.UseVisualStyleBackColor = false;
+            this.EditButton.Click += new System.EventHandler(this.EditButton_Click);
             // 
             // AddButton
             // 
@@ -63,6 +64,7 @@
             this.AddButton.TabIndex = 1;
             this.AddButton.Text = "Add";
             this.AddButton.UseVisualStyleBackColor = false;
+            this.AddButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
             // SaveButton
             // 
@@ -75,6 +77,7 @@
             this.SaveButton.TabIndex = 2;
             this.SaveButton.Text = "Save";
             this.SaveButton.UseVisualStyleBackColor = false;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButton_Click);
             // 
             // DeleteButton
             // 
@@ -87,6 +90,7 @@
             this.DeleteButton.TabIndex = 3;
             this.DeleteButton.Text = "Delete";
             this.DeleteButton.UseVisualStyleBackColor = false;
+            this.DeleteButton.Click += new System.EventHandler(this.DeleteButton_Click);
             // 
             // dataGridView1
             // 
@@ -103,6 +107,7 @@
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(801, 379);
             this.dataGridView1.TabIndex = 4;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // Name
             // 
@@ -141,7 +146,7 @@
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.EditButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-           
+            
             this.Text = "Address Book";
             this.Load += new System.EventHandler(this.AddressBook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
