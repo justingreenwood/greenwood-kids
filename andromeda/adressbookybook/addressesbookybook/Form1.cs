@@ -19,12 +19,28 @@ namespace addressesbookybook
 
         private void buttonsave_Click(object sender, EventArgs e)
         {
-
+            Console.Clear();
         }
 
         private void buttonquit_Click(object sender, EventArgs e)
         {
+            Console.WriteLine("byebye");
+        }
 
+        private void buttonadd_Click(object sender, EventArgs e)
+        {
+            goto addoredit;
+        }
+
+        private void buttonremove_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("which");
+            Console.WriteLine("okay");
+        }
+
+        private void buttonedit_Click(object sender, EventArgs e)
+        {
+            goto addoredit;
         }
     }
 }

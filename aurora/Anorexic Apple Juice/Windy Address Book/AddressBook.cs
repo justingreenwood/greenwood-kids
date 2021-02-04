@@ -16,5 +16,12 @@ namespace Windy_Address_Book
         {
             InitializeComponent();
         }
+
+        private void AddressBook_Load(object sender, EventArgs e)
+        {
+
+        }
+
+
     }
 }

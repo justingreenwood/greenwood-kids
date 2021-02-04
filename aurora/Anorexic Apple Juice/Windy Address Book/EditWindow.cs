@@ -21,5 +21,15 @@ namespace Windy_Address_Book
         {
 
         }
+
+        private void CancelButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OKButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

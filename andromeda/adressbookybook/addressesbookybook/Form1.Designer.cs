@@ -54,6 +54,7 @@
             this.buttonadd.TabIndex = 1;
             this.buttonadd.Text = "add";
             this.buttonadd.UseVisualStyleBackColor = true;
+            this.buttonadd.Click += new System.EventHandler(this.buttonadd_Click);
             // 
             // buttonremove
             // 
@@ -64,6 +65,7 @@
             this.buttonremove.TabIndex = 2;
             this.buttonremove.Text = "remove";
             this.buttonremove.UseVisualStyleBackColor = true;
+            this.buttonremove.Click += new System.EventHandler(this.buttonremove_Click);
             // 
             // buttonedit
             // 
@@ -74,6 +76,7 @@
             this.buttonedit.TabIndex = 3;
             this.buttonedit.Text = "edit";
             this.buttonedit.UseVisualStyleBackColor = true;
+            this.buttonedit.Click += new System.EventHandler(this.buttonedit_Click);
             // 
             // buttonsave
             // 
@@ -103,7 +106,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 390);
+            this.ClientSize = new System.Drawing.Size(425, 270);
             this.Controls.Add(this.buttonquit);
             this.Controls.Add(this.buttonsave);
             this.Controls.Add(this.buttonedit);
