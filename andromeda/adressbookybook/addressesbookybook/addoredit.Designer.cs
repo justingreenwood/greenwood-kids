@@ -38,6 +38,8 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
+            this.buttonokay = new System.Windows.Forms.Button();
+            this.buttoncancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelfirst
@@ -110,12 +112,36 @@
             this.textBox6.Size = new System.Drawing.Size(89, 20);
             this.textBox6.TabIndex = 8;
             // 
+            // buttonokay
+            // 
+            this.buttonokay.BackColor = System.Drawing.Color.Lime;
+            this.buttonokay.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonokay.Location = new System.Drawing.Point(246, 12);
+            this.buttonokay.Name = "buttonokay";
+            this.buttonokay.Size = new System.Drawing.Size(75, 23);
+            this.buttonokay.TabIndex = 9;
+            this.buttonokay.Text = "okay";
+            this.buttonokay.UseVisualStyleBackColor = false;
+            // 
+            // buttoncancel
+            // 
+            this.buttoncancel.BackColor = System.Drawing.Color.Red;
+            this.buttoncancel.Font = new System.Drawing.Font("Courier New", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttoncancel.Location = new System.Drawing.Point(246, 41);
+            this.buttoncancel.Name = "buttoncancel";
+            this.buttoncancel.Size = new System.Drawing.Size(75, 23);
+            this.buttoncancel.TabIndex = 10;
+            this.buttoncancel.Text = "cancel";
+            this.buttoncancel.UseVisualStyleBackColor = false;
+            // 
             // addoredit
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.HighlightText;
             this.ClientSize = new System.Drawing.Size(333, 232);
+            this.Controls.Add(this.buttoncancel);
+            this.Controls.Add(this.buttonokay);
             this.Controls.Add(this.textBox6);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.textBox4);
@@ -144,5 +170,7 @@
         private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.Button buttonokay;
+        private System.Windows.Forms.Button buttoncancel;
     }
 }

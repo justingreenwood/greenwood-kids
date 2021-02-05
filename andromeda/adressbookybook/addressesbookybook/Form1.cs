@@ -19,28 +19,27 @@ namespace addressesbookybook
 
         private void buttonsave_Click(object sender, EventArgs e)
         {
-            Console.Clear();
+            AcceptButton.GetType();
         }
 
         private void buttonquit_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("byebye");
+            Random.Equals(ref, RadioButton);
         }
 
         private void buttonadd_Click(object sender, EventArgs e)
         {
-            goto addoredit;
+           // not conecting and is infuriating
         }
 
         private void buttonremove_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("which");
-            Console.WriteLine("okay");
+            DayOfWeek.Friday=5;
         }
 
         private void buttonedit_Click(object sender, EventArgs e)
         {
-            goto addoredit;
+          //should conect to other form but doesn't
         }
     }
 }
