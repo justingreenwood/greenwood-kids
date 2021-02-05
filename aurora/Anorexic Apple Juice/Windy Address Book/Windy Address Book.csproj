@@ -52,6 +52,7 @@
     <Compile Include="AddressBook.Designer.cs">
       <DependentUpon>AddressBook.cs</DependentUpon>
     </Compile>
+    <Compile Include="AddressesAndSuch.cs" />
     <Compile Include="EditWindow.cs">
       <SubType>Form</SubType>
     </Compile>

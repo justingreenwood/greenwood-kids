@@ -12,6 +12,8 @@ namespace Windy_Address_Book
 {
     public partial class AddressBook : Form
     {
+     //Something will be put here!
+
         public AddressBook()
         {
             InitializeComponent();
@@ -27,9 +29,19 @@ namespace Windy_Address_Book
 
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
+        private void FillInSomething()
         {
 
+        }
+
+        private void MakeObject()
+        {
+
+        }
+
+        private void EditButton_Click(object sender, EventArgs e)
+        {
+            
         }
 
         private void AddButton_Click(object sender, EventArgs e)
