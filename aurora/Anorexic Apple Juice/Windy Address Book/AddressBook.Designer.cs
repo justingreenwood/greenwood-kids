@@ -1,6 +1,6 @@
 ﻿namespace Windy_Address_Book
 {
-    partial class AddressBook
+    partial class FormAddressBook
     {
         /// <summary>
         /// Required designer variable.
@@ -28,17 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddressBook));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAddressBook));
             this.EditButton = new System.Windows.Forms.Button();
             this.AddButton = new System.Windows.Forms.Button();
             this.SaveButton = new System.Windows.Forms.Button();
             this.DeleteButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Occupation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HomeAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EmailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnOccupation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnHomeAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnEmailAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnPhoneNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -96,45 +96,59 @@
             // 
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Name,
-            this.Occupation,
-            this.HomeAddress,
-            this.EmailAddress,
-            this.PhoneNumber});
+            this.ColumnName,
+            this.ColumnOccupation,
+            this.ColumnHomeAddress,
+            this.ColumnEmailAddress,
+            this.ColumnPhoneNumber});
             this.dataGridView1.Location = new System.Drawing.Point(1, 75);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersVisible = false;
+            this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(801, 379);
             this.dataGridView1.TabIndex = 4;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
-            // Name
+            // ColumnName
             // 
-            this.Name.HeaderText = "Name";
-            this.Name.Name = "Name";
+            this.ColumnName.DataPropertyName = "Name";
+            this.ColumnName.HeaderText = "Name";
+            this.ColumnName.Name = "ColumnName";
+            this.ColumnName.ReadOnly = true;
             // 
-            // Occupation
+            // ColumnOccupation
             // 
-            this.Occupation.HeaderText = "Occupation";
-            this.Occupation.Name = "Occupation";
+            this.ColumnOccupation.DataPropertyName = "Occupation";
+            this.ColumnOccupation.HeaderText = "Occupation";
+            this.ColumnOccupation.Name = "ColumnOccupation";
+            this.ColumnOccupation.ReadOnly = true;
             // 
-            // HomeAddress
+            // ColumnHomeAddress
             // 
-            this.HomeAddress.HeaderText = "Home Address";
-            this.HomeAddress.Name = "HomeAddress";
+            this.ColumnHomeAddress.DataPropertyName = "Address";
+            this.ColumnHomeAddress.HeaderText = "Home Address";
+            this.ColumnHomeAddress.Name = "ColumnHomeAddress";
+            this.ColumnHomeAddress.ReadOnly = true;
             // 
-            // EmailAddress
+            // ColumnEmailAddress
             // 
-            this.EmailAddress.HeaderText = "Email Address";
-            this.EmailAddress.Name = "EmailAddress";
+            this.ColumnEmailAddress.DataPropertyName = "Email";
+            this.ColumnEmailAddress.HeaderText = "Email Address";
+            this.ColumnEmailAddress.Name = "ColumnEmailAddress";
+            this.ColumnEmailAddress.ReadOnly = true;
             // 
-            // PhoneNumber
+            // ColumnPhoneNumber
             // 
-            this.PhoneNumber.HeaderText = "Phone Number";
-            this.PhoneNumber.Name = "PhoneNumber";
+            this.ColumnPhoneNumber.DataPropertyName = "Phone";
+            this.ColumnPhoneNumber.HeaderText = "Phone Number";
+            this.ColumnPhoneNumber.Name = "ColumnPhoneNumber";
+            this.ColumnPhoneNumber.ReadOnly = true;
             // 
-            // AddressBook
+            // FormAddressBook
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -146,7 +160,7 @@
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.EditButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            
+            this.Name = "FormAddressBook";
             this.Text = "Address Book";
             this.Load += new System.EventHandler(this.AddressBook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
@@ -161,11 +175,11 @@
         private System.Windows.Forms.Button SaveButton;
         private System.Windows.Forms.Button DeleteButton;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Name;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Occupation;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HomeAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EmailAddress;
-        private System.Windows.Forms.DataGridViewTextBoxColumn PhoneNumber;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnOccupation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnHomeAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnEmailAddress;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnPhoneNumber;
     }
 }
 

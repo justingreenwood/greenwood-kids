@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Windy_Address_Book
 {
-    class AddressesAndSuch
+    public class AddressesAndSuch
     {
-        public string Name;
-        public string Email;
-        public string Occupation;
-        public string Address;
-        public string Phone;
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string Occupation { get; set; }
+        public string Address { get; set; }
+        public string Phone { get; set; }
 
     }
 }

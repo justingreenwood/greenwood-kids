@@ -16,7 +16,7 @@ namespace Windy_Address_Book
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AddressBook());
+            Application.Run(new FormAddressBook());
         }
     }
 }
