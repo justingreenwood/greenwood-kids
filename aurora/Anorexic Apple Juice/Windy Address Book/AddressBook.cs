@@ -92,7 +92,7 @@ namespace Windy_Address_Book
             } 
             else
             {
-                // clicked cancel
+                //clicked delete
             }
         }
 
