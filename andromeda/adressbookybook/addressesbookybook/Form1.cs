@@ -19,12 +19,12 @@ namespace addressesbookybook
 
         private void buttonsave_Click(object sender, EventArgs e)
         {
-            AcceptButton.GetType();
+           
         }
 
         private void buttonquit_Click(object sender, EventArgs e)
         {
-            Random.Equals(ref, RadioButton);
+            Application.Exit();
         }
 
         private void buttonadd_Click(object sender, EventArgs e)
@@ -34,12 +34,25 @@ namespace addressesbookybook
 
         private void buttonremove_Click(object sender, EventArgs e)
         {
-            DayOfWeek.Friday=5;
+         
         }
 
         private void buttonedit_Click(object sender, EventArgs e)
         {
           //should conect to other form but doesn't
+        }
+        public class Adres
+        {
+            public string firstname;
+            public string lastname; 
+            public string street;
+            public string city;  
+            public string state;
+            public string zip;
+            public override string ToString()
+            {
+                return base.ToString();
+            }
         }
     }
 }
