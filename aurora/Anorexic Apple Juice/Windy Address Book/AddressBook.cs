@@ -67,12 +67,12 @@ namespace Windy_Address_Book
 
         private void FillInSomething()
         {
-
+         //Dad will help me.
         }
 
         private void MakeObject()
         {
-
+            //Dad Will Help Me
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -92,7 +92,7 @@ namespace Windy_Address_Book
             } 
             else
             {
-                //clicked delete
+                //clicked cancel
             }
         }
 
