@@ -19,7 +19,8 @@ namespace addressesbookybook
 
         private void buttonsave_Click(object sender, EventArgs e)
         {
-           
+            SaveFileDialog(form1.cs[Design]);
+
         }
 
         private void buttonquit_Click(object sender, EventArgs e)
@@ -34,7 +35,8 @@ namespace addressesbookybook
 
         private void buttonremove_Click(object sender, EventArgs e)
         {
-         
+            CheckedListBox.CheckedIndexCollection(Remove checked stuff );
+
         }
 
         private void buttonedit_Click(object sender, EventArgs e)
