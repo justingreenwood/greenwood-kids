@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(addressstuff));
-            this.addresses = new System.Windows.Forms.CheckedListBox();
+            this.checkBoxListAddresses = new System.Windows.Forms.CheckedListBox();
             this.buttonadd = new System.Windows.Forms.Button();
             this.buttonremove = new System.Windows.Forms.Button();
             this.buttonedit = new System.Windows.Forms.Button();
@@ -37,13 +37,13 @@
             this.buttonquit = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // addresses
+            // checkBoxListAddresses
             // 
-            this.addresses.FormattingEnabled = true;
-            this.addresses.Location = new System.Drawing.Point(12, 12);
-            this.addresses.Name = "addresses";
-            this.addresses.Size = new System.Drawing.Size(401, 184);
-            this.addresses.TabIndex = 0;
+            this.checkBoxListAddresses.FormattingEnabled = true;
+            this.checkBoxListAddresses.Location = new System.Drawing.Point(12, 12);
+            this.checkBoxListAddresses.Name = "checkBoxListAddresses";
+            this.checkBoxListAddresses.Size = new System.Drawing.Size(401, 184);
+            this.checkBoxListAddresses.TabIndex = 0;
             // 
             // buttonadd
             // 
@@ -112,17 +112,18 @@
             this.Controls.Add(this.buttonedit);
             this.Controls.Add(this.buttonremove);
             this.Controls.Add(this.buttonadd);
-            this.Controls.Add(this.addresses);
+            this.Controls.Add(this.checkBoxListAddresses);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "addressstuff";
             this.Text = "Addressbook stuffystuff";
+            this.Load += new System.EventHandler(this.addressstuff_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.CheckedListBox addresses;
+        private System.Windows.Forms.CheckedListBox checkBoxListAddresses;
         private System.Windows.Forms.Button buttonadd;
         private System.Windows.Forms.Button buttonremove;
         private System.Windows.Forms.Button buttonedit;

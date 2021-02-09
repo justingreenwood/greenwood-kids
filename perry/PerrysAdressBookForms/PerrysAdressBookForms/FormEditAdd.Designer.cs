@@ -215,6 +215,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FormEditAdd";
             this.Text = "FormEditAdd";
+            this.Load += new System.EventHandler(this.FormEditAdd_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

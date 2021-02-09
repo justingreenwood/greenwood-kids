@@ -101,5 +101,10 @@ namespace PerrysAdressBookForms
             this.MyAddress.HouseAddress = this.textBoxHouseAddress.Text;
             this.MyAddress.Zip = this.textBoxZip.Text;
         }
+
+        private void FormEditAdd_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
