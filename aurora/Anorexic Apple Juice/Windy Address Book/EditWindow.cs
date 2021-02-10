@@ -12,14 +12,36 @@ namespace Windy_Address_Book
 {
     public partial class EditWindow : Form
     {
+        public AddressesAndSuch MyAddressToEdit;
+
         public EditWindow()
         {
             InitializeComponent();
         }
 
+        public void CreateNewAddress()
+        {
+            MyAddressToEdit = new AddressesAndSuch();
+            this.AddressTextBox.Text = "";
+            this.NameTextBox.Text = "";
+            this.OccupationTextBox.Text = "";
+            this.PhoneTextBox.Text = "";
+            this.EmailTextBox.Text = "";
+        }
+
+        public void EditAddress(AddressesAndSuch selectedAddress)
+        {
+            MyAddressToEdit = selectedAddress;
+
+            this.AddressTextBox.Text = MyAddressToEdit.Address;
+            this.NameTextBox.Text = MyAddressToEdit.Name;
+            this.OccupationTextBox.Text = MyAddressToEdit.Occupation;
+            this.PhoneTextBox.Text = MyAddressToEdit.Phone;
+            this.EmailTextBox.Text = MyAddressToEdit.Email;
+        }
+
         private void EditWindow_Load(object sender, EventArgs e)
         {
-
         }
 
         private void CancelButton_Click(object sender, EventArgs e)
@@ -29,7 +51,12 @@ namespace Windy_Address_Book
 
         private void OKButton_Click(object sender, EventArgs e)
         {
-          //Still need Dad.
+            //Still need Dad.
+            MyAddressToEdit.Address = this.AddressTextBox.Text;
+            MyAddressToEdit.Name = this.NameTextBox.Text;
+            MyAddressToEdit.Occupation = this.OccupationTextBox.Text;
+            MyAddressToEdit.Phone = this.PhoneTextBox.Text;
+            MyAddressToEdit.Email = this.EmailTextBox.Text;
         }
 
         private void NameLabel_Click(object sender, EventArgs e)

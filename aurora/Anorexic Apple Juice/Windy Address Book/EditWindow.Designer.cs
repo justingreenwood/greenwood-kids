@@ -46,6 +46,7 @@
             // CancelButton
             // 
             this.CancelButton.BackColor = System.Drawing.Color.Goldenrod;
+            this.CancelButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.CancelButton.ForeColor = System.Drawing.Color.SaddleBrown;
             this.CancelButton.Location = new System.Drawing.Point(158, 408);
             this.CancelButton.Name = "CancelButton";
@@ -58,6 +59,7 @@
             // OKButton
             // 
             this.OKButton.BackColor = System.Drawing.Color.OrangeRed;
+            this.OKButton.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.OKButton.ForeColor = System.Drawing.Color.DarkRed;
             this.OKButton.Location = new System.Drawing.Point(-6, 408);
             this.OKButton.Name = "OKButton";

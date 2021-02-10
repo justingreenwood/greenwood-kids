@@ -27,7 +27,10 @@ namespace Windy_Address_Book
                 var selectedAddresses = new List<AddressesAndSuch>();
                 foreach (DataGridViewRow row in this.dataGridView1.SelectedRows)
                 {
-                    selectedAddresses.Add(row.DataBoundItem as AddressesAndSuch);
+                    if (row.DataBoundItem is AddressesAndSuch)
+                    {
+                        selectedAddresses.Add(row.DataBoundItem as AddressesAndSuch);
+                    }
                 }
                 return selectedAddresses;
             }
@@ -67,12 +70,12 @@ namespace Windy_Address_Book
 
         private void FillInSomething()
         {
-         //Dad will help me.
+         
         }
 
         private void MakeObject()
         {
-            //Dad Will Help Me
+           
         }
 
         private void EditButton_Click(object sender, EventArgs e)
@@ -80,20 +83,39 @@ namespace Windy_Address_Book
             if (SelectedAddresses.Count > 0)
             {
                 var firstAddress = SelectedAddresses[0];
-                MessageBox.Show(firstAddress.Name);
+                _editForm.EditAddress(firstAddress);
+                if (_editForm.ShowDialog(this) == DialogResult.OK)
+                {
+                    // clicked ok
+                    this.dataGridView1.Refresh();
+                }
+                else
+                {
+                    //clicked cancel
+                }
             }
         }
 
         private void AddButton_Click(object sender, EventArgs e)
         {
+            _editForm.CreateNewAddress();
             if (_editForm.ShowDialog(this) == DialogResult.OK)
             {
                 // clicked ok
+                this._addresses.Add(_editForm.MyAddressToEdit);
+                RefreshGrid();
             } 
             else
             {
                 //clicked cancel
             }
+        }
+
+        public void  RefreshGrid()
+        {
+            this.dataGridView1.DataSource = null;
+            this.dataGridView1.DataSource = this._addresses;
+            this.dataGridView1.Refresh();
         }
 
         private void SaveButton_Click(object sender, EventArgs e)
@@ -103,9 +125,15 @@ namespace Windy_Address_Book
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
-            foreach (var address in SelectedAddresses)
+            var addressesToDelete = SelectedAddresses;
+            if (addressesToDelete.Count > 0)
             {
-                MessageBox.Show(address.Name);
+                this.dataGridView1.DataSource = null;
+                foreach (var address in addressesToDelete)
+                {
+                    this._addresses.Remove(address);
+                }
+                RefreshGrid();
             }
         }
     }
