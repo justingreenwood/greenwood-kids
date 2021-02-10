@@ -1,0 +1,17 @@
+﻿                Name = "Aubriella 'Brie' Narcissa Riddle",
+                Occupation = "District Attorney",
+                Address = "3128 Moldy Lane, Riddleton, England 28930",
+                Phone = "(808)234-3842",
+                Email = "brie.cheese@gmail.com"
+
+                Name = "Felix Joel Riddle",
+                Occupation = "Teacher",
+                Address = "Thea Romanov's School for Gifted Twerps",
+                Phone = "(808)337-3045",
+                Email = "felix.the.cat@gmail.com"
+
+                Name = "Daniella 'Dani' Bellatrix Riddle";
+                Occupation = "A Doctor of Sorts";
+                Address = "21422 Taco Street, Jonahtown, England 32934";
+                Phone = "(808)125-2313";
+                Email = "dani.not.danny@gmail.com";
