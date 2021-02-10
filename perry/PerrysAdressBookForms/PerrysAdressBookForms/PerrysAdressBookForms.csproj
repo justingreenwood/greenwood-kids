@@ -92,5 +92,10 @@
   <ItemGroup>
     <None Include="Resources\flower.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Addresses.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
