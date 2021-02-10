@@ -29,7 +29,7 @@ namespace addressesbookybook
 
         private void buttonsave_Click(object sender, EventArgs e)
         {
-            //SaveFileDialog(adresses);
+            SaveFileDialog();
 
         }
 
@@ -52,16 +52,11 @@ namespace addressesbookybook
 
         private void buttonremove_Click(object sender, EventArgs e)
         {
-            foreach (var _contacts in this.checkBoxListAddresses.CheckedItems)
+            foreach (var things in this.checkBoxListAddresses.CheckedItems)
             {
-                    var checkedContact = (Contact)this.checkBoxListAddresses.CheckedItems[0];
-
-                    
-                checkedContact.Remove(Contact as _contacts );
-
-                this.PutAddressesInCheckBoxList();
-                   
+                _contacts.Remove(things as Contact);     
             }
+            this.PutAddressesInCheckBoxList();
         }
 
         private void buttonedit_Click(object sender, EventArgs e)
@@ -88,7 +83,16 @@ namespace addressesbookybook
                 this.checkBoxListAddresses.Items.Add(c);
             }
         }
+        private void SaveFileDialog()
+        {
+            var lines = new List<string>();
+            foreach (var addr in _contacts)
+            {
+                lines.Add(addr.ToFileLineString());
+            }
 
+            File.WriteAllLines("AddressBook.txt", lines);
+        }
         private void LoadAddressesFromFile()
         {
             this._contacts.Clear();
