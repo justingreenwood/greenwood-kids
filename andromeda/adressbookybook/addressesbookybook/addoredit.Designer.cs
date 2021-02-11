@@ -64,6 +64,7 @@
             // 
             this.address.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.address.BackColor = System.Drawing.SystemColors.ControlDark;
             this.address.FormattingEnabled = true;
             this.address.Location = new System.Drawing.Point(2, 94);
             this.address.Name = "address";
@@ -142,7 +143,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.BackColor = System.Drawing.Color.LemonChiffon;
             this.ClientSize = new System.Drawing.Size(333, 232);
             this.Controls.Add(this.buttoncancel);
             this.Controls.Add(this.buttonokay);
