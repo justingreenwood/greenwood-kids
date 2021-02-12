@@ -18,6 +18,11 @@ namespace TextAdventure
                 Name = "Bottle of Water",
                 Description = "This is a complementary bottle of water this hotel usually provides guests."
             });
+            bathroom.ThingsInTheRoom.Add(new Thing
+            {
+                Name = "Stinky Pile",
+                Description = "It looks like someone missed the toilet."
+            });
 
             var hotel = new Room();
             hotel.Name = "Hotel Suite";
