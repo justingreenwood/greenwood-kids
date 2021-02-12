@@ -1,17 +1,3 @@
-﻿                Name = "Aubriella 'Brie' Narcissa Riddle",
-                Occupation = "District Attorney",
-                Address = "3128 Moldy Lane, Riddleton, England 28930",
-                Phone = "(808)234-3842",
-                Email = "brie.cheese@gmail.com"
-
-                Name = "Felix Joel Riddle",
-                Occupation = "Teacher",
-                Address = "Thea Romanov's School for Gifted Twerps",
-                Phone = "(808)337-3045",
-                Email = "felix.the.cat@gmail.com"
-
-                Name = "Daniella 'Dani' Bellatrix Riddle";
-                Occupation = "A Doctor of Sorts";
-                Address = "21422 Taco Street, Jonahtown, England 32934";
-                Phone = "(808)125-2313";
-                Email = "dani.not.danny@gmail.com";
+﻿Aubriella "Brie" Narcissa Riddle|District Attorney|3128 Moldy Lane, Riddleton, England|(808)345-4745|brie.cheese@gmail.com
+Felix Joel Riddle|Teacher|Thea Romanov's School for Exceptional Youngsters|(808)337-3045|felix.the.cat@gmail.com
+Daniella "Dani" Bellatrix Riddle|Doctor of Sorts|23423 Taco Street, Burrito, England|(808)234-6236|dani.not.danny@gmail.com

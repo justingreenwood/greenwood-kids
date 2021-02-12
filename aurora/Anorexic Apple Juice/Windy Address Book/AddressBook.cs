@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,25 +38,24 @@ namespace Windy_Address_Book
 
         private void AddressBook_Load(object sender, EventArgs e)
         {
-            _addresses.Add(new AddressesAndSuch
+            var linesArray = File.ReadAllLines("AddressTextFile.txt");
+            foreach ( var line in linesArray)
             {
-                Name = "Felix Joel Riddle",
-                Occupation = "Teacher",
-                Address = "Thea Romanov's School for Gifted Twerps",
-                Phone = "(808)337-3045",
-                Email = "felix.the.cat@gmail.com"
+                var bodyparts = line.Split('|');
+                if (bodyparts.Length == 5)
+                {
+                    _addresses.Add(new AddressesAndSuch
+                    {
+                        Name = bodyparts[0],
+                        Occupation = bodyparts[1],
+                        Address = bodyparts[2],
+                        Phone = bodyparts[3],
+                        Email = bodyparts[4]
 
-            }); ;
-
-            _addresses.Add(new AddressesAndSuch
-            {
-                Name = "Aubriella 'Brie' Narcissa Riddle",
-                Occupation = "District Attorney",
-                Address = "3128 Moldy Lane, Riddleton, England 28930",
-                Phone = "(808)234-3842",
-                Email = "brie.cheese@gmail.com"
-
-            });
+                    });
+                }
+            }
+            
 
             this.dataGridView1.AutoGenerateColumns = false;
             this.dataGridView1.DataSource = _addresses;
@@ -121,6 +120,12 @@ namespace Windy_Address_Book
         private void SaveButton_Click(object sender, EventArgs e)
         {
 
+            var lines = new List<string>();
+            foreach (var address in this._addresses)
+            {
+                lines.Add(address.ToFileString());
+            }
+            File.WriteAllLines("AddressTextFile.txt", lines);
             Console.Beep();
             //Perry either cannot or will not help me more!
             MessageBox.Show("Saving complete!");

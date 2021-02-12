@@ -14,5 +14,9 @@ namespace Windy_Address_Book
         public string Address { get; set; }
         public string Phone { get; set; }
 
+        public string ToFileString()
+        {
+            return $"{Name}|{Occupation}|{Address}|{Phone}|{Email}";
+        }
     }
 }
