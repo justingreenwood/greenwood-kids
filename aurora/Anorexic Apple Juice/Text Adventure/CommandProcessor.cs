@@ -75,8 +75,12 @@ namespace Text_Adventure
                 }
                 else if (line== "help")
                 {
-                    Console.WriteLine("help, take, look, enter, quit");
+                    Console.WriteLine("help, take, look, enter, use, quit");
 
+                }
+                else if(line== "use")
+                {
+                    Console.WriteLine("on what");
                 }
                 else
                 {

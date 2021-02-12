@@ -3,7 +3,7 @@
 namespace Text_Adventure
 {
     class Program
-    {//COMMENT.
+    {
         static void Main(string[] args)
         {
             var processor = new CommandProcessor();
