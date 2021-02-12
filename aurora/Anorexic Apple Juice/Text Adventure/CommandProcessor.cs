@@ -52,13 +52,31 @@ namespace Text_Adventure
                     p.IsReadyToQuit = true;
                     isValid = true;
                 }
-                else if (line=="take")
+                else if (line.StartsWith("take "))
                 {
-                   //I'll figure out how to work with that later, but I find that this is necessary for the game to flow.
+                    foreach (var thing in p.CurrentRoom.ThingsInTheRoom)
+                    {
+                        var noun = line.Substring(5);
+                        if (thing.Name.Equals(noun, StringComparison.InvariantCultureIgnoreCase))
+                        {
+                            if (thing.isliftable == true) 
+                            { 
+                                Console.WriteLine($"You picked up {thing.Name}.");
+                                Console.ForegroundColor = ConsoleColor.Blue;
+                            }
+                            else
+                            {
+                                Console.WriteLine(thing.falsedescription);
+                            }
+                            isValid = true;
+                            break;
+                        }
+                    }
                 }
-                else if (line=="help")
+                else if (line== "help")
                 {
-                   //Also will have to remember how to do THIS!
+                    Console.WriteLine("help, take, look, enter, quit");
+
                 }
                 else
                 {

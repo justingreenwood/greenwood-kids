@@ -8,5 +8,7 @@ namespace Text_Adventure
     {
         public string Name;
         public string Description;
+        public bool isliftable;
+        public string falsedescription;
     }
 }

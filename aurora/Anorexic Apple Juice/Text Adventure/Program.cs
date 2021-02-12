@@ -11,22 +11,30 @@ namespace Text_Adventure
             {
                 Name = "Bathroom",
                 Description = "It's a compacted version of the one you have at home."
+                
             };
 
             bathroom.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Bottle of Water",
-                Description = "This is a complementary bottle of water this hotel usually provides guests."
+                Description = "This is a complementary bottle of water this hotel usually provides guests.",
+                isliftable = true
+                
+                
             });
             bathroom.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Stinky Pile",
-                Description = "It looks like someone missed the toilet, and there is some sort of container sitting in it."
+                Description = "It looks like someone missed the toilet, and there is some sort of container sitting in it.",
+                isliftable = false,
+                falsedescription = "Yuck! Not happening."
             });
             bathroom.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Aspirin",
-                Description = "A half-full bottle of aspirin has fallen off the counter and is in the Stinky Pile."
+                Description = "A half-full bottle of aspirin has fallen off the counter and is in the Stinky Pile.",
+                isliftable = false,
+                falsedescription = "That would be gross."
             });
 
             var hotel = new Room();
@@ -35,7 +43,9 @@ namespace Text_Adventure
             hotel.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Luggage",
-                Description = "It's your stuff!"
+                Description = "It's your stuff!",
+                isliftable = false,
+                falsedescription = "It is too heavy."
             });
             hotel.Connections.Add(bathroom);
             bathroom.Connections.Add(hotel);

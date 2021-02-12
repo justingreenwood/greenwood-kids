@@ -43,13 +43,13 @@ namespace PerrysArt
                 _form.BackColor = Color.LimeGreen;
             }
 
-            // this determines which level we start with.
+            //this determines which level we start with.
             var lines = File.ReadAllLines($"level-{startInfo ?? "01"}.txt");
-            //int apple = _rand.Next(2);
-            //if (apple == 0)
-            //{
-            //    lines = File.ReadAllLines("level-02.txt");
-            //}
+            int apple = _rand.Next(2);
+            if (apple == 0)
+            {
+                lines = File.ReadAllLines("level-02.txt");
+            }
 
 
             for (int row = 0; row < lines.Length; row++)
