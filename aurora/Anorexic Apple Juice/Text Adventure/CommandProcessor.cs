@@ -17,6 +17,7 @@ namespace Text_Adventure
                 Console.Write("What would you like to do? ");
                 Console.ForegroundColor = ConsoleColor.Green;
                 var line = Console.ReadLine();
+                line = line.ToLower();
 
                 if (line.StartsWith("enter "))
                 {
@@ -73,16 +74,32 @@ namespace Text_Adventure
                         }
                     }
                 }
-                else if (line== "help")
+                else if (line == "help")
                 {
-                    Console.WriteLine("help, take, look, enter, quit");
-
+                    Console.WriteLine("help, take, look, enter, quit, use x with x");
                 }
+                //else if (line.StartsWith("use "))
+                //{
+                //    foreach (var items in p.CurrentRoom.ThingsInTheRoom)
+                //    {
+                //        var sitems = items;
+
+                //        foreach (var itemses in p.CurrentRoom.ThingsInTheRoom)
+                //        {
+                //            var ditems = itemses;
+                //            if (line == ("use " + sitems + " with " + ditems))
+                //            {
+                //                Console.WriteLine("**" + items + itemses + "**");
+                //            }
+                //        }
+                //    }
+                //}
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"I don't know what \"{line}\" means.");
                 }
+                
             }
         }
     }
