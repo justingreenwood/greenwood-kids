@@ -78,10 +78,6 @@ namespace Text_Adventure
                     Console.WriteLine("help, take, look, enter, quit");
 
                 }
-                else if(line== "use")
-                {
-                    Console.WriteLine("on what");
-                }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.White;
