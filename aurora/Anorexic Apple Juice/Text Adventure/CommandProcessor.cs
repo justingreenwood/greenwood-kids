@@ -78,22 +78,22 @@ namespace Text_Adventure
                 {
                     Console.WriteLine("help, take, look, enter, quit, use x with x");
                 }
-                //else if (line.StartsWith("use "))
-                //{
-                //    foreach (var items in p.CurrentRoom.ThingsInTheRoom)
-                //    {
-                //        var sitems = items;
+                else if (line.StartsWith("use "))
+                {
+                  foreach (var items in p.CurrentRoom.ThingsInTheRoom)
+                   {
+                       var sitems = items;
 
-                //        foreach (var itemses in p.CurrentRoom.ThingsInTheRoom)
-                //        {
-                //            var ditems = itemses;
-                //            if (line == ("use " + sitems + " with " + ditems))
-                //            {
-                //                Console.WriteLine("**" + items + itemses + "**");
-                //            }
-                //        }
-                //    }
-                //}
+                       foreach (var itemses in p.CurrentRoom.ThingsInTheRoom)
+                        {
+                            var ditems = itemses;
+                           if (line == ("use " + sitems + " with " + ditems))
+                            {
+                                Console.WriteLine("**" + items + itemses + "**");
+                            }
+                        }
+                   }
+                }
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.White;

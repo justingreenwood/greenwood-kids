@@ -27,14 +27,14 @@ namespace Text_Adventure
                 Name = "Stinky Pile",
                 Description = "It looks like someone missed the toilet, and there is some sort of container sitting in it.",
                 isliftable = false,
-                falsedescription = "Yuck! Not happening."
+                falsedescription = "Yuck! That would be gross."
             });
             bathroom.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Aspirin",
                 Description = "A half-full bottle of aspirin has fallen off the counter and is in the Stinky Pile.",
                 isliftable = false,
-                falsedescription = "That would be gross."
+                falsedescription = "I need something to get it out without my hands getting dirty."
             });
 
             var hotel = new Room();
