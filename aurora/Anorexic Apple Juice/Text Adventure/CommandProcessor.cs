@@ -97,7 +97,7 @@ namespace Text_Adventure
                 else
                 {
                     Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine($"I don't know what \"{line}\" means.");
+                    Console.WriteLine($"I don't know what \"{line}\" means. Please try something different.");
                 }
                 
             }
