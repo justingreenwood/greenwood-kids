@@ -33,8 +33,8 @@ namespace Text_Adventure
             });
             bathroom.ThingsInTheRoom.Add(new Thing
             {
-                Name = "Aspirin",
-                Description = "A half-full bottle of aspirin has fallen off the counter and is in the Stinky Pile.",
+                Name = "ring",
+                Description = "A half-full jar of rings has fallen off the counter and is in the Stinky Pile.",
                 isliftable = false,
                 issmackable = false,
                 falsedescription = "I need something to get it out without my hands getting dirty."
@@ -57,6 +57,21 @@ namespace Text_Adventure
                 isliftable = false,
                 issmackable = false,
                 falsedescription = "It is too heavy."
+            }); hotel.ThingsInTheRoom.Add(new Thing
+            {
+                Name = "blanket",
+                Description = "It's your meme!",
+                isliftable = false,
+                issmackable = false,
+                falsedescription = "It is too worn out and you don't want to break it."
+            });
+            hotel.ThingsInTheRoom.Add(new Thing
+            {
+                Name = "box",
+                Description = "It holds a pill; but it is locked!",
+                isliftable =false,
+                issmackable = false,
+                falsedescription = "you need a key ring to open it."
             });
             hotel.Connections.Add(bathroom);
             bathroom.Connections.Add(hotel);
@@ -71,8 +86,12 @@ namespace Text_Adventure
             // Game Loop
             while (!playerJoe.IsReadyToQuit)
             {
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("=============================================================================================================================");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(playerJoe.CurrentRoom.Name);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("_/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\__/\\_");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine(playerJoe.CurrentRoom.Description);
                 Console.Write("Items in the room include: ");
@@ -82,6 +101,8 @@ namespace Text_Adventure
                     Console.Write($"{thing.Name} ");
                 }
                 Console.WriteLine();
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("=============================================================================================================================");
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("Connecting Rooms: ");
                 Console.ForegroundColor = ConsoleColor.Cyan;
