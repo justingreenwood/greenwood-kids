@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TextAdventure
 {
@@ -21,7 +22,12 @@ namespace TextAdventure
             bathroom.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Stinky Pile",
-                Description = "It looks like someone missed the toilet."
+                Description = "It looks like someone missed the toilet.",
+                CanBeTaken = false,
+                Synonyms = new List<string>
+                {
+                    "pile", "poop", "stinky"
+                }
             });
 
             var hotel = new Room();
@@ -30,7 +36,17 @@ namespace TextAdventure
             hotel.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Luggage",
-                Description = "It's your stuff!"
+                CanBeTaken = false,
+                Description = "It's your stuff!",
+                Things = new List<Thing>
+                {
+                    new Thing
+                    {
+                        Name = "Wallet",
+                        CanBeTaken = false,
+                        Description = "This appears to be your wallet."
+                    }
+                }
             });
             hotel.Connections.Add(bathroom);
             bathroom.Connections.Add(hotel);
@@ -45,8 +61,11 @@ namespace TextAdventure
             // Game Loop
             while (!playerJoe.IsReadyToQuit)
             {
+                Console.WriteLine();
+                DrawLine("=");
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine(playerJoe.CurrentRoom.Name);
+                DrawLine("_/\\_", 25);
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.WriteLine(playerJoe.CurrentRoom.Description);
                 Console.Write("Items in the room include: ");
@@ -63,10 +82,24 @@ namespace TextAdventure
                 {
                     Console.Write($"{rm.Name} ");
                 }
+                Console.WriteLine();
+                DrawLine("=");
 
                 processor.ReadCommand(playerJoe);
 
             }
+        }
+
+        private static void DrawLine(string c = "-", int count = 100, ConsoleColor color = ConsoleColor.White)
+        {
+            var tmp = Console.ForegroundColor;
+            Console.ForegroundColor = color;
+            for (var i=0; i< count; i++)
+            {
+                Console.Write(c);
+            }
+            Console.WriteLine();
+            Console.ForegroundColor = tmp;
         }
     }
 }
