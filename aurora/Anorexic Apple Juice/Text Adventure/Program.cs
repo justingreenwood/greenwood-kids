@@ -18,6 +18,7 @@ namespace Text_Adventure
             {
                 Name = "Bottle of Water",
                 Description = "This is a complementary bottle of water this hotel usually provides guests.",
+                issmackable = false,
                 isliftable = true
                 
                 
@@ -27,6 +28,7 @@ namespace Text_Adventure
                 Name = "Stinky Pile",
                 Description = "It looks like someone missed the toilet, and there is some sort of container sitting in it.",
                 isliftable = false,
+                issmackable = false,
                 falsedescription = "Yuck! That would be gross."
             });
             bathroom.ThingsInTheRoom.Add(new Thing
@@ -34,8 +36,16 @@ namespace Text_Adventure
                 Name = "Aspirin",
                 Description = "A half-full bottle of aspirin has fallen off the counter and is in the Stinky Pile.",
                 isliftable = false,
+                issmackable = false,
                 falsedescription = "I need something to get it out without my hands getting dirty."
             });
+            bathroom.ThingsInTheRoom.Add(new Thing
+            {
+                Name = "Aurora",
+                Description = "A hissing creature in the corner.",
+                isliftable = false,
+                issmackable = true
+            }) ;
 
             var hotel = new Room();
             hotel.Name = "Hotel Suite";
@@ -45,6 +55,7 @@ namespace Text_Adventure
                 Name = "Luggage",
                 Description = "It's your stuff!",
                 isliftable = false,
+                issmackable = false,
                 falsedescription = "It is too heavy."
             });
             hotel.Connections.Add(bathroom);

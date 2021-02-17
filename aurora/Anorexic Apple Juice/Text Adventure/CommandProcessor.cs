@@ -76,7 +76,16 @@ namespace Text_Adventure
                 }
                 else if (line == "help")
                 {
-                    Console.WriteLine("help, take, look, enter, quit, use x with x");
+                    Console.WriteLine("help, take, look, enter, quit, use x with x, smack ( smack must be used with caution )");
+                }
+                else if (line=="smack ")
+                {
+                    Console.ForegroundColor = ConsoleColor.DarkRed;
+                    Console.WriteLine(" You have smacked Aurora. She has come to murder you.");
+
+                    p.IsReadyToQuit = true;
+                    isValid = true;
+
                 }
                 else if (line.StartsWith("use "))
                 {
