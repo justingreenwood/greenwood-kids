@@ -17,7 +17,11 @@ namespace TextAdventure
             bathroom.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Bottle of Water",
-                Description = "This is a complementary bottle of water this hotel usually provides guests."
+                Description = "This is a complementary bottle of water this hotel usually provides guests.",
+                Synonyms = new List<string>
+                {
+                    "bottle", "water"
+                }
             });
             bathroom.ThingsInTheRoom.Add(new Thing
             {
@@ -37,15 +41,47 @@ namespace TextAdventure
             {
                 Name = "Luggage",
                 CanBeTaken = false,
-                Description = "It's your stuff!",
+                Description = "It's your stuff! Your wallet is in there.",
                 Things = new List<Thing>
                 {
                     new Thing
                     {
                         Name = "Wallet",
                         CanBeTaken = false,
-                        Description = "This appears to be your wallet."
+                        Description = "This appears to be your wallet.",
+                        Things = new List<Thing>
+                        {
+                            new Thing
+                            {
+                                Name = "key",
+                              Description="Look a key.",
+                            }
+                        }
                     }
+                }
+            });
+            var closet = new Room
+            {
+                Name = "Closet",
+                Description = "WOW! A big closet."
+            };
+            closet.ThingsInTheRoom.Add(new Thing
+            {
+                Name = "A mug",
+                Description = "Thats where I left my mug.",
+                Synonyms = new List<string>
+                {
+                    "cup", "glass"
+                }
+            });
+            closet.ThingsInTheRoom.Add(new Thing
+            {
+                Name = "box",
+                Description = "You need a key.",
+                CanBeTaken = false,
+                Synonyms = new List<string>
+                {
+                    "chest"
                 }
             });
             hotel.Connections.Add(bathroom);
