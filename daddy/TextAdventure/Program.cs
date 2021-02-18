@@ -11,7 +11,11 @@ namespace TextAdventure
             var bathroom = new Room
             {
                 Name = "Bathroom",
-                Description = "It's a bathroom. You poop here."
+                Description = "It's a bathroom. You poop here.",
+                Synonyms = new List<string>
+                {
+                    "restroom", "powder room"
+                }
             };
 
             bathroom.ThingsInTheRoom.Add(new Thing
@@ -30,13 +34,14 @@ namespace TextAdventure
                 CanBeTaken = false,
                 Synonyms = new List<string>
                 {
-                    "pile", "poop", "stinky"
+                    "pile", "poop", "stinky", "sp"
                 }
             });
 
             var hotel = new Room();
             hotel.Name = "Hotel Suite";
-            hotel.Description = "You find yourself in a small hotel room. There is a window and luggage on the ground.";
+            hotel.Description = "You find yourself in a small hotel room. There is a window and luggage on the ground. The queen sized bed is unmade.";
+
             hotel.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Luggage",
@@ -49,12 +54,20 @@ namespace TextAdventure
                         Name = "Wallet",
                         CanBeTaken = false,
                         Description = "This appears to be your wallet.",
+                        Synonyms = new List<string>
+                        {
+                            "billfold", "pocketbook"
+                        },
                         Things = new List<Thing>
                         {
                             new Thing
                             {
-                                Name = "key",
-                              Description="Look a key.",
+                                Name = "Small Key",
+                                Description=" It's the sort of key that you'd use on a locket or diary. There really isn't anything extraordinary about it.",
+                             Synonyms = new List<string>
+                              {
+                                "smaller key", "little key", "locket key", "diary key"
+                              }
                             }
                         }
                     }
@@ -63,29 +76,42 @@ namespace TextAdventure
             var closet = new Room
             {
                 Name = "Closet",
-                Description = "WOW! A big closet."
+                Description = "It's a walk-in closet."
             };
             closet.ThingsInTheRoom.Add(new Thing
             {
-                Name = "A mug",
-                Description = "Thats where I left my mug.",
+                Name = "Mug",
+                Description = " The mug is black with your name, 'Game Dude', on it.",
                 Synonyms = new List<string>
                 {
-                    "cup", "glass"
+                    "cup", "coffee mug", "coffee cup"
                 }
-            });
+            }) ;
             closet.ThingsInTheRoom.Add(new Thing
             {
-                Name = "box",
-                Description = "You need a key.",
+                Name = "Lockbox",
+                Description = "It's locked.",
                 CanBeTaken = false,
                 Synonyms = new List<string>
                 {
-                    "chest"
-                }
+                    "chest", "container", "box"
+                },
+                        Things = new List<Thing>
+                        {
+                            new Thing
+                            {
+                                Name = "Bottle of Aspirin",
+                                Description=" It's a half full bottle of aspirin. It's covered in something sticky that smells like urine.",
+                             Synonyms = new List<string>
+                              {
+                                "pee bottle", "aspirin", "aspirin bottle"
+                              }
+                            }
+                        }
             });
             hotel.Connections.Add(bathroom);
             bathroom.Connections.Add(hotel);
+            hotel.Connections.Add(closet);
 
             var playerJoe = new Player();
             playerJoe.CurrentRoom = hotel;
