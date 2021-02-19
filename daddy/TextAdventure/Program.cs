@@ -58,19 +58,20 @@ namespace TextAdventure
                         {
                             "billfold", "pocketbook"
                         },
-                        Things = new List<Thing>
-                        {
-                            new Thing
-                            {
-                                Name = "Small Key",
-                                Description=" It's the sort of key that you'd use on a locket or diary. There really isn't anything extraordinary about it.",
-                             Synonyms = new List<string>
-                              {
-                                "smaller key", "little key", "locket key", "diary key"
-                              }
-                            }
-                        }
+                        //Things = new List<Thing>
+                        //{
+                        //    new Thing
+                        //    {
+                        //        Name = "Small Key",
+                        //        Description=" It's the sort of key that you'd use on a locket or diary. There really isn't anything extraordinary about it.",
+                        //     Synonyms = new List<string>
+                        //      {
+                        //        "smaller key", "little key", "locket key", "diary key"
+                        //      }
+                        //    }
+                        //}
                     }
+
                 }
             });
             var closet = new Room
@@ -96,22 +97,23 @@ namespace TextAdventure
                 {
                     "chest", "container", "box"
                 },
-                        Things = new List<Thing>
+                Things = new List<Thing>
+                {
+                    new Thing
+                    {
+                        Name = "Bottle of Aspirin",
+                        Description = " It's a half full bottle of aspirin. It's covered in something sticky that smells like urine.",
+                        Synonyms = new List<string>
                         {
-                            new Thing
-                            {
-                                Name = "Bottle of Aspirin",
-                                Description=" It's a half full bottle of aspirin. It's covered in something sticky that smells like urine.",
-                             Synonyms = new List<string>
-                              {
-                                "pee bottle", "aspirin", "aspirin bottle"
-                              }
-                            }
+                            "pee bottle", "aspirin", "aspirin bottle"
                         }
+                    }
+                }
             });
             hotel.Connections.Add(bathroom);
             bathroom.Connections.Add(hotel);
             hotel.Connections.Add(closet);
+            closet.Connections.Add(hotel);
 
             var playerJoe = new Player();
             playerJoe.CurrentRoom = hotel;
@@ -132,17 +134,25 @@ namespace TextAdventure
                 Console.WriteLine(playerJoe.CurrentRoom.Description);
                 Console.Write("Items in the room include: ");
                 Console.ForegroundColor = ConsoleColor.Cyan;
+                var first = true;
                 foreach (var thing in playerJoe.CurrentRoom.ThingsInTheRoom)
                 {
-                    Console.Write($"{thing.Name} ");
+                    thing.HasBeenLookedAt = true;
+
+                    if (!first) Console.Write($", ");
+                    Console.Write($"{thing.Name}");
+                    first = false;
                 }
                 Console.WriteLine();
                 Console.ForegroundColor = ConsoleColor.Blue;
                 Console.Write("Connecting Rooms: ");
                 Console.ForegroundColor = ConsoleColor.Cyan;
+                first = true;
                 foreach (var rm in playerJoe.CurrentRoom.Connections)
                 {
-                    Console.Write($"{rm.Name} ");
+                    if (!first) Console.Write($", ");
+                    Console.Write($"{rm.Name}");
+                    first = false;
                 }
                 Console.WriteLine();
                 DrawLine("=");

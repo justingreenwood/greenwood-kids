@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace TextAdventure
 {
@@ -21,7 +22,7 @@ namespace TextAdventure
                     var noun = line.Substring(6);
                     foreach (var connectingRoom in p.CurrentRoom.Connections)
                     {
-                        if (connectingRoom.Name.Equals(noun, StringComparison.InvariantCultureIgnoreCase))
+                        if (connectingRoom.IsMatchingName(noun))
                         {
                             p.CurrentRoom = connectingRoom;
                             isValid = true;
@@ -40,6 +41,17 @@ namespace TextAdventure
                             Console.WriteLine(thing.Name);
                             Console.ForegroundColor = ConsoleColor.Blue;
                             Console.WriteLine(thing.Description);
+                            Console.Write("Things inside: ");
+                            var first = true;
+                            foreach (var stuffInThing in thing.Things)
+                            {
+                                stuffInThing.HasBeenLookedAt = true;
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                if (!first) Console.Write($", ");
+                                Console.Write($"{stuffInThing.Name}");
+                                first = false;
+                            }
+
                             isValid = true;
                             break;
                         }
@@ -53,33 +65,8 @@ namespace TextAdventure
                     else
                         noun = line.Substring(line.IndexOf(' ')+1);
 
-                    for (var i= p.CurrentRoom.ThingsInTheRoom.Count-1; i >= 0; i--)
-                    {
-                        var thing = p.CurrentRoom.ThingsInTheRoom[i];
-                        
-                        if (thing.IsMatchingName(noun))
-                        {
-                            if (!thing.CanBeTaken)
-                            {
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.Write($"You can't pick up: ");
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(thing.Name);
-                            }
-                            else
-                            {
-                                p.CurrentRoom.ThingsInTheRoom.Remove(thing);
-                                p.Inventory.Add(thing);
-
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.Write($"You picked up: ");
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(thing.Name);
-                            }
-                            isValid = true;
-                            break;
-                        }
-                    }
+                    LookForThingsToPickUp(noun, p, p.CurrentRoom.ThingsInTheRoom);
+                    isValid = true;
                 }
                 else if (line == "inventory" || line == "i")
                 {
@@ -113,6 +100,43 @@ namespace TextAdventure
                 {
                     Console.ForegroundColor = ConsoleColor.White;
                     Console.WriteLine($"I don't know what \"{line}\" means.");
+                }
+            }
+        }
+
+        private void LookForThingsToPickUp(string noun, Player p, List<Thing> things)
+        {
+            for (var i = things.Count - 1; i >= 0; i--)
+            {
+                var thing = things[i];
+                if (!thing.IsMatchingName(noun))
+                {
+                    LookForThingsToPickUp(noun, p, thing.Things);
+                }
+                else
+                {
+                    if (!thing.HasBeenLookedAt)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write($"You haven't seen that yet.");
+                    }
+                    else if (!thing.CanBeTaken)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write($"You can't pick up: ");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(thing.Name);
+                    }
+                    else
+                    {
+                        p.CurrentRoom.ThingsInTheRoom.Remove(thing);
+                        p.Inventory.Add(thing);
+
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.Write($"You picked up: ");
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(thing.Name);
+                    }
                 }
             }
         }
