@@ -90,6 +90,10 @@ namespace TextAdventure
                     }
                     isValid = true;
                 }
+                else if (line == "open")
+                {
+                    //This is something that Perry or Dad must do and explain or something.
+                }
                 else if (line == "quit")
                 {
                     p.IsReadyToQuit = true;
