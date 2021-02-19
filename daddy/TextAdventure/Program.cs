@@ -11,7 +11,7 @@ namespace TextAdventure
             var bathroom = new Room
             {
                 Name = "Bathroom",
-                Description = "It's just like the one you have at home, but it's a bit messier.",
+                Description = "It's just like the one you have at home, but it's a bit smaller.",
                 Synonyms = new List<string>
                 {
                     "restroom", "powder room"
@@ -71,18 +71,18 @@ namespace TextAdventure
                         {
                             "billfold", "pocketbook"
                         },
-                        //Things = new List<Thing>
-                        //{
-                        //    new Thing
-                        //    {
-                        //        Name = "Small Key",
-                        //        Description=" It's the sort of key that you'd use on a locket or diary. There really isn't anything extraordinary about it.",
-                        //     Synonyms = new List<string>
-                        //      {
-                        //        "smaller key", "little key", "locket key", "diary key"
-                        //      }
-                        //    }
-                        //}
+                        Things = new List<Thing>
+                        {
+                         new Thing
+                         {
+                             Name = "Small Key",
+                            Description=" It's the sort of key that you'd use on a lock. We could use it on something.",
+                            Synonyms = new List<string>
+                            {
+                               "smaller key", "little key", "lock key", "cute key"
+                            }
+                         }
+                        }
                     }
            
                 }
@@ -95,7 +95,7 @@ namespace TextAdventure
             closet.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Mug",
-                Description = " The mug is black with your name, 'Joe Phony', on it.",
+                Description = " The mug is black with your name, 'Joe Doe', on it.",
                 Synonyms = new List<string>
                 {
                     "cup", "coffee mug", "coffee cup"
@@ -115,10 +115,10 @@ namespace TextAdventure
                     new Thing
                     {
                         Name = "Bottle of Aspirin",
-                        Description = " It's a half full bottle of aspirin. It's covered in something sticky that smells like urine.",
+                        Description = " It's a half full bottle of aspirin. ",
                         Synonyms = new List<string>
                         {
-                            "pee bottle", "aspirin", "aspirin bottle"
+                            "aspirin", "aspirin bottle"
                         }
                     }
                 }

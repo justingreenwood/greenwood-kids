@@ -90,6 +90,10 @@ namespace TextAdventure
                     }
                     isValid = true;
                 }
+                else if (line == "use")
+                {
+                    //use x with y
+                }
                 else if (line == "open")
                 {
                     //This is something that Perry or Dad must do and explain or something.
