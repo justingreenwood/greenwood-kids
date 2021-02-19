@@ -94,9 +94,32 @@ namespace TextAdventure
                 {
                     //use x with y
                 }
-                else if (line == "open")
+                else if (line.StartsWith("open "))
                 {
-                    //This is something that Perry or Dad must do and explain or something.
+                    var noun = line.Substring(5);
+                    foreach (var i in p.CurrentRoom.ThingsInTheRoom)
+                    {
+
+                        if (i.IsMatchingName(noun))
+                        {
+
+                            if(!i.HasBeenOpened)
+                            {
+                                i.HasBeenOpened = true;
+                                Console.WriteLine($"{noun} is open");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{noun} is already open.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"I don't know what '{line}' means.");
+                        }
+                        isValid = true;
+                        break;
+                    }
                 }
                 else if (line == "quit")
                 {

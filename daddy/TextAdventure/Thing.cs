@@ -7,6 +7,8 @@ namespace TextAdventure
         public string Name;
         public string Description;
         public bool HasBeenLookedAt = false;
+        public bool HasBeenOpened = true;
+        public bool CanBeOpened = false;
         public bool CanBeTaken = true;
         public List<string> Synonyms = new List<string>();
         public List<Thing> Things = new List<Thing>();

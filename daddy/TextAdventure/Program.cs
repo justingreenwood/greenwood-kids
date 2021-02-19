@@ -59,6 +59,8 @@ namespace TextAdventure
             {
                 Name = "Luggage",
                 CanBeTaken = false,
+                CanBeOpened = true,
+                HasBeenOpened = false,
                 Description = "It's your stuff! Your wallet is in there.",
                 Things = new List<Thing>
                 {
@@ -87,11 +89,9 @@ namespace TextAdventure
            
                 }
             });
-            var closet = new Room
-            {
-                Name = "Closet",
-                Description = "It's a walk-in closet. It's bigger than the bathroom at home."
-            };
+            var closet = new Room();
+            closet.Name = "Closet";
+            closet.Description = "It's a walk-in closet. It's bigger than the bathroom at home.";
             closet.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Mug",
@@ -106,6 +106,8 @@ namespace TextAdventure
                 Name = "Lockbox",
                 Description = "A black box with a keyhole. It seems to be locked.",
                 CanBeTaken = false,
+                HasBeenOpened = false,
+                CanBeOpened = true,
                 Synonyms = new List<string>
                 {
                     "chest", "container", "box"
