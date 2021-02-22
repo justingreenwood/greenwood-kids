@@ -94,6 +94,10 @@ namespace TextAdventure
                 {
                     //use x with y
                 }
+                else if (line == "drink")
+                {
+                    //drink
+                }
                 else if (line.StartsWith("open "))
                 {
                     var noun = line.Substring(5);

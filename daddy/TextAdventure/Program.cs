@@ -62,6 +62,10 @@ namespace TextAdventure
                 CanBeOpened = true,
                 HasBeenOpened = false,
                 Description = "It's your stuff! Your wallet is in there.",
+                Synonyms=new List<string>
+                {
+                    "suitcase", "belongings", "package", "sewing machine carrier"
+                },
                 Things = new List<Thing>
                 {
                     new Thing
