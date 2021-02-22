@@ -61,6 +61,7 @@ namespace TextAdventure
                 CanBeTaken = false,
                 CanBeOpened = true,
                 HasBeenOpened = false,
+                HasNotBeenOpenedDescription = "It is closed.",
                 Description = "It's your stuff! Your wallet is in there.",
                 Synonyms=new List<string>
                 {
@@ -71,7 +72,7 @@ namespace TextAdventure
                     new Thing
                     {
                         Name = "Wallet",
-                        CanBeTaken = false,
+                        CanBeTaken = true,
                         Description = "This appears to be your wallet.",
                         Synonyms = new List<string>
                         {
