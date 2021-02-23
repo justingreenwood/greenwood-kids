@@ -53,7 +53,7 @@ namespace TextAdventure
 
             var hotel = new Room();
             hotel.Name = "Hotel Suite";
-            hotel.Description = "You find yourself in a small hotel room. There is a window and luggage on the ground. The king sized bed is unmade.";
+            hotel.Description = "You find yourself in a small hotel room. There is a window and luggage on the ground. The queen sized bed is unmade and covered in Cheeto dust.";
            
             hotel.ThingsInTheRoom.Add(new Thing
             {
@@ -62,7 +62,7 @@ namespace TextAdventure
                 CanBeOpened = true,
                 HasBeenOpened = false,
                 HasNotBeenOpenedDescription = "It is closed.",
-                Description = "A black suitcase with a white lace around the end of the zipper! Your wallet is in there.",
+                Description = "A black suitcase with a red ribbon around the end of the zipper! Your wallet is in there.",
                 Synonyms=new List<string>
                 {
                     "suitcase", "belongings", "package", "sewing machine carrier"
@@ -100,7 +100,7 @@ namespace TextAdventure
             closet.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Mug",
-                Description = " The mug is black with your name, 'Joe Doe', on it.",
+                Description = " The mug is black with your name (or at least you think that's your name), 'Joe', on it.",
                 Synonyms = new List<string>
                 {
                     "cup", "coffee mug", "coffee cup"

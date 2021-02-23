@@ -7,5 +7,6 @@ namespace TextAdventure
         public Room CurrentRoom;
         public List<Thing> Inventory = new List<Thing>();
         public bool IsReadyToQuit = false;
+
     }
 }
