@@ -61,21 +61,7 @@ namespace TextAdventure
                                     first = false;
                                 }
                             }
-                            //Console.ForegroundColor = ConsoleColor.Red;
-                            //Console.WriteLine(thing.Name);
-                            //Console.ForegroundColor = ConsoleColor.Blue;
-                            //Console.WriteLine(thing.Description);
-                            //Console.Write("Things inside: ");
-                            //var first = true;
-                            //foreach (var stuffInThing in thing.Things)
-                            //{
-                            //    stuffInThing.HasBeenLookedAt = true;
-                            //    Console.ForegroundColor = ConsoleColor.Red;
-                            //    if (!first) Console.Write($", ");
-                            //    Console.Write($"{stuffInThing.Name}");
-                            //    first = false;
-                            //}
-
+                           
                             isValid = true;
                             break;
                         }
@@ -118,10 +104,10 @@ namespace TextAdventure
                 {
                     //use x with y
                 }
-                //else if (line == "drink")
-                //{
-                //    //drink
-                //}
+                else if (line == "drink" ||line == "eat")
+               {
+                    //drinkoreat
+               }
                 else if (line.StartsWith("open "))
                 {
                     var noun = line.Substring(5);

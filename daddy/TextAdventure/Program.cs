@@ -42,7 +42,7 @@ namespace TextAdventure
                     {
                         Name = "Brass Key",
                         CanBeTaken=false,
-                        Description= " It's an average key, but it's stuck in the pile of human excrement.",
+                        Description= " It's an average key, but it's stuck in the pile of manuer.",
                         Synonyms = new List<string>
                         {
                             "larger key", "key", "brass", " brass key"
@@ -53,7 +53,7 @@ namespace TextAdventure
 
             var hotel = new Room();
             hotel.Name = "Hotel Suite";
-            hotel.Description = "You find yourself in a small hotel room. There is a window and luggage on the ground. The queen sized bed is unmade.";
+            hotel.Description = "You find yourself in a small hotel room. There is a window and luggage on the ground. The king sized bed is unmade.";
            
             hotel.ThingsInTheRoom.Add(new Thing
             {
@@ -62,7 +62,7 @@ namespace TextAdventure
                 CanBeOpened = true,
                 HasBeenOpened = false,
                 HasNotBeenOpenedDescription = "It is closed.",
-                Description = "A blue suitcase with a ribbon around the end of the zipper! Your wallet is in there.",
+                Description = "A black suitcase with a white lace around the end of the zipper! Your wallet is in there.",
                 Synonyms=new List<string>
                 {
                     "suitcase", "belongings", "package", "sewing machine carrier"
