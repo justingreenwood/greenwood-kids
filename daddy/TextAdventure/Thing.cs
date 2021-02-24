@@ -11,6 +11,7 @@ namespace TextAdventure
         public string HasNotBeenOpenedDescription;
         public bool CanBeOpened = false;
         public bool CanBeTaken = true;
+        public bool CanBePushed = true;
         public List<string> Synonyms = new List<string>();
         public List<Thing> Things = new List<Thing>();
 

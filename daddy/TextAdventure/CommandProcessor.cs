@@ -112,7 +112,7 @@ namespace TextAdventure
                 {
                     //eat
                 }
-                else if (line== "clean")
+                else if (line== "clean"||line=="wash")
                 {
                     //clean
                 }
@@ -170,14 +170,14 @@ namespace TextAdventure
                 {
                     if (!thing.HasBeenLookedAt)
                     {
-                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Yellow;
                         Console.Write($"You haven't seen that yet.");
                     }
                     else if (!thing.CanBeTaken)
                     {
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.Write($"You can't pick up: ");
-                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.DarkBlue;
                         Console.WriteLine(thing.Name);
                     }
                     else
