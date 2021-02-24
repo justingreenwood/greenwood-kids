@@ -112,9 +112,32 @@ namespace TextAdventure
                 {
                     //eat
                 }
-                else if (line== "clean"||line=="wash")
+                else if (line.StartsWith("consume "))
                 {
-                    //clean
+                    var noun = line.Substring(8);
+                    foreach (var i in p.CurrentRoom.ThingsInTheRoom)
+                    {
+
+                        if (i.IsMatchingName(noun))
+                        {
+
+                            if (!i.isconsumeable)
+                            { 
+                                Console.WriteLine($"{noun} is not edible");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{noun}  has been consumed.");
+                            }
+                        }
+                        else
+                        {
+                            Console.WriteLine($"I don't know what '{line}' means.");
+                        }
+                        isValid = true;
+                        break;
+                    }
+
                 }
                 else if (line.StartsWith("open "))
                 {
