@@ -12,7 +12,7 @@ namespace TextAdventure
         public bool CanBeOpened = false;
         public bool CanBeTaken = true;
         public bool CanBePushed = true;
-        public bool isconsumeable = false;
+        public bool CanBeConsumed = false;
         public List<string> Synonyms = new List<string>();
         public List<Thing> Things = new List<Thing>();
 

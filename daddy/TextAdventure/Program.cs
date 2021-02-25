@@ -22,7 +22,7 @@ namespace TextAdventure
             {
                 Name = "Bottle of Water",
                 Description = "This is a complementary bottle of water this hotel usually provides guests. It's missing its cap.",
-                isconsumeable = true,
+                CanBeConsumed = true,
                 Synonyms = new List<string>
                 {
                     "bottle", "water"
@@ -124,7 +124,7 @@ namespace TextAdventure
                     {
                         Name = "Bottle of Aspirin",
                         Description = " It's a half full bottle of aspirin. ",
-                        isconsumeable=true,
+                        CanBeConsumed=true,
                         Synonyms = new List<string>
                         {
                             "aspirin", "aspirin bottle"

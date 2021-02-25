@@ -83,7 +83,7 @@ namespace TextAdventure
                     if (p.Inventory.Count == 0)
                     {
                         Console.WriteLine();
-                        Console.WriteLine("Your inventory is EMPTY!");
+                        Console.WriteLine("You have absolutely nothing!");
                     }
                     else
                     {
@@ -104,29 +104,22 @@ namespace TextAdventure
                 {
                     //use x with y
                 }
-                else if (line == "drink" )
-               {
-                    //drink
-               }
-                else if (line == "eat")
-                {
-                    //eat
-                }
                 else if (line.StartsWith("consume "))
                 {
                     var noun = line.Substring(8);
-                    foreach (var i in p.CurrentRoom.ThingsInTheRoom)
+                    foreach (var i in p.Inventory)
                     {
 
                         if (i.IsMatchingName(noun))
                         {
 
-                            if (!i.isconsumeable)
+                            if (!i.CanBeConsumed)
                             { 
                                 Console.WriteLine($"{noun} is not edible");
                             }
                             else
-                            {
+                            {                                
+                                p.Inventory.Remove(i);
                                 Console.WriteLine($"{noun}  has been consumed.");
                             }
                         }
