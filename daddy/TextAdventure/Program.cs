@@ -141,11 +141,11 @@ namespace TextAdventure
             var playerJoe = new Player();
             playerJoe.CurrentRoom = hotel;
 
-            // intro text
+            // intro text\\
             Console.WriteLine("Welcome to the text adventure.");
             Console.WriteLine("You wake up with a pounding headache.");
 
-            // Game Loop
+            // Game Loop\\
             while (!playerJoe.IsReadyToQuit)
             {
                 Console.WriteLine();
