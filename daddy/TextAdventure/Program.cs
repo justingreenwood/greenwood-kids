@@ -43,7 +43,7 @@ namespace TextAdventure
                     {
                         Name = "Brass Key",
                         CanBeTaken=false,
-                        Description= " It's an average key, but it's stuck in the pile of manuer.",
+                        Description= " It's an average key, but it's stuck in the pile of human excrement.",
                         Synonyms = new List<string>
                         {
                             "larger key", "key", "brass", " brass key"
@@ -143,7 +143,7 @@ namespace TextAdventure
 
             // intro text\\
             Console.WriteLine("Welcome to the text adventure.");
-            Console.WriteLine("You wake up with a pounding headache.");
+            Console.WriteLine("You wake up with a pounding headache and glitter in your hair.");
 
             // Game Loop\\
             while (!playerJoe.IsReadyToQuit)
