@@ -104,6 +104,10 @@ namespace TextAdventure
                 {
                     //use x with y
                 }
+                else if (line == "help" || line == "!")
+                {
+                    Console.WriteLine("(Help, !), consume, (take, get, pick up), use, enter, open, look.");
+                }
                 else if (line.StartsWith("consume "))
                 {
                     var noun = line.Substring(8);

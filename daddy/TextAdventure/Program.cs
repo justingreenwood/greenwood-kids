@@ -35,27 +35,34 @@ namespace TextAdventure
                 CanBeTaken = false,
                 Synonyms = new List<string>
                 {
-                    "pile", "poop", "stinky", "sp"
+                    "pile", "poop", "stinky"
                 },
                 Things = new List<Thing>
                 {
                     new Thing
                     {
                         Name = "Brass Key",
-                        CanBeTaken=false,
+                        CanBeTaken = false,
                         Description= " It's an average key, but it's stuck in the pile of human excrement.",
                         Synonyms = new List<string>
                         {
-                            "larger key", "key", "brass", " brass key"
+                            "average key", "key", "brass", " brass key"
                         }
                     }
                 }
             });
 
-            var hotel = new Room();
-            hotel.Name = "Hotel Suite";
-            hotel.Description = "You find yourself in a small hotel room. There is a window and luggage on the ground. The queen sized bed is unmade and covered in Cheeto dust.";
-           
+            var hotel = new Room
+            {
+                Name = "Hotel Suite",
+                Description = "You find yourself in a small hotel room. There is a window and luggage on the ground. The queen sized bed is unmade.",
+
+                Synonyms = new List<string>
+                {
+                    "Hotel", "Suite", "Bedroom"
+                }
+            };
+            
             hotel.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Luggage",
@@ -66,7 +73,7 @@ namespace TextAdventure
                 Description = "A black suitcase with a red ribbon around the end of the zipper! Your wallet is in there.",
                 Synonyms=new List<string>
                 {
-                    "suitcase", "belongings", "package", "sewing machine carrier"
+                    "suitcase", "belongings", "package"
                 },
                 Things = new List<Thing>
                 {
@@ -84,7 +91,7 @@ namespace TextAdventure
                          new Thing
                          {
                              Name = "Small Key",
-                            Description=" It's the sort of key that you'd use on a lock. We could use it on something.",
+                            Description =" It's the sort of key that you'd use on a lock. We could use it on something.",
                             Synonyms = new List<string>
                             {
                                "smaller key", "little key", "lock key", "cute key"
@@ -143,7 +150,7 @@ namespace TextAdventure
 
             // intro text\\
             Console.WriteLine("Welcome to the text adventure.");
-            Console.WriteLine("You wake up with a pounding headache and glitter in your hair.");
+            Console.WriteLine("You wake up with a pounding headache.");
 
             // Game Loop\\
             while (!playerJoe.IsReadyToQuit)
