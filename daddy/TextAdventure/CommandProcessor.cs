@@ -104,9 +104,13 @@ namespace TextAdventure
                 {
                     //use x with y
                 }
+                else if (line == "write"|| line =="note")
+                {
+                    //write something down or take observation
+                }
                 else if (line == "help" || line == "!")
                 {
-                    Console.WriteLine("(Help, !), consume, (take, get, pick up), use, enter, open, look.");
+                    Console.WriteLine("(Help, !), consume, (take, get, pick up), use, enter, open, look, write/note.");
                 }
                 else if (line.StartsWith("consume "))
                 {
