@@ -104,7 +104,7 @@ namespace TextAdventure
             });
             var closet = new Room();
             closet.Name = "Closet";
-            closet.Description = "It's a walk-in closet. It's bigger than the bathroom at home.";
+            closet.Description = "It's  closet. It's bigger than the one at home.";
             closet.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Mug",
