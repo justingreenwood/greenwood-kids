@@ -119,8 +119,9 @@ namespace TextAdventure
                 Name = "Lockbox",
                 Description = "A black box with a keyhole. It seems to be locked.",
                 CanBeTaken = false,
+                HasNotBeenOpenedDescription = "It is locked.",
                 HasBeenOpened = false,
-                CanBeOpened = true,
+                CanBeOpened = false,
                 Synonyms = new List<string>
                 {
                     "chest", "container", "box"

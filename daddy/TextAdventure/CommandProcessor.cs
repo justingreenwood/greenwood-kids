@@ -104,9 +104,10 @@ namespace TextAdventure
                 {
                     //use x with y
                 }
-                else if (line == "write"|| line =="note")
+               
+                else if (line == "break")
                 {
-                    //write something down or take observation
+                    //break something
                 }
                 else if (line == "help" || line == "!")
                 {
