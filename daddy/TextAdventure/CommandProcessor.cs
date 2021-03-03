@@ -119,11 +119,6 @@ namespace TextAdventure
                         isValid = true;
                     }
                 }
-               
-                else if (line == "break")
-                {
-                    //break something
-                }
                 else if (line == "help" || line == "!")
                 {
                     Console.WriteLine("(Help, !), consume, (take, get, pick up), use, enter, open, look, write/note.");
