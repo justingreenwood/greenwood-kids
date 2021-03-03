@@ -73,7 +73,7 @@ namespace TextAdventure
                 Description = "A black suitcase with a red ribbon around the end of the zipper! Your wallet is in there.",
                 Synonyms=new List<string>
                 {
-                    "suitcase", "belongings", "package"
+                    "suitcase", "belongings", "package", "crap", "stuff"
                 },
                 Things = new List<Thing>
                 {

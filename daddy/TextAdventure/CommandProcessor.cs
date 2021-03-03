@@ -100,9 +100,24 @@ namespace TextAdventure
                     }
                     isValid = true;
                 }
-                else if (line == "use")
+                else if (line.StartsWith("use "))
                 {
-                    //use x with y
+                    var afterUse = line.Substring(4);
+                    var withIndex = afterUse.IndexOf(" with ", StringComparison.InvariantCultureIgnoreCase);
+                    if (withIndex > 0)
+                    {
+                        var item1 = afterUse.Substring(0, withIndex).Trim();
+                        var item2 = afterUse.Substring(withIndex + 6).Trim();
+                        Console.WriteLine($"You cannot use {item1} with {item2}.");
+                        //UseItemWithItem(item1, item2);
+                        isValid = true;
+                    } 
+                    else
+                    {
+                        Console.WriteLine($"You cannot use {afterUse}.");
+                        //UseItem(afterUse);
+                        isValid = true;
+                    }
                 }
                
                 else if (line == "break")
