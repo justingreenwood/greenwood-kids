@@ -110,7 +110,6 @@ namespace TextAdventure
                         var item2 = afterUse.Substring(withIndex + 6).Trim();
                         Console.WriteLine($"You cannot use {item1} with {item2}.");
                         //UseItemWithItem(item1, item2);
-                        //Aurora has a comment. Her ear itches.
                         isValid = true;
                     } 
                     else
