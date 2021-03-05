@@ -66,11 +66,16 @@ namespace TextAdventure
             hotel.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Luggage",
+                Description = "A black suitcase with a red ribbon around the end of the zipper!",
                 CanBeTaken = false,
-                CanBeOpened = true,
-                HasBeenOpened = false,
-                HasNotBeenOpenedDescription = "It is closed.",
-                Description = "A black suitcase with a red ribbon around the end of the zipper! Your wallet is in there.",
+                CanBeOpenedWithoutKey = true,
+                State = "closed",
+                OpenState = "open",
+                ThingStates = new Dictionary<string, ThingState>
+                {
+                    {"closed", new ThingState { Name="closed", Description="It's currently closed." } },
+                    {"open", new ThingState { Name="open", Description="It's open and you see your stuff." } }
+                },
                 Synonyms=new List<string>
                 {
                     "suitcase", "belongings", "package", "crap", "stuff"
@@ -81,6 +86,7 @@ namespace TextAdventure
                     {
                         Name = "Wallet",
                         CanBeTaken = true,
+                        TriggerKey="lockboxkey1",
                         Description = "This appears to be your wallet.",
                         Synonyms = new List<string>
                         {
@@ -111,17 +117,24 @@ namespace TextAdventure
                 Description = " The mug is black with your name (or at least you think that's your name), 'Joe', on it.",
                 Synonyms = new List<string>
                 {
-                    "cup", "coffee mug", "coffee cup"
+                    "cup", "mug", "coffee cup"
                 }
             }) ;
             closet.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Lockbox",
-                Description = "A black box with a keyhole. It seems to be locked.",
+                Description = "A black box with a keyhole.",
                 CanBeTaken = false,
-                HasNotBeenOpenedDescription = "It is locked.",
-                HasBeenOpened = false,
-                CanBeOpened = false,
+                //HasNotBeenOpenedDescription = "It is locked.",
+                //HasBeenOpened = false,
+                //CanBeOpened = false,
+                State = "locked",
+                OpenState = "unlocked",
+                ThingStates = new Dictionary<string, ThingState>
+                {
+                    {"locked", new ThingState { Name="locked", Description="It seems to be locked." } },
+                    {"unlocked", new ThingState { Name="unlocked", Description="It has been unlocked.", TriggeredByKey="lockboxkey1"} }
+                },
                 Synonyms = new List<string>
                 {
                     "chest", "container", "box"

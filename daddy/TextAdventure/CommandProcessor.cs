@@ -37,19 +37,12 @@ namespace TextAdventure
                     {
                         if (thing.IsMatchingName(noun))
                         {
-                            if(thing.HasBeenOpened == false)
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            Console.WriteLine(thing.Name);
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            Console.WriteLine(thing.GetDescription());
+                            if (thing.HasBeenOpened)
                             {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(thing.Name);
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.WriteLine(thing.HasNotBeenOpenedDescription);
-                            }
-                            else
-                            {
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.WriteLine(thing.Name);
-                                Console.ForegroundColor = ConsoleColor.Blue;
-                                Console.WriteLine(thing.Description);
                                 Console.Write("Things inside: ");
                                 var first = true;
                                 foreach (var stuffInThing in thing.Things)
@@ -160,9 +153,9 @@ namespace TextAdventure
                         if (i.IsMatchingName(noun))
                         {
 
-                            if(!i.HasBeenOpened)
+                            if(!i.HasBeenOpened && i.CanBeOpenedWithoutKey)
                             {
-                                i.HasBeenOpened = true;
+                                i.Open();
                                 Console.WriteLine($"{noun} is open");
                             }
                             else
