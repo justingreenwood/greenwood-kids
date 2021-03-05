@@ -108,9 +108,13 @@ namespace TextAdventure
            
                 }
             });
+            var hall = new Room();
+            hall.Name = "Hallway";
+            hall.Description="A long hallway with doors on both sides. There is an elevator at the end of it. ";
+           
             var closet = new Room();
             closet.Name = "Closet";
-            closet.Description = "It's  closet. It's bigger than the one at home.";
+            closet.Description = "It's a closet. It's bigger than the one you have at home.";
             closet.ThingsInTheRoom.Add(new Thing
             {
                 Name = "Mug",
