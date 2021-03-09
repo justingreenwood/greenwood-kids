@@ -12,8 +12,10 @@ namespace playersguideassinment1
         {
             Console.WriteLine("HELLO WORLD!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             Console.ReadKey();
+            /*multi-line
+             comment*/
             Console.WriteLine("I'm sorry, Dave. I'm afraid I can't do that.");
-            
+            //printing hello world is common first comment
         }
     }
 }
