@@ -33,31 +33,38 @@ namespace TextAdventure
                 else if (line.StartsWith("look "))
                 {
                     var noun = line.Substring(5);
-                    foreach (var thing in p.CurrentRoom.ThingsInTheRoom)
+                    var thingSearchResult = this.FindThing(noun, p);
+
+                    if (thingSearchResult != null)
                     {
-                        if (thing.IsMatchingName(noun))
+                        var thing = thingSearchResult.Thing;
+                        if (thingSearchResult.IsFromInventory)
                         {
-                            Console.ForegroundColor = ConsoleColor.Red;
-                            Console.WriteLine(thing.Name);
-                            Console.ForegroundColor = ConsoleColor.Blue;
-                            Console.WriteLine(thing.GetDescription());
-                            if (thing.HasBeenOpened)
-                            {
-                                Console.Write("Things inside: ");
-                                var first = true;
-                                foreach (var stuffInThing in thing.Things)
-                                {
-                                    stuffInThing.HasBeenLookedAt = true;
-                                    Console.ForegroundColor = ConsoleColor.Red;
-                                    if (!first) Console.Write($", ");
-                                    Console.Write($"{stuffInThing.Name}");
-                                    first = false;
-                                }
-                            }
-                           
-                            isValid = true;
-                            break;
+                            Console.WriteLine($"Located in your inventory...");
                         }
+                        else
+                        {
+                            Console.WriteLine($"Located in the room...");
+                        }
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine(thing.Name);
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        Console.WriteLine(thing.GetDescription());
+                        if (thing.HasBeenOpened)
+                        {
+                            Console.Write("Things inside: ");
+                            var first = true;
+                            foreach (var stuffInThing in thing.Things)
+                            {
+                                stuffInThing.HasBeenLookedAt = true;
+                                Console.ForegroundColor = ConsoleColor.Red;
+                                if (!first) Console.Write($", ");
+                                Console.Write($"{stuffInThing.Name}");
+                                first = false;
+                            }
+                        }
+
+                        isValid = true;
                     }
                 }
                 else if (line.StartsWith("get ") || line.StartsWith("take ") || line.StartsWith("pick up "))
@@ -99,9 +106,30 @@ namespace TextAdventure
                     var withIndex = afterUse.IndexOf(" with ", StringComparison.InvariantCultureIgnoreCase);
                     if (withIndex > 0)
                     {
-                        var item1 = afterUse.Substring(0, withIndex).Trim();
-                        var item2 = afterUse.Substring(withIndex + 6).Trim();
-                        Console.WriteLine($"You cannot use {item1} with {item2}.");
+                        var item1Name = afterUse.Substring(0, withIndex).Trim();
+                        var item2Name = afterUse.Substring(withIndex + 6).Trim();
+
+                        var thing1Result = FindThing(item1Name, p);
+                        var thing2Result = FindThing(item2Name, p);
+
+                        if (thing1Result == null || thing2Result == null)
+                        {
+                            Console.WriteLine($"You cannot use {item1Name} with {item2Name}.");
+                        } 
+                        else
+                        {
+                            if (!thing2Result.Thing.HasBeenOpened && !thing2Result.Thing.CanBeOpenedWithoutKey)
+                            {
+                                if (thing2Result.Thing.UseWith(thing1Result.Thing))
+                                    Console.WriteLine($"Success! {item1Name} has been used with {item2Name}.");
+                                else
+                                    Console.WriteLine($"You cannot use {item1Name} with {item2Name}.");
+                            }
+                            else
+                            {
+                                Console.WriteLine($"{item1Name} has already been used with {item2Name}");
+                            }
+                        }
                         //UseItemWithItem(item1, item2);
                         isValid = true;
                     } 
@@ -220,6 +248,62 @@ namespace TextAdventure
                     }
                 }
             }
+        }
+
+        private ThingSearchResult FindThing(string noun, Player p)
+        {
+            ThingSearchResult results = null;
+            var inventoryResult = FindThing(noun, p.Inventory);
+            if (inventoryResult != null)
+            {
+                return new ThingSearchResult
+                {
+                    IsFromInventory = true,
+                    Thing = inventoryResult
+                };
+            } 
+            else 
+            {
+                var roomResult = FindThing(noun, p.CurrentRoom.ThingsInTheRoom);
+
+                if (roomResult != null)
+                {
+                    return new ThingSearchResult
+                    {
+                        IsFromInventory = false,
+                        Thing = roomResult
+                    };
+                }
+            }
+            return results;
+        }
+
+
+
+
+        public class ThingSearchResult
+        {
+            public bool IsFromInventory { get; set; }
+            public Thing Thing { get; set; }
+        }
+        private Thing FindThing(string noun, List<Thing> things)
+        {
+            if (things == null) return null;
+
+            for (var i = things.Count - 1; i >= 0; i--)
+            {
+                var thing = things[i];
+                if (!thing.IsMatchingName(noun))
+                {
+                    var thingToFind = FindThing(noun, thing.Things);
+                    if (thingToFind != null) return thingToFind;
+                }
+                else
+                {
+                    return thing;
+                }
+            }
+            return null;
         }
     }
 }
