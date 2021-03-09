@@ -19,7 +19,23 @@ namespace EasyAssignment1_Remade_
             //naming another int and stating what it equals
             int PerryCurrentAge = 13;
             //printing Perry's age
-            Console.WriteLine("Perry is currently "+PerryCurrentAge+" years old.");
+            Console.WriteLine("Perry is currently " + PerryCurrentAge + " years old.");
+        }
+
+        class Book
+        {
+            private string title;
+            private string author;
+            private int pages;
+            private int WordCount;
+
+            public Book(string title, string author)
+            {
+                this.title = title;
+                this.author = author;
+            }
+
         }
     }
+
 }
