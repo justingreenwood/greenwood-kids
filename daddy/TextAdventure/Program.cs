@@ -86,7 +86,6 @@ namespace TextAdventure
                     {
                         Name = "Wallet",
                         CanBeTaken = true,
-                        TriggerKey="lockboxkey1",
                         Description = "This appears to be your wallet.",
                         Synonyms = new List<string>
                         {
@@ -97,6 +96,8 @@ namespace TextAdventure
                          new Thing
                          {
                              Name = "Small Key",
+                            CanBeTaken = true,
+                            TriggerKey="lockboxkey1",
                             Description =" It's the sort of key that you'd use on a lock. We could use it on something.",
                             Synonyms = new List<string>
                             {

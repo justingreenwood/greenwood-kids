@@ -35,9 +35,9 @@ namespace TextAdventure
             if (CanBeOpenedWithoutKey) State = OpenState;
         }
 
-        public void UseWith(Thing thing)
+        public bool UseWith(Thing thing)
         {
-            if (this.ThingStates.Count == 0) return;
+            if (this.ThingStates.Count == 0) return false;
             else
             {
                 foreach (var state in ThingStates.Values)
@@ -45,10 +45,11 @@ namespace TextAdventure
                     if (state.TriggeredByKey == thing.TriggerKey)
                     {
                         this.State = state.Name;
-                        return;
+                        return true;
                     }
                 }
             }
+            return false;
         }
 
         public string GetDescription()
