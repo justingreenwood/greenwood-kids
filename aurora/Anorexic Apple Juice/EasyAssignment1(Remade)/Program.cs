@@ -20,6 +20,14 @@ namespace EasyAssignment1_Remade_
             int PerryCurrentAge = 13;
             //printing Perry's age
             Console.WriteLine("Perry is currently " + PerryCurrentAge + " years old.");
+
+            int a = 3 + 4;
+            int result = 7;
+
+            float radius = 4;
+            float pi = 3.1415926536f;
+            float area = pi * radius * radius;
+            Console.WriteLine("The area of a circle is " + area + ".");
         }
 
         class Book
