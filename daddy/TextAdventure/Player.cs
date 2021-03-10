@@ -8,6 +8,6 @@ namespace TextAdventure
         public List<Thing> Inventory = new List<Thing>();
         public bool IsReadyToQuit = false;
         public bool IsConscious = true;
-
+        public bool IsClearHeaded = false;
     }
 }
