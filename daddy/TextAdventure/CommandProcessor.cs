@@ -50,7 +50,7 @@ namespace TextAdventure
                         Console.WriteLine(thing.Name);
                         Console.ForegroundColor = ConsoleColor.Blue;
                         Console.WriteLine(thing.GetDescription());
-                        if (thing.HasBeenOpened)
+                        if (thing.HasBeenOpened && thing.Things.Count > 0)
                         {
                             Console.Write("Things inside: ");
                             var first = true;
@@ -238,7 +238,7 @@ namespace TextAdventure
                     }
                     else
                     {
-                        p.CurrentRoom.ThingsInTheRoom.Remove(thing);
+                        things.Remove(thing);
                         p.Inventory.Add(thing);
 
                         Console.ForegroundColor = ConsoleColor.Blue;
