@@ -28,6 +28,8 @@ namespace EasyAssignment1_Remade_
             float pi = 3.1415926536f;
             float area = pi * radius * radius;
             Console.WriteLine("The area of a circle is " + area + ".");
+
+            Console.WriteLine(" I'm sorry, Dave, but I can't do that.");
         }
 
         class Book
@@ -42,6 +44,7 @@ namespace EasyAssignment1_Remade_
                 this.title = title;
                 this.author = author;
             }
+         
 
         }
     }
