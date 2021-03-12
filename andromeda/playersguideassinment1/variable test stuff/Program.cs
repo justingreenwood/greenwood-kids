@@ -25,6 +25,19 @@ namespace variable_test_stuff
             Console.WriteLine(a); 
             Console.WriteLine(b);
             Console.ReadKey();
+           
+            /*fri start*/
+            int w, s, d;
+            w = s = d = 10;
+            byte aSingeByte = 34;
+            aSingeByte = 17;
+            short aNumber = 5039;
+            aNumber = -4354;
+            long AVeryBigNumber = 395904282569;
+            AVeryBigNumber = 13;
+            ushort anUnsignedShortVariable = 59485; //normal short's can't hold this number they can only hold -32_768 to 32_767
+            char favoriteLetter = 'c'; //Because c is for cookie. That's good enough for me.
+            favoriteLetter = '&';
         }
     }
 }
