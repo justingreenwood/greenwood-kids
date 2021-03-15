@@ -27,8 +27,8 @@ namespace variable_test_stuff
             Console.ReadKey();
            
             /*fri start*/
-            int w, s, d;
-            w = s = d = 10;
+            int w, s, c;
+            w = s = c = 10;
             byte aSingeByte = 34;
             aSingeByte = 17;
             short aNumber = 5039;
@@ -50,6 +50,35 @@ namespace variable_test_stuff
             itWorked = false;
             string message = "Hello World!";
             message = "Purple Monkey Dishwasher";
+            sbyte perry = 13;
+            uint foster = 4294967295;
+            Console.WriteLine(score);//int
+            Console.WriteLine(aSingeByte); //byte
+            Console.WriteLine(aNumber); //short
+            Console.WriteLine(anUnsignedShortVariable); //ushort
+            Console.WriteLine(favoriteLetter);//char
+            Console.WriteLine(pi);//double
+            Console.WriteLine(anotherPi); //float
+            Console.WriteLine(aBigNumber);// long
+            Console.WriteLine(bigOne);//ulong
+            Console.WriteLine(numer);// dec
+            Console.WriteLine(itWorked); //bool
+            Console.WriteLine(message);//string
+            Console.WriteLine(perry);//sbyte
+            Console.WriteLine(foster);//uint
+            Console.ReadKey();
+            int x = 3;
+            double avogadrosNumber = 6.022e23;//proper name
+            int thirteen = 0b00001101;
+            int theColorMagenta = 0xff00ff;
+            int bignumber = 1_000_000_000;
+            a = 123_456 - 789;
+            b = 12_34_56_78_9;
+            c = 1_2__3___4____5;
+            double d = 1_000.000_001;
+            long xx = 0b0010010_00100110_00001101_01011111;
+            uint color = 0xff_ff_d1_00;
+            var messsage = "Hello World!";
 
         }
     }
