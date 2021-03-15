@@ -48,6 +48,29 @@ namespace perrysbeginningwork/*This is the name*/
             ulong YourLongBow = 17999994367897956789UL;
             decimal highAccuracy = 1.4526m;
             highAccuracy = 14.4m;
+            bool True_False = true;
+            True_False = false;
+            string BeginningWords = "Hello World!";
+            BeginningWords = "Purple Monkey Dishwasher";
+            sbyte SMine = 23;
+            Console.WriteLine(score);
+            Console.WriteLine(bite); 
+            Console.WriteLine(shortPants);
+            Console.WriteLine(long_bow);
+            Console.WriteLine(yourShortPants);
+            Console.WriteLine(uselessCharacter);
+            Console.WriteLine(pi);
+            Console.WriteLine(bananPi);
+            Console.WriteLine(YourLongBow);
+            Console.WriteLine(highAccuracy);
+            Console.WriteLine(True_False);
+            Console.WriteLine(BeginningWords);
+            Console.WriteLine(SMine);
+            double triple = 23.234e34;//scientific notation
+            int thirteen = 0b00001101;//binary 1s and 0s
+            int strangeHex = 0xFF00FF;
+            double D_d = 1_345_0.9______46;
+            var farts = "Pfff";
 
 
             //This is what you press when

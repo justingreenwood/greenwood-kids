@@ -38,6 +38,19 @@ namespace variable_test_stuff
             ushort anUnsignedShortVariable = 59485; //normal short's can't hold this number they can only hold -32_768 to 32_767
             char favoriteLetter = 'c'; //Because c is for cookie. That's good enough for me.
             favoriteLetter = '&';
+
+            /*mon March,15 start*/
+            double pi = 3.14159265358979323846;
+            float anotherPi = 3.1415926f;
+            long aBigNumber = 39358593258529L;
+            ulong bigOne = 2985925802580508UL;
+            decimal numer = 1.495m;
+            numer = 14.4m;
+            bool itWorked = true;
+            itWorked = false;
+            string message = "Hello World!";
+            message = "Purple Monkey Dishwasher";
+
         }
     }
 }
