@@ -48,6 +48,7 @@ namespace EasyAssignment1_Remade_
                 this.title = title;
                 this.author = author;
             }
+            //not today!
          
 
         }

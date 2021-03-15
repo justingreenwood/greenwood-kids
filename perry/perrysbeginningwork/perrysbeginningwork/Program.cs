@@ -34,8 +34,20 @@ namespace perrysbeginningwork/*This is the name*/
 
             //int a, b, c;
             //a = b = c = 10;
-
-
+            byte bite = 34;
+            bite = 17;
+            short shortPants = 5039;
+            shortPants = -4354;
+            long long_bow = 123407623402L;
+            long_bow = 13;
+            ushort yourShortPants = 59845;
+            char uselessCharacter = '`';
+            uselessCharacter = '~';
+            double pi = 3.14159265358979323846;
+            float bananPi = 3.1415926f;
+            ulong YourLongBow = 17999994367897956789UL;
+            decimal highAccuracy = 1.4526m;
+            highAccuracy = 14.4m;
 
 
             //This is what you press when
