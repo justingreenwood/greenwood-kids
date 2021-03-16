@@ -34,7 +34,14 @@ namespace EasyAssignment1_Remade_
             double a = 1.0 + 1 + 1.0f;
             int x = (int)(7 + 3.0 / 4 * 2);
             Console.WriteLine((1 + 1) / 2 * 3);
+
+            Console.WriteLine(" Give me a number.");
+            var FirstNumber = Console.ReadKey();
+            Console.WriteLine("Give me another number.");
+            var SecondNumber = Console.ReadKey();
         }
+
+        
 
         class Book
         {
@@ -48,7 +55,8 @@ namespace EasyAssignment1_Remade_
                 this.title = title;
                 this.author = author;
             }
-            //not today!
+            
+             
          
 
         }
