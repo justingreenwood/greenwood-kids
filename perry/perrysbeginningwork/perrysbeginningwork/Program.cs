@@ -25,12 +25,12 @@ namespace perrysbeginningwork/*This is the name*/
             int number = 3;
             Console.WriteLine(number);
 
-            int a = 5;
-            int b = 2;
-            b = a;
-            a = -3;
-            Console.WriteLine(a);
-            Console.WriteLine(b);
+            int v = 5;
+            int x = 2;
+            x = v;
+            v = -3;
+            Console.WriteLine(v);
+            Console.WriteLine(x);
 
             //int a, b, c;
             //a = b = c = 10;
@@ -71,6 +71,53 @@ namespace perrysbeginningwork/*This is the name*/
             int strangeHex = 0xFF00FF;
             double D_d = 1_345_0.9______46;
             var farts = "Pfff";
+
+            //-----------------------------------------
+            int a = 3 + 4;
+            int b = 5 - 2;
+            a = 9 - 2;
+            a = 3 + 3;
+            b = 3 + 1;
+            b = 1 + 2;
+            b = a + 4;
+            int c = a - b;
+            int result = 1 + 2 - 3 + 4 - 5 + a - b + c;
+            float totalcost = 22.54f;
+            float tippercent = 0.18f;
+            float tipamount = totalcost * tippercent;
+            float radius = 4;
+            float area = bananPi * radius * radius;
+            Console.WriteLine("The area of a circle is " + area);
+            float half = 0.5f;
+            float bases = 5;
+            float hight = 6;
+            float halfbaseshight = half * bases * hight;
+            Console.WriteLine("The area of a triangle is " + halfbaseshight);
+            a = 17;
+            b = 4;
+            int quotient = a / b;
+            int remainder = a % b;
+            int stuff = b * quotient + remainder;
+            Console.WriteLine(a + "/" + b + "is " + quotient + " remainder " + remainder + " a should be " + stuff);
+
+            int unary = +2;
+            unary = -6;
+            int binary = 2 + 3;
+            binary = 4 - 5;
+
+            double side1 = 5.5;
+            double side2 = 3.25;
+            double height = 4.6;
+            double areOfTrapexoid = (side1 + side2) / 2 * height;
+
+            a += 3;
+            b = 7;
+            b -= 3;
+            b *= 5;
+            b /= 4;
+            b %= 2;
+
+
 
 
             //This is what you press when

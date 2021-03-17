@@ -39,6 +39,10 @@ namespace EasyAssignment1_Remade_
             var FirstNumber = Console.ReadKey();
             Console.WriteLine("Give me another number.");
             var SecondNumber = Console.ReadKey();
+
+            Console.WriteLine("Choose a number from one to ten. Any number!");
+            var taco=Console.ReadKey();
+            Console.WriteLine("You said " + taco + "!");
         }
 
         
