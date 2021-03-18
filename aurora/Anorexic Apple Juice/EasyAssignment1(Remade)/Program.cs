@@ -31,17 +31,38 @@ namespace EasyAssignment1_Remade_
 
             Console.WriteLine(" I'm sorry, Dave, but I'm afraid that I can't do that.");
 
+            int FirstNumber2;
+            int SecondNumber2;
             double a = 1.0 + 1 + 1.0f;
             int x = (int)(7 + 3.0 / 4 * 2);
             Console.WriteLine((1 + 1) / 2 * 3);
 
             Console.WriteLine(" Give me a number.");
-            var FirstNumber = Console.ReadKey();
+            var FirstNumber = Console.ReadLine();
             Console.WriteLine("Give me another number.");
-            var SecondNumber = Console.ReadKey();
+            var SecondNumber = Console.ReadLine();
+            FirstNumber2 = Convert.ToInt32(FirstNumber);
+            SecondNumber2 = Convert.ToInt32(SecondNumber);
+
+            if (FirstNumber2>=0||SecondNumber2>=0)
+            {
+                Console.WriteLine(" This is positive!");
+            }
+            else if (FirstNumber2 <= 0 || SecondNumber2 <= 0)
+            {
+                Console.WriteLine(" This is positive!");
+            }
+            else if (FirstNumber2 == 0 || SecondNumber2 == 0)
+            {
+                Console.WriteLine("That is zero, which is neither negative nor positive.");
+            }
+            else
+            {
+                Console.WriteLine("That is negative!");
+            }
 
             Console.WriteLine("Choose a number from one to ten. Any number!");
-            var taco=Console.ReadKey();
+            var taco=Console.ReadLine();
             Console.WriteLine("You said " + taco + "!");
         }
 
