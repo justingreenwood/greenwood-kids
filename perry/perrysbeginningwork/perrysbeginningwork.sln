@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "perrysbeginningwork", "perr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInputByPerryGreenwood", "UserInputByPerryGreenwood\UserInputByPerryGreenwood.csproj", "{2F77C588-7357-4BA5-853F-741A265ED07A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "math2Perry", "math2Perry\math2Perry.csproj", "{364A3994-2009-452F-9386-43BCB3BFE969}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2F77C588-7357-4BA5-853F-741A265ED07A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F77C588-7357-4BA5-853F-741A265ED07A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F77C588-7357-4BA5-853F-741A265ED07A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{364A3994-2009-452F-9386-43BCB3BFE969}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{364A3994-2009-452F-9386-43BCB3BFE969}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{364A3994-2009-452F-9386-43BCB3BFE969}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{364A3994-2009-452F-9386-43BCB3BFE969}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

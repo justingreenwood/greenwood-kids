@@ -68,6 +68,9 @@ namespace EasyAssignment1_Remade_
             //Aurora has more work to do.
             string message = "Hello World";
             message = "Purple Monkey Machine Gun in a Dishwasher";
+            Console.WriteLine($"I want a {message}!");
+
+
         }
 
         static void MethodThatUsesRecursions()
