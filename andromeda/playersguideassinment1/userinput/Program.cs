@@ -18,10 +18,10 @@ namespace userinput
             float f = Convert.ToSingle(d);
             // fake calc
             Console.WriteLine("my cylindar calc");
-            Console.Write("Enter cylinder radius");
+            Console.Write("Enter cylinder radius: ");
             string radiusAsAString = Console.ReadLine();
             double radius = Convert.ToDouble(radiusAsAString);
-            Console.Write("Enter cylinder height");
+            Console.Write("Enter cylinder height: ");
             string heightAsAString = Console.ReadLine();
             double height = Convert.ToDouble(heightAsAString);
             double pi = 3.141592654;
@@ -36,6 +36,7 @@ namespace userinput
             Console.WriteLine("C:\\User\\RB\\Desktop\\MyFile.txt"); 
             Console.WriteLine(@"C:\User\RB\Desktop\MyFile.txt");
             Console.WriteLine($"The cylinder's volume is: {volume} cubic units.");
+            Console.ReadKey();
         }
     }
 }
