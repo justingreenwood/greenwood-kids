@@ -64,9 +64,16 @@ namespace EasyAssignment1_Remade_
             Console.WriteLine("Choose a number from one to ten. Any number!");
             var taco=Console.ReadLine();
             Console.WriteLine("You said " + taco + "!");
+
+            //Aurora has more work to do.
+            string message = "Hello World";
+            message = "Purple Monkey Machine Gun in a Dishwasher";
         }
 
-        
+        static void MethodThatUsesRecursions()
+        {
+            MethodThatUsesRecursions();
+        }
 
         class Book
         {
