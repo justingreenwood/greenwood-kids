@@ -70,7 +70,17 @@ namespace EasyAssignment1_Remade_
             message = "Purple Monkey Machine Gun in a Dishwasher";
             Console.WriteLine($"I want a {message}!");
 
+            string palindrome = "Taco Cat";
+            var MeaningofLife = 42;
 
+            if (palindrome=="Taco Cat")
+            {
+                Console.WriteLine("You are so weird.");
+            }
+            else
+            {
+                Console.WriteLine("This isn't possible!");
+            }
         }
 
         static void MethodThatUsesRecursions()
