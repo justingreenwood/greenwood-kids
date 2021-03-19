@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserInputByPerryGreenwood",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "math2Perry", "math2Perry\math2Perry.csproj", "{364A3994-2009-452F-9386-43BCB3BFE969}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ifButtsThenPlayerDies", "ifButtsThenPlayerDies\ifButtsThenPlayerDies.csproj", "{403FC696-25BC-45C4-BBA9-AF2BA307901D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{364A3994-2009-452F-9386-43BCB3BFE969}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{364A3994-2009-452F-9386-43BCB3BFE969}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{364A3994-2009-452F-9386-43BCB3BFE969}.Release|Any CPU.Build.0 = Release|Any CPU
+		{403FC696-25BC-45C4-BBA9-AF2BA307901D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{403FC696-25BC-45C4-BBA9-AF2BA307901D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{403FC696-25BC-45C4-BBA9-AF2BA307901D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{403FC696-25BC-45C4-BBA9-AF2BA307901D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
