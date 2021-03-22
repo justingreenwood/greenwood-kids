@@ -117,6 +117,80 @@ namespace ifButtsThenPlayerDies
             }
 
             Console.WriteLine((score > 70) ? "You passed." : "You failed.");
+            //-oguklrd78o6yro7rftg89-py-;io;ugydrs3qa34q6-0809767scxa23cg,l;[-=ut86f5vs3qacdrfmhym9-=.0[k
+
+            int choice = 4;
+
+            if (choice == 1)
+                Console.WriteLine("Stupid!");
+            else if (choice == 2)
+                Console.WriteLine("You Suck!");
+            else if (choice == 3)
+                Console.WriteLine("You are trash.");
+            else if (choice == 4)
+                Console.WriteLine("You win 1,000,000 dollars");
+            else if (choice == 5)
+                Console.WriteLine("That is the wrong answer.");
+            else
+                Console.WriteLine("Whatever");
+            switch (choice)
+            {
+                case 1:
+                    Console.WriteLine("Stupid!");
+                    break;
+                case 2:
+                    Console.WriteLine("You Suck!");
+                    break;
+                case 3:
+                    Console.WriteLine("You are trash.");
+                    break;
+                case 4:
+                    Console.WriteLine("You win 1,000,000 dollars");
+                    break;
+                case 5:
+                    Console.WriteLine("That is the wrong answer.");
+                    break;
+                default:
+                    Console.WriteLine("Whatever");
+                    break;
+            }
+
+
+               Console.WriteLine("Enter a number: ");
+            string number01 = Console.ReadLine();
+            int Number01 = Convert.ToInt32(number01);
+            Console.WriteLine("Enter another number: ");
+            string number02 = Console.ReadLine();
+            int Number02 = Convert.ToInt32(number02);
+            Console.WriteLine("Enter operator: ");
+            string operation = Console.ReadLine();
+            
+                switch (operation)
+                {
+                    case "*":
+                        Console.WriteLine($"The answer is {Number01 * Number02}.");
+                        break;
+                    case "/":
+                        Console.WriteLine($"The answer is {Number01 / Number02}.");
+                        break;
+                    case "-":
+                        Console.WriteLine($"The answer is {Number01 - Number02}.");
+                        break;
+                    case "+":
+                        Console.WriteLine($"The answer is {Number01 + Number02}.");
+                        break;
+                    case "^":
+                        Console.WriteLine($"The answer is {Math.Pow(Number01, Number02)}.");
+                        break;
+                    default:
+                        Console.WriteLine("That is not valid.");
+                        break;
+
+                }
+                Console.WriteLine("");
+            
+
+
 
             Console.ReadKey();
         }
