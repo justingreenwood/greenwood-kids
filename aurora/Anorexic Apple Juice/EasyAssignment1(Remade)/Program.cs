@@ -70,6 +70,27 @@ namespace EasyAssignment1_Remade_
             message = "Purple Monkey Machine Gun in a Dishwasher";
             Console.WriteLine($"I want a {message}!");
 
+            int menuChoice = 3;
+
+            switch (menuChoice)
+            {
+                case 1:
+                    Console.WriteLine(" You suck.");
+                    break;
+                case 2:
+                    Console.WriteLine(" You suck.");
+                    break;
+                case 3:
+                    Console.WriteLine(" You suck.");
+                    break;
+                case 4:
+                    Console.WriteLine(" You suck.");
+                    break;
+                default:
+                    Console.WriteLine(" You suck.");
+                    break;
+            }
+
             string palindrome = "Taco Cat";
             var MeaningofLife = 42;
 
