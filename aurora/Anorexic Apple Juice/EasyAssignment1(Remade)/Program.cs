@@ -91,10 +91,42 @@ namespace EasyAssignment1_Remade_
                     break;
             }
 
-            Console.WriteLine("   *    ");
-            Console.WriteLine("  ***   ");
-            Console.WriteLine(" ***** ");
-            Console.WriteLine("*******");
+            //Console.WriteLine("   *    ");
+            //Console.WriteLine("  ***   ");
+            //Console.WriteLine(" ***** ");
+            //Console.WriteLine("*******");
+
+            for (int row= 0; row < 5; row++)
+            {
+                for (int column = 5; column > row; column--)
+                    Console.Write(" ");
+                for (int column = 0; column <= row * 2; column++)
+                    Console.Write("*");
+                Console.WriteLine();
+
+            }
+
+            for ( x=1; x<=100; x++)
+            {
+                int j = x % 3;
+                int i = x % 5;
+                if (j==0&&i==0)
+                {
+                    Console.WriteLine("FUZZBUTT");
+                }
+                else if (j==0)
+                {
+                    Console.WriteLine("FUZZ");
+                }
+                else if (i == 0)
+                {
+                    Console.WriteLine("BUTT");
+                }
+                else
+                {
+                    Console.WriteLine(x);
+                }
+            }
 
             string palindrome = "Taco Cat";
             var MeaningofLife = 42;
