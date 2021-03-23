@@ -91,6 +91,11 @@ namespace EasyAssignment1_Remade_
                     break;
             }
 
+            Console.WriteLine("   *    ");
+            Console.WriteLine("  ***   ");
+            Console.WriteLine(" ***** ");
+            Console.WriteLine("*******");
+
             string palindrome = "Taco Cat";
             var MeaningofLife = 42;
 
