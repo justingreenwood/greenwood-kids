@@ -44,7 +44,7 @@ namespace EasyAssignment1_Remade_
             FirstNumber2 = Convert.ToInt32(FirstNumber);
             SecondNumber2 = Convert.ToInt32(SecondNumber);
 
-            if (FirstNumber2>=0||SecondNumber2>=0)
+            if (FirstNumber2 >= 0 || SecondNumber2 >= 0)
             {
                 Console.WriteLine(" This is positive!");
             }
@@ -62,7 +62,7 @@ namespace EasyAssignment1_Remade_
             }
 
             Console.WriteLine("Choose a number from one to ten. Any number!");
-            var taco=Console.ReadLine();
+            var taco = Console.ReadLine();
             Console.WriteLine("You said " + taco + "!");
 
             //Aurora has more work to do.
@@ -96,7 +96,7 @@ namespace EasyAssignment1_Remade_
             //Console.WriteLine(" ***** ");
             //Console.WriteLine("*******");
 
-            for (int row= 0; row < 5; row++)
+            for (int row = 0; row < 5; row++)
             {
                 for (int column = 5; column > row; column--)
                     Console.Write(" ");
@@ -106,15 +106,15 @@ namespace EasyAssignment1_Remade_
 
             }
 
-            for ( x=1; x<=100; x++)
+            for (x = 1; x <= 100; x++)
             {
                 int j = x % 3;
                 int i = x % 5;
-                if (j==0&&i==0)
+                if (j == 0 && i == 0)
                 {
                     Console.WriteLine("FUZZBUTT");
                 }
-                else if (j==0)
+                else if (j == 0)
                 {
                     Console.WriteLine("FUZZ");
                 }
@@ -126,6 +126,24 @@ namespace EasyAssignment1_Remade_
                 {
                     Console.WriteLine(x);
                 }
+            }
+
+            int[] array = new int[] { 4, 51, -7, 13, -99, 15, -8, 45, 90 };
+
+            int total = 0;
+
+            for (int index = 0; index < array.Length; index++)
+                total += array[index];
+
+            float average = (float)total / array.Length;
+
+            var tacos = array;
+
+            foreach (int tiny in tacos)
+            {
+                int[] scores = new[] { 100, 32, -34, -24, 23, 22 };
+
+                //int TotalThingsInForEach = Array.Length();
             }
 
             string palindrome = "Taco Cat";
