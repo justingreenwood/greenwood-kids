@@ -111,6 +111,89 @@ namespace Looping
                 }
                 Console.Write(" ");
             }
+            // wednesday the 24th of march
+            int score1 = 100;
+            int score2 = 95;
+            int score3 = 92;
+            int[] scores;
+            scores = new int[10];
+            string[] names = new string[10];
+            scores[0] = 99;
+            int fourthScore = scores[3];
+            int eighthScore = scores[7];
+            int[] Scores = new[] { 100, 95, 92, 87, 55, 50, 48, 40, 35, 30 };
+            int totalThingsInArray = Scores.Length;
+            Console.WriteLine("There are " + totalThingsInArray + " things in the array.");
+            int[] array = new int[] {4, 51, -7, 13, -99, 15, -8, 45, 90 };
+            int currentMinimum = Int32.MaxValue;
+            for (int index=0;index<array.Length;index++)
+            {
+                if (array[index] < currentMinimum)
+                    currentMinimum = array[index];
+            }
+            int total = 0;
+            for (int index = 0; index < array.Length; index++)
+            {
+                total += array[index];
+            }
+            float average = (float)total / array.Length;
+            int[] myPersonalArray = new int[] { 1, 5, 6, 9, 55, 25, 81, 18, 21, 125 };
+            total = 0;
+            for (int index = 0; index <myPersonalArray.Length; index++)
+            {
+                total += myPersonalArray[index];
+            }
+            float myAverage = (float)total / myPersonalArray.Length;
+            int[] perryArray = new int[myPersonalArray.Length];
+            for (int index = 0; index < myPersonalArray.Length; index++)
+            {
+                perryArray[index]= myPersonalArray[index];
+                Console.WriteLine(perryArray[index]);
+            }
+            int[,] matrix = new int[4, 4];
+            matrix[0, 0] = 1;
+            matrix[0, 1] = 0;
+            matrix[0, 2] = 3;
+            matrix[0, 3] = 5;
+            matrix[1, 0] = 6;
+            matrix[1, 1] = 9;
+            matrix[1, 2] = 75;
+            matrix[1, 3] = 50;
+            matrix[2, 0] = 55;
+            matrix[2, 1] = 25; 
+            matrix[2, 2] = 99; 
+            matrix[2, 3] = 10; 
+            matrix[3, 0] = 100;
+            matrix[3, 1] = 125;
+            matrix[3, 2] = 25;
+            matrix[3, 3] = 1;
+            for(int row=0; row< matrix.GetLength(0);row++)
+            {
+                for( int column=0; column< matrix.GetLength(1);column++)
+                {
+                    Console.Write(matrix[row, column] + " ");
+                }
+                Console.WriteLine();
+            }
+            foreach (int score in Scores)
+                Console.WriteLine("Someone had this score:" + score);
+            for (int index = 0; index <Scores.Length; index++)
+            {
+                int score = Scores[index];
+                Console.WriteLine("Score#"+index+":"+score);
+            }
+            int minimum = Int32.MaxValue;
+            foreach (int item in array)
+            {
+                if (item < minimum)
+                    minimum = item;
+            }
+            total = 0;
+            foreach (int item in array)
+            {
+                total += item;
+            }
+             average = (float)total / array.Length;
             Console.ReadKey();
         }
     }

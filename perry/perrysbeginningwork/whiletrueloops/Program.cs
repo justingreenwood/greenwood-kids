@@ -73,20 +73,21 @@ namespace whiletrueloops
                 int j_3 = i % 3;
                 if (j_3 == 0 && j_5 == 0)
                 {
-                    Console.WriteLine("FizzBuzz");
+                    Console.Write("FizzBuzz");
                 }
                 else if (j_3 == 0)
                 {
-                    Console.WriteLine("Fizz");
+                    Console.Write("Fizz");
                 }
                 else if (j_5 == 0)
                 {
-                    Console.WriteLine("Buzz");
+                    Console.Write("Buzz");
                 }
                 else
                 {
-                    Console.WriteLine(i);
+                    Console.Write(i);
                 }
+                Console.Write(" ");
 
             }
 
