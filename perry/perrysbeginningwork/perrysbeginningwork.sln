@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "whiletrueloops", "whiletrue
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "foreacharray", "foreacharray\foreacharray.csproj", "{B79A8E58-515A-4700-8901-3DEB7339518A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNumberNation", "TheNumberNation\TheNumberNation.csproj", "{10CE6073-458D-4B4E-987F-29F06F844BF2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{B79A8E58-515A-4700-8901-3DEB7339518A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B79A8E58-515A-4700-8901-3DEB7339518A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B79A8E58-515A-4700-8901-3DEB7339518A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{10CE6073-458D-4B4E-987F-29F06F844BF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{10CE6073-458D-4B4E-987F-29F06F844BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{10CE6073-458D-4B4E-987F-29F06F844BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{10CE6073-458D-4B4E-987F-29F06F844BF2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
