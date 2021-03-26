@@ -4,7 +4,7 @@ namespace EasyAssignment1_Remade_
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main (string[] args)
         {
             //Printing Hello World is one of the first steps in our programming adventure.
             Console.WriteLine("Hello, world!");
@@ -30,6 +30,8 @@ namespace EasyAssignment1_Remade_
             Console.WriteLine("The area of a circle is " + area + ".");
 
             Console.WriteLine(" I'm sorry, Dave, but I'm afraid that I can't do that.");
+
+            
 
             int FirstNumber2;
             int SecondNumber2;
@@ -61,6 +63,9 @@ namespace EasyAssignment1_Remade_
                 Console.WriteLine("That is negative!");
             }
 
+            string numbers = "12345678910";
+            Console.WriteLine(numbers);
+
             Console.WriteLine("Choose a number from one to ten. Any number!");
             var taco = Console.ReadLine();
             Console.WriteLine("You said " + taco + "!");
@@ -69,6 +74,8 @@ namespace EasyAssignment1_Remade_
             string message = "Hello World";
             message = "Purple Monkey Machine Gun in a Dishwasher";
             Console.WriteLine($"I want a {message}!");
+
+            //I can't figure out Fibonacci!
 
             int menuChoice = 3;
 
@@ -178,6 +185,8 @@ namespace EasyAssignment1_Remade_
                 this.title = title;
                 this.author = author;
             }
+
+
             
            enum MonthsOfYear { January=1, February=2, March=3, April=4, May=5, June=6, July=7, August=8, September=9, October=10, November=11, December=12};
             string minimonths = "The month is this month.";
