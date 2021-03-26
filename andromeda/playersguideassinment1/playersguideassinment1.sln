@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Looping", "Looping\Looping.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enumerations", "Enumerations\Enumerations.csproj", "{9F42FCAE-AE8F-473D-8D11-ED00B90BF480}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "methods", "methods\methods.csproj", "{1301824B-03F0-4876-B92A-1BB5490089C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{9F42FCAE-AE8F-473D-8D11-ED00B90BF480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F42FCAE-AE8F-473D-8D11-ED00B90BF480}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F42FCAE-AE8F-473D-8D11-ED00B90BF480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1301824B-03F0-4876-B92A-1BB5490089C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1301824B-03F0-4876-B92A-1BB5490089C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1301824B-03F0-4876-B92A-1BB5490089C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1301824B-03F0-4876-B92A-1BB5490089C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
