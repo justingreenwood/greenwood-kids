@@ -17,9 +17,14 @@ namespace methods
             int userNumber = GetNumberFromUser();
             Count(5);
             Count(15);
-            int[] numbers = GenerateNumbers();
-            Reverse( numbers);
+           // int[] numbers = GenerateNumbers();
+           // Reverse( numbers);
             PrintNumbers();
+            Multiply(5, 10);
+            Multiply(1, 6, 9);
+            Multiply(10.2, 69.5);
+            fibonacci(1);
+            Console.ReadKey();
         }
         static void CountToTen()
         {
@@ -52,29 +57,85 @@ namespace methods
                 Console.WriteLine(current);
             }
         }
-        static int[] GenerateNumbers()
-        {
-            for (int index = 1; index < +10; index++)
-            {
-               array[index];
-                index = int[] numbers;
-            }
-            return int[];
-        }
-        static int Reverse()
-        {
-            for (int index = 12;index => numbers.length; index--)
-            {
-                Array[Array.length - index - 1];
-            }
-            return numbers;
-        }
+       // static int[] GenerateNumbers()
+       // {
+         //   for (int index = 1; index < +10; index++)
+         //   {
+         //      array[index];
+         //       index = int[] numbers;
+         //   }
+         //   return int[];
+       // }
+       // static int Reverse()
+      //  {
+       //     for (int index = 12;index => numbers.length; index--)
+         //   {
+       //         Array[Array.length - index - 1];
+        //    }
+       //     return numbers;
+       // }
         static void PrintNumbers()
         {
             for (int current =10; current > 0; current--)
             {
                 Console.WriteLine(current);
             }
+        }
+        static int Multiply(int a, int b)
+        {
+            return a * b;
+        }
+        static int Multiply(int a, int b, int c)
+        {
+            return a * b * c;
+        }
+        static double Multiply( double a, double b)
+        {
+            return a * b;
+        }
+        static int Factorial(int number)
+        {
+            if (number == 1)
+                return 1;
+            return number * Factorial(number - 1);
+        }
+        static int fibonacci( int sums)
+        {
+            int ans =1;
+            switch (sums)
+            {
+                case 1:
+                case 2:
+                    break;
+                case 3:
+                  ans=++ans;
+                    break;
+                case 4:
+                    ans =--sums;
+                    break;
+                case 5:
+                    ans = sums;
+                    break;
+                case 6:
+                    ans = sums+2;
+                    break;
+                case 7:
+                    ans = sums + 6;
+                    break;
+                case 8:
+                    ans = sums + 13;
+                    break;
+                case 9:
+                    ans = sums + 25;
+                    break;
+                case 10:
+                    ans = sums + 45;
+                    break;
+                default:
+                    ans = 0;
+                    break;
+            }
+            return ans; 
         }
     }
 }

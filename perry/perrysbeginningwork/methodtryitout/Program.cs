@@ -15,6 +15,8 @@ namespace methodtryitout
             Reverse(numbers);
             PrintNumbers(numbers);
 
+            Console.WriteLine("---------------------------------------------------------");
+
             Console.ReadKey();
         }
 
@@ -56,7 +58,46 @@ namespace methodtryitout
             }
 
         }
+        /// <summary>
+        /// Takes two numbers and multiplies them together, returning the result.
+        /// </summary>
+        /// <param name="i">The first number to multiply</param>
+        /// <param name="v">The second number to multiply</param>
+        /// <returns>The product of the two input numbers</returns>
+        static double Multiply(int i, int v)
+        {
+            return i * v;
+        }
+        static void Multiply(int i, int v, int j)
+        {
 
+        }
+
+        static void recursion()
+        {
+            recursion();
+        }
+
+        static int factorial(int number)
+        {
+            if (number == 1)
+                return 1;
+
+            return number * factorial(number - 1);
+
+        }
+
+        //static double Fibonacci(int number)
+        //{
+
+
+
+
+
+
+
+
+        //}
 
     }
 }
