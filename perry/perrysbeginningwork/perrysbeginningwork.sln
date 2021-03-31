@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "foreacharray", "foreacharra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheNumberNation", "TheNumberNation\TheNumberNation.csproj", "{10CE6073-458D-4B4E-987F-29F06F844BF2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "methods", "methods\methods.csproj", "{B9D29F06-BF45-46B2-8542-73074B67DB9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "methodtryitout", "methodtryitout\methodtryitout.csproj", "{A81687E9-8F04-4AB0-8F22-CE009ADBF451}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{10CE6073-458D-4B4E-987F-29F06F844BF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10CE6073-458D-4B4E-987F-29F06F844BF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10CE6073-458D-4B4E-987F-29F06F844BF2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9D29F06-BF45-46B2-8542-73074B67DB9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9D29F06-BF45-46B2-8542-73074B67DB9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9D29F06-BF45-46B2-8542-73074B67DB9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9D29F06-BF45-46B2-8542-73074B67DB9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A81687E9-8F04-4AB0-8F22-CE009ADBF451}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A81687E9-8F04-4AB0-8F22-CE009ADBF451}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A81687E9-8F04-4AB0-8F22-CE009ADBF451}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A81687E9-8F04-4AB0-8F22-CE009ADBF451}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

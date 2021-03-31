@@ -75,7 +75,7 @@ namespace EasyAssignment1_Remade_
             message = "Purple Monkey Machine Gun in a Dishwasher";
             Console.WriteLine($"I want a {message}!");
 
-            //I can't figure out Fibonacci!
+            //This chapter did not have a project. SCORE!
 
             int menuChoice = 3;
 
