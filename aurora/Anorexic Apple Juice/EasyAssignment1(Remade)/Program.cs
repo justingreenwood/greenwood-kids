@@ -75,7 +75,8 @@ namespace EasyAssignment1_Remade_
             message = "Purple Monkey Machine Gun in a Dishwasher";
             Console.WriteLine($"I want a {message}!");
 
-            //This chapter did not have a project. SCORE!
+
+
 
             int menuChoice = 3;
 
@@ -165,6 +166,20 @@ namespace EasyAssignment1_Remade_
             else
             {
                 Console.WriteLine("This isn't possible!");
+            }
+
+            Console.WriteLine(" I am going to roll a dice for you!");
+            Console.Read();
+            Random random = new Random();
+            int aRandomNumber = random.Next();
+
+            if (aRandomNumber >= 6)
+            {
+                Console.WriteLine(" Oh no...We lost your result....");
+            }
+            else
+            {
+                Console.WriteLine(aRandomNumber);
             }
         }
 
