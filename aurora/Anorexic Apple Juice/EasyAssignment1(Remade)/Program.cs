@@ -181,6 +181,17 @@ namespace EasyAssignment1_Remade_
             {
                 Console.WriteLine(aRandomNumber);
             }
+
+            random.Next();
+
+            if (aRandomNumber >= 6)
+            {
+                Console.WriteLine(" Oh no...We lost your result....");
+            }
+            else
+            {
+                Console.WriteLine(aRandomNumber);
+            }
         }
 
         static void MethodThatUsesRecursions()
