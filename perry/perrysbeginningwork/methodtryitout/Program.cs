@@ -6,16 +6,58 @@ using System.Threading.Tasks;
 
 namespace methodtryitout
 {
+
+    
+
     class Program
+        
+
+        
     {
         static void Main(string[] args)
         {
+            Random random = new Random();
+            int arandomnumber = random.Next(6)+1;
             int[] numbers = GenerateNumbers();
             //PrintNumbers(numbers);
             Reverse(numbers);
             PrintNumbers(numbers);
 
             Console.WriteLine("---------------------------------------------------------");
+            int k = 0;
+            while (true)
+            {
+                k = 0;
+                Console.WriteLine("Type in the amount of times you roll the dice. ");
+                string amountOfRolls = Console.ReadLine();
+                int rolls = Convert.ToInt32(amountOfRolls);
+                
+                //int dice = random.Next(6) + 1;
+                for(int i = 0; i< rolls; i++)
+                {
+                    int dice = random.Next(6) + 1;
+                    k += dice;
+
+                }
+                Console.WriteLine(k);
+
+                Console.WriteLine("Type (Q)uit to (E)xit. ");
+                string answer = Console.ReadLine();
+                answer = answer.ToLower();
+                if (answer == "quit" || answer == "q" || answer == "exit" || answer == "e")
+                {
+                    break;
+                }
+                
+
+
+            }
+
+
+
+
+
+
 
             Console.ReadKey();
         }
