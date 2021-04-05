@@ -53,13 +53,44 @@ namespace methodtryitout
 
             }
 
+            //====================================================================================================
 
+            Console.WriteLine("====================================================================================================");
+            Console.WriteLine("Type in a number. ");
+            string typedin = Console.ReadLine();
+            int choice = Convert.ToInt32(typedin);
 
+            int answers = Fibonacci(choice);
+
+            Console.WriteLine(answers);
 
 
 
 
             Console.ReadKey();
+        }
+
+
+
+
+
+        static int Fibonacci(int number, int x = 0, int y = 1)
+        {
+            int extra;
+
+            if (number > 1)
+            {
+                extra = x + y;
+                x = y;
+                y = extra;
+
+                number--;
+                y = Fibonacci(number, x, y);
+                
+            }
+
+
+            return y;
         }
 
         static int[] GenerateNumbers()
