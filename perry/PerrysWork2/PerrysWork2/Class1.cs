@@ -26,6 +26,20 @@ namespace PerrysWork2
             this.wordcount = wordcount;
         }
 
+        public string GetTitle()
+        {
+            return title;
+        }
+        public void SetTitle(string title)
+        {
+            this.title = title;
+        }
+        public void AssignWordCountFromText(string text)
+        {
+            wordcount = text.Split(' ').Length;
+        }
+
+
 
     }
 }

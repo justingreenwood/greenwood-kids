@@ -8,8 +8,10 @@ namespace CreatingClassas
 {
     class Program
     {
-        static void Main(string[] args)
+        public static int sharednumber;
+       static Program()
         {
+            sharednumber = 3;
         }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CreatingClassas
 {
-    class book
+    public class book
     {
         private string title;
         private string author;
@@ -24,6 +24,19 @@ namespace CreatingClassas
             this.pages = pages;
             this.wordCount = wordCount;
         }
+        public string GetTitle()
+        {
+            return title;
+        }
+        public void SetTitle(string title)
+        {
+            this.title = title;
+        }
+        public void AssignWordCountFromText(string text)
+        {
+            wordCount = text.Split(' ').Length;
+        }
+        
         public void DoSomething()
         {
             for (int x = 0; x < 10; x++)

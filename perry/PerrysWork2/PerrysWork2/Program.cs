@@ -10,9 +10,13 @@ namespace PerrysWork2
     {
         static void Main(string[] args)
         {
+            ball Ball = new ball();
 
 
-
+            Ball.Throw();
+            Ball.Throws();
+            Ball.Throws();
+            Console.ReadKey();
         }
     }
 }
