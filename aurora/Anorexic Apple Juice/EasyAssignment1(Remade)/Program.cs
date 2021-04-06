@@ -192,6 +192,8 @@ namespace EasyAssignment1_Remade_
             {
                 Console.WriteLine(aRandomNumber);
                 Console.WriteLine(" Hello, my name is Taco Bell");
+
+
             }
         }
 
@@ -211,6 +213,10 @@ namespace EasyAssignment1_Remade_
             {
                 this.title = title;
                 this.author = author;
+
+                Book book = new Book();
+                book.title = "Anne of Green Gables";
+                book.author = "Lucy M. Montgomery";
             }
 
 
