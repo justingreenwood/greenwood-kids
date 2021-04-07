@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace PerrysWork2
 {
-    class ball
+    public class Ball
     {
         private int throws;
         private string color;

@@ -52,7 +52,7 @@ namespace EasyAssignment1_Remade_
             }
             else if (FirstNumber2 <= 0 || SecondNumber2 <= 0)
             {
-                Console.WriteLine(" This is positive!");
+                Console.WriteLine(" This is negative!");
             }
             else if (FirstNumber2 == 0 || SecondNumber2 == 0)
             {
@@ -73,7 +73,7 @@ namespace EasyAssignment1_Remade_
             //Aurora has more work to do.
             string message = "Hello World";
             message = "Purple Monkey Machine Gun in a Dishwasher";
-            Console.WriteLine($"I want a {message}!");
+            Console.WriteLine($"I want a {message}! Do you have a {message}?");
 
 
 
@@ -214,16 +214,16 @@ namespace EasyAssignment1_Remade_
                 this.title = title;
                 this.author = author;
 
-                Book book = new Book();
-                book.title = "Anne of Green Gables";
-                book.author = "Lucy M. Montgomery";
+                //Book book = new Book();
+                //book.title = "Anne of Green Gables";
+                //book.author = "Lucy M. Montgomery";
             }
 
 
             
            enum MonthsOfYear { January=1, February=2, March=3, April=4, May=5, June=6, July=7, August=8, September=9, October=10, November=11, December=12};
             string minimonths = "The month is this month.";
-            //Aurora is heavily confuzzled and does not know what to do.
+            
             
         }
     }
