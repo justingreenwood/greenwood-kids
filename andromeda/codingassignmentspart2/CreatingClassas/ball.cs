@@ -10,17 +10,17 @@ namespace CreatingClassas
     {  
        private int poped;
       private  int thrown;
-        get ball.color()
-        {
+        // public ball.color(color)
 
-        }
-        private ball(int poped)
+        private ball(int poped,int thrown)
         {
             this.poped = poped;
+            this.thrown = thrown;
         }
         private ball(int thrown)
         {
             this.thrown = thrown;
+            poped = 0;
         }
     }
 }
