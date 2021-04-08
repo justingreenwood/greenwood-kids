@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreatingClassas", "Creating
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "properties", "properties\properties.csproj", "{8173309D-D505-46A1-81C7-6B4D630D3D03}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tic-Tac-Toe", "Tic-Tac-Toe\Tic-Tac-Toe.csproj", "{7E83E6C5-B567-4DA5-B147-C0B1B7D84C6F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{8173309D-D505-46A1-81C7-6B4D630D3D03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8173309D-D505-46A1-81C7-6B4D630D3D03}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8173309D-D505-46A1-81C7-6B4D630D3D03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E83E6C5-B567-4DA5-B147-C0B1B7D84C6F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E83E6C5-B567-4DA5-B147-C0B1B7D84C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E83E6C5-B567-4DA5-B147-C0B1B7D84C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E83E6C5-B567-4DA5-B147-C0B1B7D84C6F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
