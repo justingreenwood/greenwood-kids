@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "properties", "properties\pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tic-Tac-Toe", "Tic-Tac-Toe\Tic-Tac-Toe.csproj", "{7E83E6C5-B567-4DA5-B147-C0B1B7D84C6F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "structs", "structs\structs.csproj", "{A7810A3F-65DC-41ED-A19A-F866BE79A7E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7E83E6C5-B567-4DA5-B147-C0B1B7D84C6F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E83E6C5-B567-4DA5-B147-C0B1B7D84C6F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E83E6C5-B567-4DA5-B147-C0B1B7D84C6F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7810A3F-65DC-41ED-A19A-F866BE79A7E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7810A3F-65DC-41ED-A19A-F866BE79A7E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7810A3F-65DC-41ED-A19A-F866BE79A7E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7810A3F-65DC-41ED-A19A-F866BE79A7E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
