@@ -76,6 +76,7 @@ namespace EasyAssignment1_Remade_
             Console.WriteLine($"I want a {message}! Do you have a {message}?");
 
 
+            Console.WriteLine(" No project today! WOOT WOOT!");
 
 
             int menuChoice = 3;
