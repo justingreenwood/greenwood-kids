@@ -77,6 +77,7 @@ namespace EasyAssignment1_Remade_
 
 
             Console.WriteLine(" No project today! WOOT WOOT!");
+            Console.WriteLine(" Another quiz!");
 
 
             int menuChoice = 3;
