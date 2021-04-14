@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerrysWork2", "PerrysWork2\PerrysWork2.csproj", "{0BD3B93A-AC00-4D63-87A4-C65A488651D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "structs", "structs\structs.csproj", "{483A8FBC-FCA0-49EB-9E6B-CF8D5AAAB46D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inhertance", "structs\Inhertance.csproj", "{483A8FBC-FCA0-49EB-9E6B-CF8D5AAAB46D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
