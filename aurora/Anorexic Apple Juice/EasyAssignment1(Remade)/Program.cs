@@ -2,6 +2,12 @@
 
 namespace EasyAssignment1_Remade_
 {
+    public interface IFileWriter
+    {
+        string Extension { get; }
+
+        void Write(string filename);
+    }
     class Program
     {
         static void Main (string[] args)
