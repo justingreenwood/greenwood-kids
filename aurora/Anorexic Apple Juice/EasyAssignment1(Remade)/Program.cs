@@ -111,6 +111,7 @@ namespace EasyAssignment1_Remade_
             //Console.WriteLine("  ***   ");
             //Console.WriteLine(" ***** ");
             //Console.WriteLine("*******");
+            //Another good day!
 
             for (int row = 0; row < 5; row++)
             {
