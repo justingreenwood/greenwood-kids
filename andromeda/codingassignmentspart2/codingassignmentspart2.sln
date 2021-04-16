@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "polymorphismVMac", "polymor
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interface", "interface\interface.csproj", "{FF11C0A5-1179-4E05-9DFA-3C813A81D5FB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingGenerics", "UsingGenerics\UsingGenerics.csproj", "{66931CCA-2585-48ED-9BB4-FD2FA13D6AE6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{FF11C0A5-1179-4E05-9DFA-3C813A81D5FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FF11C0A5-1179-4E05-9DFA-3C813A81D5FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FF11C0A5-1179-4E05-9DFA-3C813A81D5FB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66931CCA-2585-48ED-9BB4-FD2FA13D6AE6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66931CCA-2585-48ED-9BB4-FD2FA13D6AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66931CCA-2585-48ED-9BB4-FD2FA13D6AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66931CCA-2585-48ED-9BB4-FD2FA13D6AE6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
