@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "interface", "interface\inte
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingGenerics", "UsingGenerics\UsingGenerics.csproj", "{66931CCA-2585-48ED-9BB4-FD2FA13D6AE6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GenericTypes", "GenericTypes\GenericTypes.csproj", "{4EBB7545-BD14-4E56-965E-CDB7C3D8A47C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{66931CCA-2585-48ED-9BB4-FD2FA13D6AE6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{66931CCA-2585-48ED-9BB4-FD2FA13D6AE6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{66931CCA-2585-48ED-9BB4-FD2FA13D6AE6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EBB7545-BD14-4E56-965E-CDB7C3D8A47C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EBB7545-BD14-4E56-965E-CDB7C3D8A47C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EBB7545-BD14-4E56-965E-CDB7C3D8A47C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EBB7545-BD14-4E56-965E-CDB7C3D8A47C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
