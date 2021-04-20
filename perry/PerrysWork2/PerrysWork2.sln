@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerrysWork2", "PerrysWork2\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Inhertance", "structs\Inhertance.csproj", "{483A8FBC-FCA0-49EB-9E6B-CF8D5AAAB46D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generics", "Generics\Generics.csproj", "{452BA694-87B4-4FCA-A35B-64797D4C228A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{483A8FBC-FCA0-49EB-9E6B-CF8D5AAAB46D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{483A8FBC-FCA0-49EB-9E6B-CF8D5AAAB46D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{483A8FBC-FCA0-49EB-9E6B-CF8D5AAAB46D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{452BA694-87B4-4FCA-A35B-64797D4C228A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{452BA694-87B4-4FCA-A35B-64797D4C228A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{452BA694-87B4-4FCA-A35B-64797D4C228A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{452BA694-87B4-4FCA-A35B-64797D4C228A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
