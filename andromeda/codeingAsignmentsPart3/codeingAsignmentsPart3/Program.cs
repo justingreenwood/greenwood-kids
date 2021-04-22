@@ -19,4 +19,11 @@ namespace codeingAsignmentsPart3
             Console.WriteLine(Add(3, 7));
         }
     }
+    //april 22
+    public class HighScore
+    {
+        public string Name { get; set; }
+        public int Score { get; set; }
+
+    }
 }
