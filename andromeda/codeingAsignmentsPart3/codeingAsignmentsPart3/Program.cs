@@ -14,7 +14,7 @@ namespace codeingAsignmentsPart3
             {
                 return a + b;
             }
-            Console.WriteLine(Add(1, 1)); 
+            Console.WriteLine(Add(1, 1));
             Console.WriteLine(Add(2, 2));
             Console.WriteLine(Add(3, 7));
         }
@@ -26,4 +26,10 @@ namespace codeingAsignmentsPart3
         public int Score { get; set; }
 
     }
+    public class AteTooManyHamburgersException : Exception
+    {
+        public int HamburgersEaten { get; set; }
+    }
+    // april 28
+    public delegate int MathDelegate(int a, int b);
 }
