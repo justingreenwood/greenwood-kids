@@ -32,4 +32,21 @@ namespace codeingAsignmentsPart3
     }
     // april 28
     public delegate int MathDelegate(int a, int b);
+    //april 29
+    public class Point
+    {
+        private double x;
+        private double y;
+        public double X
+        {
+            get { return x; }
+            set { x = value; }
+        }
+        public double Y
+        {
+            get { return y; }
+            set { y = value; }
+        }
+        public event EventHandler PointChanged;
+    }
 }
