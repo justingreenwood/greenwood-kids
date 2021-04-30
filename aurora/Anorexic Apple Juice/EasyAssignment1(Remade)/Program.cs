@@ -27,6 +27,8 @@ namespace EasyAssignment1_Remade_
             //printing Perry's age
             Console.WriteLine("Perry is currently " + PerryCurrentAge + " years old.");
 
+            
+
             int addition = 3 + 4;
             int result = 7;
 
@@ -228,7 +230,7 @@ namespace EasyAssignment1_Remade_
                 //book.author = "Lucy M. Montgomery";
             }
 
-
+            
             
            enum MonthsOfYear { January=1, February=2, March=3, April=4, May=5, June=6, July=7, August=8, September=9, October=10, November=11, December=12};
             string minimonths = "The month is this month.";
