@@ -33,8 +33,39 @@ namespace DictionaryPerry
             Console.WriteLine(namer["zero"]);
             Console.ReadKey();
 
+
+            
+
+
+
+
+
         }
     }
+
+
+
+
+    public class Dictionary
+    {
+        private string[] dict = new string[] { "Apple", "Broccoli" };
+
+        public string this[string shouldbeword, int index]
+        {
+            get
+            {
+                return dict[shouldbeword];
+            }
+            set
+            {
+                
+            }
+        }
+
+    }
+
+
+
 
     public class NameHolderThingy
     {
