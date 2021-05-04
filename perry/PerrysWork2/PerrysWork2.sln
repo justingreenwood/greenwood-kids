@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generics", "Generics\Generi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OverLoadOperator", "OverLoadOperator\OverLoadOperator.csproj", "{21CB38BE-67C6-45F0-9931-6E282D1F3660}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryPerry", "DictionaryPerry\DictionaryPerry.csproj", "{B0B03207-5F55-4201-AF16-8B5D1C75E17C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{21CB38BE-67C6-45F0-9931-6E282D1F3660}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{21CB38BE-67C6-45F0-9931-6E282D1F3660}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{21CB38BE-67C6-45F0-9931-6E282D1F3660}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0B03207-5F55-4201-AF16-8B5D1C75E17C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0B03207-5F55-4201-AF16-8B5D1C75E17C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0B03207-5F55-4201-AF16-8B5D1C75E17C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0B03207-5F55-4201-AF16-8B5D1C75E17C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
