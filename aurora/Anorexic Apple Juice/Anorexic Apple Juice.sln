@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Text Adventure", "Text Adve
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAssignment1(Remade)", "EasyAssignment1(Remade)\EasyAssignment1(Remade).csproj", "{E7F1FA4D-4787-404B-BBAC-2715C325BDBD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ticity Tacity Toe", "Ticity Tacity Toe\Ticity Tacity Toe.csproj", "{AA71B28B-F6D3-430A-B398-6CB35AED9EFA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ticity Tacity Toe", "Ticity Tacity Toe\Ticity Tacity Toe.csproj", "{AA71B28B-F6D3-430A-B398-6CB35AED9EFA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dictionary with Perry", "Dictionary with Perry\Dictionary with Perry.csproj", "{66DCE54A-9A36-4016-8179-9752E5A99FC7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{AA71B28B-F6D3-430A-B398-6CB35AED9EFA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA71B28B-F6D3-430A-B398-6CB35AED9EFA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA71B28B-F6D3-430A-B398-6CB35AED9EFA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{66DCE54A-9A36-4016-8179-9752E5A99FC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{66DCE54A-9A36-4016-8179-9752E5A99FC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{66DCE54A-9A36-4016-8179-9752E5A99FC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{66DCE54A-9A36-4016-8179-9752E5A99FC7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

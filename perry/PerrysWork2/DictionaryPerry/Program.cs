@@ -10,6 +10,11 @@ namespace DictionaryPerry
     {
         static void Main(string[] args)
         {
+            var dict = new Dictionary();
+
+
+            Console.ReadKey();
+
 
             var holder = new NameHolderThingy();
             Console.WriteLine(holder.GetNameAtIndex(0));
@@ -48,22 +53,48 @@ namespace DictionaryPerry
 
     public class Dictionary
     {
-        private string[] dict = new string[] { "Apple", "Broccoli" };
+        private List<DictionaryEntry> entries = new List<DictionaryEntry>();
 
-        public string this[string shouldbeword, int index]
+
+        private DictionaryEntry FindEntry(string word)
+        {
+            foreach (var entry in entries)
+            {
+                if (entry.Word == word) return entry;
+            }
+            return null;
+        }
+
+        public string this[string word]
         {
             get
             {
-                return dict[shouldbeword];
+                var entry = FindEntry(word);
+                if (entry == null) return null;
+                else return entry.Definition;
             }
             set
             {
-                
+                var entry = FindEntry(word);
+                if (entry == null)
+                    entries.Add(new DictionaryEntry(word, value));
+                else
+                    entry.Definition = value;              
             }
         }
 
     }
 
+    public class DictionaryEntry
+    {
+        public DictionaryEntry(string word, string def)
+        {
+            this.Word = word;
+            this.Definition = def;
+        }
+        public string Word { get; set; }
+        public string Definition { get; set; }
+    }
 
 
 
