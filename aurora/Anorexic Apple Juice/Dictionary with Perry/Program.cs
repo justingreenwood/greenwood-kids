@@ -12,8 +12,9 @@ namespace Dictionary_with_Perry
 
             senorperryesmimaestro["apple"] = "A red fruit that when squished makes me think of crushing Perry's overly intelligent pea brain.";
             Console.WriteLine("Let us just say it works and be done with this.");
-
-
+            Console.WriteLine("There are 77 lines of code.");
+            Console.WriteLine("There are so many words!");
+            Console.WriteLine("So many sentences and paragraphs!");
 
 
 
