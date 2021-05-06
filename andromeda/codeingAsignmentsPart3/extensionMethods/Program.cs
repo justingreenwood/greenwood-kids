@@ -22,4 +22,12 @@ namespace extensionMethods
             return result;
         }
     }
+    public class sillyme
+    {
+        string message = "I'm sorry, Dave. I'm afraid I can't do that.";
+        static void Main(string[] args)
+        {
+         Console.WriteLine(message.ToRandomCase());
+        }
+    }
 }
