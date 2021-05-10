@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "extensionMethods", "extensi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QueryExpressions", "QueryExpressions\QueryExpressions.csproj", "{F121632B-C4C8-4449-A931-65BC1E68083E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "threads", "threads\threads.csproj", "{AF2747DD-0F2B-49C2-8BAF-7A2A44FD3DC0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{F121632B-C4C8-4449-A931-65BC1E68083E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F121632B-C4C8-4449-A931-65BC1E68083E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F121632B-C4C8-4449-A931-65BC1E68083E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF2747DD-0F2B-49C2-8BAF-7A2A44FD3DC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF2747DD-0F2B-49C2-8BAF-7A2A44FD3DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF2747DD-0F2B-49C2-8BAF-7A2A44FD3DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF2747DD-0F2B-49C2-8BAF-7A2A44FD3DC0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
