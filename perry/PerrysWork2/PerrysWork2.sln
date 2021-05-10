@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DictionaryPerry", "Dictiona
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "extensionmethods", "extensionmethods\extensionmethods.csproj", "{9FDAA34E-A50A-4681-B607-869F85EEF2CA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerrysQueries", "PerrysQueries\PerrysQueries.csproj", "{EC64F2D0-087E-4F3F-BBFF-F373D03F6D39}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -45,6 +47,10 @@ Global
 		{9FDAA34E-A50A-4681-B607-869F85EEF2CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FDAA34E-A50A-4681-B607-869F85EEF2CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FDAA34E-A50A-4681-B607-869F85EEF2CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC64F2D0-087E-4F3F-BBFF-F373D03F6D39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC64F2D0-087E-4F3F-BBFF-F373D03F6D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC64F2D0-087E-4F3F-BBFF-F373D03F6D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC64F2D0-087E-4F3F-BBFF-F373D03F6D39}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

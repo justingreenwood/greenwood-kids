@@ -87,7 +87,7 @@ namespace EasyAssignment1_Remade_
             Console.WriteLine(" No project today! WOOT WOOT!");
             Console.WriteLine(" Another quiz!");
 
-            //Aurora can not do this project. Or any of them in the chapter. She is dumb. She is useless.
+            //Aurora is either incredibly dumb or a mad genius.
 
             int menuChoice = 3;
 
