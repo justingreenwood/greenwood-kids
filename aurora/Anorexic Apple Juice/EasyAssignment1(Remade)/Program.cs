@@ -87,7 +87,7 @@ namespace EasyAssignment1_Remade_
             Console.WriteLine(" No project today! WOOT WOOT!");
             Console.WriteLine(" Another quiz!");
 
-            //Aurora is either incredibly dumb or a mad genius.
+            //Aurora is either incredibly dumb or sh's not.
 
             int menuChoice = 3;
 

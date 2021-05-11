@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "extensionmethods", "extensi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerrysQueries", "PerrysQueries\PerrysQueries.csproj", "{EC64F2D0-087E-4F3F-BBFF-F373D03F6D39}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PerrysFrogCompetition", "PerrysFrogCompetition\PerrysFrogCompetition.csproj", "{F05E9F0B-6CC3-4BF3-B9E5-D9B28F066DC2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{EC64F2D0-087E-4F3F-BBFF-F373D03F6D39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC64F2D0-087E-4F3F-BBFF-F373D03F6D39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC64F2D0-087E-4F3F-BBFF-F373D03F6D39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F05E9F0B-6CC3-4BF3-B9E5-D9B28F066DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F05E9F0B-6CC3-4BF3-B9E5-D9B28F066DC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F05E9F0B-6CC3-4BF3-B9E5-D9B28F066DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F05E9F0B-6CC3-4BF3-B9E5-D9B28F066DC2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
