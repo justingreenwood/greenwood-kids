@@ -11,7 +11,6 @@ namespace QueryExpressions
         public int ID { get; set; }
         public double X { get; set; }
         public double Y { get; set; }
-
         static void Main(string[] args)
         {
         }
