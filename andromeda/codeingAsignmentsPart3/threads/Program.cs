@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Dynamic;
 
 namespace threads
 {
@@ -12,7 +13,7 @@ namespace threads
         static void Main(string[] args)
         {
             Thread thread1 = new Thread(Counttonumber);
-            thread1.Start(50); 
+            thread1.Start(50);
             Thread thread2 = new Thread(Counttonumber);
             thread2.Start(25);
             Thread thread3 = new Thread(Counttonumber);
@@ -24,5 +25,6 @@ namespace threads
                 Console.WriteLine(index + 1);
             Console.ReadKey();
         }
+        dynamic expando =new ExpandoObject();       
     }
 }
