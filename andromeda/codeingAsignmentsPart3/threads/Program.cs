@@ -25,6 +25,7 @@ namespace threads
                 Console.WriteLine(index + 1);
             Console.ReadKey();
         }
-        dynamic expando =new ExpandoObject();       
+        dynamic expando =new ExpandoObject();
+        public const double PI = 3.1415926;
     }
 }
