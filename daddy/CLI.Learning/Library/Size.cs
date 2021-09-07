@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CLI.Learning
 {
-    public struct Size
+    public class Size
     {
         public Size(int w, int h) { H = h; W = w; }
         public int H;

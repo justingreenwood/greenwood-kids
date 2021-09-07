@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace CLI.Learning
 {
 
-    public struct Point
+    public class Point
     {
         public Point(int x, int y) { X = x; Y = y; }
         public int X;
