@@ -21,10 +21,10 @@ namespace CLI.Learning
             Y = y;
             switch (_rand.Next(4))
             {
-                case 0: Color = ConsoleColor.Green; Character = 'X'; break;
-                case 1: Color = ConsoleColor.Red; Character = 'O'; break;
-                case 2: Color = ConsoleColor.Yellow; Character = '$'; break;
-                case 3: Color = ConsoleColor.Cyan; Character = '@'; break;
+                case 0: Color = ConsoleColor.Green; BackgroundColor = ConsoleColor.DarkGreen; Character = 'X'; break;
+                case 1: Color = ConsoleColor.Red; BackgroundColor = ConsoleColor.DarkRed; Character = 'O'; break;
+                case 2: Color = ConsoleColor.Yellow; BackgroundColor = ConsoleColor.DarkYellow; Character = '$'; break;
+                case 3: Color = ConsoleColor.Cyan; BackgroundColor = ConsoleColor.DarkBlue; Character = '@'; break;
             }
         }
 
@@ -41,10 +41,19 @@ namespace CLI.Learning
         public CellType Type => CellType.Gem;
 
         public ConsoleColor Color { get; set; }
+        public ConsoleColor BackgroundColor { get; set; }
 
         public char Character { get; set; }
         public int X { get; set; }
         public int Y { get; set; }
         public int BirthColumn { get; set; }
+        public int? PreviousX { get; set; }
+        public int? PreviousY { get; set; }
+        public bool IsDirty => X != PreviousX || Y != PreviousY;
+        public void MarkClean()
+        {
+            PreviousX = X;
+            PreviousY = Y;
+        }
     }
 }
