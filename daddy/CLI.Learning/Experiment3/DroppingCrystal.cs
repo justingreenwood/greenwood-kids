@@ -10,7 +10,9 @@ namespace CLI.Learning
 {
     public static class DroppingCrystal
     {
-        public static int _zoom = 3;
+        public static int _zoomX = 1;
+        public static int _zoomY = 1;
+        public static int _zoomSpacing = 0;
         public static Random _rand = new Random();
         public static char[,] _level;
         public static Gem[,] _levelCells;
@@ -19,7 +21,7 @@ namespace CLI.Learning
 
         public static void Run()
         {
-            int fps = 1;
+            int fps = 3;
             int frms = 1000 / fps;
             //Console.SetCursorPosition(0, 0);
 
@@ -364,11 +366,11 @@ namespace CLI.Learning
         }
         public static void DrawZoomedTile(int x, int y, ConsoleColor color, ConsoleColor bgColor, char c)
         {
-            for (var x2add = 0; x2add < _zoom; x2add++)
+            for (var x2add = 0; x2add < _zoomX - _zoomSpacing; x2add++)
             {
-                for (var y2add = 0; y2add < _zoom; y2add++)
+                for (var y2add = 0; y2add < _zoomY - _zoomSpacing; y2add++)
                 {
-                    Console.SetCursorPosition((x * _zoom) + x2add, (y * _zoom) + y2add);
+                    Console.SetCursorPosition((x * (_zoomX)) + x2add, (y * (_zoomY)) + y2add);
                     Console.BackgroundColor = bgColor;
                     Console.ForegroundColor = color;
                     Console.Write(c);
