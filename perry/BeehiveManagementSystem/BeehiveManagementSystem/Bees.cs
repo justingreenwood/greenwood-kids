@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
 
 namespace BeehiveManagementSystem
 {
-    public abstract class Bees
+    public abstract class Bees : IWorker
     {        
         public Bees(string job)
         {
@@ -25,7 +26,7 @@ namespace BeehiveManagementSystem
 
     }
 
-    public class Queen : Bees
+    public class Queen : Bees,INotifyPropertyChanged
     {
         private float eggs=0;
         private float unassignedWorkers=3f;
@@ -34,7 +35,14 @@ namespace BeehiveManagementSystem
         public const float EGGS_PER_SHIFT=0.45f;
         public const float HONEY_PER_UNASSIGNED_WORKER = 0.5f;
 
-        private Bees[] workers = new Bees[0];
+        private IWorker[] workers = new IWorker[0];
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
 
         public Queen() : base("Queen")
         {
@@ -70,7 +78,7 @@ namespace BeehiveManagementSystem
             UpdateStatusReport();
         }
 
-        private void AddWorker(Bees worker)
+        private void AddWorker(IWorker worker)
         {
 
             if (unassignedWorkers >= 1)
@@ -108,7 +116,7 @@ namespace BeehiveManagementSystem
         private string WorkerStatus(string job)
         {
             int count = 0;
-            foreach(Bees worker in workers)
+            foreach(IWorker worker in workers)
             {
                 if (worker.Job == job) count++;
             }
@@ -126,6 +134,7 @@ namespace BeehiveManagementSystem
                 $"\nEgg count: {eggs:0.0}\nUnassigned workers: {unassignedWorkers:0.0}\n" +
                 $"{WorkerStatus("Nectar Collector")}\n{WorkerStatus("Honey Manufacturer")}" +
                 $"\n{WorkerStatus("Egg Care")}\nTotal Workers: {workers.Length}";
+            OnPropertyChanged("StatusReport");
         }
 
     }
