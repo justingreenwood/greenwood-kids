@@ -24,6 +24,8 @@ namespace MatchGame
         DispatcherTimer timer = new DispatcherTimer();
         int tenthsOfSecondsElapsed;
         int matchesFound;
+        IfsForAnimals ifsForAnimals = new IfsForAnimals();
+
 
         public MainWindow()
         {
@@ -69,13 +71,45 @@ namespace MatchGame
                     textBlock.Text = nextPicture;
                     Picture.RemoveAt(index);
                     textBlock.Visibility = Visibility.Visible;
+                    if(textBlock.Text == "🐭")
+                    {
+                        textBlock.Name = "Mouse";
+                    }
+                    else if (textBlock.Text == "🐵")
+                    {
+                        textBlock.Name = "Monkey";
+                    }
+                    else if (textBlock.Text == "😺")
+                    {
+                        textBlock.Name = "Cat";
+                    }
+                    else if (textBlock.Text == "🐗")
+                    {
+                        textBlock.Name = "Pig";
+                    }
+                    else if (textBlock.Text == "🐰")
+                    {
+                        textBlock.Name = "Rabbit";
+                    }
+                    else if (textBlock.Text == "🦝")
+                    {
+                        textBlock.Name = "Racoon";
+                    }
+                    else if (textBlock.Text == "🐔")
+                    {
+                        textBlock.Name = "Chicken";
+                    }
+                    else
+                    {
+                        textBlock.Name = "Panda";
+                    }
+                    textBlock.Text = "     ";
                 }
             }
 
             timer.Start();
             tenthsOfSecondsElapsed = 0;
-            matchesFound = 0;
-            
+            matchesFound = 0;  
         }
 
         TextBlock lastTextBlockClicked;
@@ -83,25 +117,35 @@ namespace MatchGame
         //Pressing and Matching
         private void TextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
-
+            
             TextBlock textBlock = sender as TextBlock;
             if (findingMatch == false)
             {
-
-                textBlock.Visibility = Visibility.Hidden;
+                //textBlock.Visibility = Visibility.Hidden;
+                foreach(TextBlock block in mainGrid.Children.OfType<TextBlock>())
+                {
+                    if(block.Text != "     " || textBlock.Name != "timeTextBlock")
+                    {
+                        block.Text = "     ";
+                    }
+                }
+                
+                textBlock.Text = ifsForAnimals.NameToAnimal(textBlock.Name);
                 lastTextBlockClicked = textBlock;
                 findingMatch = true;
 
             }
-            else if (textBlock.Text == lastTextBlockClicked.Text)
+            else if (textBlock.Name == lastTextBlockClicked.Name && textBlock !=lastTextBlockClicked)
             {
                 matchesFound++;
                 textBlock.Visibility = Visibility.Hidden;
+                lastTextBlockClicked.Visibility = Visibility.Hidden;
                 findingMatch = false;
             }
             else
             {
-                lastTextBlockClicked.Visibility = Visibility.Visible;
+                //lastTextBlockClicked.Visibility = Visibility.Visible;
+                textBlock.Text = ifsForAnimals.NameToAnimal(textBlock.Name);
                 findingMatch = false;
             }
         }
@@ -113,5 +157,9 @@ namespace MatchGame
                 SetUpGame();
             }
         }
+
+
+        
     }
+
 }
