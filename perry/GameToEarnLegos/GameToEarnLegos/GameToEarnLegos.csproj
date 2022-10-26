@@ -76,7 +76,15 @@
 
   <ItemGroup>
     <Folder Include="Resources\Audio\" />
-    <Folder Include="Resources\Maps\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\Maps\Level1Bottom.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Maps\Level1Top.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

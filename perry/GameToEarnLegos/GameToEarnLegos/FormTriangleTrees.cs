@@ -2,17 +2,19 @@ namespace GameToEarnLegos
 {
     public partial class FormTriangleTrees : Form
     {
-        private TestGameController _testing;
+        private GameController gameController;
+        //private TestGameController _testing;
         private IGameController _currentGame;
 
         public FormTriangleTrees()
         {
-            InitializeComponent();
+            InitializeComponent();           
 
-            _testing = new TestGameController(this);
-
-            _currentGame = _testing;
-
+            //_testing = new TestGameController(this);
+            gameController = new GameController(this);
+           // _currentGame = _testing;
+            _currentGame = gameController;
+            Start();
             this.SetStyle(ControlStyles.DoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.UserPaint, true);
