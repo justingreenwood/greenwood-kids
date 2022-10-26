@@ -16,6 +16,12 @@ namespace GameToEarnLegos
         public float Width = Resources.Image_Player.Width;
         public float Height = Resources.Image_Player.Height;
         public bool IsAlive = true;
+        
+        /// <summary>
+        /// This is the rectangle where we paint the player
+        /// </summary>
+        /// <param name="scale">the scale factor to multiply everything by.
+        /// <returns>a rectangle.</returns>
         public RectangleF Rect(float scale)
         {
             return new RectangleF(X * scale, Y * scale, Width * scale, Height * scale);

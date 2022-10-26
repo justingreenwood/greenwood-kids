@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace GameToEarnLegos
 {
     /// <summary>
-    /// poops and stuff
+    /// This is the bad guy class, when I control bad guy stuff.
     /// </summary>
     public class Badguy : IDrawable
     {
