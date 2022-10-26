@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace GameToEarnLegos
 {
+    /// <summary>
+    /// This is the bad guy class, when I control bad guy stuff.
+    /// </summary>
     public class Badguy : IDrawable
     {
         Random random = new Random();
