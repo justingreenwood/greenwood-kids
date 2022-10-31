@@ -14,6 +14,7 @@ namespace GameToEarnLegos
         void DrawTheGame(Graphics g);
         void KeyDown(object sender, KeyEventArgs e);
         void KeyUp(object sender, KeyEventArgs e);
+        void MouseDown(object sender, MouseEventArgs e);
 
         float ScaleFactor { get; }
     }

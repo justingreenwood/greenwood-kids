@@ -15,7 +15,7 @@ namespace GameToEarnLegos
         public float X;
         public float Y;
         public SolidBrush brush = new SolidBrush(Color.Black);
-        public float BaseSpeed = 1.3f;
+        public float BaseSpeed = 1.5f;
         public float SpeedUpOrDown = 0;
         public float SpeedLeftOrRight = 0;
         public Bitmap image = Resources.Image_Badguy;

@@ -3,6 +3,7 @@ namespace GameToEarnLegos
     public partial class FormTriangleTrees : Form
     {
         private GameController gameController;
+        private MenuController menuController;
         //private TestGameController _testing;
         private IGameController _currentGame;
 
@@ -12,8 +13,13 @@ namespace GameToEarnLegos
 
             //_testing = new TestGameController(this);
             gameController = new GameController(this);
+            menuController = new MenuController(this);
            // _currentGame = _testing;
             _currentGame = gameController;
+            
+
+
+
             Start();
             this.SetStyle(ControlStyles.DoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -42,6 +48,10 @@ namespace GameToEarnLegos
 
         private void timerGameLoop_Tick(object sender, EventArgs e)
         {
+            if (menuController.willPlay == true)
+            {
+                _currentGame = gameController;
+            }
             _currentGame.Tick();
         }
 
@@ -54,7 +64,10 @@ namespace GameToEarnLegos
         {
             _currentGame.KeyUp(sender, e);
         }
+        private void FormTriangleTrees_MouseDown(object sender, MouseEventArgs e)
+        {
 
+        }
         protected override void OnPaint(PaintEventArgs pe)
         {
             var g = pe.Graphics;
@@ -87,5 +100,7 @@ namespace GameToEarnLegos
                 }
             }
         }
+
+        
     }
 }

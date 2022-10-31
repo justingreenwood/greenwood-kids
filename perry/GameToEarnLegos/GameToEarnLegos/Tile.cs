@@ -63,6 +63,13 @@ namespace GameToEarnLegos
     {
         public Wall(int col, int row) : base(col, row, Resources.Image_Wall) { }
     }
+    public class Water : Tile
+    {
+        public Water(int col, int row, Color color) : base(col, row)
+        {
+            brush = new SolidBrush(color);
+        }
+    }
     public class Block : Tile
     {
         public Block(int col, int row, Color color) : base(col, row) 

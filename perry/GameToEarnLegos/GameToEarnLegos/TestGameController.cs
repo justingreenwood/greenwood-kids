@@ -11,7 +11,9 @@ namespace GameToEarnLegos
         private FormTriangleTrees _form;
         private SolidBrush _goldBrush = new SolidBrush(Color.Thistle);
         private float _scaleFactor = 4.2f;
-
+        public void MouseDown(object sender, MouseEventArgs e)
+        {
+        }
         public TestGameController(FormTriangleTrees form)
         {
             _form = form;

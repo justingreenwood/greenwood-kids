@@ -12,10 +12,11 @@ namespace GameToEarnLegos
     public class GameController : IGameController
     {
         private const float TileSize = 20f;
-        private float scaleFactor = 0.5f;
+        private float scaleFactor = 0.8f;
         private FormTriangleTrees _form;
         public float ScaleFactor => scaleFactor;
-        Player player;        
+        Player player;
+        List<Water> waters = new List<Water>();
         List<Block> blocks = new List<Block>();
         List<Badguy> badguys = new List<Badguy>();
         List<Tile> tiles = new List<Tile>();
@@ -29,81 +30,37 @@ namespace GameToEarnLegos
 
         public void DrawTheGame(Graphics g)
         {
-            //Bitmap bitmap = Resources.Image_Wall;
-            //for (int row = 0; row < levelBottom.Length; row++)
-            //{
-            //    var lowerLevelRow = levelBottom[row];
-            //    for (int column = 0; column < lowerLevelRow.Length; column++)
-            //    {
-            //        var brush = new SolidBrush(Color.Green);
-            //        var letter = lowerLevelRow[column];
-            //        if (letter == 'W')
-            //        {
-            //            brush.Color = Color.Blue;
-            //        }
-            //        if (letter == 'E')
-            //        {
-            //            brush.Color = Color.Brown;
-            //        }
-            //        else if (letter == 'g')
-            //        {
-            //            brush.Color = Color.Gold;
-            //        }
-            //        else if (letter == 'L')
-            //        {
-            //            brush.Color = Color.OrangeRed;
-            //        }
-            //        DrawScaledTiles(g, brush, bitmap, column, row);
-            //    }
-            //}
-            
-            //for (int row = 0; row < levelTop.Length; row++)
-            //{
-            //    var higherLevelRow = levelTop[row];
-            //    for (int column = 0; column < higherLevelRow.Length; column++)
-            //    {
-            //        var brush = new SolidBrush(Color.White);
-            //        var letter = higherLevelRow[column];
-            //        if (letter == 'E')
-            //        {
-            //            brush.Color = Color.Brown;
-            //        }
-            //        else if (letter == 'g')
-            //        {
-            //            brush.Color = Color.Gold;
-            //        }
-            //        else if (letter == 'L')
-            //        {
-            //            brush.Color = Color.OrangeRed;
-            //        }                   
-            //        DrawScaledTiles(g, brush, bitmap, column, row);
-                    
-            //    }
-            //}
             foreach (Block block in blocks)
             {
-                //DrawScaledTiles(g, tile.brush, tile.image, 0, 0, tile.X, tile.Y, 20, 20);
                 DrawScaledTiles(g, block);
+            }
+            foreach (Water water in waters)
+            {
+                DrawScaledTiles(g, water);
             }
             foreach (Tile tile in tiles)
             {
-                //DrawScaledTiles(g, tile.brush, tile.image, 0, 0, tile.X, tile.Y, 20, 20);
                 DrawScaledTiles(g, tile);
             }
             foreach (Badguy badguy in badguys)
             {
-                //DrawScaledTiles(g, badguy.brush, badguy.image, 0, 0, badguy.X, badguy.Y, badguy.Height, badguy.Width);
                 DrawScaledTiles(g, badguy);
             }
             if (player.IsAlive)
                 DrawScaledTiles(g, player);
-
+            g.DrawString($"IsRunning:{player.IsRunning} IsInWater{player.IsInWater} ", SystemFonts.DefaultFont, Brushes.Red, 5, 5);
         }
 
         public void KeyDown(object sender, KeyEventArgs e)
         {
             if (player.IsAlive)
             {
+                if(e.KeyCode == Keys.ShiftKey)
+                {
+                   // player.Speed = player.RunSpeed;
+                    player.IsRunning = true;
+                }
+
                 float currentX = player.X, currentY = player.Y;
                 if (e.KeyCode == Keys.Z && scaleFactor < 1f)
                 {
@@ -157,7 +114,19 @@ namespace GameToEarnLegos
 
         public void KeyUp(object sender, KeyEventArgs e)
         {
-           
+            if (e.KeyCode == Keys.ShiftKey)
+            {
+               // player.Speed = player.NormalSpeed;
+                player.IsRunning = false;
+            }
+
+
+
+
+
+        }
+        public void MouseDown(object sender, MouseEventArgs e)
+        {
         }
 
         public void Start(string startInfo = null)
@@ -171,7 +140,7 @@ namespace GameToEarnLegos
 
                     if (letter == 'W')
                     {
-                        blocks.Add(new Block(column, row, Color.Blue));
+                        waters.Add(new Water(column, row, Color.Blue));
                     }
                     else if(letter == 'E')
                     {
@@ -239,7 +208,18 @@ namespace GameToEarnLegos
                     //player.IsAlive = false;
                 }
             }
-
+            foreach (Water water in waters)
+            {
+                if (player.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)))
+                {
+                    player.IsInWater = true;
+                    break;
+                }
+                else
+                {
+                    player.IsInWater = false;
+                }
+            }
 
             _form.Invalidate();
         }
@@ -286,5 +266,6 @@ namespace GameToEarnLegos
             }
         }
 
+        
     }
 }
