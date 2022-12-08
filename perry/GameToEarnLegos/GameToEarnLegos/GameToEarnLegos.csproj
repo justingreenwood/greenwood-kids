@@ -79,6 +79,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\Maps\Level2.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Maps\Level1Bottom.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

@@ -6,7 +6,12 @@ namespace GameToEarnLegos
         private MenuController menuController;
         //private TestGameController _testing;
         private IGameController _currentGame;
-
+        public ILevel currentLevel;
+        public Level1 level1 = new Level1();
+        public Level2 level2 = new Level2();
+        public Level3 level3 = new Level3();
+        public List<ILevel> levels = new List<ILevel>();
+        public bool CHEATS => menuController.cheatsOn;
         public FormTriangleTrees()
         {
             InitializeComponent();           
@@ -14,9 +19,11 @@ namespace GameToEarnLegos
             //_testing = new TestGameController(this);
             gameController = new GameController(this);
             menuController = new MenuController(this);
-           // _currentGame = _testing;
-            _currentGame = gameController;
-            
+           //_currentGame = _testing;
+            _currentGame = menuController;
+            levels.Add(level1);
+            levels.Add(level2);
+            levels.Add(level3);
 
 
 
@@ -51,6 +58,26 @@ namespace GameToEarnLegos
             if (menuController.willPlay == true)
             {
                 _currentGame = gameController;
+                if (menuController.levelChoice == 0)
+                {
+                    currentLevel = level1;
+                }
+                else if (menuController.levelChoice == 1)
+                {
+                    currentLevel = level2;
+                }
+                else if (menuController.levelChoice == 2)
+                {
+                    currentLevel = level3;
+                }
+                menuController.willPlay = false;
+                Start();
+            }
+            if (gameController.goToMenu == true)
+            {
+                _currentGame = menuController;
+                Start();
+                gameController.goToMenu = false;
             }
             _currentGame.Tick();
         }

@@ -5,7 +5,7 @@ O                               WW    T  O
 O   WWWWWWWW                     WW  T   O
 O T W      W  TTT       TT    T   W      O
 OTT W      W  T     T   TT        W    T O
-OTT W      W        TT           WW T    O
+OTT W  v   W        TT           WW T    O
 O T W      W    V V  T           W    P  O
 O   W      W T            V   T WW   T   O
 O   W      W      T T           W    T   O

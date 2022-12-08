@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Common;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,33 +15,38 @@ namespace GameToEarnLegos
         private const float TileSize = 20f;
         private float scaleFactor = 0.8f;
         private FormTriangleTrees _form;
+        private bool gameOver = false;
+        public bool goToMenu = false;
+        public bool CHEATS => _form.CHEATS;
         public float ScaleFactor => scaleFactor;
+        private ILevel _currentLevel => _form.currentLevel;
+        int AliveBadguys;
         Player player;
         List<Water> waters = new List<Water>();
+        List<DeepWater> deepWaters = new List<DeepWater>();
         List<Block> blocks = new List<Block>();
         List<Badguy> badguys = new List<Badguy>();
         List<Tile> tiles = new List<Tile>();
-        string[] levelBottom = File.ReadAllLines(@"Resources/Maps/Level1Bottom.txt");
-        string[] levelTop = File.ReadAllLines(@"Resources/Maps/Level1Top.txt");
-
+        List<Gold> golds = new List<Gold>();
+        List<Ammunition> ammunitions = new List<Ammunition>();
+        string[] levelTop => _currentLevel.levelTop;
+        private int ShootingCoolDown = 5;
         public GameController(FormTriangleTrees form)
         {
             _form = form;
         }
 
+        public PointF CenterPoint => new PointF(player.X + (player.Width) / 2, player.Y + (player.Height / 2));
+
         public void DrawTheGame(Graphics g)
         {
-            foreach (Block block in blocks)
-            {
-                DrawScaledTiles(g, block);
-            }
-            foreach (Water water in waters)
-            {
-                DrawScaledTiles(g, water);
-            }
             foreach (Tile tile in tiles)
             {
                 DrawScaledTiles(g, tile);
+            }
+            foreach (Gold gold in golds.Where(t => t.IsPickedUp == false))
+            {
+                DrawScaledTiles(g, gold);
             }
             foreach (Badguy badguy in badguys)
             {
@@ -48,20 +54,32 @@ namespace GameToEarnLegos
             }
             if (player.IsAlive)
                 DrawScaledTiles(g, player);
-            g.DrawString($"IsRunning:{player.IsRunning} IsInWater{player.IsInWater} ", SystemFonts.DefaultFont, Brushes.Red, 5, 5);
+            foreach (Ammunition ammunition in ammunitions)
+            {
+                DrawScaledTiles(g, ammunition);
+            }
+            if (CHEATS)
+            {
+                g.DrawString($"IsRunning:{player.IsRunning} IsInWater:{player.IsInWater} IsShooting:{player.IsShooting} " +
+                    $"Ammo:{player.ammunition} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
+                    SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
+            }
+            else
+            {
+                g.DrawString($"Ammo:{player.ammunition} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
+                    SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
+            }
         }
 
         public void KeyDown(object sender, KeyEventArgs e)
         {
-            if (player.IsAlive)
+            if (player.IsAlive && gameOver == false)
             {
-                if(e.KeyCode == Keys.ShiftKey)
+                if (e.KeyCode == Keys.ShiftKey)
                 {
-                   // player.Speed = player.RunSpeed;
+                    // player.Speed = player.RunSpeed;
                     player.IsRunning = true;
                 }
-
-                float currentX = player.X, currentY = player.Y;
                 if (e.KeyCode == Keys.Z && scaleFactor < 1f)
                 {
                     scaleFactor += 0.1f;
@@ -72,26 +90,85 @@ namespace GameToEarnLegos
                 }
                 if (e.KeyCode == Keys.S)
                 {
-                    player.Y += player.Speed;
-                    if (IsBlocked) player.Y = currentY;
+                    player.GoingDown = true;
                 }
                 if (e.KeyCode == Keys.W)
                 {
-                    player.Y += -player.Speed;
-                    if (IsBlocked) player.Y = currentY;
+                    player.GoingUp = true;
                 }
                 if (e.KeyCode == Keys.A)
                 {
-                    player.X += -player.Speed;
-                    if (IsBlocked) player.X = currentX;
+                    player.GoingLeft = true;
                 }
                 if (e.KeyCode == Keys.D)
                 {
-                    player.X += player.Speed;
-                    if (IsBlocked) player.X = currentX;
+                    player.GoingRight = true;
+                }
+                if (e.KeyCode == Keys.F12 && CHEATS)
+                {
+                    foreach( Badguy badguy in badguys)
+                    {
+                        badguy.IsDead = true;
+                    }
+                    _currentLevel.CurrentScore = 999;
+                }
+                //Shooting Direction
+                {
+                    if (player.GoingDown && player.GoingRight)
+                    {
+                        player.LastWentDirection = "southeast";
+                    }
+                    else if (player.GoingDown && player.GoingLeft)
+                    {
+                        player.LastWentDirection = "southwest";
+                    }
+                    else if (player.GoingUp && player.GoingRight)
+                    {
+                        player.LastWentDirection = "northeast";
+                    }
+                    else if (player.GoingUp && player.GoingLeft)
+                    {
+                        player.LastWentDirection = "northwest";
+                    }
+                    else if (player.GoingDown)
+                    {
+                        player.LastWentDirection = "south";
+                    }
+                    else if (player.GoingLeft)
+                    {
+                        player.LastWentDirection = "west";
+                    }
+                    else if (player.GoingRight)
+                    {
+                        player.LastWentDirection = "east";
+                    }
+                    else if (player.GoingUp)
+                    {
+                        player.LastWentDirection = "north";
+                    }
+                }
+
+                if (e.KeyCode == Keys.Space)
+                {
+                    if (player.ammunition > 0)
+                    {                        
+                        player.IsShooting = true;
+                        if (ShootingCoolDown == 0)
+                        {                           
+                            player.ammunition -= 1;
+                            ammunitions.Add( new Ammunition(player.X, player.Y, player.LastWentDirection));                            
+                            ShootingCoolDown = 15;
+                        }
+                    }
                 }
             }
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (gameOver)
+                {
+                    goToMenu = true;
+                }
+            }
             this._form.Invalidate();
         }
 
@@ -100,7 +177,7 @@ namespace GameToEarnLegos
             get 
             {
                 var isBlocked = false;
-                foreach (Blockers blocker in tiles)
+                foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
                 {
                     if (player.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
                     {
@@ -119,8 +196,26 @@ namespace GameToEarnLegos
                // player.Speed = player.NormalSpeed;
                 player.IsRunning = false;
             }
-
-
+            if (e.KeyCode == Keys.Space)
+            {
+                player.IsShooting = false;
+            }
+            if (e.KeyCode == Keys.S)
+            {
+                player.GoingDown = false;
+            }
+            if (e.KeyCode == Keys.W)
+            {
+                player.GoingUp = false;
+            }
+            if (e.KeyCode == Keys.A)
+            {
+                player.GoingLeft = false;
+            }
+            if (e.KeyCode == Keys.D)
+            {
+                player.GoingRight = false;
+            }
 
 
 
@@ -131,6 +226,7 @@ namespace GameToEarnLegos
 
         public void Start(string startInfo = null)
         {
+            Refresh();
             for (int row = 0; row < levelTop.Length; row++)
             {
                 var higherLevelRow = levelTop[row];
@@ -140,23 +236,27 @@ namespace GameToEarnLegos
 
                     if (letter == 'W')
                     {
-                        waters.Add(new Water(column, row, Color.Blue));
+                        tiles.Add(new Water(column, row, Color.Blue));
                     }
                     else if(letter == 'E')
                     {
-                        blocks.Add(new Block(column, row, Color.Brown));
-                    }
-                    else if (letter == 'g')
-                    {
-                        blocks.Add(new Block(column, row, Color.Gold));
+                        tiles.Add(new Block(column, row, Color.Brown));
                     }
                     else if (letter == 'L')
                     {
-                        blocks.Add(new Block(column, row, Color.OrangeRed));
+                        tiles.Add(new Block(column, row, Color.OrangeRed));
+                    }
+                    else if (letter == 'S')
+                    {
+                        tiles.Add(new Block(column, row, Color.SandyBrown));
+                    }
+                    else if (letter == 'D')
+                    {
+                        tiles.Add(new Block(column, row, Color.SaddleBrown));
                     }
                     else
                     {
-                        blocks.Add(new Block(column, row, Color.Green));
+                        tiles.Add(new Block(column, row, Color.Green));
                     }
 
                     if (letter == 'P')
@@ -166,6 +266,14 @@ namespace GameToEarnLegos
                     else  if (letter == 'V')
                     {
                         badguys.Add(new Badguy(column, row));
+                    }
+                    else if (letter == 'v')
+                    {
+                        badguys.Add(new Badguy(column, row, 2f, 9f));
+                    }
+                    else if (letter == 'g')
+                    {
+                        golds.Add(new Gold(column, row, Color.Gold));
                     }
                     else if(letter == 'T')
                     {
@@ -179,6 +287,10 @@ namespace GameToEarnLegos
                     {
                         tiles.Add(new Wall(column, row));
                     }
+                    else if (letter == 'Q')
+                    {
+                        tiles.Add(new DeepWater(column, row, Color.Navy));
+                    }
                 }
             }
         }
@@ -190,34 +302,135 @@ namespace GameToEarnLegos
 
         public void Tick()
         {
-
-            foreach (Badguy badguy in badguys)
+            if (gameOver == false)
             {
-                badguy.Move(scaleFactor);
-                foreach (Blockers blocker in tiles)
+                int aliveBadguys = 0;
+                if (player.IsAlive)
                 {
-                    if (badguy.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                    if (ShootingCoolDown > 0)
+                        ShootingCoolDown--;
+                    foreach (Badguy badguy in badguys)
                     {
-                        badguy.Reverse();
-                        badguy.Move(scaleFactor);
+                        if (badguy.IsDead == false)
+                        {
+                            aliveBadguys++;
+                            badguy.Move(scaleFactor);
+                            foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
+                            {
+                                if (badguy.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                                {
+                                    badguy.Reverse();
+                                    badguy.Move(scaleFactor);
+                                }
+                            }
+                            foreach (Tile water in tiles.Where(w => w.Tag == "water"))
+                            {
+                                if (badguy.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)))
+                                {
+                                    badguy.IsInWater = true;
+                                    break;
+                                }
+                                else
+                                    badguy.IsInWater = false;
+                            }
+
+                            if (badguy.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
+                            {
+                                player.IsAlive = false;
+                                gameOver = true;
+                            }
+                        }
+                        else
+                        {
+                            badguy.image = Resources.Image_DeadBadguy;
+                        }
                     }
-                }
-                
-                if (badguy.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
-                {
-                    //player.IsAlive = false;
-                }
-            }
-            foreach (Water water in waters)
-            {
-                if (player.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)))
-                {
-                    player.IsInWater = true;
-                    break;
-                }
-                else
-                {
-                    player.IsInWater = false;
+                    foreach (Tile water in tiles.Where(w => w.Tag == "water"))
+                    {
+                        if (player.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)))
+                        {
+                            player.IsInWater = true;
+                            break;
+                        }
+                        else
+                        {
+                            player.IsInWater = false;
+                        }
+
+                    }
+                    foreach (Ammunition ammunition in ammunitions)
+                    {
+                        ammunition.Move(scaleFactor);
+                        foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
+                        {
+                            if (ammunition.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                            {
+                                ammunition.IsDead = true;
+                                break;
+                            }
+                        }
+                        foreach (Badguy badguy in badguys.Where(b => !b.IsDead))
+                        {
+                            if (ammunition.Rect(scaleFactor).IntersectsWith(badguy.Rect(scaleFactor)))
+                            {
+                                ammunition.IsDead = true;
+                                badguy.Health -= 3;
+                                if (badguy.Health <= 0)
+                                {
+                                    badguy.IsDead = true;
+                                    aliveBadguys--;
+                                    _currentLevel.CurrentScore++;
+                                }                            
+                            }
+                        }
+                        if (ammunition.IsDead == true)
+                        {
+                            ammunitions.Remove(ammunition);
+                            break;
+                        }
+
+                    }
+
+                    AliveBadguys = aliveBadguys;
+
+                    float currentX = player.X, currentY = player.Y;
+                    if (player.GoingUp)
+                    {
+                        player.Y -= player.Speed;
+                        if (IsBlocked) player.Y = currentY;
+                    }
+                    if (player.GoingDown)
+                    {
+                        player.Y += player.Speed;
+                        if (IsBlocked) player.Y = currentY;
+                    }
+                    if (player.GoingRight)
+                    {
+                        player.X += player.Speed;
+                        if (IsBlocked) player.X = currentX;
+                    }
+                    if (player.GoingLeft)
+                    {
+                        player.X -= player.Speed;
+                        if (IsBlocked) player.X = currentX;
+                    }
+                    foreach (Gold gold in golds.Where(t => t.IsPickedUp == false))
+                    {
+                        if (player.Rect(scaleFactor).IntersectsWith(gold.Rect(scaleFactor)))
+                        {
+                            gold.IsPickedUp = true;
+                            _currentLevel.CurrentScore += 5;
+                        }
+                    }
+                    if (AliveBadguys == 0)
+                    {
+                        _currentLevel.IsWon = true;
+                        
+                        if (_currentLevel.HighScore < _currentLevel.CurrentScore)
+                            _currentLevel.HighScore = _currentLevel.CurrentScore;
+                        gameOver = true;
+                    }
+
                 }
             }
 
@@ -267,5 +480,18 @@ namespace GameToEarnLegos
         }
 
         
+        private void Refresh()
+        {
+            waters.Clear();
+            blocks.Clear();
+            badguys.Clear();
+            tiles.Clear();
+            golds.Clear();
+            ammunitions.Clear();
+            _currentLevel.CurrentScore = 0;
+            gameOver = false;
+
+        }
+
     }
 }

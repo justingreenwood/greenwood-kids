@@ -18,24 +18,35 @@ namespace GameToEarnLegos
         public float BaseSpeed = 1.5f;
         public float SpeedUpOrDown = 0;
         public float SpeedLeftOrRight = 0;
+        public float WaterSpeedUpOrDown = 0;
+        public float WaterSpeedLeftOrRight = 0;
+        public float Health = 3f;
         public Bitmap image = Resources.Image_Badguy;
         public float Width = Resources.Image_Badguy.Width;
         public float Height = Resources.Image_Badguy.Height;
         public int UpDownDirection = 0;
         public int RightLeftDirection = 0;
         public int LengthOfDirection = 0;
+        public bool IsDead = false;
+        public bool IsInWater;
 
         public Badguy(int col, int row)
         {
             X = col * Tile.TileSize;
             Y = row * Tile.TileSize;
         }
+        public Badguy(int col, int row, float speed, float health)
+        {
+            X = col * Tile.TileSize;
+            Y = row * Tile.TileSize;
+            BaseSpeed = speed;
+            Health = health;
+        }
 
         public RectangleF Rect(float scale)
         {
             return new RectangleF(X * scale, Y * scale, Width*scale, Height * scale);
         }
-        public float Speed(float scale) => BaseSpeed * scale;
 
         public void Reverse()
         {
@@ -46,12 +57,14 @@ namespace GameToEarnLegos
         public void Move(float scale)
         {
 
+
             int upOrDown = 0;
             int leftOrRight = 0;
             int length = 0;
 
             if (LengthOfDirection <= 0)
             {
+
                 upOrDown = random.Next(3);
                 leftOrRight = random.Next(3);
                 length = random.Next(10, 60);
@@ -83,10 +96,20 @@ namespace GameToEarnLegos
                 else
                     SpeedLeftOrRight = 0;
             }
-            
-           
-            X += SpeedLeftOrRight;
-            Y += SpeedUpOrDown;
+
+            if (IsInWater)
+            {
+                WaterSpeedLeftOrRight = SpeedLeftOrRight / 2;
+                WaterSpeedUpOrDown = SpeedUpOrDown / 2;
+            }
+            else
+            {
+                WaterSpeedLeftOrRight = SpeedLeftOrRight;
+                WaterSpeedUpOrDown = SpeedUpOrDown;
+            }
+
+            X += WaterSpeedLeftOrRight;
+            Y += WaterSpeedUpOrDown;
             LengthOfDirection--;
 
         }
