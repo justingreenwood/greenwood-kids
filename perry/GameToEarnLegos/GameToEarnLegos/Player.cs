@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameToEarnLegos.Animate;
 
 namespace GameToEarnLegos
 {
@@ -12,7 +13,7 @@ namespace GameToEarnLegos
         public float Y;
         public SolidBrush brush = new SolidBrush(Color.Black);
         public float NormalSpeed = 1.5f;
-        public int ammunition = 50;       
+        public int ammunition = 50;
         public Bitmap image = Resources.Image_Player;
         public float Width = Resources.Image_Player.Width;
         public float Height = Resources.Image_Player.Height;
@@ -27,6 +28,83 @@ namespace GameToEarnLegos
         public bool GoingLeft = false;
         public bool GoingRight = false;
         public string LastWentDirection = "down";
+
+        public Animation currentAnimation = null;
+        public int currentFrameIndex = 0;
+        public int currentFrameCountdown = 0;
+        public int idleTime = 0;
+
+        public void AnimationTick()
+        {
+            if (currentAnimation != null)
+            {
+                if (idleTime > 0) idleTime = 0;
+
+                currentFrameCountdown--;
+                if (currentFrameCountdown <= 0)
+                {
+                    currentFrameIndex = currentAnimation.NextIndex(currentFrameIndex);
+                    currentFrameCountdown = currentAnimation.Frames[currentFrameIndex].Duration;
+                }
+            } 
+            else
+            {
+                if (idleTime < 100)
+                {
+                    idleTime++;
+                } 
+                else
+                {
+                    currentAnimation = Animations.PlayerIdle;
+                    currentFrameIndex = 0;
+                }
+            }
+        }
+
+        public void UpdateAnimationState()
+        {
+            Animation newAnimation = null;
+            if (GoingLeft)
+            {
+                if (currentAnimation != Animations.PlayerLeft)
+                {
+                    newAnimation = Animations.PlayerLeft;
+                };
+            }
+            else if (GoingRight)
+            {
+                if (currentAnimation != Animations.PlayerRight)
+                {
+                    newAnimation = Animations.PlayerRight;
+                }
+            }
+            else if (GoingUp)
+            {
+                if (currentAnimation != Animations.PlayerUp)
+                {
+                    newAnimation = Animations.PlayerUp;
+                }
+            }
+            else if (GoingDown)
+            {
+                if (currentAnimation != Animations.PlayerDown)
+                {
+                    newAnimation = Animations.PlayerDown;
+                }
+            }
+            else
+            {
+                if (currentAnimation != Animations.PlayerIdle)
+                    currentAnimation = null;
+            }
+
+            if (newAnimation != null)
+            {
+                currentAnimation = newAnimation;
+                currentFrameIndex = 0;
+                currentFrameCountdown = currentAnimation.Frames[currentFrameIndex].Duration;
+            }
+        }
 
         public float Speed
         {
@@ -60,7 +138,17 @@ namespace GameToEarnLegos
             Y = row * Tile.TileSize;
         }
 
-        Bitmap IDrawable.Image => image;
+        Bitmap IDrawable.Image
+        {
+            get
+            {
+                if (currentAnimation == null) return this.image;
+                else
+                {
+                    return this.currentAnimation.Frames[currentFrameIndex].Image;
+                }
+            }
+        }
 
         SolidBrush IDrawable.Brush => brush;
 

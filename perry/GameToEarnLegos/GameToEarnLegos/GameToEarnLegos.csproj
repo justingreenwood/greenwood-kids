@@ -12,15 +12,46 @@
     <None Remove="Resources\Images\Ammopack.png" />
     <None Remove="Resources\Images\BackGround.png" />
     <None Remove="Resources\Images\Badguy.png" />
+    <None Remove="Resources\Images\BadguyUpgraded.png" />
+    <None Remove="Resources\Images\BridgeOne.png" />
     <None Remove="Resources\Images\ClosedDoor.png" />
     <None Remove="Resources\Images\ClosedDoor2.png" />
     <None Remove="Resources\Images\DeadBadguy.png" />
+    <None Remove="Resources\Images\DeepWater.png" />
+    <None Remove="Resources\Images\Grass.png" />
     <None Remove="Resources\Images\HitBadguy.png" />
     <None Remove="Resources\Images\intro-background.png" />
+    <None Remove="Resources\Images\NormalWater.png" />
     <None Remove="Resources\Images\PerrysArtBorder.png" />
     <None Remove="Resources\Images\PerrysArtChristmasTree.png" />
     <None Remove="Resources\Images\PerrysArtTree1.png" />
     <None Remove="Resources\Images\Player.png" />
+    <None Remove="Resources\Images\Player\Player.aseprite" />
+    <None Remove="Resources\Images\Player\Player.png" />
+    <None Remove="Resources\Images\Player\PlayerBack.aseprite" />
+    <None Remove="Resources\Images\Player\PlayerFoward.aseprite" />
+    <None Remove="Resources\Images\Player\PlayerMove.aseprite" />
+    <None Remove="Resources\Images\Player\Player_1.png" />
+    <None Remove="Resources\Images\Player\Player_2.png" />
+    <None Remove="Resources\Images\Player\Player_3.png" />
+    <None Remove="Resources\Images\Player\Player_4.png" />
+    <None Remove="Resources\Images\Player\Player_5.png" />
+    <None Remove="Resources\Images\Player\Player_6.png" />
+    <None Remove="Resources\Images\Player\Player_7.png" />
+    <None Remove="Resources\Images\Player\Player_8.png" />
+    <None Remove="Resources\Images\Player\Player_Back_1.png" />
+    <None Remove="Resources\Images\Player\Player_Back_2.png" />
+    <None Remove="Resources\Images\Player\Player_Forward_1.png" />
+    <None Remove="Resources\Images\Player\Player_Forward_2.png" />
+    <None Remove="Resources\Images\Player\Player_Right_1.png" />
+    <None Remove="Resources\Images\Player\Player_Right_2.png" />
+    <None Remove="Resources\Images\Player\Player_Right_3.png" />
+    <None Remove="Resources\Images\Player\Player_Right_4.png" />
+    <None Remove="Resources\Images\Player\Player_Right_5.png" />
+    <None Remove="Resources\Images\Player\Player_Right_6.png" />
+    <None Remove="Resources\Images\Player\Player_Right_7.png" />
+    <None Remove="Resources\Images\Player\Player_Right_8.png" />
+    <None Remove="Resources\Images\Sand.png" />
     <None Remove="Resources\Images\TreeTester.png" />
     <None Remove="Resources\Images\Wall.png" />
     <None Remove="Resources\Images\Weapon.png" />
@@ -36,6 +67,12 @@
     <Content Include="Resources\Images\Badguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\BadguyUpgraded.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\BridgeOne.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\ClosedDoor.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -45,10 +82,19 @@
     <Content Include="Resources\Images\DeadBadguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\DeepWater.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Grass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\HitBadguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\intro-background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\NormalWater.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\PerrysArtBorder.png">
@@ -60,7 +106,70 @@
     <Content Include="Resources\Images\PerrysArtTree1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Player.png">
+    <Content Include="Resources\Images\Player\Player.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Back_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Back_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Forward_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Forward_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Right_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Right_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Right_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Right_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Right_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Right_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Right_7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Player_Right_8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Sand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\TreeTester.png">

@@ -22,8 +22,11 @@ namespace GameToEarnLegos
         public float WaterSpeedLeftOrRight = 0;
         public float Health = 3f;
         public Bitmap image = Resources.Image_Badguy;
-        public float Width = Resources.Image_Badguy.Width;
-        public float Height = Resources.Image_Badguy.Height;
+        //public float Width = Resources.Image_Badguy.Width;
+        //public float Height = Resources.Image_Badguy.Height;
+        public float Width = 15;
+        public float Height = 15;
+
         public int UpDownDirection = 0;
         public int RightLeftDirection = 0;
         public int LengthOfDirection = 0;

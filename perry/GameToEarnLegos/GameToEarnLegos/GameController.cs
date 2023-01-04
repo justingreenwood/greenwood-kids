@@ -169,31 +169,16 @@ namespace GameToEarnLegos
                     goToMenu = true;
                 }
             }
-            this._form.Invalidate();
-        }
 
-        private bool IsBlocked
-        {
-            get 
-            {
-                var isBlocked = false;
-                foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
-                {
-                    if (player.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
-                    {
-                        isBlocked = true;
-                        break;
-                    }
-                }
-                return isBlocked;
-            }
+            player.UpdateAnimationState();
+            this._form.Invalidate();
         }
 
         public void KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ShiftKey)
             {
-               // player.Speed = player.NormalSpeed;
+                // player.Speed = player.NormalSpeed;
                 player.IsRunning = false;
             }
             if (e.KeyCode == Keys.Space)
@@ -217,8 +202,25 @@ namespace GameToEarnLegos
                 player.GoingRight = false;
             }
 
+            player.UpdateAnimationState();
+            this._form.Invalidate();
+        }
 
-
+        private bool IsBlocked
+        {
+            get 
+            {
+                var isBlocked = false;
+                foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
+                {
+                    if (player.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                    {
+                        isBlocked = true;
+                        break;
+                    }
+                }
+                return isBlocked;
+            }
         }
         public void MouseDown(object sender, MouseEventArgs e)
         {
@@ -307,6 +309,8 @@ namespace GameToEarnLegos
                 int aliveBadguys = 0;
                 if (player.IsAlive)
                 {
+                    player.AnimationTick();
+
                     if (ShootingCoolDown > 0)
                         ShootingCoolDown--;
                     foreach (Badguy badguy in badguys)
