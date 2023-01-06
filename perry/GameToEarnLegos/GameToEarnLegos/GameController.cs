@@ -7,6 +7,7 @@ using System.Media;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using GameToEarnLegos.Tiles;
 
 namespace GameToEarnLegos
 {
@@ -236,62 +237,55 @@ namespace GameToEarnLegos
                 {
                     var letter = higherLevelRow[column];
 
-                    if (letter == 'W')
+                    switch(letter)
                     {
-                        tiles.Add(new Water(column, row, Color.Blue));
+                        case 'W':
+                            tiles.Add(new Water(column, row, Color.Aqua));
+                            break;
+                        case 'E':
+                            tiles.Add(new Block(column, row, Color.Brown));
+                            break;
+                        case 'L':
+                            tiles.Add(new Block(column, row, Color.OrangeRed));
+                            break;
+                        case 'S':
+                            tiles.Add(new Sand(column, row));
+                            break;
+                        case 'D':
+                            tiles.Add(new Block(column, row, Color.SaddleBrown));
+                            break;
+                        case 'Q':
+                            tiles.Add(new DeepWater(column, row, Color.Navy));
+                            break;
+                        default:
+                            tiles.Add(new Grass(column, row));
+                            break;
                     }
-                    else if(letter == 'E')
+                    switch (letter)
                     {
-                        tiles.Add(new Block(column, row, Color.Brown));
-                    }
-                    else if (letter == 'L')
-                    {
-                        tiles.Add(new Block(column, row, Color.OrangeRed));
-                    }
-                    else if (letter == 'S')
-                    {
-                        tiles.Add(new Block(column, row, Color.SandyBrown));
-                    }
-                    else if (letter == 'D')
-                    {
-                        tiles.Add(new Block(column, row, Color.SaddleBrown));
-                    }
-                    else
-                    {
-                        tiles.Add(new Block(column, row, Color.Green));
-                    }
+                        case 'P':
+                            player = new Player(column, row);
+                            break;
+                        case 'V':
+                            badguys.Add(new Badguy(column, row));
+                            break;
+                        case 'v':
+                            badguys.Add(new Badguy(column, row, 2f, 9f));
+                            break;
+                        case 'g':
+                            golds.Add(new Gold(column, row, Color.Gold));
+                            break;
+                        case 'T':
+                            tiles.Add(new Tree(column, row));
+                            break;
+                        case 'O':
+                            tiles.Add(new Border(column, row));
+                            break;
+                        case 'B':
+                            tiles.Add(new Wall(column, row));
+                            break;
+                        
 
-                    if (letter == 'P')
-                    {
-                        player = new Player(column, row);
-                    }
-                    else  if (letter == 'V')
-                    {
-                        badguys.Add(new Badguy(column, row));
-                    }
-                    else if (letter == 'v')
-                    {
-                        badguys.Add(new Badguy(column, row, 2f, 9f));
-                    }
-                    else if (letter == 'g')
-                    {
-                        golds.Add(new Gold(column, row, Color.Gold));
-                    }
-                    else if(letter == 'T')
-                    {
-                        tiles.Add(new Tree(column,row));
-                    }
-                    else if(letter == 'O')
-                    {
-                        tiles.Add(new Border(column, row));
-                    }
-                    else if(letter == 'B')
-                    {
-                        tiles.Add(new Wall(column, row));
-                    }
-                    else if (letter == 'Q')
-                    {
-                        tiles.Add(new DeepWater(column, row, Color.Navy));
                     }
                 }
             }

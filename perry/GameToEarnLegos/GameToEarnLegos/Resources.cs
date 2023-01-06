@@ -15,6 +15,9 @@ namespace GameToEarnLegos
         public static Bitmap Image_Tree1 = new Bitmap(@"Resources\Images\PerrysArtTree1.png");
         public static Bitmap Image_Ammo = new Bitmap(@"Resources\Images\Weapon.png");
         public static Bitmap Image_DeadBadguy = new Bitmap(@"Resources\Images\DeadBadguy.png");
+        public static Bitmap Image_NormalWater = new Bitmap(@"Resources\Images\NormalWater.png");
+        public static Bitmap Image_Sand = new Bitmap(@"Resources\Images\Sand.png");
+        public static Bitmap Image_Grass = new Bitmap(@"Resources\Images\Grass.png");
 
         public static Bitmap Image_Player = new Bitmap(@"Resources\Images\Player\Player_1.png");
 

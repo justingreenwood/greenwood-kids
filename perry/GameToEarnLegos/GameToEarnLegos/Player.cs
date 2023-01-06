@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameToEarnLegos.Animate;
+using GameToEarnLegos.Tiles;
 
 namespace GameToEarnLegos
 {
