@@ -39,7 +39,7 @@ namespace GameToEarnLegos
         {
             if (e.KeyCode == Keys.A) _scaleFactor += 0.1f;
             if (e.KeyCode == Keys.S && _scaleFactor > 0.1) _scaleFactor -= 0.1f;
-            this._form.Invalidate();
+            //this._form.Invalidate();
         }
 
         public void KeyUp(object sender, KeyEventArgs e)

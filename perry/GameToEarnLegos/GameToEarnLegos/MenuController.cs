@@ -39,7 +39,7 @@ namespace GameToEarnLegos
                 for (int i = 0; i < _levelCount; i++)
                 {
                     var level = _levels[i];
-                    Brush brush = Brushes.Black;
+                    Brush brush = Brushes.White;
                     if (i == levelChoice)
                     {
                         brush = Brushes.Red;
@@ -52,7 +52,7 @@ namespace GameToEarnLegos
             {
                 for (int i = 1; i <= 1; i++)
                 {
-                    Brush brush = Brushes.Black;
+                    Brush brush = Brushes.White;
                     if (i == buttonChoice)
                     {
                         brush = Brushes.Red;
@@ -65,7 +65,7 @@ namespace GameToEarnLegos
             {
                 for (int i = 1; i <= 3; i++)
                 {                    
-                    Brush brush = Brushes.Black;
+                    Brush brush = Brushes.White;
                     if (i == buttonChoice)
                     {
                         brush = Brushes.Red;

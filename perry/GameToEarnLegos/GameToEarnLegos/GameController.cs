@@ -38,18 +38,21 @@ namespace GameToEarnLegos
         }
 
         public PointF CenterPoint => new PointF(player.X + (player.Width) / 2, player.Y + (player.Height / 2));
-
+        private RectangleF SeenRect(float scale)
+        {
+            return new RectangleF(player.X * scale- (0.5f * (TileSize * scale * 9)), player.Y * scale - (0.5f * (TileSize * scale * 9)), TileSize * scale * 9, TileSize * scale * 9);
+        }
         public void DrawTheGame(Graphics g)
         {
-            foreach (Tile tile in tiles)
-            {
+            foreach (Tile tile in tiles.Where(t=>SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
+            {                
                 DrawScaledTiles(g, tile);
             }
-            foreach (Gold gold in golds.Where(t => t.IsPickedUp == false))
+            foreach (Gold gold in golds.Where(t => (t.IsPickedUp == false) && (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor)))))
             {
                 DrawScaledTiles(g, gold);
             }
-            foreach (Badguy badguy in badguys)
+            foreach (Badguy badguy in badguys.Where(t => SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
             {
                 DrawScaledTiles(g, badguy);
             }
@@ -81,29 +84,33 @@ namespace GameToEarnLegos
                     // player.Speed = player.RunSpeed;
                     player.IsRunning = true;
                 }
-                if (e.KeyCode == Keys.Z && scaleFactor < 1f)
+                if (e.KeyCode == Keys.Z && scaleFactor < 1.2f)
                 {
                     scaleFactor += 0.1f;
                 }
-                if (e.KeyCode == Keys.X && scaleFactor > 0.3f)
+                if (e.KeyCode == Keys.X && scaleFactor > 0.8f)
                 {
                     scaleFactor -= 0.1f;
                 }
                 if (e.KeyCode == Keys.S)
                 {
                     player.GoingDown = true;
+                    player.GoingUp = false;
                 }
                 if (e.KeyCode == Keys.W)
                 {
                     player.GoingUp = true;
+                    player.GoingDown = false;
                 }
                 if (e.KeyCode == Keys.A)
                 {
                     player.GoingLeft = true;
+                    player.GoingRight = false;
                 }
                 if (e.KeyCode == Keys.D)
                 {
                     player.GoingRight = true;
+                    player.GoingLeft = false;
                 }
                 if (e.KeyCode == Keys.F12 && CHEATS)
                 {
@@ -172,7 +179,7 @@ namespace GameToEarnLegos
             }
 
             player.UpdateAnimationState();
-            this._form.Invalidate();
+            //this._form.Invalidate();
         }
 
         public void KeyUp(object sender, KeyEventArgs e)
@@ -204,7 +211,7 @@ namespace GameToEarnLegos
             }
 
             player.UpdateAnimationState();
-            this._form.Invalidate();
+            //this._form.Invalidate();
         }
 
         private bool IsBlocked

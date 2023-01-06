@@ -50,7 +50,7 @@ namespace GameToEarnLegos
             } 
             else
             {
-                if (idleTime < 100)
+                if (idleTime < 300)
                 {
                     idleTime++;
                 } 
