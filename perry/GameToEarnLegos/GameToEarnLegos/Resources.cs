@@ -11,10 +11,9 @@ namespace GameToEarnLegos
         public static Bitmap Image_Wall = new Bitmap(@"Resources\Images\Wall.png");
         public static Bitmap Image_IntroBackground = new Bitmap(@"Resources\Images\BackGround.png");
         public static Bitmap Image_Border = new Bitmap(@"Resources\Images\PerrysArtBorder.png");
-        public static Bitmap Image_Badguy = new Bitmap(@"Resources\Images\Badguy.png");
         public static Bitmap Image_Tree1 = new Bitmap(@"Resources\Images\PerrysArtTree1.png");
         public static Bitmap Image_Ammo = new Bitmap(@"Resources\Images\Weapon.png");
-        public static Bitmap Image_DeadBadguy = new Bitmap(@"Resources\Images\DeadBadguy.png");
+        public static Bitmap Image_DeadBadguy = new Bitmap(@"Resources\Images\Badguy\DeadBadguy.png");
         public static Bitmap Image_NormalWater = new Bitmap(@"Resources\Images\NormalWater.png");
         public static Bitmap Image_Sand = new Bitmap(@"Resources\Images\Sand.png");
         public static Bitmap Image_Grass = new Bitmap(@"Resources\Images\Grass.png");
@@ -45,6 +44,13 @@ namespace GameToEarnLegos
         public static Bitmap Image_Player_Forward_1 = new Bitmap(@"Resources\Images\Player\Player_Forward_1.png");
         public static Bitmap Image_Player_Forward_2 = new Bitmap(@"Resources\Images\Player\Player_Forward_2.png");
 
+
+        public static Bitmap Image_Badguy = new Bitmap(@"Resources\Images\Badguy\BadguyUpgraded2.png");
+
+        public static Bitmap Image_Badguy_Right_1 = new Bitmap(@"Resources\Images\Badguy\Badguy2_1.png");
+        public static Bitmap Image_Badguy_Right_2 = new Bitmap(@"Resources\Images\Badguy\Badguy2_2.png");
+        public static Bitmap Image_Badguy_Right_3 = new Bitmap(@"Resources\Images\Badguy\Badguy2_3.png");
+        public static Bitmap Image_Badguy_Right_4 = new Bitmap(@"Resources\Images\Badguy\Badguy2_4.png");
 
     }
 }

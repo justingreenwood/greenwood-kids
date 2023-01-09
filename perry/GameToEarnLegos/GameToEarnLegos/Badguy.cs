@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using GameToEarnLegos.Animate;
 using GameToEarnLegos.Tiles;
 
 namespace GameToEarnLegos
@@ -23,8 +24,6 @@ namespace GameToEarnLegos
         public float WaterSpeedLeftOrRight = 0;
         public float Health = 3f;
         public Bitmap image = Resources.Image_Badguy;
-        //public float Width = Resources.Image_Badguy.Width;
-        //public float Height = Resources.Image_Badguy.Height;
         public float Width = 15;
         public float Height = 15;
 
@@ -33,6 +32,67 @@ namespace GameToEarnLegos
         public int LengthOfDirection = 0;
         public bool IsDead = false;
         public bool IsInWater;
+
+        private bool GoingUp = false;
+        private bool GoingDown = false;
+        private bool GoingLeft = false;
+        private bool GoingRight = false;
+
+        public Animation currentAnimation = null;
+        public int currentFrameIndex = 0;
+        public int currentFrameCountdown = 0;
+
+        public void AnimationTick()
+        {
+            if (currentAnimation != null)
+            {
+
+                currentFrameCountdown--;
+                if (currentFrameCountdown <= 0)
+                {
+                    currentFrameIndex = currentAnimation.NextIndex(currentFrameIndex);
+                    currentFrameCountdown = currentAnimation.Frames[currentFrameIndex].Duration;
+                }
+            }
+        }
+
+        public void UpdateAnimationState()
+        {
+            Animation newAnimation = null;
+            if (GoingLeft)
+            {
+                if (currentAnimation != Animations.BadguyLeft)
+                {
+                    newAnimation = Animations.BadguyLeft;
+                };
+            }
+            else if (GoingRight)
+            {
+                if (currentAnimation != Animations.BadguyRight)
+                {
+                    newAnimation = Animations.BadguyRight;
+                }
+            }
+            else
+            {
+                    currentAnimation = null;
+            }
+
+            if (newAnimation != null)
+            {
+                currentAnimation = newAnimation;
+                currentFrameIndex = 0;
+                currentFrameCountdown = currentAnimation.Frames[currentFrameIndex].Duration;
+            }
+        }
+
+
+
+
+
+
+
+
 
         public Badguy(int col, int row)
         {
@@ -54,7 +114,27 @@ namespace GameToEarnLegos
 
         public void Reverse()
         {
-             SpeedLeftOrRight *= -1;
+            if (GoingRight)
+            {
+                GoingRight = false;
+                GoingLeft = true;
+            }
+            else if (GoingLeft)
+            {
+                GoingLeft = false;
+                GoingRight = true;
+            }
+            else if (GoingUp)
+            {
+                GoingUp = false;
+                GoingDown = true;
+            }
+            else if (GoingDown)
+            {
+                GoingUp = true;
+                GoingDown = false;
+            }
+            SpeedLeftOrRight *= -1;
              SpeedUpOrDown *= -1;
             LengthOfDirection = 3;
         }
@@ -68,6 +148,10 @@ namespace GameToEarnLegos
 
             if (LengthOfDirection <= 0)
             {
+                GoingUp = false;
+                GoingDown = false;
+                GoingLeft = false;
+                GoingRight = false;
 
                 upOrDown = random.Next(3);
                 leftOrRight = random.Next(3);
@@ -82,20 +166,24 @@ namespace GameToEarnLegos
                 if (upOrDown == 0)
                 {
                     SpeedUpOrDown = -1 * BaseSpeed;
+                    GoingUp = true;
                 }
                 else if (upOrDown == 1)
                 {
                     SpeedUpOrDown = BaseSpeed;
+                    GoingDown = true;
                 }
                 else
                     SpeedUpOrDown = 0;
                 if (leftOrRight == 0)
                 {
                     SpeedLeftOrRight = -1 * BaseSpeed;
+                    GoingLeft = true;
                 }
                 else if (leftOrRight == 1)
                 {
                     SpeedLeftOrRight = BaseSpeed;
+                    GoingRight = true;
                 }
                 else
                     SpeedLeftOrRight = 0;
@@ -118,7 +206,17 @@ namespace GameToEarnLegos
 
         }
 
-        Bitmap IDrawable.Image => image;
+        Bitmap IDrawable.Image
+        {
+            get
+            {
+                if (currentAnimation == null) return this.image;
+                else
+                {
+                    return this.currentAnimation.Frames[currentFrameIndex].Image;
+                }
+            }
+        }
 
         SolidBrush IDrawable.Brush => brush;
 

@@ -58,7 +58,7 @@ namespace GameToEarnLegos
             }
             if (player.IsAlive)
                 DrawScaledTiles(g, player);
-            foreach (Ammunition ammunition in ammunitions)
+            foreach (Ammunition ammunition in ammunitions.Where(t => SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
             {
                 DrawScaledTiles(g, ammunition);
             }
@@ -311,6 +311,7 @@ namespace GameToEarnLegos
                 if (player.IsAlive)
                 {
                     player.AnimationTick();
+                    
 
                     if (ShootingCoolDown > 0)
                         ShootingCoolDown--;
@@ -318,6 +319,8 @@ namespace GameToEarnLegos
                     {
                         if (badguy.IsDead == false)
                         {
+                            badguy.AnimationTick();
+
                             aliveBadguys++;
                             badguy.Move(scaleFactor);
                             foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
@@ -344,6 +347,7 @@ namespace GameToEarnLegos
                                 player.IsAlive = false;
                                 gameOver = true;
                             }
+                            badguy.UpdateAnimationState();
                         }
                         else
                         {

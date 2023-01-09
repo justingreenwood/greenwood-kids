@@ -10,9 +10,13 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\Ammopack.png" />
-    <None Remove="Resources\Images\BackGround.png" />
     <None Remove="Resources\Images\Badguy.png" />
     <None Remove="Resources\Images\BadguyUpgraded.png" />
+    <None Remove="Resources\Images\BadguyUpgraded2.png" />
+    <None Remove="Resources\Images\Badguy\Badguy2_1.png" />
+    <None Remove="Resources\Images\Badguy\Badguy2_2.png" />
+    <None Remove="Resources\Images\Badguy\Badguy2_3.png" />
+    <None Remove="Resources\Images\Badguy\Badguy2_4.png" />
     <None Remove="Resources\Images\BridgeOne.png" />
     <None Remove="Resources\Images\ClosedDoor.png" />
     <None Remove="Resources\Images\ClosedDoor2.png" />
@@ -64,10 +68,25 @@
     <Content Include="Resources\Images\BackGround.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Badguy.png">
+    <Content Include="Resources\Images\Badguy\Badguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\BadguyUpgraded.png">
+    <Content Include="Resources\Images\Badguy\Badguy2_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Badguy2_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Badguy2_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Badguy2_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\BadguyUpgraded.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\BadguyUpgraded2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\BridgeOne.png">
@@ -79,7 +98,7 @@
     <Content Include="Resources\Images\ClosedDoor2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\DeadBadguy.png">
+    <Content Include="Resources\Images\Badguy\DeadBadguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\DeepWater.png">
@@ -88,7 +107,7 @@
     <Content Include="Resources\Images\Grass.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\HitBadguy.png">
+    <Content Include="Resources\Images\Badguy\HitBadguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\intro-background.png">
