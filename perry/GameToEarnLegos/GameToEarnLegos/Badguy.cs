@@ -24,6 +24,7 @@ namespace GameToEarnLegos
         public float WaterSpeedLeftOrRight = 0;
         public float Health = 3f;
         public Bitmap image = Resources.Image_Badguy;
+        public Bitmap deadImage = Resources.Image_DeadBadguy;
         public float Width = 15;
         public float Height = 15;
 
@@ -59,6 +60,7 @@ namespace GameToEarnLegos
         public void UpdateAnimationState()
         {
             Animation newAnimation = null;
+
             if (GoingLeft)
             {
                 if (currentAnimation != Animations.BadguyLeft)
@@ -75,7 +77,7 @@ namespace GameToEarnLegos
             }
             else
             {
-                    currentAnimation = null;
+                currentAnimation = null;
             }
 
             if (newAnimation != null)
@@ -84,6 +86,7 @@ namespace GameToEarnLegos
                 currentFrameIndex = 0;
                 currentFrameCountdown = currentAnimation.Frames[currentFrameIndex].Duration;
             }
+
         }
 
 
@@ -210,10 +213,17 @@ namespace GameToEarnLegos
         {
             get
             {
-                if (currentAnimation == null) return this.image;
+                if (IsDead == false) 
+                {
+                    if (currentAnimation == null) return this.image;
+                    else
+                    {
+                        return this.currentAnimation.Frames[currentFrameIndex].Image;
+                    }
+                }
                 else
                 {
-                    return this.currentAnimation.Frames[currentFrameIndex].Image;
+                    return this.deadImage;
                 }
             }
         }

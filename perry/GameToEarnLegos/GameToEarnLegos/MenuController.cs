@@ -26,6 +26,10 @@ namespace GameToEarnLegos
         private int buttonChoice = 1;
         private int optionChoice = 1;
         public bool cheatsOn = false;
+        private List<ButtonsInMenu> MenuChoices = new List<ButtonsInMenu>();
+        private List<ButtonsInMenu> OptionChoices = new List<ButtonsInMenu>();
+        private List<ButtonsInMenu> LevelChoices = new List<ButtonsInMenu>();
+
 
         public MenuController(FormTriangleTrees form)
         {
@@ -33,7 +37,7 @@ namespace GameToEarnLegos
         }
         public void DrawTheGame(Graphics g)
         {
-            g.FillRectangle(brush, 100, 100, 100, 50);
+            //g.FillRectangle(brush, 100, 100, 100, 50);
             if (_playButtonPressed)
             {
                 for (int i = 0; i < _levelCount; i++)
@@ -63,18 +67,21 @@ namespace GameToEarnLegos
             }
             else
             {
-                for (int i = 1; i <= 3; i++)
-                {                    
+                for (int i = 1; i <= MenuChoices.Count; i++)
+                {
                     Brush brush = Brushes.White;
                     if (i == buttonChoice)
                     {
                         brush = Brushes.Red;
                     }
-                    if(i==1)
+                    foreach (var menuchoice in MenuChoices)
+                    {
+                    }
+                    if (i == 1)
                         g.DrawString($"Play", SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
-                    else if(i==2)
+                    else if (i == 2)
                         g.DrawString($"Options", SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
-                    else if(i==3)
+                    else if (i == 3)
                         g.DrawString($"Exit", SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
                 }
             }
@@ -145,6 +152,10 @@ namespace GameToEarnLegos
         }
         public void Start(string startInfo = null)
         {
+            MenuChoices.Add(new ButtonsInMenu("Play"));
+            MenuChoices.Add(new ButtonsInMenu("Options"));
+            MenuChoices.Add(new ButtonsInMenu("Exit"));
+
             _playButtonPressed = false;
             _form.Refresh();
         }
@@ -183,7 +194,7 @@ namespace GameToEarnLegos
                 }
                 else
                 {
-                    if (buttonChoice < 3)
+                    if (buttonChoice < MenuChoices.Count)
                     {
                         buttonChoice++;
                     }

@@ -73,6 +73,13 @@ namespace GameToEarnLegos
                 g.DrawString($"Ammo:{player.ammunition} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
+
+            if(gameOver == true)
+            {
+                g.DrawString($"Press 'Enter' to continue.",
+                    SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
+            }
+
         }
 
         public void KeyDown(object sender, KeyEventArgs e)
@@ -348,10 +355,6 @@ namespace GameToEarnLegos
                                 gameOver = true;
                             }
                             badguy.UpdateAnimationState();
-                        }
-                        else
-                        {
-                            badguy.image = Resources.Image_DeadBadguy;
                         }
                     }
                     foreach (Tile water in tiles.Where(w => w.Tag == "water"))
