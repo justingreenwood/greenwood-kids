@@ -75,6 +75,20 @@ namespace GameToEarnLegos
                     newAnimation = Animations.BadguyRight;
                 }
             }
+            else if (GoingUp)
+            {
+                if (currentAnimation != Animations.BadguyUp)
+                {
+                    newAnimation = Animations.BadguyUp;
+                }
+            }
+            else if (GoingDown)
+            {
+                if (currentAnimation != Animations.BadguyDown)
+                {
+                    newAnimation = Animations.BadguyDown;
+                }
+            }
             else
             {
                 currentAnimation = null;

@@ -38,9 +38,14 @@ namespace GameToEarnLegos
         }
 
         public PointF CenterPoint => new PointF(player.X + (player.Width) / 2, player.Y + (player.Height / 2));
+        
         private RectangleF SeenRect(float scale)
         {
-            return new RectangleF(player.X * scale- (0.5f * (TileSize * scale * 9)), player.Y * scale - (0.5f * (TileSize * scale * 9)), TileSize * scale * 9, TileSize * scale * 9);
+            return new RectangleF(CenterPoint.X * scale- (0.5f * (TileSize * scale * 10)), CenterPoint.Y * scale - (0.5f * (TileSize * scale * 10)), TileSize * scale * 10, TileSize * scale * 10);
+        }
+        private RectangleF PlayerUseRect(float scale)
+        {
+            return new RectangleF(CenterPoint.X * scale - (0.5f * (TileSize * scale * 4)), CenterPoint.Y * scale - (0.5f * (TileSize * scale * 4)), TileSize * scale * 4, TileSize * scale * 4);
         }
         public void DrawTheGame(Graphics g)
         {
@@ -264,10 +269,7 @@ namespace GameToEarnLegos
                             break;
                         case 'S':
                             tiles.Add(new Sand(column, row));
-                            break;
-                        case 'D':
-                            tiles.Add(new Block(column, row, Color.SaddleBrown));
-                            break;
+                            break;          
                         case 'Q':
                             tiles.Add(new DeepWater(column, row, Color.Navy));
                             break;
@@ -292,6 +294,9 @@ namespace GameToEarnLegos
                         case 'T':
                             tiles.Add(new Tree(column, row));
                             break;
+                        case 'D':
+                            tiles.Add(new Door(column, row));
+                            break;
                         case 'O':
                             tiles.Add(new Border(column, row));
                             break;
@@ -303,6 +308,8 @@ namespace GameToEarnLegos
                     }
                 }
             }
+
+
         }
 
         public void Stop()
