@@ -132,6 +132,10 @@ namespace GameToEarnLegos
                     }
                     _currentLevel.CurrentScore = 999;
                 }
+                if(e.KeyCode == Keys.E)
+                {
+                    
+                }
                 //Shooting Direction
                 {
                     if (player.GoingDown && player.GoingRight)
@@ -248,6 +252,7 @@ namespace GameToEarnLegos
 
         public void Start(string startInfo = null)
         {
+            char lastLetter = 'z';
             Refresh();
             for (int row = 0; row < levelTop.Length; row++)
             {
@@ -295,7 +300,10 @@ namespace GameToEarnLegos
                             tiles.Add(new Tree(column, row));
                             break;
                         case 'D':
-                            tiles.Add(new Door(column, row));
+                            if(lastLetter == 'B')
+                            tiles.Add(new Door(column, row, true));
+                            else
+                                tiles.Add(new Door(column, row, false));
                             break;
                         case 'O':
                             tiles.Add(new Border(column, row));
@@ -306,6 +314,8 @@ namespace GameToEarnLegos
                         
 
                     }
+                    lastLetter = letter;
+                    
                 }
             }
 
