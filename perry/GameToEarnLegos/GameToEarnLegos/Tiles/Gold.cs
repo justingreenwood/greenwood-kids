@@ -9,6 +9,7 @@ namespace GameToEarnLegos.Tiles
     public class Gold : Tile
     {
         public bool IsPickedUp = false;
+        public override string Tag => "gold";
 
         public Gold(int col, int row, Color color) : base(col, row)
         {

@@ -15,11 +15,10 @@ namespace GameToEarnLegos.Tiles
         private Bitmap closedImageWide = Resources.Image_ClosedDoor_Wide;
         private Bitmap openImageWide = Resources.Image_Player;
         private bool LeftRight;
-        public bool IsClosed = false;
+        public bool IsClosed = true;
         public override string Tag => "door";
         public Door(int col, int row, bool leftRight) : base(col, row, Resources.Image_ClosedDoor_Thin) 
-        {
-            IsBlocker = IsClosed; 
+        { 
             LeftRight = leftRight;
             if (leftRight)
             {
@@ -28,6 +27,7 @@ namespace GameToEarnLegos.Tiles
             }
             this.image = closedImage;
         }
+        
         
 
     }

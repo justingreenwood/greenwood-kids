@@ -28,6 +28,7 @@ namespace GameToEarnLegos
         public bool GoingDown = false;
         public bool GoingLeft = false;
         public bool GoingRight = false;
+        public bool UsingKey = false;
         public string LastWentDirection = "down";
 
         public Animation currentAnimation = null;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Common;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Media;
@@ -29,6 +30,8 @@ namespace GameToEarnLegos
         List<Badguy> badguys = new List<Badguy>();
         List<Tile> tiles = new List<Tile>();
         List<Gold> golds = new List<Gold>();
+        List<Door> doors = new List<Door>();
+
         List<Ammunition> ammunitions = new List<Ammunition>();
         string[] levelTop => _currentLevel.levelTop;
         private int ShootingCoolDown = 5;
@@ -132,9 +135,9 @@ namespace GameToEarnLegos
                     }
                     _currentLevel.CurrentScore = 999;
                 }
-                if(e.KeyCode == Keys.E)
+                if (e.KeyCode == Keys.E)
                 {
-                    
+                    player.UsingKey = true;
                 }
                 //Shooting Direction
                 {
@@ -225,7 +228,10 @@ namespace GameToEarnLegos
             {
                 player.GoingRight = false;
             }
-
+            if (e.KeyCode == Keys.E)
+            {               
+                player.UsingKey = false;
+            }
             player.UpdateAnimationState();
             //this._form.Invalidate();
         }
@@ -238,6 +244,14 @@ namespace GameToEarnLegos
                 foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
                 {
                     if (player.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                    {
+                        isBlocked = true;
+                        break;
+                    }
+                }
+                foreach(Door door in tiles.Where(t => t.Tag == "door"))
+                {
+                    if (player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)) && door.IsClosed == true)
                     {
                         isBlocked = true;
                         break;
@@ -355,6 +369,17 @@ namespace GameToEarnLegos
                                     badguy.Move(scaleFactor);
                                 }
                             }
+                            foreach (Door door in tiles.Where(t => t.Tag == "door"))
+                            {
+                                if (badguy.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
+                                {
+                                    if (door.IsClosed == true)
+                                    {
+                                        door.IsClosed = false;
+                                    }
+
+                                }
+                            }
                             foreach (Tile water in tiles.Where(w => w.Tag == "water"))
                             {
                                 if (badguy.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)))
@@ -421,6 +446,22 @@ namespace GameToEarnLegos
                     }
 
                     AliveBadguys = aliveBadguys;
+
+                    if (player.UsingKey == true)
+                    {
+                        foreach (Door door in tiles.Where(t => t.Tag == "door"))
+                        {
+                            if (PlayerUseRect(scaleFactor).Contains(door.Rect(scaleFactor))&& player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
+                            {
+                                if (door.IsClosed == true)
+                                {
+                                    door.IsClosed = false;
+                                }
+                                else
+                                    door.IsClosed = true;
+                            }
+                        }
+                    }
 
                     float currentX = player.X, currentY = player.Y;
                     if (player.GoingUp)
