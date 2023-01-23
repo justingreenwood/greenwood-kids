@@ -11,9 +11,9 @@ namespace GameToEarnLegos.Tiles
     public class Door : Tile
     {
         public Bitmap closedImage = Resources.Image_ClosedDoor_Thin;
-        public Bitmap openImage = Resources.Image_Player;
+        public Bitmap openImage = Resources.Image_OpenDoor_Thin;
         private Bitmap closedImageWide = Resources.Image_ClosedDoor_Wide;
-        private Bitmap openImageWide = Resources.Image_Player;
+        private Bitmap openImageWide = Resources.Image_OpenDoor_Wide;
         private bool LeftRight;
         public bool IsClosed = true;
         public override string Tag => "door";

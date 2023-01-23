@@ -17,8 +17,12 @@ namespace GameToEarnLegos
         public static Bitmap Image_NormalWater = new Bitmap(@"Resources\Images\NormalWater.png");
         public static Bitmap Image_Sand = new Bitmap(@"Resources\Images\Sand.png");
         public static Bitmap Image_Grass = new Bitmap(@"Resources\Images\Grass.png");
-        public static Bitmap Image_ClosedDoor_Wide = new Bitmap(@"Resources\Images\ClosedDoor.png");
-        public static Bitmap Image_ClosedDoor_Thin = new Bitmap(@"Resources\Images\ClosedDoor2.png");
+
+        public static Bitmap Image_ClosedDoor_Wide = new Bitmap(@"Resources\Images\BlandDoor.png");
+        public static Bitmap Image_OpenDoor_Wide = new Bitmap(@"Resources\Images\BlandDoorOpen.png");
+
+        public static Bitmap Image_ClosedDoor_Thin = new Bitmap(@"Resources\Images\BlandDoorThin.png");
+        public static Bitmap Image_OpenDoor_Thin = new Bitmap(@"Resources\Images\BlandDoorThinOpen.png");
 
 
 
@@ -62,7 +66,14 @@ namespace GameToEarnLegos
         public static Bitmap Image_Badguy_Down_1 = new Bitmap(@"Resources\Images\Badguy\BadguyForward_1.png");
         public static Bitmap Image_Badguy_Down_2 = new Bitmap(@"Resources\Images\Badguy\BadguyForward_2.png");
 
-
+        public static Bitmap RotateImage(Bitmap srcImage)
+        {
+            //Clone it to another bitmap
+            Bitmap image2 = (Bitmap)srcImage.Clone();
+            //Rotating
+            image2.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            return image2;
+        }
 
     }
 }

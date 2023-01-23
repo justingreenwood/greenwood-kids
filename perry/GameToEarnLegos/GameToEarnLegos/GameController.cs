@@ -34,6 +34,7 @@ namespace GameToEarnLegos
 
         List<Ammunition> ammunitions = new List<Ammunition>();
         string[] levelTop => _currentLevel.levelTop;
+        string goal => _currentLevel.Goal;
         private int ShootingCoolDown = 5;
         public GameController(FormTriangleTrees form)
         {
@@ -52,8 +53,9 @@ namespace GameToEarnLegos
         }
         public void DrawTheGame(Graphics g)
         {
-            foreach (Tile tile in tiles.Where(t=>SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
-            {                
+            foreach (Tile tile in tiles.Where(t=>  (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag != "door" ))
+            {                  
+                
                 DrawScaledTiles(g, tile);
             }
             foreach (Gold gold in golds.Where(t => (t.IsPickedUp == false) && (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor)))))
@@ -65,15 +67,20 @@ namespace GameToEarnLegos
                 DrawScaledTiles(g, badguy);
             }
             if (player.IsAlive)
-                DrawScaledTiles(g, player);
+                DrawScaledTiles(g, player);            
             foreach (Ammunition ammunition in ammunitions.Where(t => SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
             {
                 DrawScaledTiles(g, ammunition);
             }
+            foreach (Tile tile in tiles.Where(t => (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag == "door"))
+            {
+
+                DrawScaledTiles(g, tile);
+            }
             if (CHEATS)
             {
                 g.DrawString($"IsRunning:{player.IsRunning} IsInWater:{player.IsInWater} IsShooting:{player.IsShooting} " +
-                    $"Ammo:{player.ammunition} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
+                    $"Ammo:{player.ammunition} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
             else
@@ -137,6 +144,7 @@ namespace GameToEarnLegos
                 }
                 if (e.KeyCode == Keys.E)
                 {
+                    
                     player.UsingKey = true;
                 }
                 //Shooting Direction
@@ -231,6 +239,7 @@ namespace GameToEarnLegos
             if (e.KeyCode == Keys.E)
             {               
                 player.UsingKey = false;
+                player.HasUsed = false;
             }
             player.UpdateAnimationState();
             //this._form.Invalidate();
@@ -346,6 +355,7 @@ namespace GameToEarnLegos
             if (gameOver == false)
             {
                 int aliveBadguys = 0;
+                int amountOfGold = 0;
                 if (player.IsAlive)
                 {
                     player.AnimationTick();
@@ -401,7 +411,7 @@ namespace GameToEarnLegos
                     }
                     foreach (Tile water in tiles.Where(w => w.Tag == "water"))
                     {
-                        if (player.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)))
+                        if (player.WaterCheckRect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)))
                         {
                             player.IsInWater = true;
                             break;
@@ -422,6 +432,16 @@ namespace GameToEarnLegos
                                 ammunition.IsDead = true;
                                 break;
                             }
+                        }
+                        foreach (Door door in tiles.Where(t => t.Tag == "door"))
+                        {
+
+                            if (ammunition.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)) && door.IsClosed == true)
+                            {
+                                ammunition.IsDead = true;
+                                break;
+                            }
+
                         }
                         foreach (Badguy badguy in badguys.Where(b => !b.IsDead))
                         {
@@ -446,20 +466,33 @@ namespace GameToEarnLegos
                     }
 
                     AliveBadguys = aliveBadguys;
+                    //AmountOfGold = amountOfGold;
 
                     if (player.UsingKey == true)
                     {
                         foreach (Door door in tiles.Where(t => t.Tag == "door"))
-                        {
-                            if (PlayerUseRect(scaleFactor).Contains(door.Rect(scaleFactor))&& player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
+                        {                            
+                            if (PlayerUseRect(scaleFactor).Contains(door.Rect(scaleFactor))&& !player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
                             {
-                                if (door.IsClosed == true)
+                                if (player.HasUsed == false)
                                 {
-                                    door.IsClosed = false;
-                                }
-                                else
-                                    door.IsClosed = true;
+                                    if (door.IsClosed == true)
+                                    {
+                                        door.IsClosed = false;
+                                    }
+                                    else
+                                    {
+                                        door.IsClosed = true;
+                                    }
+                                    player.HasUsed = true;                                   
+                                }    
                             }
+                            if (door.IsClosed == true)
+                            {
+                                door.image = door.closedImage;
+                            }
+                            else
+                                door.image = door.openImage;
                         }
                     }
 
@@ -486,21 +519,27 @@ namespace GameToEarnLegos
                     }
                     foreach (Gold gold in golds.Where(t => t.IsPickedUp == false))
                     {
+                        amountOfGold++;
                         if (player.Rect(scaleFactor).IntersectsWith(gold.Rect(scaleFactor)))
                         {
                             gold.IsPickedUp = true;
                             _currentLevel.CurrentScore += 5;
                         }
                     }
-                    if (AliveBadguys == 0)
+                    if (goal == "Elimination" && AliveBadguys == 0)
                     {
                         _currentLevel.IsWon = true;
-                        
+                    }
+                    else if(goal == "Treasure Hunt" && amountOfGold == 0)
+                    {
+                        _currentLevel.IsWon = true;
+                    }
+                    if(_currentLevel.IsWon == true)
+                    {
                         if (_currentLevel.HighScore < _currentLevel.CurrentScore)
                             _currentLevel.HighScore = _currentLevel.CurrentScore;
                         gameOver = true;
                     }
-
                 }
             }
 

@@ -126,7 +126,6 @@ namespace GameToEarnLegos.Animate
             Bitmap image2 = (Bitmap)srcImage.Clone();
             //Mirroring
             image2.RotateFlip(RotateFlipType.RotateNoneFlipX);
-
             return image2;
         }
     }

@@ -14,6 +14,7 @@ namespace GameToEarnLegos
         int Score { get; }
         int HighScore { get; set;}
         int CurrentScore { get; set; }
+        string Goal { get; }
 
     }
     public abstract class Level : ILevel
@@ -50,10 +51,12 @@ namespace GameToEarnLegos
         public int CurrentScore { get; set; }
         public bool IsWon { get; set; }
         public int HighScore { get; set; }
+        public virtual string Goal => "Elimination";
     }
     public class Level1 : Level
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level1Top.txt");
+        public override string Goal => "Treasure Hunt";
     }
 
     public class Level2 : Level

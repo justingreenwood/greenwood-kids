@@ -48,7 +48,7 @@ namespace GameToEarnLegos
                     {
                         brush = Brushes.Red;
                     }
-                    g.DrawString($" Level {i + 1}: Score {level.HighScore}/{level.Score} IsWon {level.IsWon}",
+                    g.DrawString($" Level {i + 1}: Score {level.HighScore}/{level.Score} Goal: {level.Goal} IsWon {level.IsWon}",
                     SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
                 }
             }

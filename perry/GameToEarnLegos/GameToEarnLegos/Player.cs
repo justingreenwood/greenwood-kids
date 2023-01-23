@@ -28,6 +28,7 @@ namespace GameToEarnLegos
         public bool GoingDown = false;
         public bool GoingLeft = false;
         public bool GoingRight = false;
+        public bool HasUsed = false;
         public bool UsingKey = false;
         public string LastWentDirection = "down";
 
@@ -133,7 +134,10 @@ namespace GameToEarnLegos
         {
             return new RectangleF(X * scale, Y * scale, Width * scale, Height * scale);
         }
-
+        public RectangleF WaterCheckRect(float scale)
+        {
+            return new RectangleF((X + 4) * scale, (Y + 5) * scale, (Width/2) * scale, (Height / 2) * scale);
+        }
         public Player(int col, int row)
         {
             X = col * Tile.TileSize;
