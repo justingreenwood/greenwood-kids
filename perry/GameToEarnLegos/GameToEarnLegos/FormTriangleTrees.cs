@@ -11,6 +11,10 @@ namespace GameToEarnLegos
         public Level2 level2 = new Level2();
         public Level3 level3 = new Level3();
         public List<ILevel> levels = new List<ILevel>();
+        public List<ButtonsInMenu> MenuChoices = new List<ButtonsInMenu>();
+        public List<ButtonsInMenu> OptionChoices = new List<ButtonsInMenu>();
+        public List<ButtonsInMenu> LevelChoices = new List<ButtonsInMenu>();
+
         public bool CHEATS => menuController.cheatsOn;
         public FormTriangleTrees()
         {
@@ -24,7 +28,16 @@ namespace GameToEarnLegos
             levels.Add(level1);
             levels.Add(level2);
             levels.Add(level3);
-
+            MenuChoices.Add(new ButtonsInMenu("Play"));
+            MenuChoices.Add(new ButtonsInMenu("Options"));
+            MenuChoices.Add(new ButtonsInMenu("Exit"));
+            OptionChoices.Add(new ButtonsInMenu("Cheats"));
+            OptionChoices.Add(new ButtonsInMenu("Return"));
+            foreach (Level level in levels)
+            {
+                LevelChoices.Add(new ButtonsInMenu(level.Name));
+            }
+            LevelChoices.Add(new ButtonsInMenu("Return"));
 
 
             Start();

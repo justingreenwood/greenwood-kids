@@ -10,6 +10,7 @@ namespace GameToEarnLegos
     public interface ILevel
     {
         string[] levelTop { get; }
+        string Name { get; }
         bool IsWon { get; set;}
         int Score { get; }
         int HighScore { get; set;}
@@ -47,7 +48,7 @@ namespace GameToEarnLegos
 
             }
         }
-
+        public virtual string Name => "Not Named";
         public int CurrentScore { get; set; }
         public bool IsWon { get; set; }
         public int HighScore { get; set; }
@@ -57,14 +58,17 @@ namespace GameToEarnLegos
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level1Top.txt");
         public override string Goal => "Treasure Hunt";
+        public override string Name => "Treasure in the Ruins";
     }
 
     public class Level2 : Level
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level2.txt");
+        public override string Name => "Fort Bird";
     }
     public class Level3 : Level
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level1Bottom.txt");
+        public override string Name => "Oh Deer!";
     }
 }
