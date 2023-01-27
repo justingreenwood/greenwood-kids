@@ -169,17 +169,20 @@ namespace GameToEarnLegos
         }
         public void Start(string startInfo = null)
         {
-            //MenuChoices.Add(new ButtonsInMenu("Play"));
-            //MenuChoices.Add(new ButtonsInMenu("Options"));
-            //MenuChoices.Add(new ButtonsInMenu("Exit"));
-            //OptionChoices.Add(new ButtonsInMenu("Cheats"));
-            //OptionChoices.Add(new ButtonsInMenu("Return"));
-            //foreach(Level level in _levels)
+            //int i = 0;
+            //.Where(l => l.IsWon)
+            //foreach (Level level in _levels.Where(l => l.IsWon))
             //{
             //    LevelChoices.Add(new ButtonsInMenu(level.Name));
             //}
+            //foreach (Level level in _levels.Where(l => (l.IsWon == false)))
+            //{
+            //    //i++;
+            //    LevelChoices.Add(new ButtonsInMenu(level.Name));
+            //    //if(i == 1)
+            //    break;
+            //}
             //LevelChoices.Add(new ButtonsInMenu("Return"));
-
 
             _playButtonPressed = false;
             _form.Refresh();

@@ -18,7 +18,10 @@ namespace GameToEarnLegos
         private float scaleFactor = 0.8f;
         private FormTriangleTrees _form;
         private bool gameOver = false;
+        private bool isPaused = false;
+        private bool EscapeKeyIsUsed = false;
         public bool goToMenu = false;
+        private bool EscapeKeyIsPressed = false;
         public bool CHEATS => _form.CHEATS;
         public float ScaleFactor => scaleFactor;
         private ILevel _currentLevel => _form.currentLevel;
@@ -79,7 +82,7 @@ namespace GameToEarnLegos
             }
             if (CHEATS)
             {
-                g.DrawString($"IsRunning:{player.IsRunning} IsInWater:{player.IsInWater} IsShooting:{player.IsShooting} " +
+                g.DrawString($"IsRunning:{player.IsRunning} isEscape {EscapeKeyIsUsed} IsInWater:{player.IsInWater} IsShooting:{player.IsShooting} " +
                     $"Ammo:{player.ammunition} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
@@ -94,58 +97,82 @@ namespace GameToEarnLegos
                 g.DrawString($"Press 'Enter' to continue.",
                     SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
             }
+            else if (isPaused)
+            {
+                g.DrawString($"Do you want to exit level? (Y)es (N)o",
+                    SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
+            }
 
         }
 
         public void KeyDown(object sender, KeyEventArgs e)
         {
+
             if (player.IsAlive && gameOver == false)
             {
-                if (e.KeyCode == Keys.ShiftKey)
+                if (isPaused == false)
                 {
-                    // player.Speed = player.RunSpeed;
-                    player.IsRunning = true;
-                }
-                if (e.KeyCode == Keys.Z && scaleFactor < 1.2f)
-                {
-                    scaleFactor += 0.1f;
-                }
-                if (e.KeyCode == Keys.X && scaleFactor > 0.8f)
-                {
-                    scaleFactor -= 0.1f;
-                }
-                if (e.KeyCode == Keys.S)
-                {
-                    player.GoingDown = true;
-                    player.GoingUp = false;
-                }
-                if (e.KeyCode == Keys.W)
-                {
-                    player.GoingUp = true;
-                    player.GoingDown = false;
-                }
-                if (e.KeyCode == Keys.A)
-                {
-                    player.GoingLeft = true;
-                    player.GoingRight = false;
-                }
-                if (e.KeyCode == Keys.D)
-                {
-                    player.GoingRight = true;
-                    player.GoingLeft = false;
-                }
-                if (e.KeyCode == Keys.F12 && CHEATS)
-                {
-                    foreach( Badguy badguy in badguys)
+                    if (e.KeyCode == Keys.ShiftKey)
                     {
-                        badguy.IsDead = true;
+                        // player.Speed = player.RunSpeed;
+                        player.IsRunning = true;
                     }
-                    _currentLevel.CurrentScore = 999;
+                    if (e.KeyCode == Keys.Z && scaleFactor < 1.2f)
+                    {
+                        scaleFactor += 0.1f;
+                    }
+                    if (e.KeyCode == Keys.X && scaleFactor > 0.8f)
+                    {
+                        scaleFactor -= 0.1f;
+                    }
+                    if (e.KeyCode == Keys.S)
+                    {
+                        player.GoingDown = true;
+                        player.GoingUp = false;
+                    }
+                    if (e.KeyCode == Keys.W)
+                    {
+                        player.GoingUp = true;
+                        player.GoingDown = false;
+                    }
+                    if (e.KeyCode == Keys.A)
+                    {
+                        player.GoingLeft = true;
+                        player.GoingRight = false;
+                    }
+                    if (e.KeyCode == Keys.D)
+                    {
+                        player.GoingRight = true;
+                        player.GoingLeft = false;
+                    }
+                    if (e.KeyCode == Keys.F12 && CHEATS)
+                    {
+                        foreach (Badguy badguy in badguys)
+                        {
+                            badguy.IsDead = true;
+                        }
+                        _currentLevel.CurrentScore = 999;
+                    }
+                    if (e.KeyCode == Keys.E)
+                    {
+
+                        player.UsingKey = true;
+                    }
                 }
-                if (e.KeyCode == Keys.E)
+                else
                 {
-                    
-                    player.UsingKey = true;
+                    if(e.KeyCode == Keys.N)
+                    {
+                        isPaused = false;
+                    }
+                    else if (e.KeyCode == Keys.Y)
+                    {
+                        goToMenu = true;
+                    }
+                }
+                if(e.KeyCode == Keys.Escape)
+                {
+                    EscapeKeyIsPressed = true;
                 }
                 //Shooting Direction
                 {
@@ -240,6 +267,11 @@ namespace GameToEarnLegos
             {               
                 player.UsingKey = false;
                 player.HasUsed = false;
+            }
+            if (e.KeyCode == Keys.Escape)
+            {
+                EscapeKeyIsPressed = false;
+                EscapeKeyIsUsed = false;
             }
             player.UpdateAnimationState();
             //this._form.Invalidate();
@@ -352,7 +384,7 @@ namespace GameToEarnLegos
 
         public void Tick()
         {
-            if (gameOver == false)
+            if (gameOver == false && isPaused == false)
             {
                 int aliveBadguys = 0;
                 int amountOfGold = 0;
@@ -495,6 +527,7 @@ namespace GameToEarnLegos
                                 door.image = door.openImage;
                         }
                     }
+                    
 
                     float currentX = player.X, currentY = player.Y;
                     if (player.GoingUp)
@@ -542,7 +575,23 @@ namespace GameToEarnLegos
                     }
                 }
             }
+            if (EscapeKeyIsPressed == true)
+            {
 
+                if (EscapeKeyIsUsed == false)
+                {
+                    if (isPaused == true)
+                    {
+                        isPaused = false;
+                    }
+                    else
+                    {
+                        isPaused = true;
+                    }
+                    EscapeKeyIsUsed = true;
+
+                }
+            }
             _form.Invalidate();
         }
 
@@ -599,7 +648,7 @@ namespace GameToEarnLegos
             ammunitions.Clear();
             _currentLevel.CurrentScore = 0;
             gameOver = false;
-
+            isPaused = false;
         }
 
     }
