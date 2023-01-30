@@ -346,7 +346,7 @@ namespace GameToEarnLegos
                             badguys.Add(new Badguy(column, row));
                             break;
                         case 'v':
-                            badguys.Add(new Badguy(column, row, 2f, 9f));
+                            badguys.Add(new Badguy(column, row, "follower"));
                             break;
                         case 'g':
                             golds.Add(new Gold(column, row, Color.Gold));
@@ -562,17 +562,23 @@ namespace GameToEarnLegos
                     if (goal == "Elimination" && AliveBadguys == 0)
                     {
                         _currentLevel.IsWon = true;
-                    }
-                    else if(goal == "Treasure Hunt" && amountOfGold == 0)
-                    {
-                        _currentLevel.IsWon = true;
-                    }
-                    if(_currentLevel.IsWon == true)
-                    {
                         if (_currentLevel.HighScore < _currentLevel.CurrentScore)
                             _currentLevel.HighScore = _currentLevel.CurrentScore;
                         gameOver = true;
                     }
+                    else if(goal == "Treasure Hunt" && amountOfGold == 0)
+                    {
+                        _currentLevel.IsWon = true;
+                        if (_currentLevel.HighScore < _currentLevel.CurrentScore)
+                            _currentLevel.HighScore = _currentLevel.CurrentScore;
+                        gameOver = true;
+                    }
+                    //if(_currentLevel.IsWon == true)
+                    //{
+                    //    if (_currentLevel.HighScore < _currentLevel.CurrentScore)
+                    //        _currentLevel.HighScore = _currentLevel.CurrentScore;
+                    //    gameOver = true;
+                    //}
                 }
             }
             if (EscapeKeyIsPressed == true)

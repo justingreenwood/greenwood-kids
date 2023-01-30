@@ -28,8 +28,8 @@ namespace GameToEarnLegos
         public bool cheatsOn = false;
         private List<ButtonsInMenu> MenuChoices => _form.MenuChoices;
         private List<ButtonsInMenu> OptionChoices => _form.OptionChoices;
-        private List<ButtonsInMenu> LevelChoices => _form.LevelChoices;
-
+        //private List<ButtonsInMenu> LevelChoices => _form.LevelChoices;
+        private List<ButtonsInMenu> LevelChoices = new List<ButtonsInMenu>();
         public MenuController(FormTriangleTrees form)
         {
             _form = form;
@@ -72,6 +72,7 @@ namespace GameToEarnLegos
                     }
                     if(option.Name == "Cheats")
                         g.DrawString($"{option.Name} {cheatsOn}", SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
+
                     else
                         g.DrawString($"{option.Name}", SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
 
@@ -125,6 +126,14 @@ namespace GameToEarnLegos
                     }
                     else if (buttonChoice == 2)
                     {
+                        foreach (Level level in _levels)
+                        {
+                            level.IsWon = true;
+                            Start();
+                        }
+                    }
+                    else if (buttonChoice == 3)
+                    {
                         _optionButtonPressed = false;
                     }
                 }
@@ -169,20 +178,18 @@ namespace GameToEarnLegos
         }
         public void Start(string startInfo = null)
         {
-            //int i = 0;
-            //.Where(l => l.IsWon)
-            //foreach (Level level in _levels.Where(l => l.IsWon))
-            //{
-            //    LevelChoices.Add(new ButtonsInMenu(level.Name));
-            //}
-            //foreach (Level level in _levels.Where(l => (l.IsWon == false)))
-            //{
-            //    //i++;
-            //    LevelChoices.Add(new ButtonsInMenu(level.Name));
-            //    //if(i == 1)
-            //    break;
-            //}
-            //LevelChoices.Add(new ButtonsInMenu("Return"));
+            LevelChoices.Clear();
+            foreach (Level level in _levels)
+            {
+                LevelChoices.Add(new ButtonsInMenu(level.Name));
+                if(level.IsWon == false)
+                {
+                    break;
+                }
+            }
+
+
+            LevelChoices.Add(new ButtonsInMenu("Return"));
 
             _playButtonPressed = false;
             _form.Refresh();
@@ -243,7 +250,7 @@ namespace GameToEarnLegos
                     }
                     else
                     {
-                        levelChoice = _levelCount;
+                        levelChoice = LevelChoices.Count -1;
                     }
                 }
                 else if (_optionButtonPressed)

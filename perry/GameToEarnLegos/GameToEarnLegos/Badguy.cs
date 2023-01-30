@@ -33,6 +33,7 @@ namespace GameToEarnLegos
         public int LengthOfDirection = 0;
         public bool IsDead = false;
         public bool IsInWater;
+        public bool isFollower = false;
 
         private bool GoingUp = false;
         private bool GoingDown = false;
@@ -104,24 +105,21 @@ namespace GameToEarnLegos
         }
 
 
-
-
-
-
-
-
-
         public Badguy(int col, int row)
         {
             X = col * Tile.TileSize;
             Y = row * Tile.TileSize;
         }
-        public Badguy(int col, int row, float speed, float health)
+        public Badguy(int col, int row, string kindOfBadguy)
         {
             X = col * Tile.TileSize;
             Y = row * Tile.TileSize;
-            BaseSpeed = speed;
-            Health = health;
+            if(kindOfBadguy == "follower")
+            {
+                BaseSpeed = 1.6f;
+                isFollower = true;
+            }
+
         }
 
         public RectangleF Rect(float scale)
