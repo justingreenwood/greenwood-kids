@@ -48,6 +48,22 @@ namespace GameToEarnLegos.Tiles
 
         float IDrawable.Y => Y;
 
+        public RectangleF CheckLeftRect(float scale)
+        {
+            return new RectangleF((X - 5) * scale, Y * scale, TileSize * scale, TileSize * scale);
+        }
+        public RectangleF CheckUpRect(float scale)
+        {
+            return new RectangleF(X * scale, (Y-5) * scale, TileSize * scale, TileSize * scale);
+        }
+        public RectangleF CheckDownRect(float scale)
+        {
+            return new RectangleF(X * scale, (Y + 5) * scale, TileSize * scale, TileSize * scale);
+        }
+        public RectangleF CheckRightRect(float scale)
+        {
+            return new RectangleF((X + 5) * scale, Y * scale, TileSize * scale, TileSize * scale);
+        }
     }
 
 }

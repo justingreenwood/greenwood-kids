@@ -75,10 +75,15 @@ namespace GameToEarnLegos
             {
                 DrawScaledTiles(g, ammunition);
             }
-            foreach (Tile tile in tiles.Where(t => (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag == "door"))
+            foreach (Door door in tiles.Where(t => (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag == "door"))
             {
-
-                DrawScaledTiles(g, tile);
+                if (door.IsClosed == true)
+                {
+                    door.image = door.closedImage;
+                }
+                else
+                    door.image = door.openImage;
+                DrawScaledTiles(g, door);
             }
             if (CHEATS)
             {
@@ -319,10 +324,10 @@ namespace GameToEarnLegos
                     switch(letter)
                     {
                         case 'W':
-                            tiles.Add(new Water(column, row, Color.Aqua));
+                            tiles.Add(new Water(column, row));
                             break;
                         case 'E':
-                            tiles.Add(new Block(column, row, Color.Brown));
+                            tiles.Add(new Water(column, row));
                             break;
                         case 'L':
                             tiles.Add(new Block(column, row, Color.OrangeRed));
@@ -345,11 +350,14 @@ namespace GameToEarnLegos
                         case 'V':
                             badguys.Add(new Badguy(column, row));
                             break;
+                        case 'E':
+                            tiles.Add(new Bridge(column, row, Color.Brown));
+                            break;
                         case 'v':
                             badguys.Add(new Badguy(column, row, "follower"));
                             break;
                         case 'g':
-                            golds.Add(new Gold(column, row, Color.Gold));
+                            golds.Add(new Gold(column, row));
                             break;
                         case 'T':
                             tiles.Add(new Tree(column, row));
@@ -372,6 +380,83 @@ namespace GameToEarnLegos
                     lastLetter = letter;
                     
                 }
+            }
+            foreach(Water water in tiles.Where(w => w.Tag == "water"))
+            {
+                bool waterDown = false;
+                bool waterUp = false;
+                bool waterRight = false;
+                bool waterLeft = false;
+                foreach(Bridge bridge in tiles.Where(b=> b.Tag == "bridge"))
+                {
+                    if (water.Rect(scaleFactor).IntersectsWith(bridge.Rect(scaleFactor)))
+                    {
+                        water.HasBridge = true;
+                    }
+                }
+                foreach (Water otherWater in tiles.Where( w => (w.Tag == "water") && ( w.Rect(scaleFactor) != water.Rect(scaleFactor) ) ) ) 
+                {
+                    if (water.CheckDownRect(scaleFactor).IntersectsWith(otherWater.Rect(scaleFactor)))
+                    {
+                        waterDown = true;
+                    }
+                    if (water.CheckUpRect(scaleFactor).IntersectsWith(otherWater.Rect(scaleFactor)))
+                    {
+                        waterUp = true;
+                    }
+                    if (water.CheckLeftRect(scaleFactor).IntersectsWith(otherWater.Rect(scaleFactor)))
+                    {
+                        waterLeft = true;
+                    }
+                    if (water.CheckRightRect(scaleFactor).IntersectsWith(otherWater.Rect(scaleFactor)))
+                    {
+                        waterRight = true;
+                    }
+                }
+
+                if(waterUp && waterDown)
+                {
+
+                }
+                else
+                {
+                    if (waterUp && waterRight && waterLeft)
+                    {
+                        water.image = Resources.Image_WaterBottom;
+                    }
+                    else if (waterUp && waterRight)
+                    {
+                        water.image = Resources.Image_WaterBottomLeft;
+                    }
+                    else if (waterUp && waterLeft)
+                    {
+                        water.image = Resources.Image_WaterBottomRight;
+                    }
+                    else if (waterUp)
+                    {
+                        //water.image = Resources.Image_WaterBottomRightLeft;
+                    }
+                    else if (waterDown && waterRight && waterLeft)
+                    {
+                        water.image = Resources.Image_WaterTop;
+                    }
+                    else if (waterDown && waterRight)
+                    {
+                        water.image = Resources.Image_WaterTopLeft;
+                    }
+                    else if (waterDown && waterLeft)
+                    {
+                        water.image = Resources.Image_WaterTopRight;
+                    }
+                    else if (waterDown)
+                    {
+                        //water.image = Resources.Image_WaterTopRightLeft;
+                    }
+                }
+
+                
+
+
             }
 
 
@@ -422,9 +507,9 @@ namespace GameToEarnLegos
 
                                 }
                             }
-                            foreach (Tile water in tiles.Where(w => w.Tag == "water"))
+                            foreach (Water water in tiles.Where(w => (w.Tag == "water")))
                             {
-                                if (badguy.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)))
+                                if (badguy.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)) && water.HasBridge == false)
                                 {
                                     badguy.IsInWater = true;
                                     break;
@@ -441,9 +526,9 @@ namespace GameToEarnLegos
                             badguy.UpdateAnimationState();
                         }
                     }
-                    foreach (Tile water in tiles.Where(w => w.Tag == "water"))
+                    foreach (Water water in tiles.Where(w => w.Tag == "water"))
                     {
-                        if (player.WaterCheckRect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)))
+                        if (player.WaterCheckRect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)) && water.HasBridge == false)
                         {
                             player.IsInWater = true;
                             break;
@@ -519,12 +604,7 @@ namespace GameToEarnLegos
                                     player.HasUsed = true;                                   
                                 }    
                             }
-                            if (door.IsClosed == true)
-                            {
-                                door.image = door.closedImage;
-                            }
-                            else
-                                door.image = door.openImage;
+                            
                         }
                     }
                     

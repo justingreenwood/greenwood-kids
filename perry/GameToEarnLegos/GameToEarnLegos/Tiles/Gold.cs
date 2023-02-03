@@ -11,9 +11,6 @@ namespace GameToEarnLegos.Tiles
         public bool IsPickedUp = false;
         public override string Tag => "gold";
 
-        public Gold(int col, int row, Color color) : base(col, row)
-        {
-            brush = new SolidBrush(color);
-        }
+        public Gold(int col, int row) : base(col, row, Resources.Image_Treasure) { }
     }
 }

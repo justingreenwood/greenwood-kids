@@ -9,9 +9,7 @@ namespace GameToEarnLegos.Tiles
     public class Water : Tile
     {
         public override string Tag => "water";
-        public Water(int col, int row, Color color) : base(col, row)
-        {
-            brush = new SolidBrush(color);
-        }
+        public bool HasBridge = false;
+        public Water(int col, int row) : base(col, row, Resources.Image_Water) { }
     }
 }
