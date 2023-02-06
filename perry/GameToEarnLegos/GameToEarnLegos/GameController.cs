@@ -417,6 +417,21 @@ namespace GameToEarnLegos
                 if(waterUp && waterDown)
                 {
 
+                    if(waterLeft && waterRight)
+                    {                        
+                    }
+                    else if (waterLeft)
+                    {
+                        water.image = Resources.Image_WaterRight;
+                    }
+                    else if(waterRight)
+                    {
+                        water.image = Resources.Image_WaterLeft;
+                    }
+                    else
+                    {
+                        water.image = Resources.Image_WaterLeftRight;
+                    }
                 }
                 else
                 {
@@ -434,7 +449,7 @@ namespace GameToEarnLegos
                     }
                     else if (waterUp)
                     {
-                        //water.image = Resources.Image_WaterBottomRightLeft;
+                        water.image = Resources.Image_WaterBottomLeftRight;
                     }
                     else if (waterDown && waterRight && waterLeft)
                     {
@@ -450,8 +465,21 @@ namespace GameToEarnLegos
                     }
                     else if (waterDown)
                     {
-                        //water.image = Resources.Image_WaterTopRightLeft;
+                        water.image = Resources.Image_WaterTopLeftRight;
                     }
+                    else if (waterRight && waterLeft)
+                    {
+                        water.image = Resources.Image_WaterTopBottom;
+                    }
+                    else if (waterRight) 
+                    {
+                        water.image = Resources.Image_WaterTopBottomLeft;
+                    }
+                    else if (waterLeft)
+                    {
+                        water.image = Resources.Image_WaterTopBottomRight;
+                    }
+
                 }
 
                 
