@@ -8,6 +8,7 @@ namespace GameToEarnLegos.Tiles
 {
     public class Border : Tile
     {
+        public override string Tag => "border";
         public Border(int col, int row) : base(col, row, Resources.Image_Border) { IsBlocker = true; }
     }
 }

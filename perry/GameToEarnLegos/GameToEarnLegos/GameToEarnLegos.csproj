@@ -9,6 +9,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Resources\Images\SmartWater\Sand\**" />
+    <EmbeddedResource Remove="Resources\Images\SmartWater\Sand\**" />
+    <None Remove="Resources\Images\SmartWater\Sand\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Resources\Images\Ammopack.png" />
     <None Remove="Resources\Images\Badguy.png" />
     <None Remove="Resources\Images\BadguyUpgraded.png" />
@@ -31,6 +37,8 @@
     <None Remove="Resources\Images\DeadBadguy.png" />
     <None Remove="Resources\Images\DeepWater.png" />
     <None Remove="Resources\Images\Grass.png" />
+    <None Remove="Resources\Images\Grass\SmartGrassRight.aseprite" />
+    <None Remove="Resources\Images\Grass\SmartGrassRight.png" />
     <None Remove="Resources\Images\HitBadguy.png" />
     <None Remove="Resources\Images\intro-background.png" />
     <None Remove="Resources\Images\NormalWater.png" />
@@ -64,7 +72,6 @@
     <None Remove="Resources\Images\Player\Player_Right_7.png" />
     <None Remove="Resources\Images\Player\Player_Right_8.png" />
     <None Remove="Resources\Images\Sand.png" />
-    <None Remove="Resources\Images\SmartWater\Sand\SmartWaterBottomLeftRightSand.png" />
     <None Remove="Resources\Images\SmartWater\SmartWaterBase.aseprite" />
     <None Remove="Resources\Images\SmartWater\SmartWaterBase.png" />
     <None Remove="Resources\Images\SmartWater\SmartWaterBottomLeftGrass.aseprite" />
@@ -155,10 +162,13 @@
     <Content Include="Resources\Images\DeepWater.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Grass.png">
+    <Content Include="Resources\Images\Grass\Grass.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Badguy\HitBadguy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Grass\SmartGrassRight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\intro-background.png">
@@ -242,40 +252,7 @@
     <Content Include="Resources\Images\Sand.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\SmartWater\Sand\SmartWaterBottomLeftRightSand.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
     <Content Include="Resources\Images\SmartWater\SmartWaterBase.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterBottomLeftGrass.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterBottomLeftRightGrass.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterDownGrass.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterLeftGrass.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterLeftRightGrass.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterTopBottomGrass.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterTopBottomLeftGrass.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterTopGrass.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterTopLeftGrass.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Resources\Images\SmartWater\SmartWaterTopLeftRightGrass.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\TreasureChest.png">
