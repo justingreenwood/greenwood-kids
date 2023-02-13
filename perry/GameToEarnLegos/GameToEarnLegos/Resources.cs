@@ -27,12 +27,17 @@ namespace GameToEarnLegos
 
         public static Bitmap Image_Water = new Bitmap(@"Resources\Images\SmartWater\SmartWaterBase.png");
 
-        public static Bitmap Image_WaterRight = new Bitmap(@"Resources\Images\Grass\SmartGrassRight.png");
 
-
+        public static Bitmap Image_WaterLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterLeftGrass.png");
+        public static Bitmap Image_WaterUp = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopGrass.png");
+        public static Bitmap Image_WaterDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterDownGrass.png");
+        public static Bitmap Image_WaterLeftRight = new Bitmap(@"Resources\Images\SmartWater\SmartWaterLeftRightGrass.png");
+        public static Bitmap Image_WaterLeftRightUp = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopLeftRightGrass.png");
+        public static Bitmap Image_WaterLeftRightDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterBottomLeftRightGrass.png");
+        public static Bitmap Image_WaterUpDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomGrass.png");
         //public static Bitmap Image_WaterTopRight = RotateImage(Image_WaterTopLeft);
         //public static Bitmap Image_WaterBottomRight = RotateImage(Image_WaterBottomLeft);
-        //public static Bitmap Image_WaterRight = RotateImage(Image_WaterLeft);
+        public static Bitmap Image_WaterRight = RotateImage(Image_WaterLeft);
         //public static Bitmap Image_WaterTopBottomRight = RotateImage(Image_WaterTopBottomLeft);
 
 

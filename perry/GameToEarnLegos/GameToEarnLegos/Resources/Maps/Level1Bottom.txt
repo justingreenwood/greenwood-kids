@@ -1,4 +1,4 @@
-﻿OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+﻿OOOOOOOOOOOOOOOOOOOOOOOOOOOOOWOOOOOOOOOOOO
 O                            W        GLGO
 O                            WWWW      G O
 O                               WW    T  O
@@ -16,9 +16,9 @@ O    T     T  WWWWTTT     TTT   W TT     O
 O  TTTT     TTWWWW         T    W        O
 O   T        TTWW              WW    TT  O
 O             T           WWWWWW         O
-OT     TTT           T    W  T WWW  WEW  O
-OTT     TT           TTT WW T    WW W WW O
-OT      T  V V V      TTWW  T     WWW  WWO
+TT     TTT           T    W  T WWW  WEW  O
+TTT     TT           TTT WW T    WW W WW O
+TT      T  V V V      TTWW  T     WWW  WWW
 O    T            TT   WW      T         O
 O   TTT    V V V  TTT  E      TT    TT   O
 O     T          TTTT WW      T     T    O
@@ -27,9 +27,9 @@ O   TT      TTT     WW   V V V           O
 O  TTTT      TTT    W T TT    GG         O
 O  TTTTT      TT    W TTT  V GLLG    TT  O
 O   TTTT      WWW   W TTTV   GLLLG    T  O
-OW    T      WW WW WW  T      GGG        O
+WW    T      WW WW WW  T      GGG        O
 OWW          W   WWW      T              O
 O W       W  W           TTT   TTT       O
 O WW     WWW W       TTT  T              O
 O  W     WTWWW      TTTT  T              O
-OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+OOOWOOOOOWOOOOOOOOOOOTTOOOOOOOOOOOOOOOOOOO

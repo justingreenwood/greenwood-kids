@@ -312,6 +312,8 @@ namespace GameToEarnLegos
 
         public void Start(string startInfo = null)
         {
+            int checkRow = levelTop.Length - 1;
+
             char lastLetter = 'z';
             Refresh();
             for (int row = 0; row < levelTop.Length; row++)
@@ -320,8 +322,8 @@ namespace GameToEarnLegos
                 for (int column = 0; column < higherLevelRow.Length; column++)
                 {
                     var letter = higherLevelRow[column];
-
-                    switch(letter)
+                    int checkColumn = higherLevelRow.Length - 1;
+                    switch (letter)
                     {
                         case 'W':
                             tiles.Add(new Water(column, row));
@@ -377,107 +379,16 @@ namespace GameToEarnLegos
                         
 
                     }
+                    if(letter != 'O' && (row == 0 || column == 0 || row == checkRow || column == checkColumn))
+                    {
+                        tiles.Add(new Border(column, row));
+                    }
                     lastLetter = letter;
                     
                 }
+
             }
 
-            foreach (Grass grass in tiles.Where(w => w.Tag == "grass"))
-            {
-                bool waterDown = false;
-                bool waterUp = false;
-                bool waterRight = false;
-                bool waterLeft = false;
-                foreach (Tile otherWater in tiles.Where(w => (w.Tag == "water")))
-                {
-
-                    if (grass.CheckDownRect(scaleFactor).IntersectsWith(otherWater.Rect(scaleFactor)))
-                    {
-                        waterDown = true;
-                    }
-                    if (grass.CheckUpRect(scaleFactor).IntersectsWith(otherWater.Rect(scaleFactor)))
-                    {
-                        waterUp = true;
-                    }
-                    if (grass.CheckLeftRect(scaleFactor).IntersectsWith(otherWater.Rect(scaleFactor)))
-                    {
-                        waterLeft = true;
-                    }
-                    if (grass.CheckRightRect(scaleFactor).IntersectsWith(otherWater.Rect(scaleFactor)))
-                    {
-                        waterRight = true;
-                    }
-
-                }
-
-                if (waterUp && waterDown)
-                {
-
-                    if (waterLeft && waterRight)
-                    {
-                    }
-                    else if (waterLeft)
-                    {
-
-                    }
-                    else if (waterRight)
-                    {
-                        
-                    }
-                    else
-                    {
-
-                    }
-                }
-                else
-                {
-                    if (waterUp && waterRight && waterLeft)
-                    {
-
-                    }
-                    else if (waterUp && waterRight)
-                    {
-
-                    }
-                    else if (waterUp && waterLeft)
-                    {
-
-                    }
-                    else if (waterUp)
-                    {
-
-                    }
-                    else if (waterDown && waterRight && waterLeft)
-                    {
-
-                    }
-                    else if (waterDown && waterRight)
-                    {
-
-                    }
-                    else if (waterDown && waterLeft)
-                    {
-
-                    }
-                    else if (waterDown)
-                    {
-
-                    }
-                    else if (waterRight && waterLeft)
-                    {
-
-                    }
-                    else if (waterRight)
-                    {
-                        grass.image = Resources.Image_WaterRight;
-                    }
-                    else if (waterLeft)
-                    {
-
-                    }
-
-                }
-            }
 
             foreach (Water water in tiles.Where(w => w.Tag == "water"))
             {
@@ -488,6 +399,102 @@ namespace GameToEarnLegos
                         water.HasBridge = true;
                     }
                 }
+
+                bool GrassDown = false;
+                bool GrassUp = false;
+                bool GrassRight = false;
+                bool GrassLeft = false;
+                foreach (Tile grass in tiles.Where(w => (w.Tag == "grass")))
+                {
+
+                    if (water.CheckDownRect(scaleFactor).IntersectsWith(grass.Rect(scaleFactor)))
+                    {
+                        GrassDown = true;
+                    }
+                    if (water.CheckUpRect(scaleFactor).IntersectsWith(grass.Rect(scaleFactor)))
+                    {
+                        GrassUp = true;
+                    }
+                    if (water.CheckLeftRect(scaleFactor).IntersectsWith(grass.Rect(scaleFactor)))
+                    {
+                        GrassLeft = true;
+                    }
+                    if (water.CheckRightRect(scaleFactor).IntersectsWith(grass.Rect(scaleFactor)))
+                    {
+                        GrassRight = true;
+                    }
+
+                }
+
+                if (GrassUp && GrassDown)
+                {
+
+                    if (GrassLeft && GrassRight)
+                    {
+                    }
+                    else if (GrassLeft)
+                    {
+
+                    }
+                    else if (GrassRight)
+                    {
+
+                    }
+                    else
+                    {
+                        water.image = Resources.Image_WaterUpDown;
+                    }
+                }
+                else
+                {
+                    if (GrassUp && GrassRight && GrassLeft)
+                    {
+                        water.image = Resources.Image_WaterLeftRightUp;
+                    }
+                    else if (GrassUp && GrassRight)
+                    {
+
+                    }
+                    else if (GrassUp && GrassLeft)
+                    {
+
+                    }
+                    else if (GrassUp)
+                    {
+                        water.image = Resources.Image_WaterUp;
+                    }
+                    else if (GrassDown && GrassRight && GrassLeft)
+                    {
+                        water.image = Resources.Image_WaterLeftRightDown;
+                    }
+                    else if (GrassDown && GrassRight)
+                    {
+
+                    }
+                    else if (GrassDown && GrassLeft)
+                    {
+
+                    }
+                    else if (GrassDown)
+                    {
+                        water.image = Resources.Image_WaterDown;
+                    }
+                    else if (GrassRight && GrassLeft)
+                    {
+                        water.image = Resources.Image_WaterLeftRight;
+                    }
+                    else if (GrassRight)
+                    {
+                        water.image = Resources.Image_WaterRight;
+                    }
+                    else if (GrassLeft)
+                    {
+                        water.image = Resources.Image_WaterLeft;
+                    }
+
+                }
+
+
             }
 
 
