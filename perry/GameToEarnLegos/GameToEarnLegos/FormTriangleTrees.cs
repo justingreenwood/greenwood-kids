@@ -35,11 +35,6 @@ namespace GameToEarnLegos
             OptionChoices.Add(new ButtonsInMenu("Win All Games"));
             OptionChoices.Add(new ButtonsInMenu("Return"));
             
-            //foreach (Level level in levels)
-            //{
-            //    LevelChoices.Add(new ButtonsInMenu(level.Name));
-            //}
-            //LevelChoices.Add(new ButtonsInMenu("Return"));
 
 
             Start();

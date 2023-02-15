@@ -431,53 +431,55 @@ namespace GameToEarnLegos
 
                     if (GrassLeft && GrassRight)
                     {
+                        //  Not  Added  Yet  !!!!!
+                        //water.image = Resources.Image_WaterTopBottomLeftRight;
                     }
                     else if (GrassLeft)
                     {
-
+                        water.image = Resources.Image_WaterTopBottomLeft;
                     }
                     else if (GrassRight)
                     {
-
+                        water.image = Resources.Image_WaterTopBottomRight;
                     }
                     else
                     {
-                        water.image = Resources.Image_WaterUpDown;
+                        water.image = Resources.Image_WaterTopBottom;
                     }
                 }
                 else
                 {
                     if (GrassUp && GrassRight && GrassLeft)
                     {
-                        water.image = Resources.Image_WaterLeftRightUp;
+                        water.image = Resources.Image_WaterTopLeftRight;
                     }
                     else if (GrassUp && GrassRight)
                     {
-
+                        water.image = Resources.Image_WaterTopRight;
                     }
                     else if (GrassUp && GrassLeft)
                     {
-
+                        water.image = Resources.Image_WaterTopLeft;
                     }
                     else if (GrassUp)
                     {
-                        water.image = Resources.Image_WaterUp;
+                        water.image = Resources.Image_WaterTop;
                     }
                     else if (GrassDown && GrassRight && GrassLeft)
                     {
-                        water.image = Resources.Image_WaterLeftRightDown;
+                        water.image = Resources.Image_WaterBottomLeftRight;
                     }
                     else if (GrassDown && GrassRight)
                     {
-
+                        water.image = Resources.Image_WaterBottomRight;
                     }
                     else if (GrassDown && GrassLeft)
                     {
-
+                        water.image = Resources.Image_WaterBottomLeft;
                     }
                     else if (GrassDown)
                     {
-                        water.image = Resources.Image_WaterDown;
+                        water.image = Resources.Image_WaterBottom;
                     }
                     else if (GrassRight && GrassLeft)
                     {
@@ -747,6 +749,35 @@ namespace GameToEarnLegos
 
         public void DrawScaledTiles(Graphics g, IDrawable t)
         {
+
+            //RectangleF drawnRect;
+            //if (t != player)
+            //{
+            //    if(t is Tile)
+            //        drawnRect = new RectangleF((963/2+t.X) * scaleFactor, (543/2+t.Y) * scaleFactor, (20) * scaleFactor, (20) * scaleFactor);
+            //    else
+            //        drawnRect = new RectangleF((player.X / 2-t.X) * scaleFactor, (player.Y / 2-t.Y) * scaleFactor, (20) * scaleFactor, (20) * scaleFactor);
+            //    if (t.Brush.Color == Color.Black)
+            //    {
+            //        g.DrawImage(t.Image, drawnRect);
+            //    }
+            //    else if (t.Brush.Color == Color.White)
+            //    {
+
+            //    }
+            //    else
+            //    {
+            //        g.FillRectangle(t.Brush, drawnRect);
+            //    }
+            //}
+            //else
+            //{
+               
+            //    //963, 543
+            //    g.DrawImage(t.Image, player.StationedRect(ScaleFactor));
+
+            //}
+
             if (t.Brush.Color == Color.Black)
             {
                 g.DrawImage(t.Image, t.Rect(ScaleFactor));

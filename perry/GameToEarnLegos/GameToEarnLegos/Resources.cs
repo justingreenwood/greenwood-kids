@@ -29,16 +29,25 @@ namespace GameToEarnLegos
 
 
         public static Bitmap Image_WaterLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterLeftGrass.png");
-        public static Bitmap Image_WaterUp = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopGrass.png");
-        public static Bitmap Image_WaterDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterDownGrass.png");
+        public static Bitmap Image_WaterTop = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopGrass.png");
+        public static Bitmap Image_WaterBottom = new Bitmap(@"Resources\Images\SmartWater\SmartWaterDownGrass.png");
         public static Bitmap Image_WaterLeftRight = new Bitmap(@"Resources\Images\SmartWater\SmartWaterLeftRightGrass.png");
-        public static Bitmap Image_WaterLeftRightUp = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopLeftRightGrass.png");
-        public static Bitmap Image_WaterLeftRightDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterBottomLeftRightGrass.png");
-        public static Bitmap Image_WaterUpDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomGrass.png");
-        //public static Bitmap Image_WaterTopRight = RotateImage(Image_WaterTopLeft);
-        //public static Bitmap Image_WaterBottomRight = RotateImage(Image_WaterBottomLeft);
+        public static Bitmap Image_WaterTopLeftRight = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopLeftRightGrass.png");
+        public static Bitmap Image_WaterBottomLeftRight = new Bitmap(@"Resources\Images\SmartWater\SmartWaterBottomLeftRightGrass.png");
+        public static Bitmap Image_WaterTopBottom = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomGrass.png");
+        
+        public static Bitmap Image_WaterTopBottomLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomLeftGrass.png");
+        public static Bitmap Image_WaterTopLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopLeftGrass.png");
+        public static Bitmap Image_WaterBottomLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterBottomLeftGrass.png");
+
+
+        //public static Bitmap Image_WaterLeftRightUpDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomLeftRightGrass.png");
+
+
+        public static Bitmap Image_WaterTopRight = RotateImage(Image_WaterTopLeft);
+        public static Bitmap Image_WaterBottomRight = RotateImage(Image_WaterBottomLeft);
         public static Bitmap Image_WaterRight = RotateImage(Image_WaterLeft);
-        //public static Bitmap Image_WaterTopBottomRight = RotateImage(Image_WaterTopBottomLeft);
+        public static Bitmap Image_WaterTopBottomRight = RotateImage(Image_WaterTopBottomLeft);
 
 
         public static Bitmap Image_Player = new Bitmap(@"Resources\Images\Player\Player_1.png");
