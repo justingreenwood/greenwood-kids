@@ -139,10 +139,10 @@ namespace GameToEarnLegos
         {
             return new RectangleF((X + 4) * scale, (Y + 5) * scale, (Width/2) * scale, (Height / 2) * scale);
         }
-        public RectangleF StationedRect(float scale)
-        {
-            return new RectangleF(963 * scale, 543 * scale, Width * scale, Height * scale);
-        }
+        //public RectangleF StationedRect(float scale)
+        //{
+        //    return new RectangleF(963 * scale, 543 * scale, Width * scale, Height * scale);
+        //}
         public Player(int col, int row)
         {
             X = col * Tile.TileSize;

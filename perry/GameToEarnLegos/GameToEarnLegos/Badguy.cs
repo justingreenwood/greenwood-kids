@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using GameToEarnLegos.Animate;
@@ -34,6 +35,7 @@ namespace GameToEarnLegos
         public bool IsDead = false;
         public bool IsInWater;
         public bool isFollower = false;
+        public bool isFollowing = false;
 
         private bool GoingUp = false;
         private bool GoingDown = false;
@@ -119,14 +121,33 @@ namespace GameToEarnLegos
                 BaseSpeed = 1.6f;
                 isFollower = true;
             }
-
+            if (kindOfBadguy == "boss0")
+            {
+                BaseSpeed = 1.6f;
+                Health = 30f;
+                isFollower = true;
+            }
         }
 
         public RectangleF Rect(float scale)
         {
             return new RectangleF(X * scale, Y * scale, Width*scale, Height * scale);
         }
-
+        public PointF CenterPoint => new PointF(X + (Width) / 2, Y + (Height / 2));
+        public RectangleF InspectRect(float scale)
+        {
+            return new RectangleF(CenterPoint.X * scale - (0.5f * (20 * scale * 8)), CenterPoint.Y * scale - (0.5f * (20 * scale * 8)), 20 * scale * 8, 20 * scale * 8);
+        }
+        private static double GetDistance(PointF p1, PointF p2)
+        {
+            return Math.Sqrt(Math.Pow((p2.X - p1.X), 2) + Math.Pow((p2.Y - p1.Y), 2));
+        }
+        private static float FractionMath(float distance1, float distance2, float speed )
+        {
+            float y = distance2 * speed;
+            float x = y/distance1;
+            return x;
+        }
         public void Reverse()
         {
             if (GoingRight)
@@ -153,57 +174,87 @@ namespace GameToEarnLegos
              SpeedUpOrDown *= -1;
             LengthOfDirection = 3;
         }
-        public void Move(float scale)
+        public void Move(float scale, Player player)
         {
 
+            double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
 
-            int upOrDown = 0;
-            int leftOrRight = 0;
-            int length = 0;
-
-            if (LengthOfDirection <= 0)
+            if (distance < 80)
             {
-                GoingUp = false;
-                GoingDown = false;
-                GoingLeft = false;
-                GoingRight = false;
-
-                upOrDown = random.Next(3);
-                leftOrRight = random.Next(3);
-                length = random.Next(10, 60);
-                LengthOfDirection = length;
-                UpDownDirection = upOrDown;
-                RightLeftDirection = leftOrRight;
-
-
-                SpeedUpOrDown = 0;
-                SpeedLeftOrRight = 0;
-                if (upOrDown == 0)
+                if (isFollower)
                 {
-                    SpeedUpOrDown = -1 * BaseSpeed;
-                    GoingUp = true;
-                }
-                else if (upOrDown == 1)
-                {
-                    SpeedUpOrDown = BaseSpeed;
-                    GoingDown = true;
+                    isFollowing = true;
                 }
                 else
-                    SpeedUpOrDown = 0;
-                if (leftOrRight == 0)
                 {
-                    SpeedLeftOrRight = -1 * BaseSpeed;
-                    GoingLeft = true;
+                    isFollowing = false;
                 }
-                else if (leftOrRight == 1)
-                {
-                    SpeedLeftOrRight = BaseSpeed;
-                    GoingRight = true;
-                }
-                else
-                    SpeedLeftOrRight = 0;
             }
+            if (isFollowing == false)
+            {
+                int upOrDown = 0;
+                int leftOrRight = 0;
+                int length = 0;
 
+                if (LengthOfDirection <= 0)
+                {
+                    GoingUp = false;
+                    GoingDown = false;
+                    GoingLeft = false;
+                    GoingRight = false;
+
+                    upOrDown = random.Next(3);
+                    leftOrRight = random.Next(3);
+                    length = random.Next(10, 60);
+                    LengthOfDirection = length;
+                    UpDownDirection = upOrDown;
+                    RightLeftDirection = leftOrRight;
+
+
+                    SpeedUpOrDown = 0;
+                    SpeedLeftOrRight = 0;
+                    if (upOrDown == 0)
+                    {
+                        SpeedUpOrDown = -1 * BaseSpeed;
+                        GoingUp = true;
+                    }
+                    else if (upOrDown == 1)
+                    {
+                        SpeedUpOrDown = BaseSpeed;
+                        GoingDown = true;
+                    }
+                    else
+                        SpeedUpOrDown = 0;
+                    if (leftOrRight == 0)
+                    {
+                        SpeedLeftOrRight = -1 * BaseSpeed;
+                        GoingLeft = true;
+                    }
+                    else if (leftOrRight == 1)
+                    {
+                        SpeedLeftOrRight = BaseSpeed;
+                        GoingRight = true;
+                    }
+                    else
+                        SpeedLeftOrRight = 0;
+
+                }
+
+                
+                LengthOfDirection--;
+            }
+            else
+            {
+                float distanceX = player.X - X;
+                float distanceY = player.Y - Y;
+                float distanceF = (float)distance;
+                
+                SpeedLeftOrRight = FractionMath(distanceF, distanceX, BaseSpeed);
+                SpeedUpOrDown = FractionMath(distanceF, distanceY, BaseSpeed);
+
+
+
+            }
             if (IsInWater)
             {
                 WaterSpeedLeftOrRight = SpeedLeftOrRight / 2;
@@ -217,8 +268,6 @@ namespace GameToEarnLegos
 
             X += WaterSpeedLeftOrRight;
             Y += WaterSpeedUpOrDown;
-            LengthOfDirection--;
-
         }
 
         Bitmap IDrawable.Image

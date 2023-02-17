@@ -38,7 +38,7 @@ namespace GameToEarnLegos
                         {
                             numberOfGold++;
                         }
-                        else if (letter == 'V')
+                        else if (letter == 'V' || letter == 'v' || letter == '0')
                         {
                             numberOfBadguys++;
                         }
@@ -70,5 +70,10 @@ namespace GameToEarnLegos
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level1Bottom.txt");
         public override string Name => "Oh Deer!";
+    }
+    public class Level5 : Level
+    {
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level5.txt");
+        public override string Name => "Deer";
     }
 }

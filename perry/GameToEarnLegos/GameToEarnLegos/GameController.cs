@@ -358,6 +358,9 @@ namespace GameToEarnLegos
                         case 'v':
                             badguys.Add(new Badguy(column, row, "follower"));
                             break;
+                        case '0':
+                            badguys.Add(new Badguy(column, row, "boss0"));
+                            break;
                         case 'g':
                             golds.Add(new Gold(column, row));
                             break;
@@ -527,13 +530,13 @@ namespace GameToEarnLegos
                             badguy.AnimationTick();
 
                             aliveBadguys++;
-                            badguy.Move(scaleFactor);
+                            badguy.Move(scaleFactor, player);
                             foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
                             {
                                 if (badguy.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
                                 {
                                     badguy.Reverse();
-                                    badguy.Move(scaleFactor);
+                                    badguy.Move(scaleFactor, player);
                                 }
                             }
                             foreach (Door door in tiles.Where(t => t.Tag == "door"))
