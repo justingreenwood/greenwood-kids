@@ -70,18 +70,8 @@ namespace GameToEarnLegos
             if (menuController.willPlay == true)
             {
                 _currentGame = gameController;
-                if (menuController.levelChoice == 0)
-                {
-                    currentLevel = level1;
-                }
-                else if (menuController.levelChoice == 1)
-                {
-                    currentLevel = level2;
-                }
-                else if (menuController.levelChoice == 2)
-                {
-                    currentLevel = level3;
-                }
+                currentLevel = menuController.levelChoice;
+
                 menuController.willPlay = false;
                 Start();
             }

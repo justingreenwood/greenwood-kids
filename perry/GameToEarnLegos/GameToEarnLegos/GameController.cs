@@ -804,6 +804,7 @@ namespace GameToEarnLegos
             tiles.Clear();
             golds.Clear();
             ammunitions.Clear();
+            
             _currentLevel.CurrentScore = 0;
             gameOver = false;
             isPaused = false;

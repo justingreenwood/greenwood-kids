@@ -17,7 +17,8 @@ namespace GameToEarnLegos
         private FormTriangleTrees _form;
         private List<ILevel> _levels => _form.levels;
         private int _levelCount => _levels.Count;
-        public int levelChoice = 0;
+        public int levelChoiceNumber = 0;
+        public ILevel levelChoice;
         public float ScaleFactor => 1;
         private bool GoingDown = false;
         private bool GoingUp = false;
@@ -43,9 +44,10 @@ namespace GameToEarnLegos
                 {
 
                     Brush brush = Brushes.White;
-                    if (i == levelChoice)
+                    if (i == levelChoiceNumber)
                     {
                         brush = Brushes.Red;
+                        
                     }
 
                     if (i == LevelChoices.Count-1)
@@ -110,8 +112,11 @@ namespace GameToEarnLegos
             {
                 if (_playButtonPressed)
                 {
-                    if (levelChoice != LevelChoices.Count -1)
+                    if (levelChoiceNumber != LevelChoices.Count - 1)
+                    {                        
                         willPlay = true;
+                        levelChoice = _levels[levelChoiceNumber];
+                    }                        
                     else
                         _playButtonPressed = false;
                 }
@@ -181,7 +186,7 @@ namespace GameToEarnLegos
             LevelChoices.Clear();
             foreach (Level level in _levels)
             {
-                LevelChoices.Add(new ButtonsInMenu(level.Name));
+                LevelChoices.Add(new ButtonsInMenu(level));
                 if(level.IsWon == false)
                 {
                     break;
@@ -207,13 +212,13 @@ namespace GameToEarnLegos
 
                 if (_playButtonPressed)
                 {
-                    if (levelChoice < LevelChoices.Count-1)
+                    if (levelChoiceNumber < LevelChoices.Count-1)
                     {
-                        levelChoice++;
+                        levelChoiceNumber++;
                     }
                     else
                     {
-                        levelChoice = 0;
+                        levelChoiceNumber = 0;
                     }
                 }
                 else if (_optionButtonPressed)
@@ -244,13 +249,13 @@ namespace GameToEarnLegos
             {
                 if (_playButtonPressed)
                 {
-                    if (levelChoice > 0)
+                    if (levelChoiceNumber > 0)
                     {
-                        levelChoice--;
+                        levelChoiceNumber--;
                     }
                     else
                     {
-                        levelChoice = LevelChoices.Count -1;
+                        levelChoiceNumber = LevelChoices.Count -1;
                     }
                 }
                 else if (_optionButtonPressed)

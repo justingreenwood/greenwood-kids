@@ -10,12 +10,16 @@ namespace GameToEarnLegos
     {
         public string Name;
         public bool IsPressed = false;
-
+        Level level;
         public ButtonsInMenu(string name)
         {
             Name = name;
 
         }
-
+        public ButtonsInMenu(Level level)
+        {
+            Name = level.Name;
+            this.level = level;
+        }
     }
 }

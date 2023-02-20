@@ -94,7 +94,6 @@
     <None Remove="Resources\Images\TreeTester.png" />
     <None Remove="Resources\Images\Wall.png" />
     <None Remove="Resources\Images\Weapon.png" />
-    <None Remove="Resources\Maps\Level5.txt" />
   </ItemGroup>
 
   <ItemGroup>
@@ -296,9 +295,6 @@
     <Content Include="Resources\Images\Weapon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Maps\Level5.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -313,6 +309,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Maps\Level1Top.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Maps\Level5.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

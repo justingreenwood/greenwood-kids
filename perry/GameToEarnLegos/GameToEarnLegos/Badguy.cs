@@ -42,6 +42,10 @@ namespace GameToEarnLegos
         private bool GoingLeft = false;
         private bool GoingRight = false;
 
+        private float distanceX;
+        private float distanceY;
+        private float distanceF;
+
         public Animation currentAnimation = null;
         public int currentFrameIndex = 0;
         public int currentFrameCountdown = 0;
@@ -150,29 +154,43 @@ namespace GameToEarnLegos
         }
         public void Reverse()
         {
-            if (GoingRight)
+            if (isFollowing == false)
             {
-                GoingRight = false;
-                GoingLeft = true;
+                if (GoingRight)
+                {
+                    GoingRight = false;
+                    GoingLeft = true;
+                }
+                else if (GoingLeft)
+                {
+                    GoingLeft = false;
+                    GoingRight = true;
+                }
+                else if (GoingUp)
+                {
+                    GoingUp = false;
+                    GoingDown = true;
+                }
+                else if (GoingDown)
+                {
+                    GoingUp = true;
+                    GoingDown = false;
+                }
+                WaterSpeedLeftOrRight *= -1;
+                WaterSpeedUpOrDown *= -1;
+                LengthOfDirection = 3;
             }
-            else if (GoingLeft)
+            else
             {
-                GoingLeft = false;
-                GoingRight = true;
+                X+=2*(WaterSpeedLeftOrRight *= -1);
+                Y+=2*(WaterSpeedUpOrDown *= -1);
+                
+
+
+
+
             }
-            else if (GoingUp)
-            {
-                GoingUp = false;
-                GoingDown = true;
-            }
-            else if (GoingDown)
-            {
-                GoingUp = true;
-                GoingDown = false;
-            }
-            SpeedLeftOrRight *= -1;
-             SpeedUpOrDown *= -1;
-            LengthOfDirection = 3;
+            
         }
         public void Move(float scale, Player player)
         {
@@ -245,9 +263,9 @@ namespace GameToEarnLegos
             }
             else
             {
-                float distanceX = player.X - X;
-                float distanceY = player.Y - Y;
-                float distanceF = (float)distance;
+                distanceX = player.X - X;
+                distanceY = player.Y - Y;
+                distanceF = (float)distance;
                 
                 SpeedLeftOrRight = FractionMath(distanceF, distanceX, BaseSpeed);
                 SpeedUpOrDown = FractionMath(distanceF, distanceY, BaseSpeed);
