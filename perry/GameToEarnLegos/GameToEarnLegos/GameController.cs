@@ -535,8 +535,15 @@ namespace GameToEarnLegos
                             {
                                 if (badguy.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
                                 {
-                                    badguy.Reverse();
-                                    badguy.Move(scaleFactor, player);
+                                    if (badguy.isFollowing)
+                                    {
+                                        badguy.RevertMove();
+                                    }
+                                    else
+                                    {
+                                        badguy.Reverse();
+                                        badguy.Move(scaleFactor, player);
+                                    }
                                 }
                             }
                             foreach (Door door in tiles.Where(t => t.Tag == "door"))
@@ -613,7 +620,14 @@ namespace GameToEarnLegos
                                 {
                                     badguy.IsDead = true;
                                     aliveBadguys--;
-                                    _currentLevel.CurrentScore++;
+                                    if (badguy.IsBoss)
+                                    {
+                                        _currentLevel.CurrentScore+= 10;
+                                    }
+                                    else
+                                    {
+                                        _currentLevel.CurrentScore++;
+                                    }
                                 }                            
                             }
                         }

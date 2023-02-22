@@ -17,6 +17,8 @@ namespace GameToEarnLegos
         Random random = new Random();
         public float X;
         public float Y;
+        public float _X;
+        public float _Y;
         public SolidBrush brush = new SolidBrush(Color.Black);
         public float BaseSpeed = 1.5f;
         public float SpeedUpOrDown = 0;
@@ -28,13 +30,14 @@ namespace GameToEarnLegos
         public Bitmap deadImage = Resources.Image_DeadBadguy;
         public float Width = 15;
         public float Height = 15;
+        public bool IsBoss = false;
 
         public int UpDownDirection = 0;
         public int RightLeftDirection = 0;
         public int LengthOfDirection = 0;
         public bool IsDead = false;
         public bool IsInWater;
-        public bool isFollower = false;
+        public bool isFollower = true;
         public bool isFollowing = false;
 
         private bool GoingUp = false;
@@ -68,28 +71,28 @@ namespace GameToEarnLegos
         {
             Animation newAnimation = null;
 
-            if (GoingLeft)
+            if (SpeedLeftOrRight < -0.7)
             {
                 if (currentAnimation != Animations.BadguyLeft)
                 {
                     newAnimation = Animations.BadguyLeft;
                 };
             }
-            else if (GoingRight)
+            else if (SpeedLeftOrRight > 0.7)
             {
                 if (currentAnimation != Animations.BadguyRight)
                 {
                     newAnimation = Animations.BadguyRight;
                 }
             }
-            else if (GoingUp)
+            else if (SpeedUpOrDown < 0 )
             {
                 if (currentAnimation != Animations.BadguyUp)
                 {
                     newAnimation = Animations.BadguyUp;
                 }
             }
-            else if (GoingDown)
+            else if (SpeedUpOrDown > 0)
             {
                 if (currentAnimation != Animations.BadguyDown)
                 {
@@ -118,18 +121,17 @@ namespace GameToEarnLegos
         }
         public Badguy(int col, int row, string kindOfBadguy)
         {
-            X = col * Tile.TileSize;
-            Y = row * Tile.TileSize;
+            _X = X = col * Tile.TileSize;
+            _Y = Y = row * Tile.TileSize;
             if(kindOfBadguy == "follower")
             {
-                BaseSpeed = 1.6f;
-                isFollower = true;
+                BaseSpeed = 1.7f;
             }
             if (kindOfBadguy == "boss0")
             {
-                BaseSpeed = 1.6f;
+                BaseSpeed = 1.7f;
                 Health = 30f;
-                isFollower = true;
+                IsBoss = true;
             }
         }
 
@@ -151,6 +153,12 @@ namespace GameToEarnLegos
             float y = distance2 * speed;
             float x = y/distance1;
             return x;
+        }
+        public void RevertMove()
+        {
+
+            X = _X;
+            Y = _Y;
         }
         public void Reverse()
         {
@@ -178,17 +186,13 @@ namespace GameToEarnLegos
                 }
                 WaterSpeedLeftOrRight *= -1;
                 WaterSpeedUpOrDown *= -1;
-                LengthOfDirection = 3;
+                SpeedLeftOrRight *= -1;
+                SpeedUpOrDown *= -1;
             }
             else
             {
-                X+=2*(WaterSpeedLeftOrRight *= -1);
-                Y+=2*(WaterSpeedUpOrDown *= -1);
-                
-
-
-
-
+                X = _X;
+                Y = _Y;
             }
             
         }
@@ -201,15 +205,17 @@ namespace GameToEarnLegos
             {
                 if (isFollower)
                 {
-                    isFollowing = true;
+                    isFollowing = true;                    
                 }
-                else
-                {
-                    isFollowing = false;
-                }
+            }
+            else if(distance >=80 && isFollowing)
+            {
+                isFollowing = false;
+                LengthOfDirection = 0;
             }
             if (isFollowing == false)
             {
+                
                 int upOrDown = 0;
                 int leftOrRight = 0;
                 int length = 0;
@@ -284,6 +290,8 @@ namespace GameToEarnLegos
                 WaterSpeedUpOrDown = SpeedUpOrDown;
             }
 
+            _X = X;
+            _Y = Y;
             X += WaterSpeedLeftOrRight;
             Y += WaterSpeedUpOrDown;
         }
