@@ -25,6 +25,9 @@ namespace GameToEarnLegos
         public bool CHEATS => _form.CHEATS;
         public float ScaleFactor => scaleFactor;
         private ILevel _currentLevel => _form.currentLevel;
+
+        int AliveBosses;
+
         int AliveBadguys;
         Player player;
         List<Water> waters = new List<Water>();
@@ -516,6 +519,7 @@ namespace GameToEarnLegos
             {
                 int aliveBadguys = 0;
                 int amountOfGold = 0;
+                int aliveBosses = 0;
                 if (player.IsAlive)
                 {
                     player.AnimationTick();
@@ -528,6 +532,11 @@ namespace GameToEarnLegos
                         if (badguy.IsDead == false)
                         {
                             badguy.AnimationTick();
+
+                            if(badguy.IsBoss == true)
+                            {
+                                aliveBosses++;
+                            }
 
                             aliveBadguys++;
                             badguy.Move(scaleFactor, player);
@@ -704,6 +713,13 @@ namespace GameToEarnLegos
                         gameOver = true;
                     }
                     else if(goal == "Treasure Hunt" && amountOfGold == 0)
+                    {
+                        _currentLevel.IsWon = true;
+                        if (_currentLevel.HighScore < _currentLevel.CurrentScore)
+                            _currentLevel.HighScore = _currentLevel.CurrentScore;
+                        gameOver = true;
+                    }
+                    else if (goal == "?????????" && aliveBosses == 0)
                     {
                         _currentLevel.IsWon = true;
                         if (_currentLevel.HighScore < _currentLevel.CurrentScore)

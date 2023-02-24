@@ -79,6 +79,7 @@ namespace GameToEarnLegos
     public class Level5 : Level
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level5.txt");
-        public override string Name => "Deer";
+        public override string Name => "The King of Deer";
+        public override string Goal => "?????????";
     }
 }
