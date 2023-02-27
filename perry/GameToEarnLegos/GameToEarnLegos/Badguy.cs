@@ -39,6 +39,7 @@ namespace GameToEarnLegos
         public bool IsInWater;
         public bool isFollower = true;
         public bool isFollowing = false;
+        public bool isWanderer = true;
 
         private bool GoingUp = false;
         private bool GoingDown = false;
@@ -131,6 +132,7 @@ namespace GameToEarnLegos
             {
                 BaseSpeed = 1.7f;
                 Health = 30f;
+                isWanderer = false;
                 IsBoss = true;
             }
         }

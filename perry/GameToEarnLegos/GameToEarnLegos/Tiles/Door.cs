@@ -16,9 +16,10 @@ namespace GameToEarnLegos.Tiles
         private Bitmap openImageWide = Resources.Image_OpenDoor_Wide;
         private bool LeftRight;
         public bool IsClosed = true;
+        bool isBossDoor = false;
         public override string Tag => "door";
-        public Door(int col, int row, bool leftRight) : base(col, row, Resources.Image_ClosedDoor_Thin) 
-        { 
+        public Door(int col, int row, bool leftRight, char kindOfDoor) : base(col, row, Resources.Image_ClosedDoor_Thin)
+        {
             LeftRight = leftRight;
             if (leftRight)
             {
@@ -26,9 +27,10 @@ namespace GameToEarnLegos.Tiles
                 openImage = openImageWide;
             }
             this.image = closedImage;
+            if(kindOfDoor == 'B')
+                isBossDoor = true;
         }
-        
-        
+
 
     }
 }

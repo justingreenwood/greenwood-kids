@@ -5,6 +5,7 @@ using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Media;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -372,9 +373,15 @@ namespace GameToEarnLegos
                             break;
                         case 'D':
                             if(lastLetter == 'B')
-                            tiles.Add(new Door(column, row, true));
+                            tiles.Add(new Door(column, row, true,'N'));
                             else
-                                tiles.Add(new Door(column, row, false));
+                                tiles.Add(new Door(column, row, false, 'N'));
+                            break;
+                        case 'd':
+                            if (lastLetter == 'B')
+                                tiles.Add(new Door(column, row, true, 'B'));
+                            else
+                                tiles.Add(new Door(column, row, false, 'B'));
                             break;
                         case 'O':
                             tiles.Add(new Border(column, row));
@@ -520,6 +527,7 @@ namespace GameToEarnLegos
                 int aliveBadguys = 0;
                 int amountOfGold = 0;
                 int aliveBosses = 0;
+                Badguy Boss = new Badguy(0,0);
                 if (player.IsAlive)
                 {
                     player.AnimationTick();
@@ -536,10 +544,19 @@ namespace GameToEarnLegos
                             if(badguy.IsBoss == true)
                             {
                                 aliveBosses++;
+                                Boss = badguy;
                             }
 
                             aliveBadguys++;
-                            badguy.Move(scaleFactor, player);
+
+                            if (!badguy.isWanderer)
+                            {
+                                badguy.Move(scaleFactor, player);
+                            }
+                            else if(badguy.isWanderer && badguy.isFollowing == true)
+                            {
+                                badguy.Move(scaleFactor, player);
+                            }
                             foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
                             {
                                 if (badguy.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
@@ -555,6 +572,7 @@ namespace GameToEarnLegos
                                     }
                                 }
                             }
+                            
                             foreach (Door door in tiles.Where(t => t.Tag == "door"))
                             {
                                 if (badguy.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
@@ -654,8 +672,8 @@ namespace GameToEarnLegos
                     if (player.UsingKey == true)
                     {
                         foreach (Door door in tiles.Where(t => t.Tag == "door"))
-                        {                            
-                            if (PlayerUseRect(scaleFactor).Contains(door.Rect(scaleFactor))&& !player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
+                        {
+                            if (PlayerUseRect(scaleFactor).Contains(door.Rect(scaleFactor)) && !player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
                             {
                                 if (player.HasUsed == false)
                                 {
@@ -667,8 +685,8 @@ namespace GameToEarnLegos
                                     {
                                         door.IsClosed = true;
                                     }
-                                    player.HasUsed = true;                                   
-                                }    
+                                    player.HasUsed = true;
+                                }
                             }
                             
                         }
