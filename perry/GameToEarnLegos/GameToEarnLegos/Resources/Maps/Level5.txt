@@ -12,8 +12,8 @@ OTB   B   B   B           B   B   B   BTTO
 OTB   D   B V B           B   D   B   BTTO
 OTB   B   B   B           B   B   B   BTTO
 OTBBDBBBBBBBBBBBBBBBBBBBBBBBDBBBDBBBDBBTTO
-OTB   B   B   B   B   B   B   B   B   BTTO
-OTB V B   D   B   B V B   D   B V D   BTTO
+OTB   B   B   B   B  gB   B   B   B   BTTO
+OTB V B   D   B   D   B   D   B V D   BTTO
 OTB   B   B   B   B   B   B   B   B   BTTO
 OTBBDBBBBBBBDBBBDBBBBBBBDBBBBBBBDBBBDBBTTO
 OTB   B   B   B   B   B   B   B   B   BTTO

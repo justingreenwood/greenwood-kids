@@ -40,6 +40,7 @@ namespace GameToEarnLegos
         public bool isFollower = true;
         public bool isFollowing = false;
         public bool isWanderer = true;
+        public bool NoticedPlayer = false;
 
         private bool GoingUp = false;
         private bool GoingDown = false;
@@ -202,12 +203,20 @@ namespace GameToEarnLegos
         {
 
             double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
-
-            if (distance < 80)
+            if(IsBoss == true && distance < 90)
             {
                 if (isFollower)
                 {
-                    isFollowing = true;                    
+                    isFollowing = true;
+                    NoticedPlayer = true;
+                }
+            }
+            else if (distance < 80)
+            {
+                if (isFollower)
+                {
+                    isFollowing = true;
+                    NoticedPlayer = true;
                 }
             }
             else if(distance >=80 && isFollowing)
@@ -215,7 +224,7 @@ namespace GameToEarnLegos
                 isFollowing = false;
                 LengthOfDirection = 0;
             }
-            if (isFollowing == false)
+            if (isFollowing == false && isWanderer == true)
             {
                 
                 int upOrDown = 0;
@@ -269,7 +278,7 @@ namespace GameToEarnLegos
                 
                 LengthOfDirection--;
             }
-            else
+            else if(isFollowing == true)
             {
                 distanceX = player.X - X;
                 distanceY = player.Y - Y;

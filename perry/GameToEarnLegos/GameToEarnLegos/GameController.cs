@@ -23,6 +23,7 @@ namespace GameToEarnLegos
         private bool EscapeKeyIsUsed = false;
         public bool goToMenu = false;
         private bool EscapeKeyIsPressed = false;
+        Badguy Boss = null;
         public bool CHEATS => _form.CHEATS;
         public float ScaleFactor => scaleFactor;
         private ILevel _currentLevel => _form.currentLevel;
@@ -228,7 +229,7 @@ namespace GameToEarnLegos
                         {                           
                             player.ammunition -= 1;
                             ammunitions.Add( new Ammunition(player.X, player.Y, player.LastWentDirection));                            
-                            ShootingCoolDown = 15;
+                            ShootingCoolDown = 10;
                         }
                     }
                 }
@@ -512,7 +513,6 @@ namespace GameToEarnLegos
 
             }
 
-
         }
 
         public void Stop()
@@ -527,7 +527,7 @@ namespace GameToEarnLegos
                 int aliveBadguys = 0;
                 int amountOfGold = 0;
                 int aliveBosses = 0;
-                Badguy Boss = new Badguy(0,0);
+                
                 if (player.IsAlive)
                 {
                     player.AnimationTick();
@@ -549,19 +549,13 @@ namespace GameToEarnLegos
 
                             aliveBadguys++;
 
-                            if (!badguy.isWanderer)
-                            {
-                                badguy.Move(scaleFactor, player);
-                            }
-                            else if(badguy.isWanderer && badguy.isFollowing == true)
-                            {
-                                badguy.Move(scaleFactor, player);
-                            }
+                            badguy.Move(scaleFactor, player);                            
                             foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
                             {
                                 if (badguy.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
                                 {
-                                    if (badguy.isFollowing)
+                                    
+                                    if (badguy.isFollowing || badguy.isWanderer == false)
                                     {
                                         badguy.RevertMove();
                                     }
@@ -575,13 +569,16 @@ namespace GameToEarnLegos
                             
                             foreach (Door door in tiles.Where(t => t.Tag == "door"))
                             {
-                                if (badguy.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
+                                if (door.isBossDoor == false)
                                 {
-                                    if (door.IsClosed == true)
+                                    if (badguy.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
                                     {
-                                        door.IsClosed = false;
-                                    }
+                                        if (door.IsClosed == true)
+                                        {
+                                            door.IsClosed = false;
+                                        }
 
+                                    }
                                 }
                             }
                             foreach (Water water in tiles.Where(w => (w.Tag == "water")))
@@ -673,22 +670,24 @@ namespace GameToEarnLegos
                     {
                         foreach (Door door in tiles.Where(t => t.Tag == "door"))
                         {
-                            if (PlayerUseRect(scaleFactor).Contains(door.Rect(scaleFactor)) && !player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
+                            if (!(door.isBossDoor == true && Boss.NoticedPlayer == true && Boss.IsDead == false))
                             {
-                                if (player.HasUsed == false)
+                                if (PlayerUseRect(scaleFactor).Contains(door.Rect(scaleFactor)) && !player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
                                 {
-                                    if (door.IsClosed == true)
+                                    if (player.HasUsed == false)
                                     {
-                                        door.IsClosed = false;
+                                        if (door.IsClosed == true)
+                                        {
+                                            door.IsClosed = false;
+                                        }
+                                        else
+                                        {
+                                            door.IsClosed = true;
+                                        }
+                                        player.HasUsed = true;
                                     }
-                                    else
-                                    {
-                                        door.IsClosed = true;
-                                    }
-                                    player.HasUsed = true;
                                 }
                             }
-                            
                         }
                     }
                     

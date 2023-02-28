@@ -16,7 +16,7 @@ namespace GameToEarnLegos.Tiles
         private Bitmap openImageWide = Resources.Image_OpenDoor_Wide;
         private bool LeftRight;
         public bool IsClosed = true;
-        bool isBossDoor = false;
+        public bool isBossDoor = false;
         public override string Tag => "door";
         public Door(int col, int row, bool leftRight, char kindOfDoor) : base(col, row, Resources.Image_ClosedDoor_Thin)
         {
