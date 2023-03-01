@@ -7,8 +7,8 @@ O BBDBBBDBBBBBBBBBBBdBBBBBBBBBBBDBBBDBBTTO
 O B   B   B   B           B   B   B   BTTO
 O D V B   D   B           B V D   B   BTTO
 OTB   B   B   B           B   B   B   BTTO
-OTBBBBBBDBBBDBB     0     BBDBBBBBBBDBBTTO
-OTB   B   B   B           B   B   B   BTTO
+OTBBBBBBDBBBDBB          BBDBBBBBBBDBBTTO
+OTB   B   B   B     0     B   B   B   BTTO
 OTB   D   B V B           B   D   B   BTTO
 OTB   B   B   B           B   B   B   BTTO
 OTBBDBBBBBBBBBBBBBBBBBBBBBBBDBBBDBBBDBBTTO

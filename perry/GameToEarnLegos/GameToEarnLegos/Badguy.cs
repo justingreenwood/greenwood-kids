@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using GameToEarnLegos.Animate;
@@ -41,6 +42,7 @@ namespace GameToEarnLegos
         public bool isFollowing = false;
         public bool isWanderer = true;
         public bool NoticedPlayer = false;
+        public bool lineOfSightIsBlocked = false;
 
         private bool GoingUp = false;
         private bool GoingDown = false;
@@ -201,18 +203,11 @@ namespace GameToEarnLegos
         }
         public void Move(float scale, Player player)
         {
-
-            double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
-            if(IsBoss == true && distance < 90)
+            
+            double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);            
+            if (distance < 80 && lineOfSightIsBlocked == false)
             {
-                if (isFollower)
-                {
-                    isFollowing = true;
-                    NoticedPlayer = true;
-                }
-            }
-            else if (distance < 80)
-            {
+                
                 if (isFollower)
                 {
                     isFollowing = true;
@@ -305,6 +300,17 @@ namespace GameToEarnLegos
             _Y = Y;
             X += WaterSpeedLeftOrRight;
             Y += WaterSpeedUpOrDown;
+        }
+
+        public void CheckLineOfSight(List<Tile> blockers, Player player) 
+        {
+            
+            foreach(Tile tile in blockers.Where(t=> t.IsBlocker == true))
+            {
+                
+            }
+
+            
         }
 
         Bitmap IDrawable.Image

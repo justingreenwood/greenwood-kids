@@ -580,6 +580,12 @@ namespace GameToEarnLegos
 
                                     }
                                 }
+
+                                if(door.IsClosed == false && badguy.IsBoss && badguy.NoticedPlayer)
+                                {
+                                    door.IsClosed = true;
+                                }
+
                             }
                             foreach (Water water in tiles.Where(w => (w.Tag == "water")))
                             {
