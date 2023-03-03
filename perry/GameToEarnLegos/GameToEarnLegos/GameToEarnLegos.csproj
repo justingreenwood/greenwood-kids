@@ -299,6 +299,7 @@
 
   <ItemGroup>
     <Folder Include="Resources\Audio\" />
+    <Folder Include="Resources\Images\Menu Images\" />
   </ItemGroup>
 
   <ItemGroup>

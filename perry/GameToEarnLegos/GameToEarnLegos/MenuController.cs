@@ -181,6 +181,7 @@ namespace GameToEarnLegos
                 GoingUp = false;
             }
         }
+        
         public void Start(string startInfo = null)
         {
             LevelChoices.Clear();
@@ -192,7 +193,6 @@ namespace GameToEarnLegos
                     break;
                 }
             }
-
 
             LevelChoices.Add(new ButtonsInMenu("Return"));
 
