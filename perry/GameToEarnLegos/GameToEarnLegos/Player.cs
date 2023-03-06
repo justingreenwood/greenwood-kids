@@ -15,6 +15,7 @@ namespace GameToEarnLegos
         public SolidBrush brush = new SolidBrush(Color.Black);
         public float NormalSpeed = 1.5f;
         public int ammunition = 50;
+        public int Health = 20;
         public Bitmap image = Resources.Image_Player;
         public float Width = Resources.Image_Player.Width;
         public float Height = Resources.Image_Player.Height;

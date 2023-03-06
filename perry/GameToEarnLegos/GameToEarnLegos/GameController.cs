@@ -93,12 +93,12 @@ namespace GameToEarnLegos
             if (CHEATS)
             {
                 g.DrawString($"IsRunning:{player.IsRunning} isEscape {EscapeKeyIsUsed} IsInWater:{player.IsInWater} IsShooting:{player.IsShooting} " +
-                    $"Ammo:{player.ammunition} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
+                    $"Ammo:{player.ammunition} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
             else
             {
-                g.DrawString($"Ammo:{player.ammunition} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
+                g.DrawString($"Ammo:{player.ammunition} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
 
@@ -363,6 +363,9 @@ namespace GameToEarnLegos
                         case 'v':
                             badguys.Add(new Badguy(column, row, "follower"));
                             break;
+                        case 't':
+                            badguys.Add(new Badguy(column, row, "tower"));
+                            break;
                         case '0':
                             badguys.Add(new Badguy(column, row, "boss0"));
                             break;
@@ -539,7 +542,21 @@ namespace GameToEarnLegos
                     {
                         if (badguy.IsDead == false)
                         {
+
                             badguy.AnimationTick();
+
+                            if(badguy.canShoot == true)
+                            {
+                                if (badguy.CheckIfNoticed(player) && badguy.ShootingCoolDown == 0) 
+                                {
+                                    ammunitions.Add(badguy.Shoot(player));
+                                    badguy.ShootingCoolDown = 10;
+                                }
+                                else if(badguy.ShootingCoolDown > 0)
+                                {
+                                    badguy.ShootingCoolDown -= 1;
+                                }
+                            }
 
                             if(badguy.IsBoss == true)
                             {
@@ -548,62 +565,64 @@ namespace GameToEarnLegos
                             }
 
                             aliveBadguys++;
-
-                            badguy.Move(scaleFactor, player);                            
-                            foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
+                            if (badguy.canMove == true)
                             {
-                                if (badguy.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                                badguy.Move(scaleFactor, player);
+                                foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
                                 {
-                                    
-                                    if (badguy.isFollowing || badguy.isWanderer == false)
+                                    if (badguy.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
                                     {
-                                        badguy.RevertMove();
+
+                                        if (badguy.isFollowing || badguy.isWanderer == false)
+                                        {
+                                            badguy.RevertMove();
+                                        }
+                                        else
+                                        {
+                                            badguy.Reverse();
+                                            badguy.Move(scaleFactor, player);
+                                        }
+                                    }
+                                }
+
+                                foreach (Door door in tiles.Where(t => t.Tag == "door"))
+                                {
+                                    if (door.isBossDoor == false)
+                                    {
+                                        if (badguy.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
+                                        {
+                                            if (door.IsClosed == true)
+                                            {
+                                                door.IsClosed = false;
+                                            }
+
+                                        }
+                                    }
+
+                                    if (door.IsClosed == false && badguy.IsBoss && badguy.NoticedPlayer)
+                                    {
+                                        door.IsClosed = true;
+                                    }
+
+                                }
+                                foreach (Water water in tiles.Where(w => (w.Tag == "water")))
+                                {
+                                    if (badguy.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)) && water.HasBridge == false)
+                                    {
+                                        badguy.IsInWater = true;
+                                        break;
                                     }
                                     else
-                                    {
-                                        badguy.Reverse();
-                                        badguy.Move(scaleFactor, player);
-                                    }
+                                        badguy.IsInWater = false;
                                 }
-                            }
-                            
-                            foreach (Door door in tiles.Where(t => t.Tag == "door"))
-                            {
-                                if (door.isBossDoor == false)
+
+                                if (badguy.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
                                 {
-                                    if (badguy.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
-                                    {
-                                        if (door.IsClosed == true)
-                                        {
-                                            door.IsClosed = false;
-                                        }
-
-                                    }
+                                    player.IsAlive = false;
+                                    
                                 }
-
-                                if(door.IsClosed == false && badguy.IsBoss && badguy.NoticedPlayer)
-                                {
-                                    door.IsClosed = true;
-                                }
-
+                                badguy.UpdateAnimationState();
                             }
-                            foreach (Water water in tiles.Where(w => (w.Tag == "water")))
-                            {
-                                if (badguy.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)) && water.HasBridge == false)
-                                {
-                                    badguy.IsInWater = true;
-                                    break;
-                                }
-                                else
-                                    badguy.IsInWater = false;
-                            }
-
-                            if (badguy.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
-                            {
-                                player.IsAlive = false;
-                                gameOver = true;
-                            }
-                            badguy.UpdateAnimationState();
                         }
                     }
                     foreach (Water water in tiles.Where(w => w.Tag == "water"))
@@ -640,25 +659,40 @@ namespace GameToEarnLegos
                             }
 
                         }
-                        foreach (Badguy badguy in badguys.Where(b => !b.IsDead))
+                        if (ammunition.BadguyAmmo == false)
                         {
-                            if (ammunition.Rect(scaleFactor).IntersectsWith(badguy.Rect(scaleFactor)))
+                            foreach (Badguy badguy in badguys.Where(b => !b.IsDead))
+                            {
+                                if (ammunition.Rect(scaleFactor).IntersectsWith(badguy.Rect(scaleFactor)))
+                                {
+                                    ammunition.IsDead = true;
+                                    badguy.Health -= 3;
+                                    if (badguy.Health <= 0)
+                                    {
+                                        badguy.IsDead = true;
+                                        aliveBadguys--;
+                                        if (badguy.IsBoss)
+                                        {
+                                            _currentLevel.CurrentScore += 10;
+                                        }
+                                        else
+                                        {
+                                            _currentLevel.CurrentScore++;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (ammunition.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
                             {
                                 ammunition.IsDead = true;
-                                badguy.Health -= 3;
-                                if (badguy.Health <= 0)
+                                player.Health-= 3;
+                                if(player.Health <= 0)
                                 {
-                                    badguy.IsDead = true;
-                                    aliveBadguys--;
-                                    if (badguy.IsBoss)
-                                    {
-                                        _currentLevel.CurrentScore+= 10;
-                                    }
-                                    else
-                                    {
-                                        _currentLevel.CurrentScore++;
-                                    }
-                                }                            
+                                    player.IsAlive = false;
+                                }
                             }
                         }
                         if (ammunition.IsDead == true)
@@ -697,6 +731,10 @@ namespace GameToEarnLegos
                         }
                     }
                     
+                    if(player.IsAlive == false)
+                    {
+                        gameOver = true;
+                    }
 
                     float currentX = player.X, currentY = player.Y;
                     if (player.GoingUp)

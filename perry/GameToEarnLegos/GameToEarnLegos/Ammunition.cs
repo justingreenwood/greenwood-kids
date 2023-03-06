@@ -17,7 +17,7 @@ namespace GameToEarnLegos
         public float SpeedUpOrDown = 0;
         public float SpeedLeftOrRight = 0;
         public bool IsDead = false;
-
+        public bool BadguyAmmo = false;
         
 
 
@@ -80,6 +80,14 @@ namespace GameToEarnLegos
                 SpeedLeftOrRight = BaseSpeed;
         }
 
+        public Ammunition(float x, float y, float leftRight, float upDown)
+        {
+            SpeedLeftOrRight = leftRight;
+            SpeedUpOrDown = upDown;
+            X = x;
+            Y = y;
+            BadguyAmmo = true;
+        }
         public void Move(float scale)
         {
 

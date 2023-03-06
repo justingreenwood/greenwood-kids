@@ -43,6 +43,9 @@ namespace GameToEarnLegos
         public bool isWanderer = true;
         public bool NoticedPlayer = false;
         public bool lineOfSightIsBlocked = false;
+        public bool canMove = true;
+        public bool canShoot = false;
+        public int ShootingCoolDown = 0;
 
         private bool GoingUp = false;
         private bool GoingDown = false;
@@ -52,6 +55,9 @@ namespace GameToEarnLegos
         private float distanceX;
         private float distanceY;
         private float distanceF;
+
+        private float AmmoSpeed = 4f;
+
 
         public Animation currentAnimation = null;
         public int currentFrameIndex = 0;
@@ -131,13 +137,20 @@ namespace GameToEarnLegos
             {
                 BaseSpeed = 1.7f;
             }
-            if (kindOfBadguy == "boss0")
+            else if (kindOfBadguy == "boss0")
             {
                 BaseSpeed = 1.7f;
                 Health = 30f;
                 isWanderer = false;
                 IsBoss = true;
             }
+            else if (kindOfBadguy == "tower")
+            {
+                canMove = false;
+                Health = 12f;
+                canShoot = true;
+            }
+
         }
 
         public RectangleF Rect(float scale)
@@ -302,6 +315,24 @@ namespace GameToEarnLegos
             Y += WaterSpeedUpOrDown;
         }
 
+
+        public Ammunition Shoot(Player player)
+        {
+            float AmmoSpeedLeftOrRight = 0f;
+            float AmmoSpeedUpOrDown = 0f;
+
+            double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
+            distanceX = player.X - X;
+            distanceY = player.Y - Y;
+            distanceF = (float)distance;
+
+            AmmoSpeedLeftOrRight = FractionMath(distanceF, distanceX, AmmoSpeed);
+            AmmoSpeedUpOrDown = FractionMath(distanceF, distanceY, AmmoSpeed);
+            Ammunition ammo = new Ammunition(X, Y, AmmoSpeedLeftOrRight, AmmoSpeedUpOrDown);
+            return ammo;
+
+        }
+
         public void CheckLineOfSight(List<Tile> blockers, Player player) 
         {
             
@@ -311,6 +342,18 @@ namespace GameToEarnLegos
             }
 
             
+        }
+        public bool CheckIfNoticed(Player player)
+        {
+
+            double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
+            if (distance <= 80)
+            {
+                return true;
+            }
+            else
+                return false;
+
         }
 
         Bitmap IDrawable.Image

@@ -193,7 +193,6 @@ namespace GameToEarnLegos
                     break;
                 }
             }
-
             LevelChoices.Add(new ButtonsInMenu("Return"));
 
             _playButtonPressed = false;
