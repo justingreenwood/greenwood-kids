@@ -18,10 +18,10 @@ namespace GameToEarnLegos
         public float SpeedLeftOrRight = 0;
         public bool IsDead = false;
         public bool BadguyAmmo = false;
-        
+        private Bitmap image = Resources.Image_Ammo;
 
 
-        public Bitmap Image => Resources.Image_Ammo;
+        public Bitmap Image => image;
 
         float IDrawable.X => X;
 
@@ -87,6 +87,7 @@ namespace GameToEarnLegos
             X = x;
             Y = y;
             BadguyAmmo = true;
+            image = Resources.Image_BadguyFireAmmo;
         }
         public void Move(float scale)
         {

@@ -550,7 +550,7 @@ namespace GameToEarnLegos
                                 if (badguy.CheckIfNoticed(player) && badguy.ShootingCoolDown == 0) 
                                 {
                                     ammunitions.Add(badguy.Shoot(player));
-                                    badguy.ShootingCoolDown = 10;
+                                    badguy.ShootingCoolDown = badguy.BaseShootingCoolDown;
                                 }
                                 else if(badguy.ShootingCoolDown > 0)
                                 {
@@ -630,6 +630,8 @@ namespace GameToEarnLegos
                         if (player.WaterCheckRect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)) && water.HasBridge == false)
                         {
                             player.IsInWater = true;
+                            if (player.IsOnFire)
+                                player.IsOnFire = false;
                             break;
                         }
                         else
@@ -688,11 +690,13 @@ namespace GameToEarnLegos
                             if (ammunition.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
                             {
                                 ammunition.IsDead = true;
-                                player.Health-= 3;
-                                if(player.Health <= 0)
+                                if(player.IsOnFire == false)
                                 {
-                                    player.IsAlive = false;
+                                    player.IsOnFire = true;
+                                    player.FireCoolDown = 10;
                                 }
+                                player.Health-= 3;
+                                
                             }
                         }
                         if (ammunition.IsDead == true)
@@ -730,8 +734,22 @@ namespace GameToEarnLegos
                             }
                         }
                     }
-                    
-                    if(player.IsAlive == false)
+                    if (player.IsOnFire && player.FireCoolDown == 0)
+                    {
+                        player.Health--;
+                        player.FireCoolDown = player.BaseCoolDown;
+                    }
+                    else
+                    {
+                        player.FireCoolDown--;
+
+                    }
+                    if (player.Health <= 0)
+                    {
+                        player.Health = 0;
+                        player.IsAlive = false;
+                    }
+                    if (player.IsAlive == false)
                     {
                         gameOver = true;
                     }

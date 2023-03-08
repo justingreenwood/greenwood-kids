@@ -11,16 +11,23 @@
   <ItemGroup>
     <None Remove="Resources\Images\Ammopack.png" />
     <None Remove="Resources\Images\Badguy.png" />
+    <None Remove="Resources\Images\BadguyFireAmmo.png" />
     <None Remove="Resources\Images\BadguyUpgraded.png" />
     <None Remove="Resources\Images\BadguyUpgraded2.png" />
+    <None Remove="Resources\Images\Badguy\Badguy2.aseprite" />
     <None Remove="Resources\Images\Badguy\Badguy2_1.png" />
     <None Remove="Resources\Images\Badguy\Badguy2_2.png" />
     <None Remove="Resources\Images\Badguy\Badguy2_3.png" />
     <None Remove="Resources\Images\Badguy\Badguy2_4.png" />
+    <None Remove="Resources\Images\Badguy\BadguyForward.aseprite" />
     <None Remove="Resources\Images\Badguy\BadguyForward_1.png" />
     <None Remove="Resources\Images\Badguy\BadguyForward_2.png" />
+    <None Remove="Resources\Images\Badguy\BadguyUp.aseprite" />
     <None Remove="Resources\Images\Badguy\BadguyUp_1.png" />
     <None Remove="Resources\Images\Badguy\BadguyUp_2.png" />
+    <None Remove="Resources\Images\Badguy\DeadTowerBadguy.png" />
+    <None Remove="Resources\Images\Badguy\TowerBadguy.aseprite" />
+    <None Remove="Resources\Images\Badguy\TowerBadguy.png" />
     <None Remove="Resources\Images\BlandDoor.png" />
     <None Remove="Resources\Images\BlandDoorOpen.png" />
     <None Remove="Resources\Images\BlandDoorThin.png" />
@@ -103,6 +110,9 @@
     <Content Include="Resources\Images\BackGround.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\BadguyFireAmmo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Badguy\Badguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -134,6 +144,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Badguy\BadguyUp_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\DeadTowerBadguy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\TowerBadguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\BlandDoor.png">

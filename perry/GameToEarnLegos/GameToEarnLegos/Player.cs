@@ -24,6 +24,11 @@ namespace GameToEarnLegos
         public bool IsInWater = false;
         public bool CanSwim = true;
         public bool IsShooting = false;
+        public bool IsOnFire = false;
+        public int BaseCoolDown = 10;
+        public int BaseFireCoolDown = 20;
+        public int FireCoolDown = 10;
+        public int CoolDown = 0;
 
         public bool GoingUp = false;
         public bool GoingDown = false;
@@ -155,6 +160,10 @@ namespace GameToEarnLegos
             get
             {
                 if (currentAnimation == null) return this.image;
+                else if (IsOnFire)
+                {
+                    return Resources.Image_BadguyFireAmmo;
+                }
                 else
                 {
                     return this.currentAnimation.Frames[currentFrameIndex].Image;

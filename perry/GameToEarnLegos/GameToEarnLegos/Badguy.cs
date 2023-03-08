@@ -46,6 +46,7 @@ namespace GameToEarnLegos
         public bool canMove = true;
         public bool canShoot = false;
         public int ShootingCoolDown = 0;
+        public int BaseShootingCoolDown = 15;
 
         private bool GoingUp = false;
         private bool GoingDown = false;
@@ -149,6 +150,8 @@ namespace GameToEarnLegos
                 canMove = false;
                 Health = 12f;
                 canShoot = true;
+                image = Resources.Image_TowerBadguy;
+                deadImage = Resources.Image_DeadTowerBadguy;
             }
 
         }
