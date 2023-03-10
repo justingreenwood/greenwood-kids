@@ -48,6 +48,8 @@ namespace GameToEarnLegos
         public int ShootingCoolDown = 0;
         public int BaseShootingCoolDown = 15;
 
+        public string typeOfBadguy = "normal";
+
         private bool GoingUp = false;
         private bool GoingDown = false;
         private bool GoingLeft = false;
@@ -152,6 +154,7 @@ namespace GameToEarnLegos
                 canShoot = true;
                 image = Resources.Image_TowerBadguy;
                 deadImage = Resources.Image_DeadTowerBadguy;
+                typeOfBadguy = "tower";
             }
 
         }

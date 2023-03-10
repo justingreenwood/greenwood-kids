@@ -19,6 +19,8 @@ namespace GameToEarnLegos
         public bool IsDead = false;
         public bool BadguyAmmo = false;
         private Bitmap image = Resources.Image_Ammo;
+        public string TypeOfAmmo = "normal";
+        public int Damage = 3;
 
 
         public Bitmap Image => image;
@@ -33,7 +35,7 @@ namespace GameToEarnLegos
         {
             return new RectangleF(X * scale, Y * scale, 10 * scale, 10 * scale);
         }
-        public Ammunition(float x, float y, string direction )
+        public Ammunition(float x, float y, string direction, string type )
         {
             X = x; 
             Y = y;
@@ -78,6 +80,16 @@ namespace GameToEarnLegos
             }
             else
                 SpeedLeftOrRight = BaseSpeed;
+
+
+            if(type == "water")
+            {
+                TypeOfAmmo = type;
+                LengthOfDirection = 15;
+                Damage = 6;
+            }
+
+
         }
 
         public Ammunition(float x, float y, float leftRight, float upDown)
@@ -87,6 +99,7 @@ namespace GameToEarnLegos
             X = x;
             Y = y;
             BadguyAmmo = true;
+            TypeOfAmmo = "fire";
             image = Resources.Image_BadguyFireAmmo;
         }
         public void Move(float scale)

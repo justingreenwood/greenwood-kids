@@ -14,7 +14,8 @@ namespace GameToEarnLegos
         public float Y;
         public SolidBrush brush = new SolidBrush(Color.Black);
         public float NormalSpeed = 1.5f;
-        public int ammunition = 50;
+        public int NAmmo = 50;
+        public int WAmmo = 0;
         public int Health = 20;
         public Bitmap image = Resources.Image_Player;
         public float Width = Resources.Image_Player.Width;
@@ -29,6 +30,10 @@ namespace GameToEarnLegos
         public int BaseFireCoolDown = 20;
         public int FireCoolDown = 10;
         public int CoolDown = 0;
+        public string CurrentTypeOfAmmo = "normal";
+
+        public int MaxNAmmo = 100;
+        public int MaxWAmmo = 5;
 
         public bool GoingUp = false;
         public bool GoingDown = false;
@@ -36,6 +41,7 @@ namespace GameToEarnLegos
         public bool GoingRight = false;
         public bool HasUsed = false;
         public bool UsingKey = false;
+        public bool UsingRefillKey = false;
         public string LastWentDirection = "down";
 
         public Animation currentAnimation = null;

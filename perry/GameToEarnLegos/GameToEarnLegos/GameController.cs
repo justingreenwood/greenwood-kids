@@ -28,8 +28,6 @@ namespace GameToEarnLegos
         public float ScaleFactor => scaleFactor;
         private ILevel _currentLevel => _form.currentLevel;
 
-        int AliveBosses;
-
         int AliveBadguys;
         Player player;
         List<Water> waters = new List<Water>();
@@ -93,12 +91,12 @@ namespace GameToEarnLegos
             if (CHEATS)
             {
                 g.DrawString($"IsRunning:{player.IsRunning} isEscape {EscapeKeyIsUsed} IsInWater:{player.IsInWater} IsShooting:{player.IsShooting} " +
-                    $"Ammo:{player.ammunition} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
+                    $"Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
             else
             {
-                g.DrawString($"Ammo:{player.ammunition} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health}",
+                g.DrawString($"Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
 
@@ -168,6 +166,19 @@ namespace GameToEarnLegos
 
                         player.UsingKey = true;
                     }
+                    if (e.KeyCode == Keys.R)
+                    {
+
+                        player.UsingRefillKey = true;
+                    }
+                    if (e.KeyCode == Keys.D1)
+                    {
+                        player.CurrentTypeOfAmmo = "normal";
+                    }
+                    if (e.KeyCode == Keys.D2)
+                    {
+                        player.CurrentTypeOfAmmo = "water";
+                    }
                 }
                 else
                 {
@@ -222,14 +233,30 @@ namespace GameToEarnLegos
 
                 if (e.KeyCode == Keys.Space)
                 {
-                    if (player.ammunition > 0)
-                    {                        
-                        player.IsShooting = true;
-                        if (ShootingCoolDown == 0)
-                        {                           
-                            player.ammunition -= 1;
-                            ammunitions.Add( new Ammunition(player.X, player.Y, player.LastWentDirection));                            
-                            ShootingCoolDown = 10;
+                    if (player.CurrentTypeOfAmmo == "normal")
+                    {
+                        if (player.NAmmo > 0)
+                        {
+                            player.IsShooting = true;
+                            if (ShootingCoolDown == 0)
+                            {
+                                player.NAmmo -= 1;
+                                ammunitions.Add(new Ammunition(player.X, player.Y, player.LastWentDirection, "normal"));
+                                ShootingCoolDown = 10;
+                            }
+                        }
+                    }
+                    else if(player.CurrentTypeOfAmmo == "water")
+                    {
+                        if (player.WAmmo > 0)
+                        {
+                            player.IsShooting = true;
+                            if (ShootingCoolDown == 0)
+                            {
+                                player.WAmmo -= 1;
+                                ammunitions.Add(new Ammunition(player.X, player.Y, player.LastWentDirection, "water"));
+                                ShootingCoolDown = 10;
+                            }
                         }
                     }
                 }
@@ -277,6 +304,10 @@ namespace GameToEarnLegos
             {               
                 player.UsingKey = false;
                 player.HasUsed = false;
+            }
+            if (e.KeyCode == Keys.R)
+            {
+                player.UsingRefillKey = false;
             }
             if (e.KeyCode == Keys.Escape)
             {
@@ -632,6 +663,10 @@ namespace GameToEarnLegos
                             player.IsInWater = true;
                             if (player.IsOnFire)
                                 player.IsOnFire = false;
+                            if(player.UsingRefillKey == true)
+                            {
+                                player.WAmmo = player.MaxWAmmo;
+                            }
                             break;
                         }
                         else
@@ -665,21 +700,25 @@ namespace GameToEarnLegos
                         {
                             foreach (Badguy badguy in badguys.Where(b => !b.IsDead))
                             {
+
                                 if (ammunition.Rect(scaleFactor).IntersectsWith(badguy.Rect(scaleFactor)))
                                 {
                                     ammunition.IsDead = true;
-                                    badguy.Health -= 3;
-                                    if (badguy.Health <= 0)
-                                    {
-                                        badguy.IsDead = true;
-                                        aliveBadguys--;
-                                        if (badguy.IsBoss)
+                                    if (ammunition.TypeOfAmmo == "normal" || (badguy.typeOfBadguy == "tower" && ammunition.TypeOfAmmo == "water"))
+                                    {                                        
+                                        badguy.Health -= ammunition.Damage;
+                                        if (badguy.Health <= 0)
                                         {
-                                            _currentLevel.CurrentScore += 10;
-                                        }
-                                        else
-                                        {
-                                            _currentLevel.CurrentScore++;
+                                            badguy.IsDead = true;
+                                            aliveBadguys--;
+                                            if (badguy.IsBoss)
+                                            {
+                                                _currentLevel.CurrentScore += 10;
+                                            }
+                                            else
+                                            {
+                                                _currentLevel.CurrentScore++;
+                                            }
                                         }
                                     }
                                 }
