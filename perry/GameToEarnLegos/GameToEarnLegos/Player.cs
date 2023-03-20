@@ -79,32 +79,73 @@ namespace GameToEarnLegos
         public void UpdateAnimationState()
         {
             Animation newAnimation = null;
+            
             if (GoingLeft)
             {
-                if (currentAnimation != Animations.PlayerLeft)
+                if (!IsOnFire)
                 {
-                    newAnimation = Animations.PlayerLeft;
-                };
+                    if (currentAnimation != Animations.PlayerLeft)
+                    {
+                        newAnimation = Animations.PlayerLeft;
+                    }
+                }
+                else
+                {
+                    if (currentAnimation != Animations.PlayerLeftFire)
+                    {
+                        newAnimation = Animations.PlayerLeftFire;
+                    }
+                }
             }
             else if (GoingRight)
             {
-                if (currentAnimation != Animations.PlayerRight)
+                if (!IsOnFire)
                 {
-                    newAnimation = Animations.PlayerRight;
+                    if (currentAnimation != Animations.PlayerRight)
+                    {
+                        newAnimation = Animations.PlayerRight;
+                    }
+                }
+                else
+                {
+                    if (currentAnimation != Animations.PlayerRightFire)
+                    {
+                        newAnimation = Animations.PlayerRightFire;
+                    }
                 }
             }
             else if (GoingUp)
             {
-                if (currentAnimation != Animations.PlayerUp)
+                if (!IsOnFire)
                 {
-                    newAnimation = Animations.PlayerUp;
+                    if (currentAnimation != Animations.PlayerUp)
+                    {
+                        newAnimation = Animations.PlayerUp;
+                    }
+                }
+                else
+                {
+                    if (currentAnimation != Animations.PlayerUpFire)
+                    {
+                        newAnimation = Animations.PlayerUpFire;
+                    }
                 }
             }
             else if (GoingDown)
             {
-                if (currentAnimation != Animations.PlayerDown)
+                if (!IsOnFire)
                 {
-                    newAnimation = Animations.PlayerDown;
+                    if (currentAnimation != Animations.PlayerDown)
+                    {
+                        newAnimation = Animations.PlayerDown;
+                    }
+                }
+                else
+                {
+                    if (currentAnimation != Animations.PlayerDownFire)
+                    {
+                        newAnimation = Animations.PlayerDownFire;
+                    }
                 }
             }
             else
@@ -165,10 +206,10 @@ namespace GameToEarnLegos
         {
             get
             {
-                if (currentAnimation == null) return this.image;
-                else if (IsOnFire)
+                if (IsOnFire && currentAnimation == null) return Resources.Image_Player_Fire;
+                else if (currentAnimation == null)
                 {
-                    return Resources.Image_BadguyFireAmmo;
+                    return this.image;
                 }
                 else
                 {

@@ -61,25 +61,64 @@ namespace GameToEarnLegos
     }
     public class Level1 : Level
     {
-        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level1Top.txt");
-        public override string Goal => "Treasure Hunt";
-        public override string Name => "Treasure in the Ruins";
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level1.txt");
+        public override string Name => "The Beginning";
+        public override string Goal => "Completion";
     }
 
     public class Level2 : Level
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level2.txt");
-        public override string Name => "Fort Bird";
+        public override string Name => "Deers of Death";
     }
     public class Level3 : Level
     {
-        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level1Bottom.txt");
-        public override string Name => "Oh Deer!";
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level3.txt");
+        public override string Goal => "Treasure Hunt";
+        public override string Name => "The Ruins";
+    }
+    public class TestLevel : Level
+    {
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/TestLevel.txt");
+        public override string Name => "Testing";
+    }
+    public class Level4 : Level
+    {
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level4.txt");
+        public override string Name => "Fort Bird";
     }
     public class Level5 : Level
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level5.txt");
         public override string Name => "The King of Deer";
+        public override string Goal => "?????????";
+    }
+    public class Level6 : Level
+    {
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level6.txt");
+        public override string Name => "Fried";
+    }
+    public class Level7 : Level
+    {
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level7.txt");
+        public override string Name => "Save The Trees";
+        public override string Goal => "Extinguish";
+    }
+    public class Level8 : Level
+    {
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level8.txt");
+        public override string Name => "Flames Alive";
+        public override string Goal => "Extinguish";
+    }
+    public class Level9 : Level
+    {
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level9.txt");
+        public override string Name => "The Path of Destruction";
+    }
+    public class Level10 : Level
+    {
+        public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level10.txt");
+        public override string Name => "To Slay A Beast";
         public override string Goal => "?????????";
     }
 }

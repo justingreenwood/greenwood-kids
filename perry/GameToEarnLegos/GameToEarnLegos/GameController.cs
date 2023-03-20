@@ -60,8 +60,7 @@ namespace GameToEarnLegos
         public void DrawTheGame(Graphics g)
         {
             foreach (Tile tile in tiles.Where(t=>  (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag != "door" ))
-            {                  
-                
+            {                       
                 DrawScaledTiles(g, tile);
             }
             foreach (Gold gold in golds.Where(t => (t.IsPickedUp == false) && (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor)))))
@@ -374,7 +373,7 @@ namespace GameToEarnLegos
                             tiles.Add(new Sand(column, row));
                             break;          
                         case 'Q':
-                            tiles.Add(new DeepWater(column, row, Color.Navy));
+                            tiles.Add(new DeepWater(column, row));
                             break;
                         default:
                             tiles.Add(new Grass(column, row));
@@ -561,6 +560,9 @@ namespace GameToEarnLegos
                 int aliveBadguys = 0;
                 int amountOfGold = 0;
                 int aliveBosses = 0;
+
+                int amountOfBurningTrees = 0;
+                int amountOfAliveTrees = 0;
                 
                 if (player.IsAlive)
                 {
@@ -675,17 +677,70 @@ namespace GameToEarnLegos
                         }
 
                     }
-                    foreach (Ammunition ammunition in ammunitions)
+                    foreach (Tree tree in tiles.Where(w => w.Tag == "tree"))
                     {
-                        ammunition.Move(scaleFactor);
-                        foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
+                        if(tree.isOnFire == true)
                         {
-                            if (ammunition.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                            tree.health--;
+                            if(tree.health <= 0)
                             {
-                                ammunition.IsDead = true;
-                                break;
+                                tree.isDead = true;
+                                tree.image = tree.DeadImage;
+                            }
+                            else
+                            {
+                                amountOfAliveTrees++;
+                                amountOfBurningTrees++;
                             }
                         }
+                        else if(tree.isDead == false)
+                        {
+                            amountOfAliveTrees++;
+                        }
+                    }
+                    foreach (Ammunition ammunition in ammunitions)
+                    {
+                        ammunition.Move(scaleFactor);                        
+                        foreach(Tree tree in tiles.Where(t => t.Tag == "tree"))
+                        {
+                            if (ammunition.BadguyAmmo)
+                            {
+                                if (ammunition.Rect(scaleFactor).IntersectsWith(tree.Rect(scaleFactor)))
+                                {
+                                    if(tree.isOnFire == false && tree.isDead == false)
+                                    {
+                                        tree.isOnFire = true;
+                                        tree.image = tree.OnFireImage;
+                                    }
+                                    break;
+                                }
+                            }
+                            else if(ammunition.TypeOfAmmo == "water")
+                            {
+                                if (ammunition.Rect(scaleFactor).IntersectsWith(tree.Rect(scaleFactor)))
+                                {
+                                    if (tree.isOnFire)
+                                    {
+                                        tree.isOnFire = false;
+                                        tree.image = tree.AliveImage;
+                                    }
+                                    break;
+                                }
+                            }
+
+
+
+                        }
+                        if (ammunition.IsDead == false)
+                            foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
+                            {
+                                if (ammunition.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                                {
+
+                                    ammunition.IsDead = true;
+                                    break;
+                                }
+                            }
                         foreach (Door door in tiles.Where(t => t.Tag == "door"))
                         {
 
@@ -837,6 +892,13 @@ namespace GameToEarnLegos
                             _currentLevel.HighScore = _currentLevel.CurrentScore;
                         gameOver = true;
                     }
+                    else if(goal == "Completion" && AliveBadguys == 0 && amountOfGold == 0)
+                    {
+                        _currentLevel.IsWon = true;
+                        if (_currentLevel.HighScore < _currentLevel.CurrentScore)
+                            _currentLevel.HighScore = _currentLevel.CurrentScore;
+                        gameOver = true;
+                    }
                     else if (goal == "?????????" && aliveBosses == 0)
                     {
                         _currentLevel.IsWon = true;
@@ -844,12 +906,6 @@ namespace GameToEarnLegos
                             _currentLevel.HighScore = _currentLevel.CurrentScore;
                         gameOver = true;
                     }
-                    //if(_currentLevel.IsWon == true)
-                    //{
-                    //    if (_currentLevel.HighScore < _currentLevel.CurrentScore)
-                    //        _currentLevel.HighScore = _currentLevel.CurrentScore;
-                    //    gameOver = true;
-                    //}
                 }
             }
             if (EscapeKeyIsPressed == true)

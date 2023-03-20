@@ -1,0 +1,35 @@
+﻿OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+OTTTTTTT  P  TTT  TTT             TTT  gTO
+OTTTTTTT    TTT          TT      TTT   TTO
+OTTTTTT     TTT         TTT     TTT    TTO
+OTTTT       TTT         TTT      TTT   TTO
+OTTT       TTT         TTT      TTTT   TTO
+OTT       TTT    V      TTT      TTT    TO
+OTT       TTT           TTT     TTT     TO
+OTT      TTT           TTT       TTT    TO
+OTT     TTT           TTT    V    TTT   TO
+OTT     TTTT          TT  BBBDBBB TTTT TTO
+OT       Tf           TTg B     BTTT     O
+OT     TfTf            fffB     f       fO
+OT      ff   TTf          B  b    ff  f  O
+OT         fTfTfTTf       BBBBBBf     Tf O
+O   V      ffTffTf                 Tf  TTO
+O                     V    TT    TfTTT   O
+O    fTf         T         Tf      f     O
+O f  Tff   f    fff      WWWWWWWWW       O
+O    ffT   WWWWWWWWWWEWWWWT     WWWWWEWWWW
+O         WW           TTTTT    W        O
+WWWWWWWWWWW             FTT     W  fFf   O
+O        fff    TTF        V    W   FT  FO
+O         F    tTTTT            WW      fO
+O    TTT      TTFTFFt   BBBBB    WW     FO
+O   TFTT      fFFfFF    B g B     WfT    O
+O    TTF   F    Ff      B   B    WW      O
+OT         F            BBDBB WWWW  TT   O
+OF    V        ff    fF      WW      T  TO
+OF                   TFf     W  t       FO
+Of    tff     TfTT    F      E  f  TT    O
+Of    fFF     tFFT           W        FFfO
+OF   fFF  Ff               WWW      FfFfFO
+OFTT      TF     TTFTfT    W  FF  fFFFFffO
+OOOOOOOOOOOOOOOOOOOOOOOOOOOWOOOOOOOOOOOOOO

@@ -1,6 +1,6 @@
 ﻿OOOOOOOOOOOOOOOOOOOOOOOOOOOOOWOOOOOOOOOOOO
-O         T                  W        GLGO
-O T       TTT                WWWW      G O
+O         T                  W         L O
+O T       TTT                WWWW        O
 O                               WW    T  O
 O   WWWWWWWW                     WW  T   O
 O T WBBBBBBW  TTT       TT    T   W      O
@@ -9,7 +9,7 @@ OTT WBGLGLBW        TT           WW T    O
 O T WBGGGGBW    V V  T           W    P  O
 O   WBLGLgBW T            V   T WW   T   O
 O   WBG GLBW      T T           W    T   O
-O   WBBB BBW     TTTTT    V  T  W        O
+O   WBBBDBBW     TTTTT    V  T  W        O
 O   WWWWWWWW     TTTTTT         W     TT O
 O              WWTTTTT     T    W  T   T O
 O    T     T  WWWWTTT     TTT   W TT     O

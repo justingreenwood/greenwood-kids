@@ -9,9 +9,9 @@ namespace GameToEarnLegos.Tiles
     public class DeepWater : Tile
     {
         public override string Tag => "deepwater";
-        public DeepWater(int col, int row, Color color) : base(col, row)
+        public DeepWater(int col, int row) : base(col, row, Resources.Image_DeepWater)
         {
-            brush = new SolidBrush(color);
+            
             IsBlocker = true;
         }
     }

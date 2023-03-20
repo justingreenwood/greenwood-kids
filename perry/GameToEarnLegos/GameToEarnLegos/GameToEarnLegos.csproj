@@ -49,11 +49,26 @@
     <None Remove="Resources\Images\Grass\SmartGrassUpDown.png" />
     <None Remove="Resources\Images\HitBadguy.png" />
     <None Remove="Resources\Images\intro-background.png" />
+    <None Remove="Resources\Images\MenuBackground.png" />
     <None Remove="Resources\Images\NormalWater.png" />
     <None Remove="Resources\Images\PerrysArtBorder.png" />
     <None Remove="Resources\Images\PerrysArtChristmasTree.png" />
     <None Remove="Resources\Images\PerrysArtTree1.png" />
     <None Remove="Resources\Images\Player.png" />
+    <None Remove="Resources\Images\Player\Fire\PlayerOnFire.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Back_Fire_1.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Back_Fire_2.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Forward_Fire_.aseprite" />
+    <None Remove="Resources\Images\Player\Fire\Player_Forward_Fire_1.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Forward_Fire_2.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Right_Fire_1.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Right_Fire_2.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Right_Fire_3.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Right_Fire_4.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Right_Fire_5.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Right_Fire_6.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Right_Fire_7.png" />
+    <None Remove="Resources\Images\Player\Fire\Player_Right_Fire_8.png" />
     <None Remove="Resources\Images\Player\Player.aseprite" />
     <None Remove="Resources\Images\Player\Player.png" />
     <None Remove="Resources\Images\Player\PlayerBack.aseprite" />
@@ -80,6 +95,7 @@
     <None Remove="Resources\Images\Player\Player_Right_7.png" />
     <None Remove="Resources\Images\Player\Player_Right_8.png" />
     <None Remove="Resources\Images\Sand.png" />
+    <None Remove="Resources\Images\SmartWater\DeepWater.png" />
     <None Remove="Resources\Images\SmartWater\SmartWaterBase.aseprite" />
     <None Remove="Resources\Images\SmartWater\SmartWaterBase.png" />
     <None Remove="Resources\Images\SmartWater\SmartWaterBottomLeftGrass.aseprite" />
@@ -100,6 +116,7 @@
     <None Remove="Resources\Images\TreasureChest.png" />
     <None Remove="Resources\Images\TreeTester.png" />
     <None Remove="Resources\Images\Wall.png" />
+    <None Remove="Resources\Images\WaterAmmo.png" />
     <None Remove="Resources\Images\Weapon.png" />
   </ItemGroup>
 
@@ -188,6 +205,9 @@
     <Content Include="Resources\Images\intro-background.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\MenuBackground.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\NormalWater.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -200,31 +220,70 @@
     <Content Include="Resources\Images\PerrysArtTree1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Player\Fire\PlayerOnFire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Back_Fire_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Back_Fire_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Forward_Fire_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Forward_Fire_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Right_Fire_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Right_Fire_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Right_Fire_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Right_Fire_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Right_Fire_5.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Right_Fire_6.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Right_Fire_7.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Player\Fire\Player_Right_Fire_8.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Player\Player.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Player\Player_1.png">
+    <Content Include="Resources\Images\Player\Idle\Player_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Player\Player_2.png">
+    <Content Include="Resources\Images\Player\Idle\Player_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Player\Player_3.png">
+    <Content Include="Resources\Images\Player\Idle\Player_3.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Player\Player_4.png">
+    <Content Include="Resources\Images\Player\Idle\Player_4.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Player\Player_5.png">
+    <Content Include="Resources\Images\Player\Idle\Player_5.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Player\Player_6.png">
+    <Content Include="Resources\Images\Player\Idle\Player_6.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Player\Player_7.png">
+    <Content Include="Resources\Images\Player\Idle\Player_7.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Player\Player_8.png">
+    <Content Include="Resources\Images\Player\Idle\Player_8.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Player\Player_Back_1.png">
@@ -264,6 +323,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Sand.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\DeepWater.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\SmartWater\SmartWaterBase.png">
@@ -308,6 +370,9 @@
     <Content Include="Resources\Images\Wall.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\WaterAmmo.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Weapon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -319,13 +384,34 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\Maps\Level6.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Maps\Level7.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Maps\Level8.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Maps\Level10.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Maps\Level9.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Maps\Level2.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Maps\Level1Bottom.txt">
+    <None Update="Resources\Maps\Level1.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Update="Resources\Maps\Level1Top.txt">
+    <None Update="Resources\Maps\Level4.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Maps\TestLevel.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Maps\Level3.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Maps\Level5.txt">

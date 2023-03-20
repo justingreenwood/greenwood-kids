@@ -26,6 +26,22 @@ namespace GameToEarnLegos.Animate
                 },
             }
         };
+        public static Animation PlayerDownFire = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame
+                {
+                    Image = Resources.Image_Player_Forward_Fire_1,
+                    Duration = 4
+                },
+                new AnimationFrame
+                {
+                    Image = Resources.Image_Player_Forward_Fire_2,
+                    Duration = 4
+                },
+            }
+        };
         public static Animation PlayerUp = new Animation
         {
             Frames = new List<AnimationFrame>
@@ -38,6 +54,22 @@ namespace GameToEarnLegos.Animate
                 new AnimationFrame
                 {
                     Image = Resources.Image_Player_Back_2,
+                    Duration = 4
+                },
+            }
+        };
+        public static Animation PlayerUpFire = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame
+                {
+                    Image = Resources.Image_Player_Back_Fire_1,
+                    Duration = 4
+                },
+                new AnimationFrame
+                {
+                    Image = Resources.Image_Player_Back_Fire_2,
                     Duration = 4
                 },
             }
@@ -71,6 +103,21 @@ namespace GameToEarnLegos.Animate
                 new AnimationFrame { Image = Resources.Image_Player_Right_8, Duration = 1 },
             }
         };
+        public static Animation PlayerRightFire = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame { Image = Resources.Image_Player_Right_Fire_1, Duration = 1 },
+                new AnimationFrame { Image = Resources.Image_Player_Right_Fire_2, Duration = 1 },
+                new AnimationFrame { Image = Resources.Image_Player_Right_Fire_3, Duration = 1 },
+                new AnimationFrame { Image = Resources.Image_Player_Right_Fire_4, Duration = 1 },
+                new AnimationFrame { Image = Resources.Image_Player_Right_Fire_5, Duration = 1 },
+                new AnimationFrame { Image = Resources.Image_Player_Right_Fire_6, Duration = 1 },
+                new AnimationFrame { Image = Resources.Image_Player_Right_Fire_7, Duration = 1 },
+                new AnimationFrame { Image = Resources.Image_Player_Right_Fire_8, Duration = 1 },
+            }
+        };
+        public static Animation PlayerLeftFire = AnimationHelper.FlipX(PlayerRightFire);
         public static Animation PlayerLeft = AnimationHelper.FlipX(PlayerRight);
         public static Animation BadguyRight = new Animation
         {

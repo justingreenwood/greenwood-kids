@@ -84,6 +84,7 @@ namespace GameToEarnLegos
 
             if(type == "water")
             {
+                image = Resources.Image_WaterAmmo;
                 TypeOfAmmo = type;
                 LengthOfDirection = 15;
                 Damage = 6;

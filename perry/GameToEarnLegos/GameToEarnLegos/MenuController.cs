@@ -37,7 +37,7 @@ namespace GameToEarnLegos
         }
         public void DrawTheGame(Graphics g)
         {
-            //g.FillRectangle(brush, 100, 100, 100, 50);
+            g.DrawImage(Resources.Image_MenuBackground, 0, 0, this._form.Width, this._form.Height);
             if (_playButtonPressed)
             {
                 for (int i = 0; i < LevelChoices.Count; i++)

@@ -1,35 +1,35 @@
-﻿OOOOOOWOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWWWOOO
-O     W                          SSSWWWQQO
-O    WW      T T       V V       SSSWWWQQO
-O    W      TTTTT   V        T   SSSWWWQQO
-O    W      TTTTT        V  TT    SSSWWWQO
-O T  WW WWW  TTT                 SSSSWWWQO
-O TT  WWW WW  T BBBBB            SSSSWWWQO
-O    GGG   WWW BB g BB           SSSWWWQQO
-O   GLLLG V  WBB   TTBTT    V   SSSWWWQQQO
-O    GLG    WWB   TTTBTTTTT     SSSWWWQQQO
-O     G  WWEW B   TTTBTTTT      SSSWWWQQQO
-O       WWBDB B    TBB          SSSSWWWQQO
-O      WW B BBB V   B       T    SSSSWWWQO
-OP    WWBBB         B      TTT   SSSSWWWQO
-O     W B     BBB   D  V         SSSWWWQQO
-O    WWBB   V BgD   B     T     SSSWWWQQQO
-O    WBB  V V BBB  BB  TTTTT    SSSWWWQQQO
-O   WWB V         VB     T      SSSSWWWQQO
-O   WVB V   T   V  B  V         SSSSWWWQQO
-O  WW BDBB        BB         V   SSSWWWQQO
-WWWWWWWEWBB   BBBBB       T      SSSWWWQQO
-O       WWBBBBBWWWWW      T      SSSSWWWQO
-O        WBBWWWWT  WW          SSSSSSWWWQO
-O   V    WWWWT  T   WW         SSSSSWWWQQO
-O      V    TTTTTTT  WWW   T   SSSSSWWWQQO
-O            TTTTTTT   W        SSSSSWWWQO
-O        T             WW   V   SSSSSWWWQO
-O    TTTTT  V           W       SSSSWWWQQO
-O  TTTTTTTT   V     V   WW     SSSSSWWWQQO
-O   TTTTTT               W     SSSSWWWQQQO
-O    TTgTT       V       WW     SSSWWWQQQO
-O      V      T           W     SSSWWWQQQO
-O             TTT         WWWW  SSSWWWQQQO
-O              T             WWWWWWWWQQQQO
-OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOSSSWWOOOOO
+﻿OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+OT T   T         TTT             TTTTTTTTO
+O                         P       TTTTTTTO
+OTT       TT   TTTT                TTTTTTO
+OTT           TTTTTTT     T          TTTTO
+O       V     TTTTTTT         TT       TTO
+O       TTT    TTTTT         TTTTTTT     O
+O      TT                  TTTTTTTTTT    O
+WWWW          WWWEWWWW     TTTTTTTTg     O
+O  WW     WWWWW      WWWWW     TTTT      O
+O   W  WWWW              WWWWW           O
+O   WWWW                     WWWW  WWWWWWW
+O        T    BBBDBBB           WWWW     O
+O   T   TT   TB     BT T          T   T  O
+O        T TTTB     BTTTT            T   O
+O  T       TTTB     BBBBBB      TT   T   O
+O      T   TTTB          B              TO
+O      T   TTTB  V     g BT           TTTO
+O    V     TTTB          BT           TTTO
+O      T      BBBBBBBBBBBBT   TT     TTTTO
+O                   TT         T     TTTTO
+O  T            T   TT        TT    TTTTTO
+O         WW    TT    T             TTTTTO
+O   T    WWWW           T    T       TTTTO
+O    TT  WWWWW     T                  TTTO
+O    T    WWWW              V V        TTO
+O              TT     TT              TTTO
+WWW          T         TT    T        TTTO
+O W      V  TT                         TTO
+O WW            WWWWWW           TT     TO
+OB WW           W    WWWWW        T      O
+Og  E          WW        WWWWW           O
+OBB WWW   WWWWWW   TTT       W      T    O
+O     WWWWW       TTTTTTTT   W           O
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOWOOOOOOOOOOOO

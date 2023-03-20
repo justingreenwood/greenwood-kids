@@ -14,7 +14,10 @@ namespace GameToEarnLegos
         public static Bitmap Image_Tree1 = new Bitmap(@"Resources\Images\PerrysArtTree1.png");
         public static Bitmap Image_Tree2 = new Bitmap(@"Resources\Images\PerrysArtChristmasTree.png");
         public static Bitmap Image_Ammo = new Bitmap(@"Resources\Images\Weapon.png");
+        public static Bitmap Image_WaterAmmo = new Bitmap(@"Resources\Images\WaterAmmo.png");
         public static Bitmap Image_BadguyFireAmmo = new Bitmap(@"Resources\Images\BadguyFireAmmo.png");
+
+        public static Bitmap Image_MenuBackground = new Bitmap(@"Resources\Images\MenuBackground.png");
 
         public static Bitmap Image_DeadBadguy = new Bitmap(@"Resources\Images\Badguy\DeadBadguy.png");
         public static Bitmap Image_DeadTowerBadguy = new Bitmap(@"Resources\Images\Badguy\DeadTowerBadguy.png");
@@ -32,6 +35,7 @@ namespace GameToEarnLegos
         public static Bitmap Image_OpenDoor_Thin = new Bitmap(@"Resources\Images\BlandDoorThinOpen.png");
 
         public static Bitmap Image_Water = new Bitmap(@"Resources\Images\SmartWater\SmartWaterBase.png");
+        public static Bitmap Image_DeepWater = new Bitmap(@"Resources\Images\SmartWater\DeepWater.png");
 
 
         public static Bitmap Image_WaterLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterLeftGrass.png");
@@ -56,16 +60,19 @@ namespace GameToEarnLegos
         public static Bitmap Image_WaterTopBottomRight = RotateImage(Image_WaterTopBottomLeft);
 
 
-        public static Bitmap Image_Player = new Bitmap(@"Resources\Images\Player\Player_1.png");
+        public static Bitmap Image_Player = new Bitmap(@"Resources\Images\Player\Idle\Player_1.png");
 
-        public static Bitmap Image_Player_Idle_1 = new Bitmap(@"Resources\Images\Player\Player_1.png");
-        public static Bitmap Image_Player_Idle_2 = new Bitmap(@"Resources\Images\Player\Player_2.png");
-        public static Bitmap Image_Player_Idle_3 = new Bitmap(@"Resources\Images\Player\Player_3.png");
-        public static Bitmap Image_Player_Idle_4 = new Bitmap(@"Resources\Images\Player\Player_4.png");
-        public static Bitmap Image_Player_Idle_5 = new Bitmap(@"Resources\Images\Player\Player_5.png");
-        public static Bitmap Image_Player_Idle_6 = new Bitmap(@"Resources\Images\Player\Player_6.png");
-        public static Bitmap Image_Player_Idle_7 = new Bitmap(@"Resources\Images\Player\Player_7.png");
-        public static Bitmap Image_Player_Idle_8 = new Bitmap(@"Resources\Images\Player\Player_8.png");
+        public static Bitmap Image_Player_Fire = new Bitmap(@"Resources\Images\Player\Fire\PlayerOnFire.png");
+
+
+        public static Bitmap Image_Player_Idle_1 = new Bitmap(@"Resources\Images\Player\Idle\Player_1.png");
+        public static Bitmap Image_Player_Idle_2 = new Bitmap(@"Resources\Images\Player\Idle\Player_2.png");
+        public static Bitmap Image_Player_Idle_3 = new Bitmap(@"Resources\Images\Player\Idle\Player_3.png");
+        public static Bitmap Image_Player_Idle_4 = new Bitmap(@"Resources\Images\Player\Idle\Player_4.png");
+        public static Bitmap Image_Player_Idle_5 = new Bitmap(@"Resources\Images\Player\Idle\Player_5.png");
+        public static Bitmap Image_Player_Idle_6 = new Bitmap(@"Resources\Images\Player\Idle\Player_6.png");
+        public static Bitmap Image_Player_Idle_7 = new Bitmap(@"Resources\Images\Player\Idle\Player_7.png");
+        public static Bitmap Image_Player_Idle_8 = new Bitmap(@"Resources\Images\Player\Idle\Player_8.png");
 
         public static Bitmap Image_Player_Right_1 = new Bitmap(@"Resources\Images\Player\Player_Right_1.png");
         public static Bitmap Image_Player_Right_2 = new Bitmap(@"Resources\Images\Player\Player_Right_2.png");
@@ -76,12 +83,26 @@ namespace GameToEarnLegos
         public static Bitmap Image_Player_Right_7 = new Bitmap(@"Resources\Images\Player\Player_Right_7.png");
         public static Bitmap Image_Player_Right_8 = new Bitmap(@"Resources\Images\Player\Player_Right_8.png");
 
+        public static Bitmap Image_Player_Right_Fire_1 = new Bitmap(@"Resources\Images\Player\Fire\Player_Right_Fire_1.png");
+        public static Bitmap Image_Player_Right_Fire_2 = new Bitmap(@"Resources\Images\Player\Fire\Player_Right_Fire_2.png");
+        public static Bitmap Image_Player_Right_Fire_3 = new Bitmap(@"Resources\Images\Player\Fire\Player_Right_Fire_3.png");
+        public static Bitmap Image_Player_Right_Fire_4 = new Bitmap(@"Resources\Images\Player\Fire\Player_Right_Fire_4.png");
+        public static Bitmap Image_Player_Right_Fire_5 = new Bitmap(@"Resources\Images\Player\Fire\Player_Right_Fire_5.png");
+        public static Bitmap Image_Player_Right_Fire_6 = new Bitmap(@"Resources\Images\Player\Fire\Player_Right_Fire_6.png");
+        public static Bitmap Image_Player_Right_Fire_7 = new Bitmap(@"Resources\Images\Player\Fire\Player_Right_Fire_7.png");
+        public static Bitmap Image_Player_Right_Fire_8 = new Bitmap(@"Resources\Images\Player\Fire\Player_Right_Fire_8.png");
+
         public static Bitmap Image_Player_Back_1 = new Bitmap(@"Resources\Images\Player\Player_Back_1.png");
         public static Bitmap Image_Player_Back_2 = new Bitmap(@"Resources\Images\Player\Player_Back_2.png");
+
+        public static Bitmap Image_Player_Back_Fire_1 = new Bitmap(@"Resources\Images\Player\Fire\Player_Back_Fire_1.png");
+        public static Bitmap Image_Player_Back_Fire_2 = new Bitmap(@"Resources\Images\Player\Fire\Player_Back_Fire_2.png");
 
         public static Bitmap Image_Player_Forward_1 = new Bitmap(@"Resources\Images\Player\Player_Forward_1.png");
         public static Bitmap Image_Player_Forward_2 = new Bitmap(@"Resources\Images\Player\Player_Forward_2.png");
 
+        public static Bitmap Image_Player_Forward_Fire_1 = new Bitmap(@"Resources\Images\Player\Fire\Player_Forward_Fire_1.png");
+        public static Bitmap Image_Player_Forward_Fire_2 = new Bitmap(@"Resources\Images\Player\Fire\Player_Forward_Fire_2.png");
 
         public static Bitmap Image_Badguy = new Bitmap(@"Resources\Images\Badguy\BadguyUpgraded2.png");
 

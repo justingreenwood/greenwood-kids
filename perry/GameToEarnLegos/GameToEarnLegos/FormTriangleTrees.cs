@@ -10,7 +10,14 @@ namespace GameToEarnLegos
         public Level1 level1 = new Level1();
         public Level2 level2 = new Level2();
         public Level3 level3 = new Level3();
+        public Level4 level4 = new Level4();
         public Level5 level5 = new Level5();
+        public Level6 level6 = new Level6();
+        public Level7 level7 = new Level7();
+        public Level8 level8 = new Level8();
+        public Level9 level9 = new Level9();
+        public Level10 level10 = new Level10();
+        public TestLevel testLevel = new TestLevel();
         public List<ILevel> levels = new List<ILevel>();
         public List<ButtonsInMenu> MenuChoices = new List<ButtonsInMenu>();
         public List<ButtonsInMenu> OptionChoices = new List<ButtonsInMenu>();
@@ -29,7 +36,15 @@ namespace GameToEarnLegos
             levels.Add(level1);
             levels.Add(level2);
             levels.Add(level3);
+            levels.Add(level4);
             levels.Add(level5);
+            levels.Add(level6);
+            levels.Add(level7);
+            levels.Add(level8);
+            levels.Add(level9);
+            levels.Add(level10);
+            levels.Add(testLevel);
+
             MenuChoices.Add(new ButtonsInMenu("Play"));
             MenuChoices.Add(new ButtonsInMenu("Options"));
             MenuChoices.Add(new ButtonsInMenu("Exit"));
