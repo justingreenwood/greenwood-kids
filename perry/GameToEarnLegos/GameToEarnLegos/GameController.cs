@@ -15,6 +15,7 @@ namespace GameToEarnLegos
 {
     public class GameController : IGameController
     {
+        private Random random = new Random();
         private const float TileSize = 20f;
         private float scaleFactor = 0.8f;
         private FormTriangleTrees _form;
@@ -29,6 +30,8 @@ namespace GameToEarnLegos
         private ILevel _currentLevel => _form.currentLevel;
 
         int AliveBadguys;
+        int BurningTrees;
+        int AliveTrees;
         Player player;
         List<Water> waters = new List<Water>();
         List<DeepWater> deepWaters = new List<DeepWater>();
@@ -93,9 +96,14 @@ namespace GameToEarnLegos
                     $"Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
+            else if(goal == "Extinguish")
+            {
+                g.DrawString($" Health: {player.Health} Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Alive Trees: {AliveTrees} Burning Trees: {BurningTrees}",
+                   SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
+            }
             else
             {
-                g.DrawString($"Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health}",
+                g.DrawString($" Health: {player.Health} Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
 
@@ -405,6 +413,12 @@ namespace GameToEarnLegos
                         case 'T':
                             tiles.Add(new Tree(column, row));
                             break;
+                        case 'F':
+                            tiles.Add(new Tree(column, row, 'F'));
+                            break;
+                        case 'f':
+                            tiles.Add(new Tree(column, row, 'f'));
+                            break;
                         case 'D':
                             if(lastLetter == 'B')
                             tiles.Add(new Door(column, row, true,'N'));
@@ -545,7 +559,10 @@ namespace GameToEarnLegos
 
 
             }
-
+            if(goal == "Extinguish")
+            {
+                player.WAmmo = player.MaxWAmmo;
+            }
         }
 
         public void Stop()
@@ -681,6 +698,7 @@ namespace GameToEarnLegos
                     {
                         if(tree.isOnFire == true)
                         {
+
                             tree.health--;
                             if(tree.health <= 0)
                             {
@@ -689,9 +707,23 @@ namespace GameToEarnLegos
                             }
                             else
                             {
+                                if(tree.image != tree.OnFireImage)
+                                {
+                                    tree.image = tree.OnFireImage;
+                                }
                                 amountOfAliveTrees++;
                                 amountOfBurningTrees++;
                             }
+                            foreach(Tree otherTree in tiles.Where(t => t.Tag == "tree" && t != tree && t.Rect(scaleFactor).IntersectsWith(tree.CheckAroundRect(scaleFactor))))
+                            {
+                                int rand = random.Next(2000);
+                                
+                                if(rand == 10)
+                                {
+                                    otherTree.isOnFire = true;
+                                }
+                            }
+
                         }
                         else if(tree.isDead == false)
                         {
@@ -712,7 +744,7 @@ namespace GameToEarnLegos
                                         tree.isOnFire = true;
                                         tree.image = tree.OnFireImage;
                                     }
-                                    break;
+                                    
                                 }
                             }
                             else if(ammunition.TypeOfAmmo == "water")
@@ -724,7 +756,7 @@ namespace GameToEarnLegos
                                         tree.isOnFire = false;
                                         tree.image = tree.AliveImage;
                                     }
-                                    break;
+                                    
                                 }
                             }
 
@@ -736,7 +768,6 @@ namespace GameToEarnLegos
                             {
                                 if (ammunition.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
                                 {
-
                                     ammunition.IsDead = true;
                                     break;
                                 }
@@ -802,6 +833,9 @@ namespace GameToEarnLegos
                     }
 
                     AliveBadguys = aliveBadguys;
+                    AliveTrees = amountOfAliveTrees;
+                    BurningTrees = amountOfBurningTrees;
+
                     //AmountOfGold = amountOfGold;
 
                     if (player.UsingKey == true)
@@ -893,6 +927,13 @@ namespace GameToEarnLegos
                         gameOver = true;
                     }
                     else if(goal == "Completion" && AliveBadguys == 0 && amountOfGold == 0)
+                    {
+                        _currentLevel.IsWon = true;
+                        if (_currentLevel.HighScore < _currentLevel.CurrentScore)
+                            _currentLevel.HighScore = _currentLevel.CurrentScore;
+                        gameOver = true;
+                    }
+                    else if (goal == "Extinguish" && AliveTrees >= 10 && BurningTrees == 0 && AliveBadguys == 0)
                     {
                         _currentLevel.IsWon = true;
                         if (_currentLevel.HighScore < _currentLevel.CurrentScore)

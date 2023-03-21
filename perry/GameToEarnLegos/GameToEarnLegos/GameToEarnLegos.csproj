@@ -33,6 +33,7 @@
     <None Remove="Resources\Images\BlandDoorThin.png" />
     <None Remove="Resources\Images\BlandDoorThinOpen.png" />
     <None Remove="Resources\Images\BridgeOne.png" />
+    <None Remove="Resources\Images\BurnedTree.png" />
     <None Remove="Resources\Images\ClosedDoor.png" />
     <None Remove="Resources\Images\ClosedDoor2.png" />
     <None Remove="Resources\Images\DeadBadguy.png" />
@@ -114,6 +115,7 @@
     <None Remove="Resources\Images\SmartWater\SmartWaterTopLeftGrass.png" />
     <None Remove="Resources\Images\SmartWater\SmartWaterTopLeftRightGrass.png" />
     <None Remove="Resources\Images\TreasureChest.png" />
+    <None Remove="Resources\Images\TreeOnFire.png" />
     <None Remove="Resources\Images\TreeTester.png" />
     <None Remove="Resources\Images\Wall.png" />
     <None Remove="Resources\Images\WaterAmmo.png" />
@@ -182,6 +184,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\BridgeOne.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\BurnedTree.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\ClosedDoor.png">
@@ -362,6 +367,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\TreasureChest.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\TreeOnFire.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\TreeTester.png">
