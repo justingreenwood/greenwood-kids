@@ -39,6 +39,7 @@ namespace GameToEarnLegos
         List<Badguy> badguys = new List<Badguy>();
         List<Tile> tiles = new List<Tile>();
         List<Gold> golds = new List<Gold>();
+        List<AmmoPack> ammoPacks = new List<AmmoPack>();
         List<Door> doors = new List<Door>();
 
         List<Ammunition> ammunitions = new List<Ammunition>();
@@ -70,6 +71,10 @@ namespace GameToEarnLegos
             {
                 DrawScaledTiles(g, gold);
             }
+            foreach (AmmoPack ammopack in ammoPacks.Where(t => (t.IsPickedUp == false) && (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor)))))
+            {
+                DrawScaledTiles(g, ammopack);
+            }
             foreach (Badguy badguy in badguys.Where(t => SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
             {
                 DrawScaledTiles(g, badguy);
@@ -98,12 +103,12 @@ namespace GameToEarnLegos
             }
             else if(goal == "Extinguish")
             {
-                g.DrawString($" Health: {player.Health} Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Alive Trees: {AliveTrees} Burning Trees: {BurningTrees}",
+                g.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Alive Trees: {AliveTrees} Burning Trees: {BurningTrees}",
                    SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
             else
             {
-                g.DrawString($" Health: {player.Health} Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
+                g.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
 
@@ -409,6 +414,9 @@ namespace GameToEarnLegos
                             break;
                         case 'g':
                             golds.Add(new Gold(column, row));
+                            break;
+                        case 'A':
+                            ammoPacks.Add(new AmmoPack(column, row));
                             break;
                         case 'T':
                             tiles.Add(new Tree(column, row));
@@ -793,18 +801,22 @@ namespace GameToEarnLegos
                                     if (ammunition.TypeOfAmmo == "normal" || (badguy.typeOfBadguy == "tower" && ammunition.TypeOfAmmo == "water"))
                                     {                                        
                                         badguy.Health -= ammunition.Damage;
-                                        if (badguy.Health <= 0)
+                                    }
+                                    else if(badguy.typeOfBadguy != "tower" && ammunition.TypeOfAmmo == "water")
+                                    {
+                                        badguy.Health -= 1;
+                                    }
+                                    if (badguy.Health <= 0)
+                                    {
+                                        badguy.IsDead = true;
+                                        aliveBadguys--;
+                                        if (badguy.IsBoss)
                                         {
-                                            badguy.IsDead = true;
-                                            aliveBadguys--;
-                                            if (badguy.IsBoss)
-                                            {
-                                                _currentLevel.CurrentScore += 10;
-                                            }
-                                            else
-                                            {
-                                                _currentLevel.CurrentScore++;
-                                            }
+                                            _currentLevel.CurrentScore += 10;
+                                        }
+                                        else
+                                        {
+                                            _currentLevel.CurrentScore++;
                                         }
                                     }
                                 }
@@ -902,6 +914,14 @@ namespace GameToEarnLegos
                     {
                         player.X -= player.Speed;
                         if (IsBlocked) player.X = currentX;
+                    }
+                    foreach (AmmoPack ammoPack in ammoPacks.Where(t => t.IsPickedUp == false))
+                    {
+                        if (player.Rect(scaleFactor).IntersectsWith(ammoPack.Rect(scaleFactor)))
+                        {
+                            ammoPack.IsPickedUp = true;
+                            player.NAmmo += ammoPack.ammountOfAmmo;
+                        }
                     }
                     foreach (Gold gold in golds.Where(t => t.IsPickedUp == false))
                     {

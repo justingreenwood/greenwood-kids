@@ -139,6 +139,7 @@ namespace GameToEarnLegos
             if(kindOfBadguy == "follower")
             {
                 BaseSpeed = 1.7f;
+                Health = 6f;
             }
             else if (kindOfBadguy == "boss0")
             {
@@ -155,6 +156,8 @@ namespace GameToEarnLegos
                 image = Resources.Image_TowerBadguy;
                 deadImage = Resources.Image_DeadTowerBadguy;
                 typeOfBadguy = "tower";
+                Width = 20;
+                Height = 20;
             }
 
         }
@@ -339,16 +342,6 @@ namespace GameToEarnLegos
 
         }
 
-        public void CheckLineOfSight(List<Tile> blockers, Player player) 
-        {
-            
-            foreach(Tile tile in blockers.Where(t=> t.IsBlocker == true))
-            {
-                
-            }
-
-            
-        }
         public bool CheckIfNoticed(Player player)
         {
 

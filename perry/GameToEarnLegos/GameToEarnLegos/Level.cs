@@ -26,8 +26,7 @@ namespace GameToEarnLegos
             get
             {
                 int numberOfGold = 0;
-                int numberOfBadguys = 0;
-                int bossPoints = 0;
+                int badguyPoints = 0;
                 for (int row = 0; row < levelTop.Length; row++)
                 {
                     var higherLevelRow = levelTop[row];
@@ -39,17 +38,25 @@ namespace GameToEarnLegos
                         {
                             numberOfGold++;
                         }
-                        else if (letter == 'V' || letter == 'v')
+                        else if (letter == 'V')
                         {
-                            numberOfBadguys++;
+                            badguyPoints++;
+                        }
+                        else if (letter == 't')
+                        {
+                            badguyPoints+=5;
+                        }
+                        else if (letter == 'v')
+                        {
+                            badguyPoints+= 2;
                         }
                         else if (letter == '0')
                         {
-                            bossPoints += 10;
+                            badguyPoints += 10;
                         }
                     }
                 }
-                return numberOfGold * 5 + numberOfBadguys + bossPoints;
+                return numberOfGold * 5 + badguyPoints;
 
             }
         }
