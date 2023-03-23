@@ -724,7 +724,7 @@ namespace GameToEarnLegos
                             }
                             foreach(Tree otherTree in tiles.Where(t => t.Tag == "tree" && t != tree && t.Rect(scaleFactor).IntersectsWith(tree.CheckAroundRect(scaleFactor))))
                             {
-                                int rand = random.Next(2000);
+                                int rand = random.Next(1000);
                                 
                                 if(rand == 10)
                                 {

@@ -33,7 +33,7 @@ namespace GameToEarnLegos
         public string CurrentTypeOfAmmo = "normal";
 
         public int MaxNAmmo = 100;
-        public int MaxWAmmo = 15;
+        public int MaxWAmmo = 20;
 
         public bool GoingUp = false;
         public bool GoingDown = false;

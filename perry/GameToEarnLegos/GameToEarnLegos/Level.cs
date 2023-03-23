@@ -88,6 +88,7 @@ namespace GameToEarnLegos
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/TestLevel.txt");
         public override string Name => "Testing";
+        public override string Goal => "Extinguish";
     }
     public class Level4 : Level
     {
