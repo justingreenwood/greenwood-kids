@@ -114,6 +114,7 @@
     <None Remove="Resources\Images\SmartWater\SmartWaterTopLeftGrass.aseprite" />
     <None Remove="Resources\Images\SmartWater\SmartWaterTopLeftGrass.png" />
     <None Remove="Resources\Images\SmartWater\SmartWaterTopLeftRightGrass.png" />
+    <None Remove="Resources\Images\Title.png" />
     <None Remove="Resources\Images\TreasureChest.png" />
     <None Remove="Resources\Images\TreeOnFire.png" />
     <None Remove="Resources\Images\TreeTester.png" />
@@ -366,6 +367,9 @@
     <Content Include="Resources\Images\SmartWater\SmartWaterTopLeftRightGrass.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Title.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\TreasureChest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -389,6 +393,8 @@
   <ItemGroup>
     <Folder Include="Resources\Audio\" />
     <Folder Include="Resources\Images\Menu Images\" />
+    <Folder Include="Resources\Images\Letters\Fire\" />
+    <Folder Include="Resources\Images\Letters\Normal\" />
   </ItemGroup>
 
   <ItemGroup>

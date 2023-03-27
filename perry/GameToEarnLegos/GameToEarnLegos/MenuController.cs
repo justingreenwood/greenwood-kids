@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Numerics;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -25,6 +26,7 @@ namespace GameToEarnLegos
         private bool _playButtonPressed = false;
         private bool _optionButtonPressed = false;
         private int buttonChoice = 1;
+        private int DistanceDown = 200;
         //private int optionChoice = 1;
         public bool cheatsOn = false;
         private List<ButtonsInMenu> MenuChoices => _form.MenuChoices;
@@ -38,11 +40,11 @@ namespace GameToEarnLegos
         public void DrawTheGame(Graphics g)
         {
             g.DrawImage(Resources.Image_MenuBackground, 0, 0, this._form.Width, this._form.Height);
+            g.DrawImage(Resources.Image_Title, 300, 80, 1300, 140);
             if (_playButtonPressed)
             {
-                for (int i = 0; i < LevelChoices.Count; i++)
+                for (int i = 1; i <= LevelChoices.Count; i++)
                 {
-
                     Brush brush = Brushes.White;
                     if (i == levelChoiceNumber)
                     {
@@ -50,15 +52,15 @@ namespace GameToEarnLegos
                         
                     }
 
-                    if (i == LevelChoices.Count-1)
+                    if (i == LevelChoices.Count)
                     {
-                        g.DrawString($" Return", SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
+                        g.DrawString($" Return", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
                     }
                     else
                     {
-                        var level = _levels[i];
+                        var level = _levels[i-1];
                         g.DrawString($" {level.Name} Score: {level.HighScore}/{level.Score} Goal: {level.Goal} IsWon {level.IsWon}",
-                        SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
+                        SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
                     }
                 }
             }
@@ -73,10 +75,10 @@ namespace GameToEarnLegos
                         brush = Brushes.Red;
                     }
                     if(option.Name == "Cheats")
-                        g.DrawString($"{option.Name} {cheatsOn}", SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
+                        g.DrawString($"{option.Name} {cheatsOn}", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
 
                     else
-                        g.DrawString($"{option.Name}", SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
+                        g.DrawString($"{option.Name}", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
 
                 }
             }
@@ -93,7 +95,7 @@ namespace GameToEarnLegos
                     foreach (var menuchoice in MenuChoices)
                     {
                     }
-                    g.DrawString($"{choice.Name}", SystemFonts.DefaultFont, brush, 500, 100 + (i * 20));
+                    g.DrawString($"{choice.Name}", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
                 }
             }
 
@@ -112,7 +114,7 @@ namespace GameToEarnLegos
             {
                 if (_playButtonPressed)
                 {
-                    if (levelChoiceNumber != LevelChoices.Count - 1)
+                    if (levelChoiceNumber != LevelChoices.Count)
                     {                        
                         willPlay = true;
                         levelChoice = _levels[levelChoiceNumber];
@@ -185,14 +187,11 @@ namespace GameToEarnLegos
         public void Start(string startInfo = null)
         {
             LevelChoices.Clear();
-            foreach (Level level in _levels)
+            foreach (Level level in _levels.Where(l=>l.IsWon == true))
             {
                 LevelChoices.Add(new ButtonsInMenu(level));
-                if(level.IsWon == false)
-                {
-                    break;
-                }
             }
+            LevelChoices.Add(new ButtonsInMenu((Level)_levels[LevelChoices.Count() + 1]));
             LevelChoices.Add(new ButtonsInMenu("Return"));
 
             _playButtonPressed = false;
@@ -211,13 +210,13 @@ namespace GameToEarnLegos
 
                 if (_playButtonPressed)
                 {
-                    if (levelChoiceNumber < LevelChoices.Count-1)
+                    if (levelChoiceNumber < LevelChoices.Count)
                     {
                         levelChoiceNumber++;
                     }
                     else
                     {
-                        levelChoiceNumber = 0;
+                        levelChoiceNumber = 1;
                     }
                 }
                 else if (_optionButtonPressed)
@@ -254,7 +253,7 @@ namespace GameToEarnLegos
                     }
                     else
                     {
-                        levelChoiceNumber = LevelChoices.Count -1;
+                        levelChoiceNumber = LevelChoices.Count;
                     }
                 }
                 else if (_optionButtonPressed)

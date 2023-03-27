@@ -25,6 +25,7 @@ namespace GameToEarnLegos
         public bool goToMenu = false;
         private bool EscapeKeyIsPressed = false;
         Badguy Boss = null;
+
         public bool CHEATS => _form.CHEATS;
         public float ScaleFactor => scaleFactor;
         private ILevel _currentLevel => _form.currentLevel;
@@ -32,6 +33,7 @@ namespace GameToEarnLegos
         int AliveBadguys;
         int BurningTrees;
         int AliveTrees;
+        int NeededTrees;
         Player player;
         List<Water> waters = new List<Water>();
         List<DeepWater> deepWaters = new List<DeepWater>();
@@ -103,7 +105,7 @@ namespace GameToEarnLegos
             }
             else if(goal == "Extinguish")
             {
-                g.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Alive Trees: {AliveTrees} Burning Trees: {BurningTrees}",
+                g.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Alive Trees: {AliveTrees} Burning Trees: {BurningTrees} Trees Needed Alive: {NeededTrees}",
                    SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
             else
@@ -458,7 +460,12 @@ namespace GameToEarnLegos
 
             }
 
-
+            foreach (Tree tree in tiles.Where(t => t.Tag == "tree"))
+            {
+                AliveTrees++;
+            }
+            decimal d = AliveTrees / 3;
+            NeededTrees = ((int)Math.Round(d));
             foreach (Water water in tiles.Where(w => w.Tag == "water"))
             {
                 foreach (Bridge bridge in tiles.Where(b => b.Tag == "bridge"))
@@ -759,7 +766,7 @@ namespace GameToEarnLegos
                             {
                                 if (ammunition.Rect(scaleFactor).IntersectsWith(tree.Rect(scaleFactor)))
                                 {
-                                    if (tree.isOnFire)
+                                    if (tree.isOnFire && tree.isDead == false)
                                     {
                                         tree.isOnFire = false;
                                         tree.image = tree.AliveImage;
@@ -953,12 +960,19 @@ namespace GameToEarnLegos
                             _currentLevel.HighScore = _currentLevel.CurrentScore;
                         gameOver = true;
                     }
-                    else if (goal == "Extinguish" && AliveTrees >= 10 && BurningTrees == 0 && AliveBadguys == 0)
+                    else if (goal == "Extinguish")
                     {
-                        _currentLevel.IsWon = true;
-                        if (_currentLevel.HighScore < _currentLevel.CurrentScore)
-                            _currentLevel.HighScore = _currentLevel.CurrentScore;
-                        gameOver = true;
+                        if(AliveTrees < NeededTrees)
+                        {
+                            gameOver = true;
+                        }
+                        else if(BurningTrees == 0 && AliveBadguys == 0)
+                        {
+                            _currentLevel.IsWon = true;
+                            if (_currentLevel.HighScore < _currentLevel.CurrentScore)
+                                _currentLevel.HighScore = _currentLevel.CurrentScore;
+                            gameOver = true;
+                        }
                     }
                     else if (goal == "?????????" && aliveBosses == 0)
                     {
