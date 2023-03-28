@@ -1,12 +1,14 @@
 ﻿using Microsoft.VisualBasic.Devices;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace GameToEarnLegos
 {
@@ -46,7 +48,7 @@ namespace GameToEarnLegos
                 for (int i = 1; i <= LevelChoices.Count; i++)
                 {
                     Brush brush = Brushes.White;
-                    if (i == levelChoiceNumber)
+                    if (i == levelChoiceNumber+1)
                     {
                         brush = Brushes.Red;
                         
@@ -62,6 +64,20 @@ namespace GameToEarnLegos
                         g.DrawString($" {level.Name} Score: {level.HighScore}/{level.Score} Goal: {level.Goal} IsWon {level.IsWon}",
                         SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
                     }
+                    //int j = 500;
+                    //foreach (Bitmap bitmap in LevelChoices[i-1].NameBitmap)
+                    //{
+                    //    g.DrawImage(bitmap, j, DistanceDown, 30, 30);
+                    //    j += 40;
+                    //}
+                    //if (i != LevelChoices.Count)
+                    //{
+                    //    var level = _levels[i - 1];
+                    //    g.DrawString($" {level.Name} Score: {level.HighScore}/{level.Score} Goal: {level.Goal} IsWon {level.IsWon}",
+                    //    SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
+                    //}
+
+
                 }
             }
             else if (_optionButtonPressed)
@@ -114,7 +130,7 @@ namespace GameToEarnLegos
             {
                 if (_playButtonPressed)
                 {
-                    if (levelChoiceNumber != LevelChoices.Count)
+                    if (levelChoiceNumber != LevelChoices.Count-1)
                     {                        
                         willPlay = true;
                         levelChoice = _levels[levelChoiceNumber];
@@ -210,13 +226,13 @@ namespace GameToEarnLegos
 
                 if (_playButtonPressed)
                 {
-                    if (levelChoiceNumber < LevelChoices.Count)
+                    if (levelChoiceNumber < LevelChoices.Count-1)
                     {
                         levelChoiceNumber++;
                     }
                     else
                     {
-                        levelChoiceNumber = 1;
+                        levelChoiceNumber = 0;
                     }
                 }
                 else if (_optionButtonPressed)
@@ -253,7 +269,7 @@ namespace GameToEarnLegos
                     }
                     else
                     {
-                        levelChoiceNumber = LevelChoices.Count;
+                        levelChoiceNumber = LevelChoices.Count-1;
                     }
                 }
                 else if (_optionButtonPressed)

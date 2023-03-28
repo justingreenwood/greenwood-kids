@@ -60,6 +60,8 @@ namespace GameToEarnLegos
 
             }
         }
+        public List<Bitmap> NameBitmap;
+        public List<Bitmap> NameBitmapRed;
         public virtual string Name => "Not Named";
         public int CurrentScore { get; set; }
         public bool IsWon { get; set; }
@@ -76,7 +78,7 @@ namespace GameToEarnLegos
     public class Level2 : Level
     {
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level2.txt");
-        public override string Name => "Deers of Death";
+        public override string Name => "Oh Deer";
     }
     public class Level3 : Level
     {

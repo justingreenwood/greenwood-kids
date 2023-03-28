@@ -1,3 +1,7 @@
+using GameToEarnLegos.Tiles;
+using System.Data.Common;
+using System.Diagnostics.Metrics;
+
 namespace GameToEarnLegos
 {
     public partial class FormTriangleTrees : Form
@@ -51,15 +55,216 @@ namespace GameToEarnLegos
             OptionChoices.Add(new ButtonsInMenu("Cheats"));
             OptionChoices.Add(new ButtonsInMenu("Win All Games"));
             OptionChoices.Add(new ButtonsInMenu("Return"));
-            
+            //foreach(ButtonsInMenu choice in MenuChoices)
+            //{
+            //    choice.NameBitmap = NameInBitmap(choice.Name, "white");
+            //    choice.NameBitmapRed = NameInBitmap(choice.Name, "red");
 
-
+            //}
+            //foreach (ButtonsInMenu choice in OptionChoices)
+            //{
+            //    choice.NameBitmap = NameInBitmap(choice.Name, "white");
+            //    choice.NameBitmapRed = NameInBitmap(choice.Name, "red");
+            //}
+            //foreach (Level choice in levels)
+            //{
+            //    choice.NameBitmap = NameInBitmap(choice.Name, "white");
+            //    choice.NameBitmapRed = NameInBitmap(choice.Name, "red");
+            //}
             Start();
             this.SetStyle(ControlStyles.DoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+        }
+
+        public List<Bitmap> NameInBitmap(string name, string color)
+        {
+            string nameLower = name.ToLower();
+
+            List<Bitmap> Bitmaps = new List<Bitmap>();
+            for (int i = 1; i < nameLower.Length; i++)
+            {
+                char c = nameLower[i];
+                if (color == "white")
+                {
+                    switch (c)
+                    {
+                        case 'a':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'b':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'c':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'd':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'e':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'f':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'g':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'h':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'i':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'j':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'k':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'l':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'm':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'n':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'o':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'p':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'q':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'r':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 's':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 't':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'u':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'v':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'w':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'x':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'y':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        case 'z':
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                        default:
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                    }
+                }
+                else if(color == "red")
+                {
+                    switch (c)
+                    {
+                        case 'a':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'b':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'c':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'd':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'e':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'f':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'g':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'h':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'i':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'j':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'k':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'l':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'm':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'n':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'o':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'p':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'q':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'r':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 's':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 't':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'u':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'v':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'w':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'x':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'y':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        case 'z':
+                            Bitmaps.Add(Resources.Image_Tree1);
+                            break;
+                        default:
+                            Bitmaps.Add(Resources.Image_Tree2);
+                            break;
+                    }
+                }
+            }
+            return Bitmaps;
+
+
         }
 
         public void Start()
