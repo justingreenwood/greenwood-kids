@@ -207,6 +207,7 @@ namespace GameToEarnLegos
             {
                 LevelChoices.Add(new ButtonsInMenu(level));
             }
+            if(LevelChoices.Count < 10)
             LevelChoices.Add(new ButtonsInMenu((Level)_levels[LevelChoices.Count() + 1]));
             LevelChoices.Add(new ButtonsInMenu("Return"));
 

@@ -22,7 +22,7 @@ namespace GameToEarnLegos
         {
             Name = level.Name;
             this.level = level;
-            NameBitmap = level.NameBitmap;
+            //NameBitmap = level.NameBitmap;
         }
     }
 }
