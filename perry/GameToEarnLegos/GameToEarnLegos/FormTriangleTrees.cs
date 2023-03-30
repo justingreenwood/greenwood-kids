@@ -55,22 +55,27 @@ namespace GameToEarnLegos
             OptionChoices.Add(new ButtonsInMenu("Cheats"));
             OptionChoices.Add(new ButtonsInMenu("Win All Games"));
             OptionChoices.Add(new ButtonsInMenu("Return"));
-            //foreach(ButtonsInMenu choice in MenuChoices)
-            //{
-            //    choice.NameBitmap = NameInBitmap(choice.Name, "white");
-            //    choice.NameBitmapRed = NameInBitmap(choice.Name, "red");
+            foreach(Level level in levels)
+            {
+                LevelChoices.Add(new ButtonsInMenu(level));
+            }
+            LevelChoices.Add(new ButtonsInMenu("Return"));
+            foreach (ButtonsInMenu choice in MenuChoices)
+            {
+                choice.NameBitmap = NameInBitmap(choice.Name, "white");
+                choice.NameBitmapRed = NameInBitmap(choice.Name, "red");
 
-            //}
-            //foreach (ButtonsInMenu choice in OptionChoices)
-            //{
-            //    choice.NameBitmap = NameInBitmap(choice.Name, "white");
-            //    choice.NameBitmapRed = NameInBitmap(choice.Name, "red");
-            //}
-            //foreach (Level choice in levels)
-            //{
-            //    choice.NameBitmap = NameInBitmap(choice.Name, "white");
-            //    choice.NameBitmapRed = NameInBitmap(choice.Name, "red");
-            //}
+            }
+            foreach (ButtonsInMenu choice in OptionChoices)
+            {
+                choice.NameBitmap = NameInBitmap(choice.Name, "white");
+                choice.NameBitmapRed = NameInBitmap(choice.Name, "red");
+            }
+            foreach (ButtonsInMenu choice in LevelChoices)
+            {
+                choice.NameBitmap = NameInBitmap(choice.Name, "white");
+                choice.NameBitmapRed = NameInBitmap(choice.Name, "red");
+            }
             Start();
             this.SetStyle(ControlStyles.DoubleBuffer, true);
             this.SetStyle(ControlStyles.AllPaintingInWmPaint, true);
@@ -84,7 +89,7 @@ namespace GameToEarnLegos
             string nameLower = name.ToLower();
 
             List<Bitmap> Bitmaps = new List<Bitmap>();
-            for (int i = 1; i < nameLower.Length; i++)
+            for (int i = 0; i < nameLower.Length; i++)
             {
                 char c = nameLower[i];
                 if (color == "white")

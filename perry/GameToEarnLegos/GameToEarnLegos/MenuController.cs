@@ -35,6 +35,7 @@ namespace GameToEarnLegos
         private List<ButtonsInMenu> OptionChoices => _form.OptionChoices;
         //private List<ButtonsInMenu> LevelChoices => _form.LevelChoices;
         private List<ButtonsInMenu> LevelChoices = new List<ButtonsInMenu>();
+        private List<ButtonsInMenu> LevelFormChoices => _form.LevelChoices;
         public MenuController(FormTriangleTrees form)
         {
             _form = form;
@@ -51,6 +52,7 @@ namespace GameToEarnLegos
                     if (i == levelChoiceNumber+1)
                     {
                         brush = Brushes.Red;
+
                         
                     }
 
@@ -64,12 +66,24 @@ namespace GameToEarnLegos
                         g.DrawString($" {level.Name} Score: {level.HighScore}/{level.Score} Goal: {level.Goal} IsWon {level.IsWon}",
                         SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
                     }
-                    //int j = 500;
-                    //foreach (Bitmap bitmap in LevelChoices[i-1].NameBitmap)
-                    //{
-                    //    g.DrawImage(bitmap, j, DistanceDown, 30, 30);
-                    //    j += 40;
-                    //}
+
+                    int j = 500;
+                    if (brush != Brushes.Red)
+                    {
+                        foreach (Bitmap bitmap in LevelChoices[i - 1].NameBitmap)
+                        {
+                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
+                            j += 40;
+                        }
+                    }
+                    else
+                    {
+                        foreach (Bitmap bitmap in LevelChoices[i - 1].NameBitmapRed)
+                        {
+                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
+                            j += 40;
+                        }
+                    }
                     //if (i != LevelChoices.Count)
                     //{
                     //    var level = _levels[i - 1];
@@ -96,6 +110,27 @@ namespace GameToEarnLegos
                     else
                         g.DrawString($"{option.Name}", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
 
+
+                    int j = 500;
+                    if (brush != Brushes.Red)
+                    {
+                        foreach (Bitmap bitmap in OptionChoices[i - 1].NameBitmap)
+                        {
+                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
+                            j += 40;
+                        }
+                    }
+                    else
+                    {
+                        foreach (Bitmap bitmap in OptionChoices[i - 1].NameBitmapRed)
+                        {
+                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
+                            j += 40;
+                        }
+                    }
+
+
+
                 }
             }
             else
@@ -108,10 +143,25 @@ namespace GameToEarnLegos
                     {
                         brush = Brushes.Red;
                     }
-                    foreach (var menuchoice in MenuChoices)
-                    {
-                    }
                     g.DrawString($"{choice.Name}", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
+
+                    int j = 500;
+                    if (brush != Brushes.Red)
+                    {
+                        foreach (Bitmap bitmap in MenuChoices[i - 1].NameBitmap)
+                        {
+                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
+                            j += 40;
+                        }
+                    }
+                    else
+                    {
+                        foreach (Bitmap bitmap in MenuChoices[i - 1].NameBitmapRed)
+                        {
+                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
+                            j += 40;
+                        }
+                    }
                 }
             }
 
@@ -203,13 +253,13 @@ namespace GameToEarnLegos
         public void Start(string startInfo = null)
         {
             LevelChoices.Clear();
-            foreach (Level level in _levels.Where(l=>l.IsWon == true))
+            foreach (ButtonsInMenu level in LevelFormChoices.Where(l=> l.level != null && l.level.IsWon == true))
             {
-                LevelChoices.Add(new ButtonsInMenu(level));
+                LevelChoices.Add(level);
             }
             if(LevelChoices.Count < 10)
-            LevelChoices.Add(new ButtonsInMenu((Level)_levels[LevelChoices.Count() + 1]));
-            LevelChoices.Add(new ButtonsInMenu("Return"));
+            LevelChoices.Add(LevelFormChoices[LevelChoices.Count()]);
+            LevelChoices.Add(LevelFormChoices[LevelFormChoices.Count()-1]);
 
             _playButtonPressed = false;
             _form.Refresh();

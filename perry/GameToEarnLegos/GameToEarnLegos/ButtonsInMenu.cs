@@ -10,7 +10,7 @@ namespace GameToEarnLegos
     {
         public string Name;
         public bool IsPressed = false;
-        Level level;
+        public Level level;
         public List<Bitmap> NameBitmap;
         public List<Bitmap> NameBitmapRed;
         public ButtonsInMenu(string name)
@@ -21,8 +21,7 @@ namespace GameToEarnLegos
         public ButtonsInMenu(Level level)
         {
             Name = level.Name;
-            this.level = level;
-            //NameBitmap = level.NameBitmap;
+            this.level = level;           
         }
     }
 }

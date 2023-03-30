@@ -60,8 +60,8 @@ namespace GameToEarnLegos
 
             }
         }
-        //public List<Bitmap> NameBitmap;
-        //public List<Bitmap> NameBitmapRed;
+        public List<Bitmap> NameBitmap;
+        public List<Bitmap> NameBitmapRed;
         public virtual string Name => "Not Named";
         public int CurrentScore { get; set; }
         public bool IsWon { get; set; }
