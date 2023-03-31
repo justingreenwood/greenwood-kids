@@ -125,6 +125,29 @@ namespace GameToEarnLegos
         public static Bitmap Image_Badguy_Down_1 = new Bitmap(@"Resources\Images\Badguy\BadguyForward_1.png");
         public static Bitmap Image_Badguy_Down_2 = new Bitmap(@"Resources\Images\Badguy\BadguyForward_2.png");
 
+        public static Bitmap Image_A = new Bitmap(@"Resources\Images\Letters\Normal\LetterA.png");
+        public static Bitmap Image_B = new Bitmap(@"Resources\Images\Letters\Normal\LetterB.png");
+        public static Bitmap Image_C = new Bitmap(@"Resources\Images\Letters\Normal\LetterC.png");
+        public static Bitmap Image_D = new Bitmap(@"Resources\Images\Letters\Normal\LetterD.png");
+        public static Bitmap Image_E = new Bitmap(@"Resources\Images\Letters\Normal\LetterE.png");
+        public static Bitmap Image_F = new Bitmap(@"Resources\Images\Letters\Normal\LetterF.png");
+        public static Bitmap Image_G = new Bitmap(@"Resources\Images\Letters\Normal\LetterG.png");
+        public static Bitmap Image_H = new Bitmap(@"Resources\Images\Letters\Normal\LetterH.png");
+        public static Bitmap Image_I = new Bitmap(@"Resources\Images\Letters\Normal\LetterI.png");
+        public static Bitmap Image_J = new Bitmap(@"Resources\Images\Letters\Normal\LetterJ.png");
+        public static Bitmap Image_K = new Bitmap(@"Resources\Images\Letters\Normal\LetterK.png");
+        public static Bitmap Image_L = new Bitmap(@"Resources\Images\Letters\Normal\LetterL.png");
+        public static Bitmap Image_M = new Bitmap(@"Resources\Images\Letters\Normal\LetterM.png");
+        //public static Bitmap Image_N = new Bitmap(@"Resources\Images\Letters\Normal\LetterN.png");
+        public static Bitmap Image_O = new Bitmap(@"Resources\Images\Letters\Normal\LetterO.png");
+        //public static Bitmap Image_P = new Bitmap(@"Resources\Images\Letters\Normal\LetterP.png");
+
+
+
+
+
+
+
         public static Bitmap RotateImage(Bitmap srcImage)
         {
             //Clone it to another bitmap

@@ -50,6 +50,20 @@
     <None Remove="Resources\Images\Grass\SmartGrassUpDown.png" />
     <None Remove="Resources\Images\HitBadguy.png" />
     <None Remove="Resources\Images\intro-background.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterA.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterB.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterC.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterD.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterE.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterF.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterG.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterH.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterI.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterJ.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterK.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterL.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterM.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterO.png" />
     <None Remove="Resources\Images\MenuBackground.png" />
     <None Remove="Resources\Images\NormalWater.png" />
     <None Remove="Resources\Images\PerrysArtBorder.png" />
@@ -209,6 +223,48 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\intro-background.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterA.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterB.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterC.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterD.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterE.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterF.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterG.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterH.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterI.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterJ.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterK.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterL.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterM.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterO.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\MenuBackground.png">
@@ -394,7 +450,6 @@
     <Folder Include="Resources\Audio\" />
     <Folder Include="Resources\Images\Menu Images\" />
     <Folder Include="Resources\Images\Letters\Fire\" />
-    <Folder Include="Resources\Images\Letters\Normal\" />
   </ItemGroup>
 
   <ItemGroup>

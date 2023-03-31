@@ -28,7 +28,7 @@ namespace GameToEarnLegos
         private bool _playButtonPressed = false;
         private bool _optionButtonPressed = false;
         private int buttonChoice = 1;
-        private int DistanceDown = 200;
+        private int DistanceDown = 180;
         //private int optionChoice = 1;
         public bool cheatsOn = false;
         private List<ButtonsInMenu> MenuChoices => _form.MenuChoices;
@@ -48,121 +48,23 @@ namespace GameToEarnLegos
             {
                 for (int i = 1; i <= LevelChoices.Count; i++)
                 {
-                    Brush brush = Brushes.White;
-                    if (i == levelChoiceNumber+1)
+                    if (i != LevelChoices.Count)
                     {
-                        brush = Brushes.Red;
-
-                        
+                        var level = _levels[i - 1];
+                        g.DrawString($" {level.Name} Score: {level.HighScore}/{level.Score} Goal: {level.Goal}",
+                        SystemFonts.DefaultFont, Brushes.Black, 500, DistanceDown + (i * 60)+40);
                     }
-
-                    if (i == LevelChoices.Count)
-                    {
-                        g.DrawString($" Return", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
-                    }
-                    else
-                    {
-                        var level = _levels[i-1];
-                        g.DrawString($" {level.Name} Score: {level.HighScore}/{level.Score} Goal: {level.Goal} IsWon {level.IsWon}",
-                        SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
-                    }
-
-                    int j = 500;
-                    if (brush != Brushes.Red)
-                    {
-                        foreach (Bitmap bitmap in LevelChoices[i - 1].NameBitmap)
-                        {
-                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
-                            j += 40;
-                        }
-                    }
-                    else
-                    {
-                        foreach (Bitmap bitmap in LevelChoices[i - 1].NameBitmapRed)
-                        {
-                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
-                            j += 40;
-                        }
-                    }
-                    //if (i != LevelChoices.Count)
-                    //{
-                    //    var level = _levels[i - 1];
-                    //    g.DrawString($" {level.Name} Score: {level.HighScore}/{level.Score} Goal: {level.Goal} IsWon {level.IsWon}",
-                    //    SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
-                    //}
-
-
                 }
+                DrawWords(LevelChoices, g);
             }
             else if (_optionButtonPressed)
             {
-                for (int i = 1; i <= OptionChoices.Count; i++)
-                {
-                    var option = OptionChoices[i-1];
-                    Brush brush = Brushes.White;
-                    if (i == buttonChoice)
-                    {
-                        brush = Brushes.Red;
-                    }
-                    if(option.Name == "Cheats")
-                        g.DrawString($"{option.Name} {cheatsOn}", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
-
-                    else
-                        g.DrawString($"{option.Name}", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
-
-
-                    int j = 500;
-                    if (brush != Brushes.Red)
-                    {
-                        foreach (Bitmap bitmap in OptionChoices[i - 1].NameBitmap)
-                        {
-                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
-                            j += 40;
-                        }
-                    }
-                    else
-                    {
-                        foreach (Bitmap bitmap in OptionChoices[i - 1].NameBitmapRed)
-                        {
-                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
-                            j += 40;
-                        }
-                    }
-
-
-
-                }
+                DrawWords(OptionChoices, g);
             }
             else
             {
-                for (int i = 1; i <= MenuChoices.Count; i++)
-                {
-                    var choice = MenuChoices[i-1];
-                    Brush brush = Brushes.White;
-                    if (i == buttonChoice)
-                    {
-                        brush = Brushes.Red;
-                    }
-                    g.DrawString($"{choice.Name}", SystemFonts.DefaultFont, brush, 500, DistanceDown + (i * 20));
+                DrawWords(MenuChoices, g);
 
-                    int j = 500;
-                    if (brush != Brushes.Red)
-                    {
-                        foreach (Bitmap bitmap in MenuChoices[i - 1].NameBitmap)
-                        {
-                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
-                            j += 40;
-                        }
-                    }
-                    else
-                    {
-                        foreach (Bitmap bitmap in MenuChoices[i - 1].NameBitmapRed)
-                        {
-                            g.DrawImage(bitmap, j, DistanceDown + (i * 40) - 10, 30, 30);
-                            j += 40;
-                        }
-                    }
-                }
             }
 
         }
@@ -350,7 +252,48 @@ namespace GameToEarnLegos
             _form.Invalidate();
         }
 
-        
+        public void DrawWords(List<ButtonsInMenu> list, Graphics g)
+        {
+            for (int i = 1; i <= list.Count; i++)
+            {
+                var choice = list[i - 1];
+                Brush brush = Brushes.White;
+                
+                if (list == LevelChoices)
+                {
+                    if (i == levelChoiceNumber + 1)
+                    {
+                        brush = Brushes.Red;
+
+
+                    }
+                }
+                else
+                {
+                    if (i == buttonChoice)
+                    {
+                        brush = Brushes.Red;
+                    }
+                }
+                int j = 500;
+                if (brush != Brushes.Red)
+                {
+                    foreach (Bitmap bitmap in list[i - 1].NameBitmap)
+                    {
+                        g.DrawImage(bitmap, j, DistanceDown + (i * 60), 21, 35);
+                        j += 25;
+                    }
+                }
+                else
+                {
+                    foreach (Bitmap bitmap in list[i - 1].NameBitmapRed)
+                    {
+                        g.DrawImage(bitmap, j, DistanceDown + (i * 60), 21, 35);
+                        j += 25;
+                    }
+                }
+            }
+        }
 
     }
 }

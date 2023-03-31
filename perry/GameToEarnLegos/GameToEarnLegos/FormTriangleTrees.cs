@@ -97,49 +97,49 @@ namespace GameToEarnLegos
                     switch (c)
                     {
                         case 'a':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_A);
                             break;
                         case 'b':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_B);
                             break;
                         case 'c':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_C);
                             break;
                         case 'd':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_D);
                             break;
                         case 'e':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_E);
                             break;
                         case 'f':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_F);
                             break;
                         case 'g':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_G);
                             break;
                         case 'h':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_H);
                             break;
                         case 'i':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_I);
                             break;
                         case 'j':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_J);
                             break;
                         case 'k':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_K);
                             break;
                         case 'l':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_L);
                             break;
                         case 'm':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_M);
                             break;
                         case 'n':
                             Bitmaps.Add(Resources.Image_Tree2);
                             break;
                         case 'o':
-                            Bitmaps.Add(Resources.Image_Tree2);
+                            Bitmaps.Add(Resources.Image_O);
                             break;
                         case 'p':
                             Bitmaps.Add(Resources.Image_Tree2);
