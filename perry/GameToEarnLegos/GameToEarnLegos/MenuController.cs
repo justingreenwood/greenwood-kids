@@ -280,15 +280,22 @@ namespace GameToEarnLegos
                 {
                     foreach (Bitmap bitmap in list[i - 1].NameBitmap)
                     {
-                        g.DrawImage(bitmap, j, DistanceDown + (i * 60), 21, 35);
+                        if(bitmap != Resources.Image_Tree1)
+                            g.DrawImage(bitmap, j, DistanceDown + (i * 60), 21, 35);
                         j += 25;
                     }
                 }
                 else
                 {
-                    foreach (Bitmap bitmap in list[i - 1].NameBitmapRed)
+                    foreach (Bitmap bitmap in list[i - 1].NameBitmap)
                     {
-                        g.DrawImage(bitmap, j, DistanceDown + (i * 60), 21, 35);
+                        if (bitmap != Resources.Image_Tree1)
+                        {
+                            g.FillRectangle(Brushes.Yellow, j, DistanceDown + (i * 60), 21, 35);
+                            g.FillEllipse(Brushes.Yellow, j-2, DistanceDown + (i * 60)-2, 25, 39);
+                            g.DrawImage(bitmap, j, DistanceDown + (i * 60), 21, 35);
+
+                        }
                         j += 25;
                     }
                 }

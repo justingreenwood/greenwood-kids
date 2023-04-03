@@ -138,9 +138,19 @@ namespace GameToEarnLegos
         public static Bitmap Image_K = new Bitmap(@"Resources\Images\Letters\Normal\LetterK.png");
         public static Bitmap Image_L = new Bitmap(@"Resources\Images\Letters\Normal\LetterL.png");
         public static Bitmap Image_M = new Bitmap(@"Resources\Images\Letters\Normal\LetterM.png");
-        //public static Bitmap Image_N = new Bitmap(@"Resources\Images\Letters\Normal\LetterN.png");
+        public static Bitmap Image_N = new Bitmap(@"Resources\Images\Letters\Normal\LetterN.png");
         public static Bitmap Image_O = new Bitmap(@"Resources\Images\Letters\Normal\LetterO.png");
-        //public static Bitmap Image_P = new Bitmap(@"Resources\Images\Letters\Normal\LetterP.png");
+        public static Bitmap Image_P = new Bitmap(@"Resources\Images\Letters\Normal\LetterP.png");
+        public static Bitmap Image_Q = new Bitmap(@"Resources\Images\Letters\Normal\LetterQ.png");
+        public static Bitmap Image_R = new Bitmap(@"Resources\Images\Letters\Normal\LetterR.png");
+        public static Bitmap Image_S = new Bitmap(@"Resources\Images\Letters\Normal\LetterS.png");
+        public static Bitmap Image_T = new Bitmap(@"Resources\Images\Letters\Normal\LetterT.png");
+        public static Bitmap Image_U = new Bitmap(@"Resources\Images\Letters\Normal\LetterU.png");
+        public static Bitmap Image_V = new Bitmap(@"Resources\Images\Letters\Normal\LetterV.png");
+        public static Bitmap Image_W = new Bitmap(@"Resources\Images\Letters\Normal\LetterW.png");
+        public static Bitmap Image_X = new Bitmap(@"Resources\Images\Letters\Normal\LetterX.png");
+        public static Bitmap Image_Y = new Bitmap(@"Resources\Images\Letters\Normal\LetterY.png");
+        public static Bitmap Image_Z = new Bitmap(@"Resources\Images\Letters\Normal\LetterZ.png");
 
 
 

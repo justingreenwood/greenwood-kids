@@ -63,7 +63,19 @@
     <None Remove="Resources\Images\Letters\Normal\LetterK.png" />
     <None Remove="Resources\Images\Letters\Normal\LetterL.png" />
     <None Remove="Resources\Images\Letters\Normal\LetterM.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterN.png" />
     <None Remove="Resources\Images\Letters\Normal\LetterO.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterP.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterQ.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterR.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterS.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterT.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterU.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterV.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterW.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterX.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterY.png" />
+    <None Remove="Resources\Images\Letters\Normal\LetterZ.png" />
     <None Remove="Resources\Images\MenuBackground.png" />
     <None Remove="Resources\Images\NormalWater.png" />
     <None Remove="Resources\Images\PerrysArtBorder.png" />
@@ -264,7 +276,43 @@
     <Content Include="Resources\Images\Letters\Normal\LetterM.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterN.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Letters\Normal\LetterO.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterP.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterQ.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterR.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterS.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterT.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterU.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterV.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterW.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterX.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterY.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Letters\Normal\LetterZ.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\MenuBackground.png">
