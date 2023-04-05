@@ -1,35 +1,35 @@
-﻿OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
-O                                        O
+﻿OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOWWWWOOOOOO
+Offfff  fff   ff     f          WWWWQQQQQO
+Off     fff        ffff    f     WWWWQQQQO
+O P      f   f    fffffff        WWWWWQQQO
+O                  fffff           WWWWQQO
+O     f        t    f   t   f    t   WWWQO
+O   ffff     f                        WWWW
+O    ff      ff                    f    WW
+O                    f    f              O
+WWWW      ff        fff  fff        f    O
+O  WW     ff         f    f             fO
+O   WW           ff           ff        fO
+Of   WW       f   ff         ff     ff  fO
+Of    WWWWW              f           f  fO
+Off       WWWW                          fO
+Of    t      WWt        t        t      fO
+Ogf        f  WW   WWWWWW                O
+O ff   f       WWWWW    WWWWWWW          O
+O        WWWWWWW     fff      WWWWWW     O
+O     WWWW f        fff            WWW   O
+O  WWWW  f      f            ff      WWWWW
+WWWW      f     ff           f           O
+Of           f   f     ff        f      fO
+Offf   f    fff    1   f    f    ff    ffO
+Off                         ff          fO
+Of    t        t        t        t      fO
+O                   f       f            O
+O   fff            fff                 f O
+Of   f      fff   fff        fff      fffO
+Off         ff          ff    f  ffff   fO
+Off    f        ff     fff        ff    gO
+Offffff       ffff      fff             fO
+Offff   f            f                 ffO
+Og    fffffffff     ff      fffff     fffO
 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO

@@ -43,7 +43,7 @@ namespace GameToEarnLegos
         List<Gold> golds = new List<Gold>();
         List<AmmoPack> ammoPacks = new List<AmmoPack>();
         List<Door> doors = new List<Door>();
-
+        List<Badguy> Bosses = new List<Badguy>();
         List<Ammunition> ammunitions = new List<Ammunition>();
         string[] levelTop => _currentLevel.levelTop;
         string goal => _currentLevel.Goal;
@@ -96,6 +96,10 @@ namespace GameToEarnLegos
                 else
                     door.image = door.openImage;
                 DrawScaledTiles(g, door);
+            }
+            foreach(Badguy boss in Bosses.Where(t => SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
+            {
+                DrawScaledTiles(g, boss);
             }
             if (CHEATS)
             {
@@ -414,6 +418,9 @@ namespace GameToEarnLegos
                         case '0':
                             badguys.Add(new Badguy(column, row, "boss0"));
                             break;
+                        case '1':
+                            Bosses.Add(new Badguy(column, row, "boss1"));
+                            break;
                         case 'g':
                             golds.Add(new Gold(column, row));
                             break;
@@ -688,6 +695,35 @@ namespace GameToEarnLegos
                                 }
                                 badguy.UpdateAnimationState();
                             }
+                        }
+                    }
+                    foreach (Badguy boss in Bosses.Where(b=> b.IsDead == false))
+                    {
+                        aliveBosses++;
+                        aliveBadguys++;
+                        if (boss.canShoot == true)
+                        {
+                            if(boss.BossCoolDown >= 1)
+                            {
+                                boss.BossCoolDown--;
+                            }
+                            else if (boss.CheckIfNoticed(player) && boss.ShootingCoolDown == 0)
+                            {
+                                ammunitions.Add(boss.Shoot(player));
+                                boss.ShootingCoolDown = boss.BaseShootingCoolDown;
+                                boss.BossCoolDown = 15;
+                            }
+                            else if (boss.ShootingCoolDown > 0)
+                            {
+                                boss.ShootingCoolDown --;
+
+                                boss.Move(scaleFactor, player);
+                                boss.UpdateAnimationState();
+                            }
+                        }
+                        if (boss.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
+                        {
+                            player.IsAlive = false;
                         }
                     }
                     foreach (Water water in tiles.Where(w => w.Tag == "water"))

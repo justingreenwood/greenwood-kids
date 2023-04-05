@@ -98,6 +98,7 @@ namespace GameToEarnLegos
                             cheatsOn = false;
                         else
                             cheatsOn = true;
+                        Start();
                     }
                     else if (buttonChoice == 2)
                     {
@@ -157,12 +158,17 @@ namespace GameToEarnLegos
             LevelChoices.Clear();
             foreach (ButtonsInMenu level in LevelFormChoices.Where(l=> l.level != null && l.level.IsWon == true))
             {
-                LevelChoices.Add(level);
+                if(level == LevelFormChoices[10])
+                {
+                    if(cheatsOn)
+                        LevelChoices.Add(level);
+                }
+                else
+                    LevelChoices.Add(level);
             }
             if(LevelChoices.Count < 10)
             LevelChoices.Add(LevelFormChoices[LevelChoices.Count()]);
             LevelChoices.Add(LevelFormChoices[LevelFormChoices.Count()-1]);
-
             _playButtonPressed = false;
             _form.Refresh();
         }

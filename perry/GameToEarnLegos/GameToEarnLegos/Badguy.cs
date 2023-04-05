@@ -47,6 +47,7 @@ namespace GameToEarnLegos
         public bool canShoot = false;
         public int ShootingCoolDown = 0;
         public int BaseShootingCoolDown = 15;
+        public int BossCoolDown = 15;
 
         public string typeOfBadguy = "normal";
 
@@ -147,6 +148,16 @@ namespace GameToEarnLegos
                 Health = 30f;
                 isWanderer = false;
                 IsBoss = true;
+            }
+            else if (kindOfBadguy == "boss1")
+            {
+                BaseSpeed = 2f;
+                Health = 50f;
+                IsBoss = true;
+                canShoot = true;
+                BaseShootingCoolDown = 25;
+                Width = 20;
+                Height = 20;
             }
             else if (kindOfBadguy == "tower")
             {
