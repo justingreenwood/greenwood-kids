@@ -8,16 +8,16 @@ namespace GameToEarnLegos
 {
     public static class Resources
     {
-        public static Bitmap Image_Wall = new Bitmap(@"Resources\Images\Wall.png");
-        public static Bitmap Image_IntroBackground = new Bitmap(@"Resources\Images\BackGround.png");
-        public static Bitmap Image_Border = new Bitmap(@"Resources\Images\PerrysArtBorder.png");
-        public static Bitmap Image_Title = new Bitmap(@"Resources\Images\Title.png");
+        public static Bitmap Image_Wall = new Bitmap(@"Resources\Images\Building Blocks\Wall.png");
+        //public static Bitmap Image_IntroBackground = new Bitmap(@"Resources\Images\Menu Images\BackGround.png");
+        public static Bitmap Image_Border = new Bitmap(@"Resources\Images\Building Blocks\PerrysArtBorder.png");
+        public static Bitmap Image_Title = new Bitmap(@"Resources\Images\Menu Images\Title.png");
 
 
-        public static Bitmap Image_Tree1 = new Bitmap(@"Resources\Images\PerrysArtTree1.png");
-        public static Bitmap Image_Tree2 = new Bitmap(@"Resources\Images\PerrysArtChristmasTree.png");
-        public static Bitmap Image_TreeBurned = new Bitmap(@"Resources\Images\BurnedTree.png");
-        public static Bitmap Image_TreeOnFire = new Bitmap(@"Resources\Images\TreeOnFire.png");
+        public static Bitmap Image_Tree1 = new Bitmap(@"Resources\Images\Trees\PerrysArtTree1.png");
+        public static Bitmap Image_Tree2 = new Bitmap(@"Resources\Images\Trees\PerrysArtChristmasTree.png");
+        public static Bitmap Image_TreeBurned = new Bitmap(@"Resources\Images\Trees\BurnedTree.png");
+        public static Bitmap Image_TreeOnFire = new Bitmap(@"Resources\Images\Trees\TreeOnFire.png");
 
 
         public static Bitmap Image_Ammo = new Bitmap(@"Resources\Images\Weapon.png");
@@ -25,42 +25,43 @@ namespace GameToEarnLegos
         public static Bitmap Image_BadguyFireAmmo = new Bitmap(@"Resources\Images\BadguyFireAmmo.png");
         public static Bitmap Image_AmmoPack = new Bitmap(@"Resources\Images\Ammopack.png");
 
-        public static Bitmap Image_MenuBackground = new Bitmap(@"Resources\Images\MenuBackground.png");
+        public static Bitmap Image_MenuBackground = new Bitmap(@"Resources\Images\Menu Images\MenuBackground.png");
 
         public static Bitmap Image_DeadBadguy = new Bitmap(@"Resources\Images\Badguy\DeadBadguy.png");
         public static Bitmap Image_DeadTowerBadguy = new Bitmap(@"Resources\Images\Badguy\DeadTowerBadguy.png");
         public static Bitmap Image_TowerBadguy = new Bitmap(@"Resources\Images\Badguy\TowerBadguy.png");
 
-        public static Bitmap Image_NormalWater = new Bitmap(@"Resources\Images\NormalWater.png");
+        //public static Bitmap Image_NormalWater = new Bitmap(@"Resources\Images\NormalWater.png");
         public static Bitmap Image_Sand = new Bitmap(@"Resources\Images\Sand.png");
         public static Bitmap Image_Grass = new Bitmap(@"Resources\Images\Grass\Grass.png");
         public static Bitmap Image_Treasure = new Bitmap(@"Resources\Images\TreasureChest.png");
 
-        public static Bitmap Image_ClosedDoor_Wide = new Bitmap(@"Resources\Images\BlandDoor.png");
-        public static Bitmap Image_OpenDoor_Wide = new Bitmap(@"Resources\Images\BlandDoorOpen.png");
+        public static Bitmap Image_ClosedDoor_Wide = new Bitmap(@"Resources\Images\Building Blocks\BlandDoor.png");
+        public static Bitmap Image_OpenDoor_Wide = new Bitmap(@"Resources\Images\Building Blocks\BlandDoorOpen.png");
 
-        public static Bitmap Image_ClosedDoor_Thin = new Bitmap(@"Resources\Images\BlandDoorThin.png");
-        public static Bitmap Image_OpenDoor_Thin = new Bitmap(@"Resources\Images\BlandDoorThinOpen.png");
+        public static Bitmap Image_ClosedDoor_Thin = new Bitmap(@"Resources\Images\Building Blocks\BlandDoorThin.png");
+        public static Bitmap Image_OpenDoor_Thin = new Bitmap(@"Resources\Images\Building Blocks\BlandDoorThinOpen.png");
 
         public static Bitmap Image_Water = new Bitmap(@"Resources\Images\SmartWater\SmartWaterBase.png");
         public static Bitmap Image_DeepWater = new Bitmap(@"Resources\Images\SmartWater\DeepWater.png");
 
 
-        public static Bitmap Image_WaterLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterLeftGrass.png");
-        public static Bitmap Image_WaterTop = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopGrass.png");
-        public static Bitmap Image_WaterBottom = new Bitmap(@"Resources\Images\SmartWater\SmartWaterDownGrass.png");
-        public static Bitmap Image_WaterLeftRight = new Bitmap(@"Resources\Images\SmartWater\SmartWaterLeftRightGrass.png");
-        public static Bitmap Image_WaterTopLeftRight = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopLeftRightGrass.png");
-        public static Bitmap Image_WaterBottomLeftRight = new Bitmap(@"Resources\Images\SmartWater\SmartWaterBottomLeftRightGrass.png");
-        public static Bitmap Image_WaterTopBottom = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomGrass.png");
+        public static Bitmap Image_WaterLeft = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterLeftGrass.png");
+        public static Bitmap Image_WaterTop = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopGrass.png");
+        public static Bitmap Image_WaterBottom = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterDownGrass.png");
+        public static Bitmap Image_WaterLeftRight = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterLeftRightGrass.png");
+        public static Bitmap Image_WaterTopLeftRight = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopLeftRightGrass.png");
+        public static Bitmap Image_WaterBottomLeftRight = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterBottomLeftRightGrass.png");
+        public static Bitmap Image_WaterTopBottom = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopBottomGrass.png");
         
-        public static Bitmap Image_WaterTopBottomLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomLeftGrass.png");
-        public static Bitmap Image_WaterTopLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopLeftGrass.png");
-        public static Bitmap Image_WaterBottomLeft = new Bitmap(@"Resources\Images\SmartWater\SmartWaterBottomLeftGrass.png");
+        public static Bitmap Image_WaterTopBottomLeft = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopBottomLeftGrass.png");
+        public static Bitmap Image_WaterTopLeft = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopLeftGrass.png");
+        public static Bitmap Image_WaterBottomLeft = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterBottomLeftGrass.png");
 
 
-        //public static Bitmap Image_WaterLeftRightUpDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomLeftRightGrass.png");
-
+        //public static Bitmap Image_WaterLeftRightUpDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomLeftRightGrass.png"); --TO BE ADDED--
+        public static Bitmap Image_BridgeLeftRight = new Bitmap(@"Resources\Images\SmartWater\BridgeLToR.png");
+        public static Bitmap Image_BridgeUpDown = new Bitmap(@"Resources\Images\SmartWater\BridgeUp.png");
 
         public static Bitmap Image_WaterTopRight = RotateImage(Image_WaterTopLeft);
         public static Bitmap Image_WaterBottomRight = RotateImage(Image_WaterBottomLeft);

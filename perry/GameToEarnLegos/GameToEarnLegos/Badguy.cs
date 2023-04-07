@@ -357,7 +357,7 @@ namespace GameToEarnLegos
         {
 
             double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
-            if (distance <= 80)
+            if (distance <= 100)
             {
                 return true;
             }

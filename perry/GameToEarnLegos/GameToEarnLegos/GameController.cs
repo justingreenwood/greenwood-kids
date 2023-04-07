@@ -407,7 +407,11 @@ namespace GameToEarnLegos
                             badguys.Add(new Badguy(column, row));
                             break;
                         case 'E':
-                            tiles.Add(new Bridge(column, row, Color.Brown));
+                            tiles.Add(new Water(column, row));
+                            if (lastLetter == 'W')
+                                tiles.Add(new Bridge(column, row, false));
+                            else
+                                tiles.Add(new Bridge(column, row, true));
                             break;
                         case 'v':
                             badguys.Add(new Badguy(column, row, "follower"));
@@ -487,6 +491,10 @@ namespace GameToEarnLegos
                 bool GrassUp = false;
                 bool GrassRight = false;
                 bool GrassLeft = false;
+                bool SandDown = false;
+                bool SandUp = false;
+                bool SandRight = false;
+                bool SandLeft = false;
                 foreach (Tile grass in tiles.Where(w => (w.Tag == "grass")))
                 {
 
@@ -508,6 +516,27 @@ namespace GameToEarnLegos
                     }
 
                 }
+                //foreach (Tile sand in tiles.Where(w => (w.Tag == "sand")))
+                //{
+
+                //    if (water.CheckDownRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                //    {
+                //        SandDown = true;
+                //    }
+                //    if (water.CheckUpRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                //    {
+                //        SandUp = true;
+                //    }
+                //    if (water.CheckLeftRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                //    {
+                //        SandLeft = true;
+                //    }
+                //    if (water.CheckRightRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                //    {
+                //        SandRight = true;
+                //    }
+
+                //}
 
                 if (GrassUp && GrassDown)
                 {
@@ -579,7 +608,75 @@ namespace GameToEarnLegos
 
                 }
 
+                if (SandUp && SandDown)
+                {
 
+                    if (SandLeft && SandRight)
+                    {
+                        //  Not  Added  Yet  !!!!!
+                        //water.image = Resources.Image_WaterTopBottomLeftRight;
+                    }
+                    else if (SandLeft)
+                    {
+                        //water.image = Resources.Image_WaterTopBottomLeftSand;
+                    }
+                    else if (SandRight)
+                    {
+                        //water.image = Resources.Image_WaterTopBottomRightSand;
+                    }
+                    else
+                    {
+                        //water.image = Resources.Image_WaterTopBottomSand;
+                    }
+                }
+                else
+                {
+                    if (SandUp && SandRight && SandLeft)
+                    {
+                        //water.image = Resources.Image_WaterTopLeftRightSand;
+                    }
+                    else if (SandUp && SandRight)
+                    {
+                        //water.image = Resources.Image_WaterTopRightSand;
+                    }
+                    else if (SandUp && SandLeft)
+                    {
+                        //water.image = Resources.Image_WaterTopLeftSand;
+                    }
+                    else if (SandUp)
+                    {
+                        //water.image = Resources.Image_WaterTopSand;
+                    }
+                    else if (SandDown && SandRight && SandLeft)
+                    {
+                        //water.image = Resources.Image_WaterBottomLeftRightSand;
+                    }
+                    else if (SandDown && SandRight)
+                    {
+                        //water.image = Resources.Image_WaterBottomRightSand;
+                    }
+                    else if (SandDown && SandLeft)
+                    {
+                        //water.image = Resources.Image_WaterBottomLeftSand;
+                    }
+                    else if (SandDown)
+                    {
+                        //water.image = Resources.Image_WaterBottomSand;
+                    }
+                    else if (SandRight && SandLeft)
+                    {
+                        //water.image = Resources.Image_WaterLeftRightSand;
+                    }
+                    else if (SandRight)
+                    {
+                        //water.image = Resources.Image_WaterRightSand;
+                    }
+                    else if (SandLeft)
+                    {
+                        //water.image = Resources.Image_WaterLeftSand;
+                    }
+
+                }
             }
             if(goal == "Extinguish")
             {
@@ -1119,6 +1216,7 @@ namespace GameToEarnLegos
             tiles.Clear();
             golds.Clear();
             ammunitions.Clear();
+            ammoPacks.Clear();
             AliveTrees = 0;
             _currentLevel.CurrentScore = 0;
             gameOver = false;

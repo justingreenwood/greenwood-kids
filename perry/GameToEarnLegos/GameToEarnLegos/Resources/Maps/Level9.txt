@@ -23,9 +23,9 @@ O  WWWWW     W  ff  f       W        f  fO
 WWWWf    ff  WW     f       E   ff       O
 O     f       W          WWWW         t  O
 O   v   ff    WWWEWWW   WW         v    fO
-O             T     WWWWW     f      f   O
-OT   T  TT       f      W              f O
-OT      WWTT    TTTf    WW       f      fO
+O             f     WWWWW     f      f   O
+OT   T  ff       f      W              f O
+OT      WWTf    TTTf    WW       f      fO
 OT TT  WWWW  TT          W           T TTO
 O      WWWW  T    v   TT WWWWWWWWWW     TO
 OT      WW     T                  WWWW TTO

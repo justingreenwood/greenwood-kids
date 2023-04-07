@@ -9,10 +9,19 @@ namespace GameToEarnLegos.Tiles
 {
     public class Bridge : Tile
     {
+        
+        private Bitmap ImageUpDown = Resources.Image_BridgeUpDown;
+        private Bitmap ImageLeftRight = Resources.Image_BridgeLeftRight;
+        private bool LeftRight;
         public override string Tag => "bridge";
-        public Bridge(int col, int row, Color color) : base(col, row)
+        public Bridge(int col, int row, bool leftRight) : base(col, row, Resources.Image_ClosedDoor_Thin)
         {
-            brush = new SolidBrush(color);
+            LeftRight = leftRight;
+            if (leftRight)
+            {
+                ImageUpDown = ImageLeftRight;
+            }
+            this.image = ImageUpDown;
         }
     }
 }
