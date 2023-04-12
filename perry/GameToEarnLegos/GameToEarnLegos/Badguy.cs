@@ -81,36 +81,40 @@ namespace GameToEarnLegos
             }
         }
 
+        private Animation animationLeft = Animations.BadguyLeft;
+        private Animation animationRight = Animations.BadguyRight;
+        private Animation animationUp = Animations.BadguyUp;
+        private Animation animationDown = Animations.BadguyDown;
         public void UpdateAnimationState()
         {
             Animation newAnimation = null;
 
             if (SpeedLeftOrRight < -0.7)
             {
-                if (currentAnimation != Animations.BadguyLeft)
+                if (currentAnimation != animationLeft)
                 {
-                    newAnimation = Animations.BadguyLeft;
+                    newAnimation = animationLeft;
                 };
             }
             else if (SpeedLeftOrRight > 0.7)
             {
-                if (currentAnimation != Animations.BadguyRight)
+                if (currentAnimation != animationRight)
                 {
-                    newAnimation = Animations.BadguyRight;
+                    newAnimation = animationRight;
                 }
             }
             else if (SpeedUpOrDown < 0 )
             {
-                if (currentAnimation != Animations.BadguyUp)
+                if (currentAnimation != animationUp)
                 {
-                    newAnimation = Animations.BadguyUp;
+                    newAnimation = animationUp;
                 }
             }
             else if (SpeedUpOrDown > 0)
             {
-                if (currentAnimation != Animations.BadguyDown)
+                if (currentAnimation != animationDown)
                 {
-                    newAnimation = Animations.BadguyDown;
+                    newAnimation = animationDown;
                 }
             }
             else
@@ -148,6 +152,11 @@ namespace GameToEarnLegos
                 Health = 30f;
                 isWanderer = false;
                 IsBoss = true;
+                animationLeft = Animations.BadguyKingLeft;
+                animationRight = Animations.BadguyKingRight;
+                animationUp = Animations.BadguyKingUp;
+                animationDown = Animations.BadguyKingDown;
+                image = Resources.Image_BadguyKing_Right_1;
             }
             else if (kindOfBadguy == "boss1")
             {

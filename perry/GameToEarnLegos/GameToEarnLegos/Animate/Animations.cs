@@ -146,6 +146,33 @@ namespace GameToEarnLegos.Animate
                 new AnimationFrame{ Image = Resources.Image_Badguy_Up_2, Duration = 4 },
             }
         };
+        public static Animation BadguyKingRight = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame { Image = Resources.Image_BadguyKing_Right_1, Duration = 2 },
+                new AnimationFrame { Image = Resources.Image_BadguyKing_Right_2, Duration = 2 },
+                new AnimationFrame { Image = Resources.Image_BadguyKing_Right_3, Duration = 2 },
+                new AnimationFrame { Image = Resources.Image_BadguyKing_Right_4, Duration = 2 },
+            }
+        };
+        public static Animation BadguyKingLeft = AnimationHelper.FlipX(BadguyKingRight);
+        public static Animation BadguyKingDown = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame{ Image = Resources.Image_BadguyKing_Down_1, Duration = 4 },
+                new AnimationFrame{ Image = Resources.Image_BadguyKing_Down_2, Duration = 4 },
+            }
+        };
+        public static Animation BadguyKingUp = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame{ Image = Resources.Image_BadguyKing_Up_1, Duration = 4 },
+                new AnimationFrame{ Image = Resources.Image_BadguyKing_Up_2, Duration = 4 },
+            }
+        };
     }
 
     public static class AnimationHelper

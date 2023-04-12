@@ -22,6 +22,14 @@
     <None Remove="Resources\Images\Badguy\BadguyForward.aseprite" />
     <None Remove="Resources\Images\Badguy\BadguyForward_1.png" />
     <None Remove="Resources\Images\Badguy\BadguyForward_2.png" />
+    <None Remove="Resources\Images\Badguy\BadguyKingForward_1.png" />
+    <None Remove="Resources\Images\Badguy\BadguyKingForward_2.png" />
+    <None Remove="Resources\Images\Badguy\BadguyKingUp_1.png" />
+    <None Remove="Resources\Images\Badguy\BadguyKingUp_2.png" />
+    <None Remove="Resources\Images\Badguy\BadguyKing_1.png" />
+    <None Remove="Resources\Images\Badguy\BadguyKing_2.png" />
+    <None Remove="Resources\Images\Badguy\BadguyKing_3.png" />
+    <None Remove="Resources\Images\Badguy\BadguyKing_4.png" />
     <None Remove="Resources\Images\Badguy\BadguyUp.aseprite" />
     <None Remove="Resources\Images\Badguy\BadguyUp_1.png" />
     <None Remove="Resources\Images\Badguy\BadguyUp_2.png" />
@@ -121,6 +129,16 @@
     <None Remove="Resources\Images\Player\Player_Right_7.png" />
     <None Remove="Resources\Images\Player\Player_Right_8.png" />
     <None Remove="Resources\Images\Sand.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterBottom.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterBottomLeft.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterBottomLeftRight.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterLeft.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterLeftRight.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterTop.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterTopBottom.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterTopBottomLeft.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterTopLeft.png" />
+    <None Remove="Resources\Images\SmartWater\Blank\SmartWaterTopLeftRight.png" />
     <None Remove="Resources\Images\SmartWater\BridgeLToR.png" />
     <None Remove="Resources\Images\SmartWater\BridgeUp.png" />
     <None Remove="Resources\Images\SmartWater\DeepWater.png" />
@@ -178,6 +196,30 @@
     <Content Include="Resources\Images\Badguy\BadguyForward_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Badguy\BadguyKingForward_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\BadguyKingForward_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\BadguyKingUp_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\BadguyKingUp_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\BadguyKing_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\BadguyKing_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\BadguyKing_3.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\BadguyKing_4.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Badguy\BadguyUpgraded.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -209,6 +251,36 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Building Blocks\BridgeOne.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterBottom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterBottomLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterBottomLeftRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterLeftRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterTop.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterTopBottom.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterTopBottomLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterTopLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Blank\SmartWaterTopLeftRight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Trees\BurnedTree.png">

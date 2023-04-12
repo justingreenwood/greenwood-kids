@@ -8,7 +8,12 @@ namespace GameToEarnLegos.Tiles
 {
     public class Sand : Tile
     {
+        public string Kind;
         public override string Tag => "sand";
-        public Sand(int col, int row) : base(col, row, Resources.Image_Sand) { }
+        public Sand(int col, int row, string type) : base(col, row, Resources.Image_Sand) 
+        { 
+            Kind = type;
+
+        }
     }
 }

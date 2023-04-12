@@ -65,9 +65,18 @@ namespace GameToEarnLegos
         }
         public void DrawTheGame(Graphics g)
         {
-            foreach (Tile tile in tiles.Where(t=>  (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag != "door" ))
+            foreach (Tile tile in tiles.Where(t=>  (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag != "door" && t.Tag != "border"))
             {                       
                 DrawScaledTiles(g, tile);
+            }
+
+            foreach (Water water in waters.Where(t => (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor)))))
+            {
+                DrawScaledTiles(g, water);
+            }
+            foreach (Border border in tiles.Where(t => (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag == "border"))
+            {
+                DrawScaledTiles(g, border);
             }
             foreach (Gold gold in golds.Where(t => (t.IsPickedUp == false) && (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor)))))
             {
@@ -380,16 +389,16 @@ namespace GameToEarnLegos
                     switch (letter)
                     {
                         case 'W':
-                            tiles.Add(new Water(column, row));
+                            waters.Add(new Water(column, row));
                             break;
                         case 'E':
-                            tiles.Add(new Water(column, row));
+                            waters.Add(new Water(column, row));
                             break;
                         case 'L':
                             tiles.Add(new Block(column, row, Color.OrangeRed));
                             break;
                         case 'S':
-                            tiles.Add(new Sand(column, row));
+                            tiles.Add(new Sand(column, row, "normal"));
                             break;          
                         case 'Q':
                             tiles.Add(new DeepWater(column, row));
@@ -408,7 +417,7 @@ namespace GameToEarnLegos
                             break;
                         case 'E':
                             tiles.Add(new Water(column, row));
-                            if (lastLetter == 'W')
+                            if (lastLetter == 'W' || lastLetter == 'Q')
                                 tiles.Add(new Bridge(column, row, false));
                             else
                                 tiles.Add(new Bridge(column, row, true));
@@ -477,7 +486,7 @@ namespace GameToEarnLegos
             }
             decimal d = AliveTrees / 3;
             NeededTrees = ((int)Math.Round(d));
-            foreach (Water water in tiles.Where(w => w.Tag == "water"))
+            foreach (Water water in waters.Where(w => w.Tag == "water"))
             {
                 foreach (Bridge bridge in tiles.Where(b => b.Tag == "bridge"))
                 {
@@ -516,27 +525,28 @@ namespace GameToEarnLegos
                     }
 
                 }
-                //foreach (Tile sand in tiles.Where(w => (w.Tag == "sand")))
-                //{
-
-                //    if (water.CheckDownRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
-                //    {
-                //        SandDown = true;
-                //    }
-                //    if (water.CheckUpRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
-                //    {
-                //        SandUp = true;
-                //    }
-                //    if (water.CheckLeftRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
-                //    {
-                //        SandLeft = true;
-                //    }
-                //    if (water.CheckRightRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
-                //    {
-                //        SandRight = true;
-                //    }
-
-                //}
+                foreach (Sand sand in tiles.Where(w => w.Tag == "sand"))
+                {
+                    if (sand.Kind == "normal")
+                    {
+                        if (water.CheckDownRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                        {
+                            SandDown = true;
+                        }
+                        if (water.CheckUpRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                        {
+                            SandUp = true;
+                        }
+                        if (water.CheckLeftRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                        {
+                            SandLeft = true;
+                        }
+                        if (water.CheckRightRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                        {
+                            SandRight = true;
+                        }
+                    }
+                }
 
                 if (GrassUp && GrassDown)
                 {
@@ -607,75 +617,80 @@ namespace GameToEarnLegos
                     }
 
                 }
-
-                if (SandUp && SandDown)
+                if (SandDown || SandLeft || SandRight || SandUp)
                 {
+                    int col = Convert.ToInt32(water.X) / 20;
+                    int row = Convert.ToInt32(water.Y) / 20;
+                    tiles.Add(new Sand(col, row, "water"));
+                    if (SandUp && SandDown)
+                    {
 
-                    if (SandLeft && SandRight)
-                    {
-                        //  Not  Added  Yet  !!!!!
-                        //water.image = Resources.Image_WaterTopBottomLeftRight;
-                    }
-                    else if (SandLeft)
-                    {
-                        //water.image = Resources.Image_WaterTopBottomLeftSand;
-                    }
-                    else if (SandRight)
-                    {
-                        //water.image = Resources.Image_WaterTopBottomRightSand;
+                        if (SandLeft && SandRight)
+                        {
+                            //  Not  Added  Yet  !!!!!
+                            //water.image = Resources.Image_WaterTopBottomLeftRight;
+                        }
+                        else if (SandLeft)
+                        {
+                            water.image = Resources.Image_WaterLeftBlank;
+                        }
+                        else if (SandRight)
+                        {
+                            water.image = Resources.Image_WaterRightBlank;
+                        }
+                        else
+                        {
+                            water.image = Resources.Image_WaterTopBottomBlank;
+                        }
                     }
                     else
                     {
-                        //water.image = Resources.Image_WaterTopBottomSand;
-                    }
-                }
-                else
-                {
-                    if (SandUp && SandRight && SandLeft)
-                    {
-                        //water.image = Resources.Image_WaterTopLeftRightSand;
-                    }
-                    else if (SandUp && SandRight)
-                    {
-                        //water.image = Resources.Image_WaterTopRightSand;
-                    }
-                    else if (SandUp && SandLeft)
-                    {
-                        //water.image = Resources.Image_WaterTopLeftSand;
-                    }
-                    else if (SandUp)
-                    {
-                        //water.image = Resources.Image_WaterTopSand;
-                    }
-                    else if (SandDown && SandRight && SandLeft)
-                    {
-                        //water.image = Resources.Image_WaterBottomLeftRightSand;
-                    }
-                    else if (SandDown && SandRight)
-                    {
-                        //water.image = Resources.Image_WaterBottomRightSand;
-                    }
-                    else if (SandDown && SandLeft)
-                    {
-                        //water.image = Resources.Image_WaterBottomLeftSand;
-                    }
-                    else if (SandDown)
-                    {
-                        //water.image = Resources.Image_WaterBottomSand;
-                    }
-                    else if (SandRight && SandLeft)
-                    {
-                        //water.image = Resources.Image_WaterLeftRightSand;
-                    }
-                    else if (SandRight)
-                    {
-                        //water.image = Resources.Image_WaterRightSand;
-                    }
-                    else if (SandLeft)
-                    {
-                        //water.image = Resources.Image_WaterLeftSand;
-                    }
+                        if (SandUp && SandRight && SandLeft)
+                        {
+                            water.image = Resources.Image_WaterTopLeftRightBlank;
+                        }
+                        else if (SandUp && SandRight)
+                        {
+                            water.image = Resources.Image_WaterTopRightBlank;
+                        }
+                        else if (SandUp && SandLeft)
+                        {
+                            water.image = Resources.Image_WaterTopLeftBlank;
+                        }
+                        else if (SandUp)
+                        {
+                            water.image = Resources.Image_WaterTopBlank;
+                        }
+                        else if (SandDown && SandRight && SandLeft)
+                        {
+                            water.image = Resources.Image_WaterBottomLeftRightBlank;
+                        }
+                        else if (SandDown && SandRight)
+                        {
+                            water.image = Resources.Image_WaterBottomRightBlank;
+                        }
+                        else if (SandDown && SandLeft)
+                        {
+                            water.image = Resources.Image_WaterBottomLeftBlank;
+                        }
+                        else if (SandDown)
+                        {
+                            water.image = Resources.Image_WaterBottomBlank;
+                        }
+                        else if (SandRight && SandLeft)
+                        {
+                            water.image = Resources.Image_WaterLeftRightBlank;
+                        }
+                        else if (SandRight)
+                        {
+                            water.image = Resources.Image_WaterRightBlank;
+                        }
+                        else if (SandLeft)
+                        {
+                            water.image = Resources.Image_WaterLeftBlank;
+                        }
 
+                    }
                 }
             }
             if(goal == "Extinguish")
@@ -774,7 +789,7 @@ namespace GameToEarnLegos
                                     }
 
                                 }
-                                foreach (Water water in tiles.Where(w => (w.Tag == "water")))
+                                foreach (Water water in waters.Where(w => (w.Tag == "water")))
                                 {
                                     if (badguy.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)) && water.HasBridge == false)
                                     {
@@ -823,7 +838,7 @@ namespace GameToEarnLegos
                             player.IsAlive = false;
                         }
                     }
-                    foreach (Water water in tiles.Where(w => w.Tag == "water"))
+                    foreach (Water water in waters)
                     {
                         if (player.WaterCheckRect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)) && water.HasBridge == false)
                         {
