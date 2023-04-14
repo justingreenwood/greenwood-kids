@@ -54,6 +54,10 @@ namespace GameToEarnLegos
                         {
                             badguyPoints += 10;
                         }
+                        else if (letter == '1')
+                        {
+                            badguyPoints += 15;
+                        }
                     }
                 }
                 return numberOfGold * 5 + badguyPoints;

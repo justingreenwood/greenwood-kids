@@ -697,6 +697,10 @@ namespace GameToEarnLegos
             {
                 player.WAmmo = player.MaxWAmmo;
             }
+            if (CHEATS)
+            {
+                player.Health = 9999;
+            }
         }
 
         public void Stop()
@@ -976,6 +980,28 @@ namespace GameToEarnLegos
                                     }
                                 }
                             }
+                            foreach (Badguy badguy in Bosses.Where(b => !b.IsDead))
+                            {
+
+                                if (ammunition.Rect(scaleFactor).IntersectsWith(badguy.Rect(scaleFactor)))
+                                {
+                                    ammunition.IsDead = true;
+                                    if (ammunition.TypeOfAmmo == "normal")
+                                    {
+                                        badguy.Health -= ammunition.Damage;
+                                    }
+                                    else if (ammunition.TypeOfAmmo == "water")
+                                    {
+                                        badguy.Health -= 1;
+                                    }
+                                    if (badguy.Health <= 0)
+                                    {
+                                        badguy.IsDead = true;
+                                        aliveBosses--;
+                                        _currentLevel.CurrentScore += 15;
+                                    }
+                                }
+                            }
                         }
                         else
                         {
@@ -1228,6 +1254,7 @@ namespace GameToEarnLegos
             waters.Clear();
             blocks.Clear();
             badguys.Clear();
+            Bosses.Clear();
             tiles.Clear();
             golds.Clear();
             ammunitions.Clear();

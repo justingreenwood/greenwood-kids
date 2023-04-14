@@ -21,7 +21,7 @@ namespace GameToEarnLegos
         public float _X;
         public float _Y;
         public SolidBrush brush = new SolidBrush(Color.Black);
-        public float BaseSpeed = 1.5f;
+        public float BaseSpeed = 1.7f;
         public float SpeedUpOrDown = 0;
         public float SpeedLeftOrRight = 0;
         public float WaterSpeedUpOrDown = 0;
@@ -143,12 +143,12 @@ namespace GameToEarnLegos
             _Y = Y = row * Tile.TileSize;
             if(kindOfBadguy == "follower")
             {
-                BaseSpeed = 1.7f;
+                BaseSpeed = 2f;
                 Health = 6f;
             }
             else if (kindOfBadguy == "boss0")
             {
-                BaseSpeed = 1.7f;
+                BaseSpeed = 2f;
                 Health = 30f;
                 isWanderer = false;
                 IsBoss = true;
@@ -160,7 +160,7 @@ namespace GameToEarnLegos
             }
             else if (kindOfBadguy == "boss1")
             {
-                BaseSpeed = 2f;
+                BaseSpeed = 2.2f;
                 Health = 50f;
                 IsBoss = true;
                 canShoot = true;

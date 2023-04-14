@@ -13,7 +13,7 @@ namespace GameToEarnLegos
         public float X;
         public float Y;
         public SolidBrush brush = new SolidBrush(Color.Black);
-        public float NormalSpeed = 1.5f;
+        public float NormalSpeed = 1.7f;
         public int NAmmo = 50;
         public int WAmmo = 0;
         public int Health = 20;
