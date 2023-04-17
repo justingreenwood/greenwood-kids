@@ -88,40 +88,76 @@ namespace GameToEarnLegos
         public void UpdateAnimationState()
         {
             Animation newAnimation = null;
-
-            if (SpeedLeftOrRight < -0.7)
+            if (image == Resources.Image_DragonStillDown)
             {
-                if (currentAnimation != animationLeft)
+                if (SpeedLeftOrRight < -0.5)
                 {
-                    newAnimation = animationLeft;
-                };
-            }
-            else if (SpeedLeftOrRight > 0.7)
-            {
-                if (currentAnimation != animationRight)
-                {
-                    newAnimation = animationRight;
+                    if (currentAnimation != animationLeft)
+                    {
+                        newAnimation = animationLeft;
+                    };
                 }
-            }
-            else if (SpeedUpOrDown < 0 )
-            {
-                if (currentAnimation != animationUp)
+                else if (SpeedLeftOrRight > 0.5)
                 {
-                    newAnimation = animationUp;
+                    if (currentAnimation != animationRight)
+                    {
+                        newAnimation = animationRight;
+                    }
                 }
-            }
-            else if (SpeedUpOrDown > 0)
-            {
-                if (currentAnimation != animationDown)
+                else if (SpeedUpOrDown < 0)
                 {
-                    newAnimation = animationDown;
+                    if (currentAnimation != animationUp)
+                    {
+                        newAnimation = animationUp;
+                    }
+                }
+                else if (SpeedUpOrDown > 0)
+                {
+                    if (currentAnimation != animationDown)
+                    {
+                        newAnimation = animationDown;
+                    }
+                }
+                else
+                {
+                    currentAnimation = null;
                 }
             }
             else
             {
-                currentAnimation = null;
+                if (SpeedLeftOrRight < -0.7)
+                {
+                    if (currentAnimation != animationLeft)
+                    {
+                        newAnimation = animationLeft;
+                    };
+                }
+                else if (SpeedLeftOrRight > 0.7)
+                {
+                    if (currentAnimation != animationRight)
+                    {
+                        newAnimation = animationRight;
+                    }
+                }
+                else if (SpeedUpOrDown < 0)
+                {
+                    if (currentAnimation != animationUp)
+                    {
+                        newAnimation = animationUp;
+                    }
+                }
+                else if (SpeedUpOrDown > 0)
+                {
+                    if (currentAnimation != animationDown)
+                    {
+                        newAnimation = animationDown;
+                    }
+                }
+                else
+                {
+                    currentAnimation = null;
+                }
             }
-
             if (newAnimation != null)
             {
                 currentAnimation = newAnimation;
@@ -165,8 +201,13 @@ namespace GameToEarnLegos
                 IsBoss = true;
                 canShoot = true;
                 BaseShootingCoolDown = 25;
-                Width = 20;
-                Height = 20;
+                Width = 30;
+                Height = 30;
+                animationLeft = Animations.DragonLeft;
+                animationRight = Animations.DragonRight;
+                animationUp = Animations.DragonUp;
+                animationDown = Animations.DragonDown;
+                image = Resources.Image_DragonStillDown;
             }
             else if (kindOfBadguy == "tower")
             {

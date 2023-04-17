@@ -173,6 +173,30 @@ namespace GameToEarnLegos.Animate
                 new AnimationFrame{ Image = Resources.Image_BadguyKing_Up_2, Duration = 4 },
             }
         };
+
+        public static Animation DragonRight = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame { Image = Resources.Image_DragonRight, Duration = 8 },
+
+            }
+        };
+        public static Animation DragonLeft = AnimationHelper.FlipX(DragonRight);
+        public static Animation DragonDown = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame{ Image = Resources.Image_DragonDown, Duration = 8 },
+            }
+        };
+        public static Animation DragonUp = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame{ Image = Resources.Image_DragonUp, Duration = 8 },
+            }
+        };
     }
 
     public static class AnimationHelper

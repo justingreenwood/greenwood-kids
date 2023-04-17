@@ -152,6 +152,15 @@ namespace GameToEarnLegos
         public static Bitmap Image_BadguyKing_Down_1 = new Bitmap(@"Resources\Images\Badguy\BadguyKingForward_1.png");
         public static Bitmap Image_BadguyKing_Down_2 = new Bitmap(@"Resources\Images\Badguy\BadguyKingForward_2.png");
 
+        public static Bitmap Image_DragonRight = new Bitmap(@"Resources\Images\Badguy\Dragon1.png");
+        public static Bitmap Image_DragonStillRight = new Bitmap(@"Resources\Images\Badguy\DragonStill.png");
+        public static Bitmap Image_DragonLeft = RotateImage(Image_DragonRight);
+        public static Bitmap Image_DragonStillLeft = RotateImage(Image_DragonStillRight);
+        public static Bitmap Image_DragonDown = RotateNinety(Image_DragonRight);
+        public static Bitmap Image_DragonStillDown = RotateNinety(Image_DragonStillRight);
+        public static Bitmap Image_DragonUp = RotateImage(Image_DragonDown);
+        public static Bitmap Image_DragonStillUp = RotateImage(Image_DragonStillDown);
+
         public static Bitmap Image_A = new Bitmap(@"Resources\Images\Letters\Normal\LetterA.png");
         public static Bitmap Image_B = new Bitmap(@"Resources\Images\Letters\Normal\LetterB.png");
         public static Bitmap Image_C = new Bitmap(@"Resources\Images\Letters\Normal\LetterC.png");
@@ -193,6 +202,21 @@ namespace GameToEarnLegos
             image2.RotateFlip(RotateFlipType.RotateNoneFlipX);
             return image2;
         }
-
+        public static Bitmap FlipYImage(Bitmap srcImage)
+        {
+            //Clone it to another bitmap
+            Bitmap image2 = (Bitmap)srcImage.Clone();
+            //Rotating
+            image2.RotateFlip(RotateFlipType.RotateNoneFlipY);
+            return image2;
+        }
+        public static Bitmap RotateNinety(Bitmap srcImage)
+        {
+            //Clone it to another bitmap
+            Bitmap image2 = (Bitmap)srcImage.Clone();
+            //Rotating
+            image2.RotateFlip(RotateFlipType.Rotate90FlipNone);
+            return image2;
+        }
     }
 }
