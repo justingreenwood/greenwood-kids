@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using GameToEarnLegos.Badguys;
 using GameToEarnLegos.Tiles;
 
 namespace GameToEarnLegos
@@ -413,7 +414,7 @@ namespace GameToEarnLegos
                             player = new Player(column, row);
                             break;
                         case 'V':
-                            badguys.Add(new Badguy(column, row));
+                            badguys.Add(new Deer(column, row,1));
                             break;
                         case 'E':
                             tiles.Add(new Water(column, row));
@@ -423,16 +424,16 @@ namespace GameToEarnLegos
                                 tiles.Add(new Bridge(column, row, true));
                             break;
                         case 'v':
-                            badguys.Add(new Badguy(column, row, "follower"));
+                            badguys.Add(new Deer(column, row, 2));
                             break;
                         case 't':
-                            badguys.Add(new Badguy(column, row, "tower"));
+                            badguys.Add(new FlameTower(column, row));
                             break;
                         case '0':
-                            badguys.Add(new Badguy(column, row, "boss0"));
+                            badguys.Add(new DeerKing(column, row));
                             break;
                         case '1':
-                            Bosses.Add(new Badguy(column, row, "boss1"));
+                            Bosses.Add(new Dragon(column, row));
                             break;
                         case 'g':
                             golds.Add(new Gold(column, row));
@@ -834,6 +835,22 @@ namespace GameToEarnLegos
                                 boss.ShootingCoolDown --;
 
                                 boss.Move(scaleFactor, player);
+                                foreach (Border blocker in tiles.Where(t => t.Tag == "border"))
+                                {
+                                    if (boss.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                                    {
+
+                                        if (boss.isFollowing || boss.isWanderer == false)
+                                        {
+                                            boss.RevertMove();
+                                        }
+                                        else
+                                        {
+                                            boss.Reverse();
+                                            boss.Move(scaleFactor, player);
+                                        }
+                                    }
+                                }
                                 boss.UpdateAnimationState();
                             }
                         }
@@ -841,6 +858,7 @@ namespace GameToEarnLegos
                         {
                             player.IsAlive = false;
                         }
+
                     }
                     foreach (Water water in waters)
                     {

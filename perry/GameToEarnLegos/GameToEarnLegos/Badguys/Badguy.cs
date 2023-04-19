@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 using GameToEarnLegos.Animate;
 using GameToEarnLegos.Tiles;
 
-namespace GameToEarnLegos
+namespace GameToEarnLegos.Badguys
 {
     /// <summary>
     /// This is the bad guy class, when I control bad guy stuff.
     /// </summary>
-    public class Badguy : IDrawable
+    public abstract class Badguy : IDrawable
     {
         Random random = new Random();
         public float X;
@@ -81,11 +81,11 @@ namespace GameToEarnLegos
             }
         }
 
-        private Animation animationLeft = Animations.BadguyLeft;
-        private Animation animationRight = Animations.BadguyRight;
-        private Animation animationUp = Animations.BadguyUp;
-        private Animation animationDown = Animations.BadguyDown;
-        public void UpdateAnimationState()
+        protected Animation animationLeft = Animations.BadguyLeft;
+        protected Animation animationRight = Animations.BadguyRight;
+        protected Animation animationUp = Animations.BadguyUp;
+        protected Animation animationDown = Animations.BadguyDown;
+        public virtual void UpdateAnimationState()
         {
             Animation newAnimation = null;
             if (image == Resources.Image_DragonStillDown)
@@ -173,73 +173,24 @@ namespace GameToEarnLegos
             X = col * Tile.TileSize;
             Y = row * Tile.TileSize;
         }
-        public Badguy(int col, int row, string kindOfBadguy)
-        {
-            _X = X = col * Tile.TileSize;
-            _Y = Y = row * Tile.TileSize;
-            if(kindOfBadguy == "follower")
-            {
-                BaseSpeed = 2f;
-                Health = 6f;
-            }
-            else if (kindOfBadguy == "boss0")
-            {
-                BaseSpeed = 2f;
-                Health = 30f;
-                isWanderer = false;
-                IsBoss = true;
-                animationLeft = Animations.BadguyKingLeft;
-                animationRight = Animations.BadguyKingRight;
-                animationUp = Animations.BadguyKingUp;
-                animationDown = Animations.BadguyKingDown;
-                image = Resources.Image_BadguyKing_Right_1;
-            }
-            else if (kindOfBadguy == "boss1")
-            {
-                BaseSpeed = 2.2f;
-                Health = 50f;
-                IsBoss = true;
-                canShoot = true;
-                BaseShootingCoolDown = 25;
-                Width = 30;
-                Height = 30;
-                animationLeft = Animations.DragonLeft;
-                animationRight = Animations.DragonRight;
-                animationUp = Animations.DragonUp;
-                animationDown = Animations.DragonDown;
-                image = Resources.Image_DragonStillDown;
-            }
-            else if (kindOfBadguy == "tower")
-            {
-                canMove = false;
-                Health = 12f;
-                canShoot = true;
-                image = Resources.Image_TowerBadguy;
-                deadImage = Resources.Image_DeadTowerBadguy;
-                typeOfBadguy = "tower";
-                Width = 20;
-                Height = 20;
-            }
-
-        }
 
         public RectangleF Rect(float scale)
         {
-            return new RectangleF(X * scale, Y * scale, Width*scale, Height * scale);
+            return new RectangleF(X * scale, Y * scale, Width * scale, Height * scale);
         }
-        public PointF CenterPoint => new PointF(X + (Width) / 2, Y + (Height / 2));
+        public PointF CenterPoint => new PointF(X + Width / 2, Y + Height / 2);
         public RectangleF InspectRect(float scale)
         {
-            return new RectangleF(CenterPoint.X * scale - (0.5f * (20 * scale * 8)), CenterPoint.Y * scale - (0.5f * (20 * scale * 8)), 20 * scale * 8, 20 * scale * 8);
+            return new RectangleF(CenterPoint.X * scale - 0.5f * (20 * scale * 8), CenterPoint.Y * scale - 0.5f * (20 * scale * 8), 20 * scale * 8, 20 * scale * 8);
         }
         private static double GetDistance(PointF p1, PointF p2)
         {
-            return Math.Sqrt(Math.Pow((p2.X - p1.X), 2) + Math.Pow((p2.Y - p1.Y), 2));
+            return Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2));
         }
-        private static float FractionMath(float distance1, float distance2, float speed )
+        private static float FractionMath(float distance1, float distance2, float speed)
         {
             float y = distance2 * speed;
-            float x = y/distance1;
+            float x = y / distance1;
             return x;
         }
         public void RevertMove()
@@ -282,29 +233,29 @@ namespace GameToEarnLegos
                 X = _X;
                 Y = _Y;
             }
-            
+
         }
         public void Move(float scale, Player player)
         {
-            
-            double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);            
+
+            double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
             if (distance < 80 && lineOfSightIsBlocked == false)
             {
-                
+
                 if (isFollower)
                 {
                     isFollowing = true;
                     NoticedPlayer = true;
                 }
             }
-            else if(distance >=80 && isFollowing)
+            else if (distance >= 80 && isFollowing)
             {
                 isFollowing = false;
                 LengthOfDirection = 0;
             }
             if (isFollowing == false && isWanderer == true)
             {
-                
+
                 int upOrDown = 0;
                 int leftOrRight = 0;
                 int length = 0;
@@ -353,15 +304,15 @@ namespace GameToEarnLegos
 
                 }
 
-                
+
                 LengthOfDirection--;
             }
-            else if(isFollowing == true)
+            else if (isFollowing == true)
             {
                 distanceX = player.X - X;
                 distanceY = player.Y - Y;
                 distanceF = (float)distance;
-                
+
                 SpeedLeftOrRight = FractionMath(distanceF, distanceX, BaseSpeed);
                 SpeedUpOrDown = FractionMath(distanceF, distanceY, BaseSpeed);
 
@@ -420,17 +371,17 @@ namespace GameToEarnLegos
         {
             get
             {
-                if (IsDead == false) 
+                if (IsDead == false)
                 {
-                    if (currentAnimation == null) return this.image;
+                    if (currentAnimation == null) return image;
                     else
                     {
-                        return this.currentAnimation.Frames[currentFrameIndex].Image;
+                        return currentAnimation.Frames[currentFrameIndex].Image;
                     }
                 }
                 else
                 {
-                    return this.deadImage;
+                    return deadImage;
                 }
             }
         }
