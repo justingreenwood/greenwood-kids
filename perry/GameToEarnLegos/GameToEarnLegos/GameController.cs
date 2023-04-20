@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using GameToEarnLegos.Badguys;
 using GameToEarnLegos.Tiles;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace GameToEarnLegos
 {
@@ -18,7 +19,7 @@ namespace GameToEarnLegos
     {
         private Random random = new Random();
         private const float TileSize = 20f;
-        private float scaleFactor = 0.8f;
+        private float scaleFactor = 1f;
         private FormTriangleTrees _form;
         private bool gameOver = false;
         private bool isPaused = false;
@@ -64,40 +65,43 @@ namespace GameToEarnLegos
         {
             return new RectangleF(CenterPoint.X * scale - (0.5f * (TileSize * scale * 4)), CenterPoint.Y * scale - (0.5f * (TileSize * scale * 4)), TileSize * scale * 4, TileSize * scale * 4);
         }
-        public void DrawTheGame(Graphics g)
+        public void DrawTheGame(Graphics bigG)
         {
-            foreach (Tile tile in tiles.Where(t=>  (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag != "door" && t.Tag != "border"))
+            var visibleRect = SeenRect(scaleFactor);
+            var xxx = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom));
+            var g = Graphics.FromImage(xxx);
+            foreach (Tile tile in tiles.Where(t=>  (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag != "door" && t.Tag != "border"))
             {                       
                 DrawScaledTiles(g, tile);
             }
 
-            foreach (Water water in waters.Where(t => (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor)))))
+            foreach (Water water in waters.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
             {
                 DrawScaledTiles(g, water);
             }
-            foreach (Border border in tiles.Where(t => (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag == "border"))
+            foreach (Border border in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag == "border"))
             {
                 DrawScaledTiles(g, border);
             }
-            foreach (Gold gold in golds.Where(t => (t.IsPickedUp == false) && (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor)))))
+            foreach (Gold gold in golds.Where(t => (t.IsPickedUp == false) && (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
             {
                 DrawScaledTiles(g, gold);
             }
-            foreach (AmmoPack ammopack in ammoPacks.Where(t => (t.IsPickedUp == false) && (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor)))))
+            foreach (AmmoPack ammopack in ammoPacks.Where(t => (t.IsPickedUp == false) && (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
             {
                 DrawScaledTiles(g, ammopack);
             }
-            foreach (Badguy badguy in badguys.Where(t => SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
+            foreach (Badguy badguy in badguys.Where(t => visibleRect.IntersectsWith(t.Rect(scaleFactor))))
             {
                 DrawScaledTiles(g, badguy);
             }
             if (player.IsAlive)
                 DrawScaledTiles(g, player);            
-            foreach (Ammunition ammunition in ammunitions.Where(t => SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
+            foreach (Ammunition ammunition in ammunitions.Where(t => visibleRect.IntersectsWith(t.Rect(scaleFactor))))
             {
                 DrawScaledTiles(g, ammunition);
             }
-            foreach (Door door in tiles.Where(t => (SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))) && t.Tag == "door"))
+            foreach (Door door in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag == "door"))
             {
                 if (door.IsClosed == true)
                 {
@@ -107,7 +111,7 @@ namespace GameToEarnLegos
                     door.image = door.openImage;
                 DrawScaledTiles(g, door);
             }
-            foreach(Badguy boss in Bosses.Where(t => SeenRect(scaleFactor).Contains(t.Rect(scaleFactor))))
+            foreach(Badguy boss in Bosses.Where(t => visibleRect.IntersectsWith(t.Rect(scaleFactor))))
             {
                 DrawScaledTiles(g, boss);
             }
@@ -138,7 +142,32 @@ namespace GameToEarnLegos
                 g.DrawString($"Do you want to exit level? (Y)es (N)o",
                     SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
             }
+            //var img = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom), g);
+            var unit = GraphicsUnit.Pixel;
+            bigG.DrawImage(
+                xxx,
+                FitAndCenterInRect(visibleRect, this._form.DisplayRectangle),
+                visibleRect,
+                GraphicsUnit.Pixel);
+            //g.SetClip(visibleRect, System.Drawing.Drawing2D.CombineMode.Replace);
+            //g.clip(visibleRect.X, visibleRect.Y);
 
+        }
+
+        private static RectangleF FitAndCenterInRect(RectangleF sourceRect, RectangleF containerRect)
+        {
+            //EXAMPLE: 20x40 is the image
+            //---------------------------
+            //fit in 500x100
+            //500/20=25, 100/40=2 1/2 - zoom to 50x100
+            //fit in 100x500
+            //100/20=5, 500/40=12 1/2 - zoom to 100x200
+            var factor = Math.Min(containerRect.Width / sourceRect.Width, containerRect.Height / sourceRect.Height);
+            return new RectangleF(
+                containerRect.X + ((containerRect.Width - (sourceRect.Width * factor)) / 2f), 
+                containerRect.Y + ((containerRect.Height - (sourceRect.Height * factor)) / 2f), 
+                sourceRect.Width * factor, 
+                sourceRect.Height * factor);
         }
 
         public void KeyDown(object sender, KeyEventArgs e)
