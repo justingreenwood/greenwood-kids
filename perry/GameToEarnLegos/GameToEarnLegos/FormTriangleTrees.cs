@@ -30,12 +30,12 @@ namespace GameToEarnLegos
         public bool CHEATS => menuController.cheatsOn;
         public FormTriangleTrees()
         {
-            InitializeComponent();           
+            InitializeComponent();
 
             //_testing = new TestGameController(this);
             gameController = new GameController(this);
             menuController = new MenuController(this);
-           //_currentGame = _testing;
+            //_currentGame = _testing;
             _currentGame = menuController;
             levels.Add(level1);
             levels.Add(level2);
@@ -55,7 +55,7 @@ namespace GameToEarnLegos
             OptionChoices.Add(new ButtonsInMenu("Cheats"));
             OptionChoices.Add(new ButtonsInMenu("Win All Games"));
             OptionChoices.Add(new ButtonsInMenu("Return"));
-            foreach(Level level in levels)
+            foreach (Level level in levels)
             {
                 LevelChoices.Add(new ButtonsInMenu(level));
             }
@@ -234,7 +234,7 @@ namespace GameToEarnLegos
         protected override void OnPaint(PaintEventArgs pe)
         {
             var g = pe.Graphics;
-            using (Bitmap frontLayerBmp = new Bitmap(this.Size.Width, this.Size.Height))
+            using (Bitmap frontLayerBmp = new Bitmap(this.DisplayRectangle.Width, this.DisplayRectangle.Height))
             {
                 using (var frontLayer = Graphics.FromImage(frontLayerBmp))
                 {
@@ -255,15 +255,15 @@ namespace GameToEarnLegos
                         System.Diagnostics.Debugger.Break();
                     }
 
-                    g.DrawImage(frontLayerBmp, 
-                        this.ClientRectangle.X * _currentGame.ScaleFactor,
-                        this.ClientRectangle.Y * _currentGame.ScaleFactor,
-                        this.ClientRectangle.Width * _currentGame.ScaleFactor,
-                        this.ClientRectangle.Height * _currentGame.ScaleFactor);
+                    g.DrawImage(frontLayerBmp,
+                        this.ClientRectangle.X,
+                        this.ClientRectangle.Y,
+                        this.ClientRectangle.Width,
+                        this.ClientRectangle.Height);
                 }
             }
         }
 
-        
+
     }
 }

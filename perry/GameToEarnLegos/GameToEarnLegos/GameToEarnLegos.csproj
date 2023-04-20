@@ -6,6 +6,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
+    <ApplicationIcon>Resources\Images\BadguyUpgraded.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -178,6 +179,7 @@
     <Content Include="Resources\Images\BadguyFireAmmo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\BadguyUpgraded.ico" />
     <Content Include="Resources\Images\Badguy\Badguy.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

@@ -28,27 +28,28 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.timerGameLoop = new System.Windows.Forms.Timer(this.components);
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormTriangleTrees));
+            timerGameLoop = new System.Windows.Forms.Timer(components);
+            SuspendLayout();
             // 
             // timerGameLoop
             // 
-            this.timerGameLoop.Tick += new System.EventHandler(this.timerGameLoop_Tick);
+            timerGameLoop.Tick += timerGameLoop_Tick;
             // 
             // FormTriangleTrees
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ControlText;
-            this.ClientSize = new System.Drawing.Size(1924, 1061);
-            this.Name = "FormTriangleTrees";
-            this.Text = "Form1";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormTriangleTrees_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.FormTriangleTrees_KeyUp);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.FormTriangleTrees_MouseDown);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = SystemColors.ControlText;
+            ClientSize = new Size(420, 361);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Name = "FormTriangleTrees";
+            Text = "Triangle Trees";
+            KeyDown += FormTriangleTrees_KeyDown;
+            KeyUp += FormTriangleTrees_KeyUp;
+            MouseDown += FormTriangleTrees_MouseDown;
+            ResumeLayout(false);
         }
 
         #endregion
