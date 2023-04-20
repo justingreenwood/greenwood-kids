@@ -68,17 +68,18 @@ namespace GameToEarnLegos
         public void DrawTheGame(Graphics bigG)
         {
             var visibleRect = SeenRect(scaleFactor);
-            var xxx = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom));
-            var g = Graphics.FromImage(xxx);
+            var smallImage = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom));
+            var g = Graphics.FromImage(smallImage);
+            foreach (Water water in waters.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
+            {
+                DrawScaledTiles(g, water);
+            }
             foreach (Tile tile in tiles.Where(t=>  (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag != "door" && t.Tag != "border"))
             {                       
                 DrawScaledTiles(g, tile);
             }
 
-            foreach (Water water in waters.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
-            {
-                DrawScaledTiles(g, water);
-            }
+            
             foreach (Border border in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag == "border"))
             {
                 DrawScaledTiles(g, border);
@@ -115,42 +116,44 @@ namespace GameToEarnLegos
             {
                 DrawScaledTiles(g, boss);
             }
-            if (CHEATS)
-            {
-                g.DrawString($"IsRunning:{player.IsRunning} isEscape {EscapeKeyIsUsed} IsInWater:{player.IsInWater} IsShooting:{player.IsShooting} " +
-                    $"Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
-                    SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
-            }
-            else if(goal == "Extinguish")
-            {
-                g.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Alive Trees: {AliveTrees} Burning Trees: {BurningTrees} Trees Needed Alive: {NeededTrees}",
-                   SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
-            }
-            else
-            {
-                g.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
-                    SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
-            }
-
-            if(gameOver == true)
-            {
-                g.DrawString($"Press 'Enter' to continue.",
-                    SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
-            }
-            else if (isPaused)
-            {
-                g.DrawString($"Do you want to exit level? (Y)es (N)o",
-                    SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
-            }
             //var img = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom), g);
             var unit = GraphicsUnit.Pixel;
             bigG.DrawImage(
-                xxx,
+                smallImage,
                 FitAndCenterInRect(visibleRect, this._form.DisplayRectangle),
                 visibleRect,
                 GraphicsUnit.Pixel);
             //g.SetClip(visibleRect, System.Drawing.Drawing2D.CombineMode.Replace);
             //g.clip(visibleRect.X, visibleRect.Y);
+
+
+            if (CHEATS)
+            {
+                bigG.DrawString($"IsRunning:{player.IsRunning} isEscape {EscapeKeyIsUsed} IsInWater:{player.IsInWater} IsShooting:{player.IsShooting} " +
+                    $"Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
+                    SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
+            }
+            else if (goal == "Extinguish")
+            {
+                bigG.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Alive Trees: {AliveTrees} Burning Trees: {BurningTrees} Trees Needed Alive: {NeededTrees}",
+                   SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
+            }
+            else
+            {
+                bigG.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
+                    SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
+            }
+
+            if (gameOver == true)
+            {
+                bigG.DrawString($"Press 'Enter' to continue.",
+                    SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
+            }
+            else if (isPaused)
+            {
+                bigG.DrawString($"Do you want to exit level? (Y)es (N)o",
+                    SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
+            }
 
         }
 
