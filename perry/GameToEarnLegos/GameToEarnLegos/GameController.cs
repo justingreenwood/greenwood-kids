@@ -50,16 +50,43 @@ namespace GameToEarnLegos
         string[] levelTop => _currentLevel.levelTop;
         string goal => _currentLevel.Goal;
         private int ShootingCoolDown = 5;
+
+        // These are new variables for the visible rectangle (SeenRect)
+        private float _visibleRectangleZoom = 1.0f;
+        private RectangleF _visibleRectangle = RectangleF.Empty;
+        private RectangleF _visibleRectangleSizeReference = RectangleF.Empty;
+        private PointF _visibleRectangleLocationReference = PointF.Empty;
+
+
         public GameController(FormTriangleTrees form)
         {
             _form = form;
         }
 
         public PointF CenterPoint => new PointF(player.X + (player.Width) / 2, player.Y + (player.Height / 2));
-        
+        public float VisibleRectangleZoom => _visibleRectangleZoom;
+
+
         private RectangleF SeenRect(float scale)
         {
-            return new RectangleF(CenterPoint.X * scale- (0.5f * (TileSize * scale * 10)), CenterPoint.Y * scale - (0.5f * (TileSize * scale * 10)), TileSize * scale * 10, TileSize * scale * 10);
+            // this says to only recalculate the rectangle if the screen was resized, or the person moves.
+            if (_visibleRectangle == RectangleF.Empty ||
+                _visibleRectangleLocationReference != this.CenterPoint ||
+                _visibleRectangleSizeReference != this._form.DisplayRectangle)
+            {
+                _visibleRectangleLocationReference = this.CenterPoint;
+                _visibleRectangleSizeReference = this._form.DisplayRectangle;
+
+                var square = new RectangleF(
+                    CenterPoint.X - (0.5f * (TileSize * _visibleRectangleZoom * 10F)), 
+                    CenterPoint.Y - (0.5f * (TileSize * _visibleRectangleZoom * 10F)), 
+                    TileSize * _visibleRectangleZoom * 10F, 
+                    TileSize * _visibleRectangleZoom * 10F);
+
+                this._visibleRectangle = Utility.FitAndCenterInRect(_visibleRectangleSizeReference, square);
+            }
+            return _visibleRectangle;
+            //return new RectangleF(CenterPoint.X * _visibleRectangleZoom - (0.5f * (TileSize * _visibleRectangleZoom * 10)), CenterPoint.Y * _visibleRectangleZoom - (0.5f * (TileSize * scale * 10)), TileSize * _visibleRectangleZoom * 10, TileSize * _visibleRectangleZoom * 10);
         }
         private RectangleF PlayerUseRect(float scale)
         {
@@ -120,7 +147,7 @@ namespace GameToEarnLegos
             var unit = GraphicsUnit.Pixel;
             bigG.DrawImage(
                 smallImage,
-                FitAndCenterInRect(visibleRect, this._form.DisplayRectangle),
+                Utility.FitAndCenterInRect(visibleRect, this._form.DisplayRectangle),
                 visibleRect,
                 GraphicsUnit.Pixel);
             //g.SetClip(visibleRect, System.Drawing.Drawing2D.CombineMode.Replace);
@@ -157,22 +184,6 @@ namespace GameToEarnLegos
 
         }
 
-        private static RectangleF FitAndCenterInRect(RectangleF sourceRect, RectangleF containerRect)
-        {
-            //EXAMPLE: 20x40 is the image
-            //---------------------------
-            //fit in 500x100
-            //500/20=25, 100/40=2 1/2 - zoom to 50x100
-            //fit in 100x500
-            //100/20=5, 500/40=12 1/2 - zoom to 100x200
-            var factor = Math.Min(containerRect.Width / sourceRect.Width, containerRect.Height / sourceRect.Height);
-            return new RectangleF(
-                containerRect.X + ((containerRect.Width - (sourceRect.Width * factor)) / 2f), 
-                containerRect.Y + ((containerRect.Height - (sourceRect.Height * factor)) / 2f), 
-                sourceRect.Width * factor, 
-                sourceRect.Height * factor);
-        }
-
         public void KeyDown(object sender, KeyEventArgs e)
         {
 
@@ -185,13 +196,15 @@ namespace GameToEarnLegos
                         // player.Speed = player.RunSpeed;
                         player.IsRunning = true;
                     }
-                    if (e.KeyCode == Keys.Z && scaleFactor < 1.2f)
+                    if (e.KeyCode == Keys.Z && _visibleRectangleZoom > 0.50f)
                     {
-                        scaleFactor += 0.1f;
+                        _visibleRectangleZoom -= 0.1f;
+                        _visibleRectangle = Rectangle.Empty; // clear the rectangle so it can be resized
                     }
-                    if (e.KeyCode == Keys.X && scaleFactor > 0.8f)
+                    if (e.KeyCode == Keys.X && _visibleRectangleZoom < 3.50f)
                     {
-                        scaleFactor -= 0.1f;
+                        _visibleRectangleZoom += 0.1f;
+                        _visibleRectangle = Rectangle.Empty; // clear the rectangle so it can be resized
                     }
                     if (e.KeyCode == Keys.S)
                     {
