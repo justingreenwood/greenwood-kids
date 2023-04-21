@@ -79,6 +79,13 @@ namespace GameToEarnLegos
             this.SetStyle(ControlStyles.UserPaint, true);
             this.SetStyle(ControlStyles.ResizeRedraw, true);
             //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
+
+            this.Size = GetSmallestScreenSize();
+        }
+
+        public Size GetSmallestScreenSize()
+        {
+            return new Size(Screen.AllScreens.Min(x => x.WorkingArea.Width), Screen.AllScreens.Min(x => x.WorkingArea.Height));
         }
 
         public List<Bitmap> NameInBitmap(string name, string color)

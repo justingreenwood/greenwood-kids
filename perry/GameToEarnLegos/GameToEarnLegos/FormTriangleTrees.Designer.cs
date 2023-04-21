@@ -45,6 +45,7 @@
             ClientSize = new Size(1924, 1061);
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "FormTriangleTrees";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Triangle Trees";
             KeyDown += FormTriangleTrees_KeyDown;
             KeyUp += FormTriangleTrees_KeyUp;

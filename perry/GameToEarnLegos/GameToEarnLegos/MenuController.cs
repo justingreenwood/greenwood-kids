@@ -42,8 +42,19 @@ namespace GameToEarnLegos
         }
         public void DrawTheGame(Graphics g)
         {
-            g.DrawImage(Resources.Image_MenuBackground, 0, 0, this._form.Width, this._form.Height);
-            g.DrawImage(Resources.Image_Title, 300, 80, 1300, 140);
+            var imageRect = Utility.FillInRect(new RectangleF(new PointF(0,0), Resources.Image_MenuBackground.Size), this._form.DisplayRectangle);
+            var titleWidth = (int)Math.Round(this._form.Width * 0.8);
+            var titleHeight = (int)Math.Round((double)titleWidth * ((double)Resources.Image_Title.Height / (double)Resources.Image_Title.Width));
+            var textTopOffset = (int)Math.Round(this._form.Height * 0.3);
+            var textLeftOffset = (int)Math.Round(this._form.Width * 0.4);
+
+            g.DrawImage(Resources.Image_MenuBackground, imageRect);// 0, 0, this._form.Width, this._form.Height);
+            //var titleWidth = (int)Math.Round(this._form.Width * 0.8); 
+            //var titleHeight = (int)Math.Round((double)titleWidth * ((double)Resources.Image_Title.Height / (double)Resources.Image_Title.Width)); 
+            g.DrawImage(Resources.Image_Title,
+                Convert.ToInt32(Math.Round(this._form.Width * 0.1)), Convert.ToInt32(Math.Round(this._form.Height*0.1)),
+                titleWidth, titleHeight);
+
             if (_playButtonPressed)
             {
                 for (int i = 1; i <= LevelChoices.Count; i++)
@@ -52,18 +63,18 @@ namespace GameToEarnLegos
                     {
                         var level = _levels[i - 1];
                         g.DrawString($" {level.Name} Score: {level.HighScore}/{level.Score} Goal: {level.Goal}",
-                        SystemFonts.DefaultFont, Brushes.Black, 500, DistanceDown + (i * 60)+40);
+                        SystemFonts.DefaultFont, Brushes.Black, textLeftOffset, textTopOffset + (i * 60)+40);
                     }
                 }
-                DrawWords(LevelChoices, g);
+                DrawWords(LevelChoices, g, textLeftOffset, textTopOffset);
             }
             else if (_optionButtonPressed)
             {
-                DrawWords(OptionChoices, g);
+                DrawWords(OptionChoices, g, textLeftOffset, textTopOffset);
             }
             else
             {
-                DrawWords(MenuChoices, g);
+                DrawWords(MenuChoices, g, textLeftOffset, textTopOffset);
 
             }
 
@@ -258,7 +269,7 @@ namespace GameToEarnLegos
             _form.Invalidate();
         }
 
-        public void DrawWords(List<ButtonsInMenu> list, Graphics g)
+        public void DrawWords(List<ButtonsInMenu> list, Graphics g, int textLeftOffset, int textTopOffset)
         {
             for (int i = 1; i <= list.Count; i++)
             {
@@ -270,8 +281,6 @@ namespace GameToEarnLegos
                     if (i == levelChoiceNumber + 1)
                     {
                         brush = Brushes.Red;
-
-
                     }
                 }
                 else
@@ -281,13 +290,13 @@ namespace GameToEarnLegos
                         brush = Brushes.Red;
                     }
                 }
-                int j = 500;
+                int j = textLeftOffset;
                 if (brush != Brushes.Red)
                 {
                     foreach (Bitmap bitmap in list[i - 1].NameBitmap)
                     {
                         if(bitmap != Resources.Image_Tree1)
-                            g.DrawImage(bitmap, j, DistanceDown + (i * 60), 21, 35);
+                            g.DrawImage(bitmap, j, textTopOffset + (i * 60), 21, 35);
                         j += 25;
                     }
                 }
@@ -297,9 +306,9 @@ namespace GameToEarnLegos
                     {
                         if (bitmap != Resources.Image_Tree1)
                         {
-                            g.FillRectangle(Brushes.Yellow, j, DistanceDown + (i * 60), 21, 35);
-                            g.FillEllipse(Brushes.Yellow, j-2, DistanceDown + (i * 60)-2, 25, 39);
-                            g.DrawImage(bitmap, j, DistanceDown + (i * 60), 21, 35);
+                            g.FillRectangle(Brushes.Yellow, j, textTopOffset + (i * 60), 21, 35);
+                            g.FillEllipse(Brushes.Yellow, j-2, textTopOffset + (i * 60)-2, 25, 39);
+                            g.DrawImage(bitmap, j, textTopOffset + (i * 60), 21, 35);
 
                         }
                         j += 25;
