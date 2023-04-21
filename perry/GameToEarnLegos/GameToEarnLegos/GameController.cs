@@ -70,16 +70,16 @@ namespace GameToEarnLegos
             var visibleRect = SeenRect(scaleFactor);
             var smallImage = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom));
             var g = Graphics.FromImage(smallImage);
-            foreach (Water water in waters.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
-            {
-                DrawScaledTiles(g, water);
-            }
+           
             foreach (Tile tile in tiles.Where(t=>  (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag != "door" && t.Tag != "border"))
             {                       
                 DrawScaledTiles(g, tile);
             }
+            foreach (Water water in waters.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
+            {
+                DrawScaledTiles(g, water);
+            }
 
-            
             foreach (Border border in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag == "border"))
             {
                 DrawScaledTiles(g, border);
