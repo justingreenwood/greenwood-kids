@@ -21,7 +21,8 @@ namespace GameToEarnLegos
         private Bitmap image = Resources.Image_Ammo;
         public string TypeOfAmmo = "normal";
         public int Damage = 3;
-
+        private int _drawLevel = 250;
+        public virtual int DrawLevel => _drawLevel;
 
         public Bitmap Image => image;
 
@@ -31,9 +32,9 @@ namespace GameToEarnLegos
 
         public SolidBrush Brush => brush;
 
-        public RectangleF Rect(float scale)
+        public RectangleF Rect()
         {
-            return new RectangleF(X * scale, Y * scale, 10 * scale, 10 * scale);
+            return new RectangleF(X, Y, 10, 10);
         }
         public Ammunition(float x, float y, string direction, string type )
         {
@@ -103,7 +104,7 @@ namespace GameToEarnLegos
             TypeOfAmmo = "fire";
             image = Resources.Image_BadguyFireAmmo;
         }
-        public void Move(float scale)
+        public void Move()
         {
 
 

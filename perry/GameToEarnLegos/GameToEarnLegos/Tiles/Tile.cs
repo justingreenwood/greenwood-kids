@@ -14,7 +14,8 @@ namespace GameToEarnLegos.Tiles
         float Y { get; }
         Bitmap Image { get; }
         SolidBrush Brush { get; }
-        RectangleF Rect(float scale);
+        RectangleF Rect();
+        int DrawLevel { get; }
     }
     public abstract class Tile : IDrawable
     {
@@ -36,9 +37,9 @@ namespace GameToEarnLegos.Tiles
             image = img;
         }
 
-        public virtual RectangleF Rect(float scale)
+        public virtual RectangleF Rect()
         {
-            return new RectangleF(X * scale, Y * scale, TileSize * scale, TileSize * scale);
+            return new RectangleF(X, Y, TileSize, TileSize);
         }
         Bitmap IDrawable.Image => image;
 
@@ -47,25 +48,29 @@ namespace GameToEarnLegos.Tiles
         float IDrawable.X => X;
 
         float IDrawable.Y => Y;
-        public RectangleF CheckAroundRect(float scale)
+
+        private int _drawLevel = 200;
+        public virtual int DrawLevel => _drawLevel;
+
+        public RectangleF CheckAroundRect()
         {
-            return new RectangleF((X - 5) * scale, (Y - 5) * scale, (TileSize + 10) * scale, (TileSize + 10) * scale);
+            return new RectangleF((X - 5), (Y - 5), (TileSize + 10), (TileSize + 10));
         }
-        public RectangleF CheckLeftRect(float scale)
+        public RectangleF CheckLeftRect()
         {
-            return new RectangleF((X - 5) * scale, Y * scale, TileSize * scale, TileSize * scale);
+            return new RectangleF((X - 5), Y, TileSize, TileSize);
         }
-        public RectangleF CheckUpRect(float scale)
+        public RectangleF CheckUpRect()
         {
-            return new RectangleF(X * scale, (Y-5) * scale, TileSize * scale, TileSize * scale);
+            return new RectangleF(X, (Y-5), TileSize, TileSize);
         }
-        public RectangleF CheckDownRect(float scale)
+        public RectangleF CheckDownRect()
         {
-            return new RectangleF(X * scale, (Y + 5) * scale, TileSize * scale, TileSize * scale);
+            return new RectangleF(X , (Y + 5), TileSize, TileSize);
         }
-        public RectangleF CheckRightRect(float scale)
+        public RectangleF CheckRightRect( )
         {
-            return new RectangleF((X + 5) * scale, Y * scale, TileSize * scale, TileSize * scale);
+            return new RectangleF((X + 5), Y, TileSize, TileSize);
         }
     }
 

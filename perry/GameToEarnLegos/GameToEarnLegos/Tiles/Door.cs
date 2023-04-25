@@ -18,6 +18,7 @@ namespace GameToEarnLegos.Tiles
         public bool IsClosed = true;
         public bool isBossDoor = false;
         public override string Tag => "door";
+        public override int DrawLevel => 300;
         public Door(int col, int row, bool leftRight, char kindOfDoor) : base(col, row, Resources.Image_ClosedDoor_Thin)
         {
             LeftRight = leftRight;

@@ -22,7 +22,7 @@ namespace GameToEarnLegos
         private int _levelCount => _levels.Count;
         public int levelChoiceNumber = 0;
         public ILevel levelChoice;
-        public float ScaleFactor => 1;
+        //public float ScaleFactor => 1;
         private bool GoingDown = false;
         private bool GoingUp = false;
         private bool _playButtonPressed = false;
@@ -45,7 +45,7 @@ namespace GameToEarnLegos
             var imageRect = Utility.FillInRect(new RectangleF(new PointF(0,0), Resources.Image_MenuBackground.Size), this._form.DisplayRectangle);
             var titleWidth = (int)Math.Round(this._form.Width * 0.8);
             var titleHeight = (int)Math.Round((double)titleWidth * ((double)Resources.Image_Title.Height / (double)Resources.Image_Title.Width));
-            var textTopOffset = (int)Math.Round(this._form.Height * 0.3);
+            var textTopOffset = (int)Math.Round(this._form.Height * 0.2);
             var textLeftOffset = (int)Math.Round(this._form.Width * 0.4);
 
             g.DrawImage(Resources.Image_MenuBackground, imageRect);// 0, 0, this._form.Width, this._form.Height);

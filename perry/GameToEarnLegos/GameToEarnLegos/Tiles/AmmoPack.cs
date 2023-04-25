@@ -15,9 +15,11 @@ namespace GameToEarnLegos.Tiles
         public float Y;
         public SolidBrush brush = new SolidBrush(Color.Black);
         public Bitmap image = Resources.Image_AmmoPack;
-        public RectangleF Rect(float scale)
+        private int _drawLevel = 200;
+        public virtual int DrawLevel => _drawLevel;
+        public RectangleF Rect()
         {
-            return new RectangleF(X * scale, Y * scale, 10 * scale, 10 * scale);
+            return new RectangleF(X, Y, 10, 10);
         }
         public AmmoPack(int col, int row)
         {

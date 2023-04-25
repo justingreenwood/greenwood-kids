@@ -10,6 +10,7 @@ namespace GameToEarnLegos.Tiles
     {
         public override string Tag => "water";
         public bool HasBridge = false;
+        public override int DrawLevel => 150;
         public Water(int col, int row) : base(col, row, Resources.Image_Water) { }
     }
 }

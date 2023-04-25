@@ -10,6 +10,9 @@ namespace GameToEarnLegos
 {
     public class Player : IDrawable
     {
+        private int _drawLevel = 200;
+        public virtual int DrawLevel => _drawLevel;
+
         public float X;
         public float Y;
         public SolidBrush brush = new SolidBrush(Color.Black);
@@ -183,19 +186,15 @@ namespace GameToEarnLegos
         /// </summary>
         /// <param name="scale">the scale factor to multiply everything by.
         /// <returns>a rectangle.</returns>
-        public RectangleF Rect(float scale)
+        public RectangleF Rect()
         {
-            return new RectangleF(X * scale, Y * scale, Width * scale, Height * scale);
+            return new RectangleF(X, Y, Width, Height);
         }
 
-        public RectangleF WaterCheckRect(float scale)
+        public RectangleF WaterCheckRect()
         {
-            return new RectangleF((X + 4) * scale, (Y + 5) * scale, (Width/2) * scale, (Height / 2) * scale);
+            return new RectangleF((X + 4), (Y + 5), (Width/2), (Height / 2));
         }
-        //public RectangleF StationedRect(float scale)
-        //{
-        //    return new RectangleF(963 * scale, 543 * scale, Width * scale, Height * scale);
-        //}
         public Player(int col, int row)
         {
             X = col * Tile.TileSize;

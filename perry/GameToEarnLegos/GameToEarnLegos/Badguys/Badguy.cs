@@ -16,6 +16,8 @@ namespace GameToEarnLegos.Badguys
     public abstract class Badguy : IDrawable
     {
         Random random = new Random();
+        private int _drawLevel = 300;
+        public int DrawLevel => _drawLevel;
         public float X;
         public float Y;
         public float _X;
@@ -174,9 +176,9 @@ namespace GameToEarnLegos.Badguys
             Y = row * Tile.TileSize;
         }
 
-        public RectangleF Rect(float scale)
+        public RectangleF Rect()
         {
-            return new RectangleF(X * scale, Y * scale, Width * scale, Height * scale);
+            return new RectangleF(X, Y, Width, Height);
         }
         public PointF CenterPoint => new PointF(X + Width / 2, Y + Height / 2);
         public RectangleF InspectRect(float scale)
@@ -235,7 +237,7 @@ namespace GameToEarnLegos.Badguys
             }
 
         }
-        public void Move(float scale, Player player)
+        public void Move(Player player)
         {
 
             double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);

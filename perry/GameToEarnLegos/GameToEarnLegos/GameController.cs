@@ -19,7 +19,7 @@ namespace GameToEarnLegos
     {
         private Random random = new Random();
         private const float TileSize = 20f;
-        private float scaleFactor = 1f;
+        //private float scaleFactor = 1f;
         private FormTriangleTrees _form;
         private bool gameOver = false;
         private bool isPaused = false;
@@ -29,7 +29,7 @@ namespace GameToEarnLegos
         Badguy Boss = null;
 
         public bool CHEATS => _form.CHEATS;
-        public float ScaleFactor => scaleFactor;
+        //public float ScaleFactor => scaleFactor;
         private ILevel _currentLevel => _form.currentLevel;
 
         int AliveBadguys;
@@ -37,6 +37,7 @@ namespace GameToEarnLegos
         int AliveTrees;
         int NeededTrees;
         Player player;
+        List<IDrawable> DrawingList = new List<IDrawable>();
         List<Water> waters = new List<Water>();
         List<DeepWater> deepWaters = new List<DeepWater>();
         List<Block> blocks = new List<Block>();
@@ -67,7 +68,7 @@ namespace GameToEarnLegos
         public float VisibleRectangleZoom => _visibleRectangleZoom;
 
 
-        private RectangleF SeenRect(float scale)
+        private RectangleF SeenRect()
         {
             // this says to only recalculate the rectangle if the screen was resized, or the person moves.
             if (_visibleRectangle == RectangleF.Empty ||
@@ -88,61 +89,67 @@ namespace GameToEarnLegos
             return _visibleRectangle;
             //return new RectangleF(CenterPoint.X * _visibleRectangleZoom - (0.5f * (TileSize * _visibleRectangleZoom * 10)), CenterPoint.Y * _visibleRectangleZoom - (0.5f * (TileSize * scale * 10)), TileSize * _visibleRectangleZoom * 10, TileSize * _visibleRectangleZoom * 10);
         }
-        private RectangleF PlayerUseRect(float scale)
+        private RectangleF PlayerUseRect()
         {
-            return new RectangleF(CenterPoint.X * scale - (0.5f * (TileSize * scale * 4)), CenterPoint.Y * scale - (0.5f * (TileSize * scale * 4)), TileSize * scale * 4, TileSize * scale * 4);
+            return new RectangleF(CenterPoint.X - (0.5f * (TileSize * 4)), CenterPoint.Y - (0.5f * (TileSize * 4)), TileSize * 4, TileSize * 4);
         }
         public void DrawTheGame(Graphics bigG)
         {
-            var visibleRect = SeenRect(scaleFactor);
+            var visibleRect = SeenRect();
             var smallImage = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom));
             var g = Graphics.FromImage(smallImage);
-           
-            foreach (Tile tile in tiles.Where(t=>  (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag != "door" && t.Tag != "border"))
-            {                       
+
+            ListReorganizer();
+            foreach (IDrawable tile in DrawingList.Where(t => (visibleRect.IntersectsWith(t.Rect()))))
+            {
                 DrawScaledTiles(g, tile);
             }
-            foreach (Water water in waters.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
-            {
-                DrawScaledTiles(g, water);
-            }
 
-            foreach (Border border in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag == "border"))
-            {
-                DrawScaledTiles(g, border);
-            }
-            foreach (Gold gold in golds.Where(t => (t.IsPickedUp == false) && (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
-            {
-                DrawScaledTiles(g, gold);
-            }
-            foreach (AmmoPack ammopack in ammoPacks.Where(t => (t.IsPickedUp == false) && (visibleRect.IntersectsWith(t.Rect(scaleFactor)))))
-            {
-                DrawScaledTiles(g, ammopack);
-            }
-            foreach (Badguy badguy in badguys.Where(t => visibleRect.IntersectsWith(t.Rect(scaleFactor))))
-            {
-                DrawScaledTiles(g, badguy);
-            }
-            if (player.IsAlive)
-                DrawScaledTiles(g, player);            
-            foreach (Ammunition ammunition in ammunitions.Where(t => visibleRect.IntersectsWith(t.Rect(scaleFactor))))
-            {
-                DrawScaledTiles(g, ammunition);
-            }
-            foreach (Door door in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect(scaleFactor))) && t.Tag == "door"))
-            {
-                if (door.IsClosed == true)
-                {
-                    door.image = door.closedImage;
-                }
-                else
-                    door.image = door.openImage;
-                DrawScaledTiles(g, door);
-            }
-            foreach(Badguy boss in Bosses.Where(t => visibleRect.IntersectsWith(t.Rect(scaleFactor))))
-            {
-                DrawScaledTiles(g, boss);
-            }
+            //foreach (Tile tile in tiles.Where(t=>  (visibleRect.IntersectsWith(t.Rect())) && t.Tag != "door" && t.Tag != "border"))
+            //{                       
+            //    DrawScaledTiles(g, tile);
+            //}
+            //foreach (Water water in waters.Where(t => (visibleRect.IntersectsWith(t.Rect()))))
+            //{
+            //    DrawScaledTiles(g, water);
+            //}
+
+            //foreach (Border border in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect())) && t.Tag == "border"))
+            //{
+            //    DrawScaledTiles(g, border);
+            //}
+            //foreach (Gold gold in golds.Where(t => (t.IsPickedUp == false) && (visibleRect.IntersectsWith(t.Rect()))))
+            //{
+            //    DrawScaledTiles(g, gold);
+            //}
+            //foreach (AmmoPack ammopack in ammoPacks.Where(t => (t.IsPickedUp == false) && visibleRect.IntersectsWith(t.Rect())))
+            //{
+            //    DrawScaledTiles(g, ammopack);
+            //}
+            //foreach (Badguy badguy in badguys.Where(t => visibleRect.IntersectsWith(t.Rect())))
+            //{
+            //    DrawScaledTiles(g, badguy);
+            //}
+            //if (player.IsAlive)
+            //    DrawScaledTiles(g, player);            
+            //foreach (Ammunition ammunition in ammunitions.Where(t => visibleRect.IntersectsWith(t.Rect())))
+            //{
+            //    DrawScaledTiles(g, ammunition);
+            //}
+            //foreach (Door door in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect())) && t.Tag == "door"))
+            //{
+            //    if (door.IsClosed == true)
+            //    {
+            //        door.image = door.closedImage;
+            //    }
+            //    else
+            //        door.image = door.openImage;
+            //    DrawScaledTiles(g, door);
+            //}
+            //foreach(Badguy boss in Bosses.Where(t => visibleRect.IntersectsWith(t.Rect())))
+            //{
+            //    DrawScaledTiles(g, boss);
+            //}
             //var img = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom), g);
             var unit = GraphicsUnit.Pixel;
             bigG.DrawImage(
@@ -398,7 +405,7 @@ namespace GameToEarnLegos
                 var isBlocked = false;
                 foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
                 {
-                    if (player.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                    if (player.Rect().IntersectsWith(blocker.Rect()))
                     {
                         isBlocked = true;
                         break;
@@ -406,7 +413,7 @@ namespace GameToEarnLegos
                 }
                 foreach(Door door in tiles.Where(t => t.Tag == "door"))
                 {
-                    if (player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)) && door.IsClosed == true)
+                    if (player.Rect().IntersectsWith(door.Rect()) && door.IsClosed == true)
                     {
                         isBlocked = true;
                         break;
@@ -536,7 +543,7 @@ namespace GameToEarnLegos
             {
                 foreach (Bridge bridge in tiles.Where(b => b.Tag == "bridge"))
                 {
-                    if (water.Rect(scaleFactor).IntersectsWith(bridge.Rect(scaleFactor)))
+                    if (water.Rect().IntersectsWith(bridge.Rect()))
                     {
                         water.HasBridge = true;
                     }
@@ -553,19 +560,19 @@ namespace GameToEarnLegos
                 foreach (Tile grass in tiles.Where(w => (w.Tag == "grass")))
                 {
 
-                    if (water.CheckDownRect(scaleFactor).IntersectsWith(grass.Rect(scaleFactor)))
+                    if (water.CheckDownRect().IntersectsWith(grass.Rect()))
                     {
                         GrassDown = true;
                     }
-                    if (water.CheckUpRect(scaleFactor).IntersectsWith(grass.Rect(scaleFactor)))
+                    if (water.CheckUpRect().IntersectsWith(grass.Rect()))
                     {
                         GrassUp = true;
                     }
-                    if (water.CheckLeftRect(scaleFactor).IntersectsWith(grass.Rect(scaleFactor)))
+                    if (water.CheckLeftRect().IntersectsWith(grass.Rect()))
                     {
                         GrassLeft = true;
                     }
-                    if (water.CheckRightRect(scaleFactor).IntersectsWith(grass.Rect(scaleFactor)))
+                    if (water.CheckRightRect().IntersectsWith(grass.Rect()))
                     {
                         GrassRight = true;
                     }
@@ -575,19 +582,19 @@ namespace GameToEarnLegos
                 {
                     if (sand.Kind == "normal")
                     {
-                        if (water.CheckDownRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                        if (water.CheckDownRect().IntersectsWith(sand.Rect()))
                         {
                             SandDown = true;
                         }
-                        if (water.CheckUpRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                        if (water.CheckUpRect().IntersectsWith(sand.Rect()))
                         {
                             SandUp = true;
                         }
-                        if (water.CheckLeftRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                        if (water.CheckLeftRect().IntersectsWith(sand.Rect()))
                         {
                             SandLeft = true;
                         }
-                        if (water.CheckRightRect(scaleFactor).IntersectsWith(sand.Rect(scaleFactor)))
+                        if (water.CheckRightRect().IntersectsWith(sand.Rect()))
                         {
                             SandRight = true;
                         }
@@ -739,6 +746,9 @@ namespace GameToEarnLegos
                     }
                 }
             }
+
+
+
             if(goal == "Extinguish")
             {
                 player.WAmmo = player.MaxWAmmo;
@@ -801,10 +811,10 @@ namespace GameToEarnLegos
                             aliveBadguys++;
                             if (badguy.canMove == true)
                             {
-                                badguy.Move(scaleFactor, player);
+                                badguy.Move( player);
                                 foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
                                 {
-                                    if (badguy.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                                    if (badguy.Rect().IntersectsWith(blocker.Rect()))
                                     {
 
                                         if (badguy.isFollowing || badguy.isWanderer == false)
@@ -814,7 +824,7 @@ namespace GameToEarnLegos
                                         else
                                         {
                                             badguy.Reverse();
-                                            badguy.Move(scaleFactor, player);
+                                            badguy.Move(player);
                                         }
                                     }
                                 }
@@ -823,7 +833,7 @@ namespace GameToEarnLegos
                                 {
                                     if (door.isBossDoor == false)
                                     {
-                                        if (badguy.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
+                                        if (badguy.Rect().IntersectsWith(door.Rect()))
                                         {
                                             if (door.IsClosed == true)
                                             {
@@ -841,7 +851,7 @@ namespace GameToEarnLegos
                                 }
                                 foreach (Water water in waters.Where(w => (w.Tag == "water")))
                                 {
-                                    if (badguy.Rect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)) && water.HasBridge == false)
+                                    if (badguy.Rect().IntersectsWith(water.Rect()) && water.HasBridge == false)
                                     {
                                         badguy.IsInWater = true;
                                         break;
@@ -850,7 +860,7 @@ namespace GameToEarnLegos
                                         badguy.IsInWater = false;
                                 }
 
-                                if (badguy.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
+                                if (badguy.Rect().IntersectsWith(player.Rect()))
                                 {
                                     player.IsAlive = false;
                                     
@@ -879,10 +889,10 @@ namespace GameToEarnLegos
                             {
                                 boss.ShootingCoolDown --;
 
-                                boss.Move(scaleFactor, player);
+                                boss.Move(player);
                                 foreach (Border blocker in tiles.Where(t => t.Tag == "border"))
                                 {
-                                    if (boss.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                                    if (boss.Rect().IntersectsWith(blocker.Rect()))
                                     {
 
                                         if (boss.isFollowing || boss.isWanderer == false)
@@ -892,14 +902,14 @@ namespace GameToEarnLegos
                                         else
                                         {
                                             boss.Reverse();
-                                            boss.Move(scaleFactor, player);
+                                            boss.Move(player);
                                         }
                                     }
                                 }
                                 boss.UpdateAnimationState();
                             }
                         }
-                        if (boss.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
+                        if (boss.Rect().IntersectsWith(player.Rect()))
                         {
                             player.IsAlive = false;
                         }
@@ -907,7 +917,7 @@ namespace GameToEarnLegos
                     }
                     foreach (Water water in waters)
                     {
-                        if (player.WaterCheckRect(scaleFactor).IntersectsWith(water.Rect(scaleFactor)) && water.HasBridge == false)
+                        if (player.WaterCheckRect().IntersectsWith(water.Rect()) && water.HasBridge == false)
                         {
                             player.IsInWater = true;
                             if (player.IsOnFire)
@@ -944,7 +954,7 @@ namespace GameToEarnLegos
                                 amountOfAliveTrees++;
                                 amountOfBurningTrees++;
                             }
-                            foreach(Tree otherTree in tiles.Where(t => t.Tag == "tree" && t != tree && t.Rect(scaleFactor).IntersectsWith(tree.CheckAroundRect(scaleFactor))))
+                            foreach(Tree otherTree in tiles.Where(t => t.Tag == "tree" && t != tree && t.Rect().IntersectsWith(tree.CheckAroundRect())))
                             {
                                 int rand = random.Next(1000);
                                 
@@ -962,12 +972,12 @@ namespace GameToEarnLegos
                     }
                     foreach (Ammunition ammunition in ammunitions)
                     {
-                        ammunition.Move(scaleFactor);                        
+                        ammunition.Move();                        
                         foreach(Tree tree in tiles.Where(t => t.Tag == "tree"))
                         {
                             if (ammunition.BadguyAmmo)
                             {
-                                if (ammunition.Rect(scaleFactor).IntersectsWith(tree.Rect(scaleFactor)))
+                                if (ammunition.Rect().IntersectsWith(tree.Rect()))
                                 {
                                     if(tree.isOnFire == false && tree.isDead == false)
                                     {
@@ -979,7 +989,7 @@ namespace GameToEarnLegos
                             }
                             else if(ammunition.TypeOfAmmo == "water")
                             {
-                                if (ammunition.Rect(scaleFactor).IntersectsWith(tree.Rect(scaleFactor)))
+                                if (ammunition.Rect().IntersectsWith(tree.Rect()))
                                 {
                                     if (tree.isOnFire && tree.isDead == false)
                                     {
@@ -996,7 +1006,7 @@ namespace GameToEarnLegos
                         if (ammunition.IsDead == false)
                             foreach (Tile blocker in tiles.Where(t => t.IsBlocker))
                             {
-                                if (ammunition.Rect(scaleFactor).IntersectsWith(blocker.Rect(scaleFactor)))
+                                if (ammunition.Rect().IntersectsWith(blocker.Rect()))
                                 {
                                     ammunition.IsDead = true;
                                     break;
@@ -1005,7 +1015,7 @@ namespace GameToEarnLegos
                         foreach (Door door in tiles.Where(t => t.Tag == "door"))
                         {
 
-                            if (ammunition.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)) && door.IsClosed == true)
+                            if (ammunition.Rect().IntersectsWith(door.Rect()) && door.IsClosed == true)
                             {
                                 ammunition.IsDead = true;
                                 break;
@@ -1017,7 +1027,7 @@ namespace GameToEarnLegos
                             foreach (Badguy badguy in badguys.Where(b => !b.IsDead))
                             {
 
-                                if (ammunition.Rect(scaleFactor).IntersectsWith(badguy.Rect(scaleFactor)))
+                                if (ammunition.Rect().IntersectsWith(badguy.Rect()))
                                 {
                                     ammunition.IsDead = true;
                                     if (ammunition.TypeOfAmmo == "normal" || (badguy.typeOfBadguy == "tower" && ammunition.TypeOfAmmo == "water"))
@@ -1046,7 +1056,7 @@ namespace GameToEarnLegos
                             foreach (Badguy badguy in Bosses.Where(b => !b.IsDead))
                             {
 
-                                if (ammunition.Rect(scaleFactor).IntersectsWith(badguy.Rect(scaleFactor)))
+                                if (ammunition.Rect().IntersectsWith(badguy.Rect()))
                                 {
                                     ammunition.IsDead = true;
                                     if (ammunition.TypeOfAmmo == "normal")
@@ -1068,7 +1078,7 @@ namespace GameToEarnLegos
                         }
                         else
                         {
-                            if (ammunition.Rect(scaleFactor).IntersectsWith(player.Rect(scaleFactor)))
+                            if (ammunition.Rect().IntersectsWith(player.Rect()))
                             {
                                 ammunition.IsDead = true;
                                 if(player.IsOnFire == false)
@@ -1100,7 +1110,7 @@ namespace GameToEarnLegos
                         {
                             if (!(door.isBossDoor == true && Boss.NoticedPlayer == true && Boss.IsDead == false))
                             {
-                                if (PlayerUseRect(scaleFactor).Contains(door.Rect(scaleFactor)) && !player.Rect(scaleFactor).IntersectsWith(door.Rect(scaleFactor)))
+                                if (PlayerUseRect().Contains(door.Rect()) && !player.Rect().IntersectsWith(door.Rect()))
                                 {
                                     if (player.HasUsed == false)
                                     {
@@ -1161,7 +1171,7 @@ namespace GameToEarnLegos
                     }
                     foreach (AmmoPack ammoPack in ammoPacks.Where(t => t.IsPickedUp == false))
                     {
-                        if (player.Rect(scaleFactor).IntersectsWith(ammoPack.Rect(scaleFactor)))
+                        if (player.Rect().IntersectsWith(ammoPack.Rect()))
                         {
                             ammoPack.IsPickedUp = true;
                             player.NAmmo += ammoPack.ammountOfAmmo;
@@ -1170,7 +1180,7 @@ namespace GameToEarnLegos
                     foreach (Gold gold in golds.Where(t => t.IsPickedUp == false))
                     {
                         amountOfGold++;
-                        if (player.Rect(scaleFactor).IntersectsWith(gold.Rect(scaleFactor)))
+                        if (player.Rect().IntersectsWith(gold.Rect()))
                         {
                             gold.IsPickedUp = true;
                             _currentLevel.CurrentScore += 5;
@@ -1269,37 +1279,9 @@ namespace GameToEarnLegos
         public void DrawScaledTiles(Graphics g, IDrawable t)
         {
 
-            //RectangleF drawnRect;
-            //if (t != player)
-            //{
-            //    if(t is Tile)
-            //        drawnRect = new RectangleF((963/2+t.X) * scaleFactor, (543/2+t.Y) * scaleFactor, (20) * scaleFactor, (20) * scaleFactor);
-            //    else
-            //        drawnRect = new RectangleF((player.X / 2-t.X) * scaleFactor, (player.Y / 2-t.Y) * scaleFactor, (20) * scaleFactor, (20) * scaleFactor);
-            //    if (t.Brush.Color == Color.Black)
-            //    {
-            //        g.DrawImage(t.Image, drawnRect);
-            //    }
-            //    else if (t.Brush.Color == Color.White)
-            //    {
-
-            //    }
-            //    else
-            //    {
-            //        g.FillRectangle(t.Brush, drawnRect);
-            //    }
-            //}
-            //else
-            //{
-               
-            //    //963, 543
-            //    g.DrawImage(t.Image, player.StationedRect(ScaleFactor));
-
-            //}
-
             if (t.Brush.Color == Color.Black)
             {
-                g.DrawImage(t.Image, t.Rect(ScaleFactor));
+                g.DrawImage(t.Image, t.Rect());
             }
             else if (t.Brush.Color == Color.White)
             {
@@ -1307,7 +1289,7 @@ namespace GameToEarnLegos
             }
             else
             {
-                g.FillRectangle(t.Brush, t.Rect(ScaleFactor));
+                g.FillRectangle(t.Brush, t.Rect());
             }
         }
 
@@ -1326,6 +1308,64 @@ namespace GameToEarnLegos
             _currentLevel.CurrentScore = 0;
             gameOver = false;
             isPaused = false;
+        }
+
+
+        private void ListReorganizer()
+        {
+            DrawingList.Clear();
+            List<IDrawable> tmpStrg = new List<IDrawable>();
+            foreach(Water water in waters)
+            {
+                tmpStrg.Add(water);
+            }
+            foreach (Tile tile in tiles)
+            {
+                tmpStrg.Add(tile);
+            }
+            foreach (AmmoPack tile in ammoPacks.Where(t => t.IsPickedUp == false))
+            {
+                tmpStrg.Add(tile);
+            }
+            foreach (Ammunition tile in ammunitions)
+            {
+                tmpStrg.Add(tile);
+            }
+            foreach (Badguy tile in badguys)
+            {
+                tmpStrg.Add(tile);
+            }
+            foreach (Gold tile in golds.Where(t=> t.IsPickedUp == false))
+            {
+                tmpStrg.Add(tile);
+            }
+            foreach (Badguy tile in Bosses)
+            {
+                tmpStrg.Add(tile);
+            }
+            tmpStrg.Add(player);
+
+            foreach(IDrawable drawable in tmpStrg.Where(t=> t.DrawLevel == 100))
+            {
+                DrawingList.Add(drawable);
+            }
+            foreach (IDrawable drawable in tmpStrg.Where(t => t.DrawLevel == 150))
+            {
+                DrawingList.Add(drawable);
+            }
+            foreach (IDrawable drawable in tmpStrg.Where(t => t.DrawLevel == 200))
+            {
+                DrawingList.Add(drawable);
+            }
+            foreach (IDrawable drawable in tmpStrg.Where(t => t.DrawLevel == 250))
+            {
+                DrawingList.Add(drawable);
+            }
+            foreach (IDrawable drawable in tmpStrg.Where(t => t.DrawLevel == 300))
+            {
+                DrawingList.Add(drawable);
+            }
+
         }
 
     }

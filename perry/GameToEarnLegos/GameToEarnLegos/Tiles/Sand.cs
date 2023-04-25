@@ -10,6 +10,7 @@ namespace GameToEarnLegos.Tiles
     {
         public string Kind;
         public override string Tag => "sand";
+        public override int DrawLevel => 100;
         public Sand(int col, int row, string type) : base(col, row, Resources.Image_Sand) 
         { 
             Kind = type;

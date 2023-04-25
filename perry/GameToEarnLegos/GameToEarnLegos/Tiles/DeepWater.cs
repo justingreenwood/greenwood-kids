@@ -9,6 +9,7 @@ namespace GameToEarnLegos.Tiles
     public class DeepWater : Tile
     {
         public override string Tag => "deepwater";
+        public override int DrawLevel => 100;
         public DeepWater(int col, int row) : base(col, row, Resources.Image_DeepWater)
         {
             

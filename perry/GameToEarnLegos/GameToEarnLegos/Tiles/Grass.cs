@@ -9,6 +9,10 @@ namespace GameToEarnLegos.Tiles
     public class Grass : Tile
     {
         public override string Tag => "grass";
-        public Grass(int col, int row) : base(col, row, Resources.Image_Grass) { }
+        public override int DrawLevel => 100;
+        public Grass(int col, int row) : base(col, row, Resources.Image_Grass) 
+        {
+            
+        }
     }
 }
