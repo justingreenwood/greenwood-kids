@@ -1,11 +1,14 @@
 using GameToEarnLegos.Tiles;
 using System.Data.Common;
 using System.Diagnostics.Metrics;
+using System.Windows.Forms;
 
 namespace GameToEarnLegos
 {
     public partial class FormTriangleTrees : Form
     {
+        private AudioPlaybackEngine audioEngine = new AudioPlaybackEngine();
+        private SoundManager soundManager = new SoundManager();
         private GameController gameController;
         private MenuController menuController;
         //private TestGameController _testing;
@@ -28,9 +31,15 @@ namespace GameToEarnLegos
         public List<ButtonsInMenu> LevelChoices = new List<ButtonsInMenu>();
 
         public bool CHEATS => menuController.cheatsOn;
+
+
         public FormTriangleTrees()
         {
             InitializeComponent();
+
+            soundManager.loadSound(GameSounds.MenuMusic, Resources.Music_InMenu, ".mp3", audioEngine.Format);
+            soundManager.loadSound(GameSounds.GameMusic, Resources.Music_InGame, ".mp3", audioEngine.Format);
+            soundManager.loadSound(GameSounds.ShootGun1, Resources.Sound_Shoot, ".wav", audioEngine.Format);
 
             //_testing = new TestGameController(this);
             gameController = new GameController(this);
@@ -83,9 +92,37 @@ namespace GameToEarnLegos
             this.Size = GetSmallestScreenSize();
         }
 
+        public AudioPlaybackEngine AudioEngine => audioEngine;
+        public SoundManager SoundManager => soundManager;
+
         public Size GetSmallestScreenSize()
         {
             return new Size(Screen.AllScreens.Min(x => x.WorkingArea.Width), Screen.AllScreens.Min(x => x.WorkingArea.Height));
+        }
+
+        private CachedSoundSampleProvider _currentMusic = null;
+        public void PlayMusic(GameSounds soundName)
+        {
+            CachedSoundSampleProvider sound = null;
+            if (_currentMusic != null)
+            {
+                audioEngine.StopSoundInstance(_currentMusic);
+                _currentMusic = null;
+            }
+            sound = soundManager.createSoundInstance(soundName);
+            if (sound != null)
+            {
+                audioEngine.PlaySoundInstance(sound);
+                _currentMusic = sound;
+            }
+        }
+        public void PlaySound(GameSounds soundName)
+        {
+            var sound = soundManager.createSoundInstance(soundName, 10, false);
+            if (sound != null)
+            {
+                audioEngine.PlaySoundInstance(sound);
+            }
         }
 
         public List<Bitmap> NameInBitmap(string name, string color)
