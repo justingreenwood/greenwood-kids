@@ -166,6 +166,7 @@ namespace GameToEarnLegos
         
         public void Start(string startInfo = null)
         {
+            _form.PlayMusic(GameSounds.MenuMusic);
             LevelChoices.Clear();
             foreach (ButtonsInMenu level in LevelFormChoices.Where(l=> l.level != null && l.level.IsWon == true))
             {

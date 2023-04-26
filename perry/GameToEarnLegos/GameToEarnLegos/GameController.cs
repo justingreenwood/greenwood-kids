@@ -9,6 +9,7 @@ using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using GameToEarnLegos.Badguys;
 using GameToEarnLegos.Tiles;
 using static System.Net.Mime.MediaTypeNames;
@@ -323,6 +324,7 @@ namespace GameToEarnLegos
                                 player.NAmmo -= 1;
                                 ammunitions.Add(new Ammunition(player.X, player.Y, player.LastWentDirection, "normal"));
                                 ShootingCoolDown = 10;
+                                _form.PlaySound(GameSounds.ShootGun1);
                             }
                         }
                     }
@@ -428,6 +430,7 @@ namespace GameToEarnLegos
 
         public void Start(string startInfo = null)
         {
+            _form.PlayMusic(GameSounds.GameMusic);
             int checkRow = levelTop.Length - 1;
 
             char lastLetter = 'z';
