@@ -22,20 +22,19 @@ namespace GameToEarnLegos
         private int _levelCount => _levels.Count;
         public int levelChoiceNumber = 0;
         public ILevel levelChoice;
-        //public float ScaleFactor => 1;
         private bool GoingDown = false;
         private bool GoingUp = false;
         private bool _playButtonPressed = false;
         private bool _optionButtonPressed = false;
         private int buttonChoice = 1;
         private int DistanceDown = 180;
-        //private int optionChoice = 1;
+        private bool _AllLevelsWon = false;
         public bool cheatsOn = false;
         private List<ButtonsInMenu> MenuChoices => _form.MenuChoices;
         private List<ButtonsInMenu> OptionChoices => _form.OptionChoices;
-        //private List<ButtonsInMenu> LevelChoices => _form.LevelChoices;
         private List<ButtonsInMenu> LevelChoices = new List<ButtonsInMenu>();
         private List<ButtonsInMenu> LevelFormChoices => _form.LevelChoices;
+        private List<ButtonsInMenu> OriginalLevelFromChoices;
         public MenuController(FormTriangleTrees form)
         {
             _form = form;
@@ -48,9 +47,7 @@ namespace GameToEarnLegos
             var textTopOffset = (int)Math.Round(this._form.Height * 0.2);
             var textLeftOffset = (int)Math.Round(this._form.Width * 0.4);
 
-            g.DrawImage(Resources.Image_MenuBackground, imageRect);// 0, 0, this._form.Width, this._form.Height);
-            //var titleWidth = (int)Math.Round(this._form.Width * 0.8); 
-            //var titleHeight = (int)Math.Round((double)titleWidth * ((double)Resources.Image_Title.Height / (double)Resources.Image_Title.Width)); 
+            g.DrawImage(Resources.Image_MenuBackground, imageRect);
             g.DrawImage(Resources.Image_Title,
                 Convert.ToInt32(Math.Round(this._form.Width * 0.1)), Convert.ToInt32(Math.Round(this._form.Height*0.1)),
                 titleWidth, titleHeight);
@@ -71,6 +68,27 @@ namespace GameToEarnLegos
             else if (_optionButtonPressed)
             {
                 DrawWords(OptionChoices, g, textLeftOffset, textTopOffset);
+                for (int i = 1; i <= OptionChoices.Count; i++)
+                {
+                    if (i != OptionChoices.Count)
+                    {
+                        if (i == 1)
+                        {
+                            if(cheatsOn)
+                            g.DrawString($"On",SystemFonts.DefaultFont, Brushes.Black, textLeftOffset, textTopOffset + (i * 60) + 40);
+                            else
+                                g.DrawString($"Off", SystemFonts.DefaultFont, Brushes.Black, textLeftOffset, textTopOffset + (i * 60) + 40);
+                        }
+                        else if (i == 2)
+                        {
+                            if (_AllLevelsWon)
+                                g.DrawString($"On", SystemFonts.DefaultFont, Brushes.Black, textLeftOffset, textTopOffset + (i * 60) + 40);
+                            else
+                                g.DrawString($"Off", SystemFonts.DefaultFont, Brushes.Black, textLeftOffset, textTopOffset + (i * 60) + 40);
+                        }
+                        
+                    }
+                }
             }
             else
             {
@@ -113,9 +131,13 @@ namespace GameToEarnLegos
                     }
                     else if (buttonChoice == 2)
                     {
-                        foreach (Level level in _levels)
-                        {
-                            level.IsWon = true;
+                        if (_AllLevelsWon == false)
+                        {                            
+                            foreach (Level level in _levels)
+                            {
+                                level.IsWon = true;
+                            }
+                            _AllLevelsWon = true;
                             Start();
                         }
                     }

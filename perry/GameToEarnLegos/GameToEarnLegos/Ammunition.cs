@@ -12,7 +12,7 @@ namespace GameToEarnLegos
         public float X;
         private SolidBrush brush = new SolidBrush(Color.Black);
         public float Y;
-        private int LengthOfDirection = 20;
+        private int LengthOfDirection = 30;
         private float BaseSpeed = 4f;
         public float SpeedUpOrDown = 0;
         public float SpeedLeftOrRight = 0;
@@ -87,23 +87,33 @@ namespace GameToEarnLegos
             {
                 image = Resources.Image_WaterAmmo;
                 TypeOfAmmo = type;
-                LengthOfDirection = 15;
+                LengthOfDirection = 20;
                 Damage = 6;
             }
 
 
         }
 
-        public Ammunition(float x, float y, float leftRight, float upDown)
+        public Ammunition(float x, float y, float leftRight, float upDown, string type)
         {
             SpeedLeftOrRight = leftRight;
             SpeedUpOrDown = upDown;
             X = x;
             Y = y;
             BadguyAmmo = true;
-            TypeOfAmmo = "fire";
-            image = Resources.Image_BadguyFireAmmo;
+            if (type == "fire")
+            {
+                TypeOfAmmo = "fire";
+                image = Resources.Image_BadguyFireAmmo;
+            }
+            else if(type == "dragonfire")
+            {
+                TypeOfAmmo = "fire";
+                LengthOfDirection = 15;
+                image = Resources.Image_BadguyFireAmmo;
+            }
         }
+
         public void Move()
         {
 

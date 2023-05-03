@@ -106,52 +106,7 @@ namespace GameToEarnLegos
                 DrawScaledTiles(g, tile);
             }
 
-            //foreach (Tile tile in tiles.Where(t=>  (visibleRect.IntersectsWith(t.Rect())) && t.Tag != "door" && t.Tag != "border"))
-            //{                       
-            //    DrawScaledTiles(g, tile);
-            //}
-            //foreach (Water water in waters.Where(t => (visibleRect.IntersectsWith(t.Rect()))))
-            //{
-            //    DrawScaledTiles(g, water);
-            //}
-
-            //foreach (Border border in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect())) && t.Tag == "border"))
-            //{
-            //    DrawScaledTiles(g, border);
-            //}
-            //foreach (Gold gold in golds.Where(t => (t.IsPickedUp == false) && (visibleRect.IntersectsWith(t.Rect()))))
-            //{
-            //    DrawScaledTiles(g, gold);
-            //}
-            //foreach (AmmoPack ammopack in ammoPacks.Where(t => (t.IsPickedUp == false) && visibleRect.IntersectsWith(t.Rect())))
-            //{
-            //    DrawScaledTiles(g, ammopack);
-            //}
-            //foreach (Badguy badguy in badguys.Where(t => visibleRect.IntersectsWith(t.Rect())))
-            //{
-            //    DrawScaledTiles(g, badguy);
-            //}
-            //if (player.IsAlive)
-            //    DrawScaledTiles(g, player);            
-            //foreach (Ammunition ammunition in ammunitions.Where(t => visibleRect.IntersectsWith(t.Rect())))
-            //{
-            //    DrawScaledTiles(g, ammunition);
-            //}
-            //foreach (Door door in tiles.Where(t => (visibleRect.IntersectsWith(t.Rect())) && t.Tag == "door"))
-            //{
-            //    if (door.IsClosed == true)
-            //    {
-            //        door.image = door.closedImage;
-            //    }
-            //    else
-            //        door.image = door.openImage;
-            //    DrawScaledTiles(g, door);
-            //}
-            //foreach(Badguy boss in Bosses.Where(t => visibleRect.IntersectsWith(t.Rect())))
-            //{
-            //    DrawScaledTiles(g, boss);
-            //}
-            //var img = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom), g);
+            
             var unit = GraphicsUnit.Pixel;
             bigG.DrawImage(
                 smallImage,
@@ -841,6 +796,7 @@ namespace GameToEarnLegos
                                             if (door.IsClosed == true)
                                             {
                                                 door.IsClosed = false;
+                                                door.image = door.openImage;
                                             }
 
                                         }
@@ -849,6 +805,7 @@ namespace GameToEarnLegos
                                     if (door.IsClosed == false && badguy.IsBoss && badguy.NoticedPlayer)
                                     {
                                         door.IsClosed = true;
+                                        door.image = door.closedImage;
                                     }
 
                                 }
@@ -1120,10 +1077,12 @@ namespace GameToEarnLegos
                                         if (door.IsClosed == true)
                                         {
                                             door.IsClosed = false;
+                                            door.image = door.openImage;
                                         }
                                         else
                                         {
                                             door.IsClosed = true;
+                                            door.image = door.closedImage;
                                         }
                                         player.HasUsed = true;
                                     }

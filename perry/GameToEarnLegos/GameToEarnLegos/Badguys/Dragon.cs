@@ -27,6 +27,7 @@ namespace GameToEarnLegos.Badguys
             animationUp = Animations.DragonUp;
             animationDown = Animations.DragonDown;
             image = Resources.Image_DragonStillDown;
+            AmmoType = "dragonfire";
         }
 
         public override void UpdateAnimationState()

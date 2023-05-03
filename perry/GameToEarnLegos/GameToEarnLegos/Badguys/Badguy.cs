@@ -34,6 +34,7 @@ namespace GameToEarnLegos.Badguys
         public float Width = 15;
         public float Height = 15;
         public bool IsBoss = false;
+        public string AmmoType = "fire";
 
         public int UpDownDirection = 0;
         public int RightLeftDirection = 0;
@@ -241,7 +242,7 @@ namespace GameToEarnLegos.Badguys
         {
 
             double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
-            if (distance < 80 && lineOfSightIsBlocked == false)
+            if (distance < 120 && lineOfSightIsBlocked == false)
             {
 
                 if (isFollower)
@@ -250,7 +251,7 @@ namespace GameToEarnLegos.Badguys
                     NoticedPlayer = true;
                 }
             }
-            else if (distance >= 80 && isFollowing)
+            else if (distance >= 120 && isFollowing)
             {
                 isFollowing = false;
                 LengthOfDirection = 0;
@@ -351,7 +352,7 @@ namespace GameToEarnLegos.Badguys
 
             AmmoSpeedLeftOrRight = FractionMath(distanceF, distanceX, AmmoSpeed);
             AmmoSpeedUpOrDown = FractionMath(distanceF, distanceY, AmmoSpeed);
-            Ammunition ammo = new Ammunition(X, Y, AmmoSpeedLeftOrRight, AmmoSpeedUpOrDown);
+            Ammunition ammo = new Ammunition(X, Y, AmmoSpeedLeftOrRight, AmmoSpeedUpOrDown, AmmoType);
             return ammo;
 
         }
@@ -360,7 +361,7 @@ namespace GameToEarnLegos.Badguys
         {
 
             double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
-            if (distance <= 100)
+            if (distance <= 180)
             {
                 return true;
             }

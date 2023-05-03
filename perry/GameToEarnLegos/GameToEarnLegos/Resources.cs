@@ -9,11 +9,11 @@ namespace GameToEarnLegos
     public static class Resources
     {
         public static MemoryStream Music_InMenu = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Elwood - Dead lock.mp3"));
-        public static MemoryStream Music_InGame = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Purely Grey - KASTET.mp3"));
+        public static MemoryStream Music_InGame = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Elwood - Dead lock.mp3"));
+        public static MemoryStream NotUsedMusic_InGame = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Purely Grey - KASTET.mp3"));
         public static MemoryStream Sound_Shoot = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\shoot-sound-001.wav"));
 
         public static Bitmap Image_Wall = new Bitmap(@"Resources\Images\Building Blocks\Wall.png");
-        //public static Bitmap Image_IntroBackground = new Bitmap(@"Resources\Images\Menu Images\BackGround.png");
         public static Bitmap Image_Border = new Bitmap(@"Resources\Images\Building Blocks\PerrysArtBorder.png");
         public static Bitmap Image_Title = new Bitmap(@"Resources\Images\Menu Images\Title.png");
 
@@ -35,7 +35,6 @@ namespace GameToEarnLegos
         public static Bitmap Image_DeadTowerBadguy = new Bitmap(@"Resources\Images\Badguy\DeadTowerBadguy.png");
         public static Bitmap Image_TowerBadguy = new Bitmap(@"Resources\Images\Badguy\TowerBadguy.png");
 
-        //public static Bitmap Image_NormalWater = new Bitmap(@"Resources\Images\NormalWater.png");
         public static Bitmap Image_Sand = new Bitmap(@"Resources\Images\Sand.png");
         public static Bitmap Image_Grass = new Bitmap(@"Resources\Images\Grass\Grass.png");
         public static Bitmap Image_Treasure = new Bitmap(@"Resources\Images\TreasureChest.png");
