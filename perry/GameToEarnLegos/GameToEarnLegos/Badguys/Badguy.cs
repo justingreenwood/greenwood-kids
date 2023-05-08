@@ -16,7 +16,7 @@ namespace GameToEarnLegos.Badguys
     public abstract class Badguy : IDrawable
     {
         Random random = new Random();
-        private int _drawLevel = 300;
+        private int _drawLevel = 200;
         public int DrawLevel => _drawLevel;
         public float X;
         public float Y;
@@ -186,7 +186,7 @@ namespace GameToEarnLegos.Badguys
         {
             return new RectangleF(CenterPoint.X * scale - 0.5f * (20 * scale * 8), CenterPoint.Y * scale - 0.5f * (20 * scale * 8), 20 * scale * 8, 20 * scale * 8);
         }
-        private static double GetDistance(PointF p1, PointF p2)
+        protected static double GetDistance(PointF p1, PointF p2)
         {
             return Math.Sqrt(Math.Pow(p2.X - p1.X, 2) + Math.Pow(p2.Y - p1.Y, 2));
         }
@@ -242,16 +242,16 @@ namespace GameToEarnLegos.Badguys
         {
 
             double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
-            if (distance < 120 && lineOfSightIsBlocked == false)
+            if (CheckIfNoticed(player) && lineOfSightIsBlocked == false)
             {
 
                 if (isFollower)
                 {
                     isFollowing = true;
-                    NoticedPlayer = true;
+                    //NoticedPlayer = true;
                 }
             }
-            else if (distance >= 120 && isFollowing)
+            else if (CheckIfNoticed(player) == false && isFollowing)
             {
                 isFollowing = false;
                 LengthOfDirection = 0;
@@ -357,11 +357,11 @@ namespace GameToEarnLegos.Badguys
 
         }
 
-        public bool CheckIfNoticed(Player player)
+        public virtual bool CheckIfNoticed(Player player)
         {
 
             double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
-            if (distance <= 180)
+            if (distance <= 120)
             {
                 return true;
             }

@@ -24,5 +24,17 @@ namespace GameToEarnLegos.Badguys
             animationDown = Animations.BadguyKingDown;
             image = Resources.Image_BadguyKing_Right_1;
         }
+        public override bool CheckIfNoticed(Player player)
+        {
+
+            double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
+            if (distance <= 60)
+            {
+                return true;
+            }
+            else
+                return false;
+
+        }
     }
 }

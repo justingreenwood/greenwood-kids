@@ -100,6 +100,8 @@ namespace GameToEarnLegos
             var smallImage = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom));
             var g = Graphics.FromImage(smallImage);
 
+            bigG.DrawImage(Resources.Image_MenuBackground, 0, 0, this._form.Width, this._form.Height);
+
             ListReorganizer();
             foreach (IDrawable tile in DrawingList.Where(t => (visibleRect.IntersectsWith(t.Rect()))))
             {
@@ -116,33 +118,38 @@ namespace GameToEarnLegos
             //g.SetClip(visibleRect, System.Drawing.Drawing2D.CombineMode.Replace);
             //g.clip(visibleRect.X, visibleRect.Y);
 
-
+            
             if (CHEATS)
             {
+                bigG.FillRectangle(Brushes.Black, 0, 0, this._form.Width / 2, 25);
                 bigG.DrawString($"IsRunning:{player.IsRunning} isEscape {EscapeKeyIsUsed} IsInWater:{player.IsInWater} IsShooting:{player.IsShooting} " +
                     $"Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Normal Ammo: {player.NAmmo} Score: {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Health: {player.Health} HasUsed: {player.HasUsed} UsingKey: {player.UsingKey}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
             else if (goal == "Extinguish")
             {
+                bigG.FillRectangle(Brushes.Black, 0, 0, this._form.Width / 2, 25);
                 bigG.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys} Alive Trees: {AliveTrees} Burning Trees: {BurningTrees} Trees Needed Alive: {NeededTrees}",
                    SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
             else
             {
+                bigG.FillRectangle(Brushes.Black, 0, 0, this._form.Width / 4, 25);
                 bigG.DrawString($" Health: {player.Health} Kind of Ammo: {player.CurrentTypeOfAmmo} Water: {player.WAmmo} Weapon: {player.NAmmo} Score {_currentLevel.CurrentScore}/{_currentLevel.Score} Badguys: {AliveBadguys}",
                     SystemFonts.DefaultFont, Brushes.LightGray, 5, 5);
             }
 
             if (gameOver == true)
             {
-                bigG.DrawString($"Press 'Enter' to continue.",
-                    SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
+                bigG.FillRectangle(Brushes.Black, 780, 455, 100, 50);
+                bigG.DrawString($"Game Over",
+                    SystemFonts.DefaultFont, Brushes.LightGray, 800, 475);
             }
             else if (isPaused)
             {
+                bigG.FillRectangle(Brushes.Black, 780, 455, 240, 50);
                 bigG.DrawString($"Do you want to exit level? (Y)es (N)o",
-                    SystemFonts.DefaultFont, Brushes.LightGray, 700, 400);
+                    SystemFonts.DefaultFont, Brushes.LightGray, 800, 475);
             }
 
         }
@@ -169,22 +176,22 @@ namespace GameToEarnLegos
                         _visibleRectangleZoom += 0.1f;
                         _visibleRectangle = Rectangle.Empty; // clear the rectangle so it can be resized
                     }
-                    if (e.KeyCode == Keys.S)
+                    if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
                     {
                         player.GoingDown = true;
                         player.GoingUp = false;
                     }
-                    if (e.KeyCode == Keys.W)
+                    if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
                     {
                         player.GoingUp = true;
                         player.GoingDown = false;
                     }
-                    if (e.KeyCode == Keys.A)
+                    if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
                     {
                         player.GoingLeft = true;
                         player.GoingRight = false;
                     }
-                    if (e.KeyCode == Keys.D)
+                    if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
                     {
                         player.GoingRight = true;
                         player.GoingLeft = false;
@@ -291,14 +298,21 @@ namespace GameToEarnLegos
                             if (ShootingCoolDown == 0)
                             {
                                 player.WAmmo -= 1;
-                                ammunitions.Add(new Ammunition(player.X, player.Y, player.LastWentDirection, "water"));
+                                if (player.IsOnFire == false)
+                                {
+                                    ammunitions.Add(new Ammunition(player.X, player.Y, player.LastWentDirection, "water"));
+                                }
+                                else
+                                {
+                                    player.IsOnFire = false;
+                                }
                                 ShootingCoolDown = 10;
                             }
                         }
                     }
                 }
             }
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Escape)
             {
                 if (gameOver)
                 {
@@ -321,19 +335,19 @@ namespace GameToEarnLegos
             {
                 player.IsShooting = false;
             }
-            if (e.KeyCode == Keys.S)
+            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
             {
                 player.GoingDown = false;
             }
-            if (e.KeyCode == Keys.W)
+            if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
             {
                 player.GoingUp = false;
             }
-            if (e.KeyCode == Keys.A)
+            if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
             {
                 player.GoingLeft = false;
             }
-            if (e.KeyCode == Keys.D)
+            if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
             {
                 player.GoingRight = false;
             }
@@ -427,7 +441,7 @@ namespace GameToEarnLegos
                             badguys.Add(new Deer(column, row,1));
                             break;
                         case 'E':
-                            tiles.Add(new Water(column, row));
+                            waters.Add(new Water(column, row));
                             if (lastLetter == 'W' || lastLetter == 'Q')
                                 tiles.Add(new Bridge(column, row, false));
                             else
@@ -802,7 +816,7 @@ namespace GameToEarnLegos
                                         }
                                     }
 
-                                    if (door.IsClosed == false && badguy.IsBoss && badguy.NoticedPlayer)
+                                    if (door.IsClosed == false && badguy.IsBoss && badguy.NoticedPlayer && door.isBossDoor)
                                     {
                                         door.IsClosed = true;
                                         door.image = door.closedImage;
