@@ -39,6 +39,7 @@ namespace GameToEarnLegos
 
             soundManager.loadSound(GameSounds.MenuMusic, Resources.Music_InMenu, ".mp3", audioEngine.Format);
             soundManager.loadSound(GameSounds.GameMusic, Resources.Music_InGame, ".mp3", audioEngine.Format);
+            soundManager.loadSound(GameSounds.LastLevelMusic, Resources.Music_InLastLevel, ".mp3", audioEngine.Format);
             soundManager.loadSound(GameSounds.ShootGun1, Resources.Sound_Shoot, ".wav", audioEngine.Format);
 
             //_testing = new TestGameController(this);

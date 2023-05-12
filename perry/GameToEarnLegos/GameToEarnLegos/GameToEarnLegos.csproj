@@ -576,6 +576,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="Resources\Audio\Adventure Begins.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Audio\ButtmunchiansForGame.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Audio\Elwood - Dead lock.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

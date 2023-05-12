@@ -213,6 +213,7 @@ namespace GameToEarnLegos
     {
         MenuMusic,
         GameMusic,
+        LastLevelMusic,
         ShootGun1
     }
 

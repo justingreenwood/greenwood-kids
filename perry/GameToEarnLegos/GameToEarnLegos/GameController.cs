@@ -399,7 +399,7 @@ namespace GameToEarnLegos
 
         public void Start(string startInfo = null)
         {
-            _form.PlayMusic(GameSounds.GameMusic);
+            _form.PlayMusic(_currentLevel.Music);
             int checkRow = levelTop.Length - 1;
 
             char lastLetter = 'z';
@@ -918,6 +918,7 @@ namespace GameToEarnLegos
                             {
                                 tree.isDead = true;
                                 tree.image = tree.DeadImage;
+                                tree.isOnFire = false;
                             }
                             else
                             {

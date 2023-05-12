@@ -8,9 +8,10 @@ namespace GameToEarnLegos
 {
     public static class Resources
     {
-        public static MemoryStream Music_InMenu = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Elwood - Dead lock.mp3"));
-        public static MemoryStream Music_InGame = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Elwood - Dead lock.mp3"));
-        public static MemoryStream NotUsedMusic_InGame = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Purely Grey - KASTET.mp3"));
+        public static MemoryStream Music_InMenu = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\ButtmunchiansForGame.mp3"));
+        public static MemoryStream Music_InGame = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Adventure Begins.mp3"));
+        public static MemoryStream Music_InLastLevel = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Elwood - Dead lock.mp3"));
+        //public static MemoryStream NotUsedMusic_InGame = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Purely Grey - KASTET.mp3"));
         public static MemoryStream Sound_Shoot = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\shoot-sound-001.wav"));
 
         public static Bitmap Image_Wall = new Bitmap(@"Resources\Images\Building Blocks\Wall.png");

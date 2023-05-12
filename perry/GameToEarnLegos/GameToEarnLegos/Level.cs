@@ -16,6 +16,7 @@ namespace GameToEarnLegos
         int HighScore { get; set;}
         int CurrentScore { get; set; }
         string Goal { get; }
+        GameSounds Music { get; }
 
     }
     public abstract class Level : ILevel
@@ -70,6 +71,7 @@ namespace GameToEarnLegos
         public bool IsWon { get; set; }
         public int HighScore { get; set; }
         public virtual string Goal => "Elimination";
+        public virtual GameSounds Music => GameSounds.GameMusic;
     }
     public class Level1 : Level
     {
@@ -133,5 +135,7 @@ namespace GameToEarnLegos
         public override string[] levelTop => File.ReadAllLines(@"Resources/Maps/Level10.txt");
         public override string Name => "To Slay A Beast";
         public override string Goal => "?????????";
+        public override GameSounds Music => GameSounds.LastLevelMusic;
+
     }
 }
