@@ -1015,6 +1015,7 @@ namespace GameToEarnLegos
                                     }
                                     if (badguy.Health <= 0)
                                     {
+                                        _form.PlaySound(GameSounds.Bleah);
                                         badguy.IsDead = true;
                                         aliveBadguys--;
                                         if (badguy.IsBoss)

@@ -121,7 +121,7 @@ namespace GameToEarnLegos
                 }
                 else if (_optionButtonPressed)
                 {
-                    if(buttonChoice == 1)
+                    if (buttonChoice == 1) 
                     {
                         if (cheatsOn)
                             cheatsOn = false;
@@ -148,17 +148,26 @@ namespace GameToEarnLegos
                 }
                 else
                 {
-                    if(buttonChoice == 1)
+                    if (buttonChoice > 0 && buttonChoice <= MenuChoices.Count)
                     {
-                        _playButtonPressed = true;
-                    }
-                    else if(buttonChoice == 2)
-                    {
-                        _optionButtonPressed = true;
-                    }
-                    else if (buttonChoice == 3)
-                    {
-                        Application.Exit();
+                        var currentChoice = MenuChoices[buttonChoice - 1].Name;
+                        switch (currentChoice)
+                        {
+                            case "Play": _playButtonPressed = true; break;
+                            case "Options": _optionButtonPressed = true; break;
+                            case "Save":
+                                {
+                                    this._form.Save();
+                                    break;
+                                }
+                            case "Load":
+                                {
+                                    this._form.LoadLatest();
+                                    Start();
+                                    break;
+                                }
+                            default: Application.Exit(); break;
+                        }
                     }
                 }
                 buttonChoice = 1;

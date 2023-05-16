@@ -13,6 +13,7 @@ namespace GameToEarnLegos
         public static MemoryStream Music_InLastLevel = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Elwood - Dead lock.mp3"));
         //public static MemoryStream NotUsedMusic_InGame = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Purely Grey - KASTET.mp3"));
         public static MemoryStream Sound_Shoot = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\shoot-sound-001.wav"));
+        public static MemoryStream Sound_Bleah = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\bleah.wav"));
 
         public static Bitmap Image_Wall = new Bitmap(@"Resources\Images\Building Blocks\Wall.png");
         public static Bitmap Image_Border = new Bitmap(@"Resources\Images\Building Blocks\PerrysArtBorder.png");

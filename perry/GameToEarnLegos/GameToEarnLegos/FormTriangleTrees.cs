@@ -1,3 +1,4 @@
+using GameToEarnLegos.Save;
 using GameToEarnLegos.Tiles;
 using System.Data.Common;
 using System.Diagnostics.Metrics;
@@ -41,6 +42,7 @@ namespace GameToEarnLegos
             soundManager.loadSound(GameSounds.GameMusic, Resources.Music_InGame, ".mp3", audioEngine.Format);
             soundManager.loadSound(GameSounds.LastLevelMusic, Resources.Music_InLastLevel, ".mp3", audioEngine.Format);
             soundManager.loadSound(GameSounds.ShootGun1, Resources.Sound_Shoot, ".wav", audioEngine.Format);
+            soundManager.loadSound(GameSounds.Bleah, Resources.Sound_Bleah, ".wav", audioEngine.Format);
 
             //_testing = new TestGameController(this);
             gameController = new GameController(this);
@@ -61,6 +63,8 @@ namespace GameToEarnLegos
 
             MenuChoices.Add(new ButtonsInMenu("Play"));
             MenuChoices.Add(new ButtonsInMenu("Options"));
+            MenuChoices.Add(new ButtonsInMenu("Save"));
+            MenuChoices.Add(new ButtonsInMenu("Load"));
             MenuChoices.Add(new ButtonsInMenu("Exit"));
             OptionChoices.Add(new ButtonsInMenu("Cheats"));
             OptionChoices.Add(new ButtonsInMenu("Win All Games"));
@@ -91,6 +95,44 @@ namespace GameToEarnLegos
             //this.SetStyle(ControlStyles.OptimizedDoubleBuffer, true);
 
             this.Size = GetSmallestScreenSize();
+        }
+
+        public void Save()
+        {
+            var savedGame = new SavedGame
+            {
+                Name = "poopy"
+            };
+            foreach (var level in this.levels)
+            {
+                savedGame.Levels.Add(new SavedGame.SavedLevel
+                {
+                    Name = level.Name,
+                    CurrentScore = level.CurrentScore,
+                    HighScore = level.HighScore,
+                    IsWon = level.IsWon,
+                });
+            }
+            savedGame.Save();
+        }
+
+        public void LoadLatest()
+        {
+            var savedGames = SavedGame.GetSavedGames();
+            if (savedGames.Count > 0)
+            {
+                var sg = savedGames.MaxBy(x => x.TimeSaved);
+                foreach (var level in this.levels)
+                {
+                    var savedLevel = sg.Levels.FirstOrDefault(x=> x.Name == level.Name);
+                    if (savedLevel != null)
+                    {
+                        level.CurrentScore = savedLevel.CurrentScore;
+                        level.HighScore = savedLevel.HighScore;
+                        level.IsWon = savedLevel.IsWon;
+                    }
+                }
+            }
         }
 
         public AudioPlaybackEngine AudioEngine => audioEngine;

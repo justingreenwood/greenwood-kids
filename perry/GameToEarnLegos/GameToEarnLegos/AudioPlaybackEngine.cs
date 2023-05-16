@@ -214,7 +214,8 @@ namespace GameToEarnLegos
         MenuMusic,
         GameMusic,
         LastLevelMusic,
-        ShootGun1
+        ShootGun1,
+        Bleah
     }
 
     public class SoundManager
