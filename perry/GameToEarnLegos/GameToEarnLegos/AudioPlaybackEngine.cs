@@ -215,7 +215,12 @@ namespace GameToEarnLegos
         GameMusic,
         LastLevelMusic,
         ShootGun1,
-        Bleah
+        Bleah,
+        OhYeah,
+        CHL,
+        RefillWater,
+        Wfff
+
     }
 
     public class SoundManager

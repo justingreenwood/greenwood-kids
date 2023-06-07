@@ -14,17 +14,22 @@ namespace GameToEarnLegos
         //public static MemoryStream NotUsedMusic_InGame = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Purely Grey - KASTET.mp3"));
         public static MemoryStream Sound_Shoot = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\shoot-sound-001.wav"));
         public static MemoryStream Sound_Bleah = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\bleah.wav"));
-
+        public static MemoryStream Sound_OhYeah = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\ohyeabeautiful.wav"));
+        public static MemoryStream Sound_Chl = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\CHL.wav"));
+        public static MemoryStream Sound_Wfff = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Wffff.wav"));
+        public static MemoryStream Sound_RefillWater = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\BOLS2.wav"));
         public static Bitmap Image_Wall = new Bitmap(@"Resources\Images\Building Blocks\Wall.png");
         public static Bitmap Image_Border = new Bitmap(@"Resources\Images\Building Blocks\PerrysArtBorder.png");
         public static Bitmap Image_Title = new Bitmap(@"Resources\Images\Menu Images\Title.png");
-
+        public static Bitmap Image_Fire = new Bitmap(@"Resources\Images\Building Blocks\FirePlace.png");
+        public static Bitmap Image_FireOut = new Bitmap(@"Resources\Images\Building Blocks\FirePlaceOut.png");
 
         public static Bitmap Image_Tree1 = new Bitmap(@"Resources\Images\Trees\PerrysArtTree1.png");
-        public static Bitmap Image_Tree2 = new Bitmap(@"Resources\Images\Trees\PerrysArtChristmasTree.png");
         public static Bitmap Image_TreeBurned = new Bitmap(@"Resources\Images\Trees\BurnedTree.png");
         public static Bitmap Image_TreeOnFire = new Bitmap(@"Resources\Images\Trees\TreeOnFire.png");
-
+        public static Bitmap Image_Tree2 = new Bitmap(@"Resources\Images\Trees\PerrysArtChristmasTree.png");
+        public static Bitmap Image_Tree2OnFire = new Bitmap(@"Resources\Images\Trees\ChristmasTreeOnFire.png");
+        public static Bitmap Image_Tree2Burned = new Bitmap(@"Resources\Images\Trees\ChristmasTreeBurned.png");
 
         public static Bitmap Image_Ammo = new Bitmap(@"Resources\Images\Weapon.png");
         public static Bitmap Image_WaterAmmo = new Bitmap(@"Resources\Images\WaterAmmo.png");
@@ -32,6 +37,7 @@ namespace GameToEarnLegos
         public static Bitmap Image_AmmoPack = new Bitmap(@"Resources\Images\Ammopack.png");
 
         public static Bitmap Image_MenuBackground = new Bitmap(@"Resources\Images\Menu Images\MenuBackground.png");
+        public static Bitmap Image_MenuBackgroundSnow = new Bitmap(@"Resources\Images\Menu Images\MenuBackgroundSnow.png");
 
         public static Bitmap Image_DeadBadguy = new Bitmap(@"Resources\Images\Badguy\DeadBadguy.png");
         public static Bitmap Image_DeadTowerBadguy = new Bitmap(@"Resources\Images\Badguy\DeadTowerBadguy.png");
@@ -39,6 +45,7 @@ namespace GameToEarnLegos
 
         public static Bitmap Image_Sand = new Bitmap(@"Resources\Images\Sand.png");
         public static Bitmap Image_Grass = new Bitmap(@"Resources\Images\Grass\Grass.png");
+        public static Bitmap Image_Grass2 = new Bitmap(@"Resources\Images\Grass\SnowGrass.png");
         public static Bitmap Image_Treasure = new Bitmap(@"Resources\Images\TreasureChest.png");
 
         public static Bitmap Image_ClosedDoor_Wide = new Bitmap(@"Resources\Images\Building Blocks\BlandDoor.png");
@@ -57,11 +64,14 @@ namespace GameToEarnLegos
         public static Bitmap Image_WaterLeftRight = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterLeftRightGrass.png");
         public static Bitmap Image_WaterTopLeftRight = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopLeftRightGrass.png");
         public static Bitmap Image_WaterBottomLeftRight = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterBottomLeftRightGrass.png");
-        public static Bitmap Image_WaterTopBottom = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopBottomGrass.png");
-        
+        public static Bitmap Image_WaterTopBottom = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopBottomGrass.png");        
         public static Bitmap Image_WaterTopBottomLeft = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopBottomLeftGrass.png");
         public static Bitmap Image_WaterTopLeft = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterTopLeftGrass.png");
         public static Bitmap Image_WaterBottomLeft = new Bitmap(@"Resources\Images\SmartWater\Grass\SmartWaterBottomLeftGrass.png");
+        public static Bitmap Image_WaterTopRight = FlipXImage(Image_WaterTopLeft);
+        public static Bitmap Image_WaterBottomRight = FlipXImage(Image_WaterBottomLeft);
+        public static Bitmap Image_WaterRight = FlipXImage(Image_WaterLeft);
+        public static Bitmap Image_WaterTopBottomRight = FlipXImage(Image_WaterTopBottomLeft);
 
         public static Bitmap Image_WaterLeftBlank = new Bitmap(@"Resources\Images\SmartWater\Blank\SmartWaterLeft.png");
         public static Bitmap Image_WaterTopBlank = new Bitmap(@"Resources\Images\SmartWater\Blank\SmartWaterTop.png");
@@ -70,24 +80,36 @@ namespace GameToEarnLegos
         public static Bitmap Image_WaterTopLeftRightBlank = new Bitmap(@"Resources\Images\SmartWater\Blank\SmartWaterTopLeftRight.png");
         public static Bitmap Image_WaterBottomLeftRightBlank = new Bitmap(@"Resources\Images\SmartWater\Blank\SmartWaterBottomLeftRight.png");
         public static Bitmap Image_WaterTopBottomBlank = new Bitmap(@"Resources\Images\SmartWater\Blank\SmartWaterTopBottom.png");
-
         public static Bitmap Image_WaterTopBottomLeftBlank = new Bitmap(@"Resources\Images\SmartWater\Blank\SmartWaterTopBottomLeft.png");
         public static Bitmap Image_WaterTopLeftBlank = new Bitmap(@"Resources\Images\SmartWater\Blank\SmartWaterTopLeft.png");
         public static Bitmap Image_WaterBottomLeftBlank = new Bitmap(@"Resources\Images\SmartWater\Blank\SmartWaterBottomLeft.png");
+        public static Bitmap Image_WaterTopRightBlank = FlipXImage(Image_WaterTopLeftBlank);
+        public static Bitmap Image_WaterBottomRightBlank = FlipXImage(Image_WaterBottomLeftBlank);
+        public static Bitmap Image_WaterRightBlank = FlipXImage(Image_WaterLeftBlank);
+        public static Bitmap Image_WaterTopBottomRightBlank = FlipXImage(Image_WaterTopBottomLeftBlank);
+
+        public static Bitmap Image_WaterLeftSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterLeftSnow.png");
+        public static Bitmap Image_WaterTopSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterTopSnow.png");
+        public static Bitmap Image_WaterBottomSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterBottomSnow.png");
+        public static Bitmap Image_WaterLeftRightSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterLeftRightSnow.png");
+        public static Bitmap Image_WaterTopLeftRightSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterTopLeftRightSnow.png");
+        public static Bitmap Image_WaterBottomLeftRightSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterBottomLeftRightSnow.png");
+        public static Bitmap Image_WaterTopBottomSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterTopBottomSnow.png");
+        public static Bitmap Image_WaterTopBottomLeftSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterTopBottomLeftSnow.png");
+        public static Bitmap Image_WaterTopLeftSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterTopLeftSnow.png");
+        public static Bitmap Image_WaterBottomLeftSnow = new Bitmap(@"Resources\Images\SmartWater\Snow\SmartWaterBottomLeftSnow.png");
+        public static Bitmap Image_WaterTopRightSnow = FlipXImage(Image_WaterTopLeftSnow);
+        public static Bitmap Image_WaterBottomRightSnow = FlipXImage(Image_WaterBottomLeftSnow);
+        public static Bitmap Image_WaterRightSnow = FlipXImage(Image_WaterLeftSnow);
+        public static Bitmap Image_WaterTopBottomRightSnow = FlipXImage(Image_WaterTopBottomLeftSnow);
 
         //public static Bitmap Image_WaterLeftRightUpDown = new Bitmap(@"Resources\Images\SmartWater\SmartWaterTopBottomLeftRightGrass.png"); --TO BE ADDED--
         public static Bitmap Image_BridgeLeftRight = new Bitmap(@"Resources\Images\SmartWater\BridgeLToR.png");
         public static Bitmap Image_BridgeUpDown = new Bitmap(@"Resources\Images\SmartWater\BridgeUp.png");
 
-        public static Bitmap Image_WaterTopRight = RotateImage(Image_WaterTopLeft);
-        public static Bitmap Image_WaterBottomRight = RotateImage(Image_WaterBottomLeft);
-        public static Bitmap Image_WaterRight = RotateImage(Image_WaterLeft);
-        public static Bitmap Image_WaterTopBottomRight = RotateImage(Image_WaterTopBottomLeft);
+        
 
-        public static Bitmap Image_WaterTopRightBlank = RotateImage(Image_WaterTopLeftBlank);
-        public static Bitmap Image_WaterBottomRightBlank = RotateImage(Image_WaterBottomLeftBlank);
-        public static Bitmap Image_WaterRightBlank = RotateImage(Image_WaterLeftBlank);
-        public static Bitmap Image_WaterTopBottomRightBlank = RotateImage(Image_WaterTopBottomLeftBlank);
+        
 
         public static Bitmap Image_Player = new Bitmap(@"Resources\Images\Player\Idle\Player_1.png");
 
@@ -159,12 +181,18 @@ namespace GameToEarnLegos
 
         public static Bitmap Image_DragonRight = new Bitmap(@"Resources\Images\Badguy\Dragon1.png");
         public static Bitmap Image_DragonStillRight = new Bitmap(@"Resources\Images\Badguy\DragonStill.png");
-        public static Bitmap Image_DragonLeft = RotateImage(Image_DragonRight);
-        public static Bitmap Image_DragonStillLeft = RotateImage(Image_DragonStillRight);
+        public static Bitmap Image_DragonLeft = FlipXImage(Image_DragonRight);
+        public static Bitmap Image_DragonStillLeft = FlipXImage(Image_DragonStillRight);
         public static Bitmap Image_DragonDown = RotateNinety(Image_DragonRight);
         public static Bitmap Image_DragonStillDown = RotateNinety(Image_DragonStillRight);
-        public static Bitmap Image_DragonUp = RotateImage(Image_DragonDown);
-        public static Bitmap Image_DragonStillUp = RotateImage(Image_DragonStillDown);
+        public static Bitmap Image_DragonUp = FlipYImage(Image_DragonDown);
+        public static Bitmap Image_DragonStillUp = FlipYImage(Image_DragonStillDown);
+
+        public static Bitmap Image_DragonDownRight = new Bitmap(@"Resources\Images\Badguy\DragonDiagonal.png");
+        public static Bitmap Image_DragonDownLeft = RotateNinety(Image_DragonDownRight);
+        public static Bitmap Image_DragonUpLeft = RotateNinety(Image_DragonDownLeft);
+        public static Bitmap Image_DragonUpRight = RotateNinety(Image_DragonUpLeft);
+
 
         public static Bitmap Image_A = new Bitmap(@"Resources\Images\Letters\Normal\LetterA.png");
         public static Bitmap Image_B = new Bitmap(@"Resources\Images\Letters\Normal\LetterB.png");
@@ -199,7 +227,7 @@ namespace GameToEarnLegos
 
 
 
-        public static Bitmap RotateImage(Bitmap srcImage)
+        public static Bitmap FlipXImage(Bitmap srcImage)
         {
             //Clone it to another bitmap
             Bitmap image2 = (Bitmap)srcImage.Clone();

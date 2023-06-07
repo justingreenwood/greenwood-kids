@@ -15,20 +15,33 @@ namespace GameToEarnLegos.Tiles
         public Bitmap AliveImage = Resources.Image_Tree1;
         public Bitmap DeadImage = Resources.Image_TreeBurned;
         public Bitmap OnFireImage = Resources.Image_TreeOnFire;
-        public Tree(int col, int row) : base(col, row, Resources.Image_Tree1) { IsBlocker = true; }
-        public Tree(int col, int row, char c) : base(col, row) 
-        { 
-            if(c == 'f')
+
+        public Tree(int col, int row, char c) : base(col, row, Resources.Image_Tree1) 
+        {
+            if (DateTime.Now.Month >= 12)
+            {
+                AliveImage = Resources.Image_Tree2;
+                DeadImage = Resources.Image_Tree2Burned;
+                OnFireImage = Resources.Image_Tree2OnFire;
+            }
+            if (c == 'f')
             {
                 isDead = true;
                 image = DeadImage;
+                health = 0;
             }
-            else
+            else if(c == 'F')
             {
                 isOnFire = true;
                 image = OnFireImage;
             }
+            else
+            {
+                image = AliveImage;
+            }
+            
             IsBlocker = true; 
+
         }
 
     }

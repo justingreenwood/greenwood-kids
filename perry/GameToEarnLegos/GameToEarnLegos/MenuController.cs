@@ -47,7 +47,10 @@ namespace GameToEarnLegos
             var textTopOffset = (int)Math.Round(this._form.Height * 0.2);
             var textLeftOffset = (int)Math.Round(this._form.Width * 0.4);
 
-            g.DrawImage(Resources.Image_MenuBackground, imageRect);
+            if (DateTime.Now.Month >= 12)
+                g.DrawImage(Resources.Image_MenuBackgroundSnow, imageRect);
+            else
+                g.DrawImage(Resources.Image_MenuBackground, imageRect);
             g.DrawImage(Resources.Image_Title,
                 Convert.ToInt32(Math.Round(this._form.Width * 0.1)), Convert.ToInt32(Math.Round(this._form.Height*0.1)),
                 titleWidth, titleHeight);

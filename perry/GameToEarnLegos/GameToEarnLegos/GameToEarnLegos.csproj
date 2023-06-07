@@ -36,6 +36,7 @@
     <None Remove="Resources\Images\Badguy\BadguyUp_2.png" />
     <None Remove="Resources\Images\Badguy\DeadTowerBadguy.png" />
     <None Remove="Resources\Images\Badguy\Dragon1.png" />
+    <None Remove="Resources\Images\Badguy\DragonDiagonal.png" />
     <None Remove="Resources\Images\Badguy\DragonStill.aseprite" />
     <None Remove="Resources\Images\Badguy\DragonStill.png" />
     <None Remove="Resources\Images\Badguy\TowerBadguy.aseprite" />
@@ -45,6 +46,9 @@
     <None Remove="Resources\Images\BlandDoorThin.png" />
     <None Remove="Resources\Images\BlandDoorThinOpen.png" />
     <None Remove="Resources\Images\BridgeOne.png" />
+    <None Remove="Resources\Images\Building Blocks\Fire.png" />
+    <None Remove="Resources\Images\Building Blocks\FirePlace.png" />
+    <None Remove="Resources\Images\Building Blocks\FirePlaceOut.png" />
     <None Remove="Resources\Images\BurnedTree.png" />
     <None Remove="Resources\Images\DeadBadguy.png" />
     <None Remove="Resources\Images\Grass.png" />
@@ -57,6 +61,7 @@
     <None Remove="Resources\Images\Grass\SmartGrassRightLeftUp.png" />
     <None Remove="Resources\Images\Grass\SmartGrassUp.png" />
     <None Remove="Resources\Images\Grass\SmartGrassUpDown.png" />
+    <None Remove="Resources\Images\Grass\SnowGrass.png" />
     <None Remove="Resources\Images\HitBadguy.png" />
     <None Remove="Resources\Images\intro-background.png" />
     <None Remove="Resources\Images\Letters\Normal\LetterA.png" />
@@ -87,6 +92,7 @@
     <None Remove="Resources\Images\Letters\Normal\LetterZ.png" />
     <None Remove="Resources\Images\Menu Images\BackGround.png" />
     <None Remove="Resources\Images\Menu Images\intro-background.png" />
+    <None Remove="Resources\Images\Menu Images\MenuBackgroundSnow.png" />
     <None Remove="Resources\Images\Menu Images\Work on Menu Play.aseprite" />
     <None Remove="Resources\Images\MenuBackground.png" />
     <None Remove="Resources\Images\PerrysArtBorder.png" />
@@ -163,9 +169,21 @@
     <None Remove="Resources\Images\SmartWater\SmartWaterTopLeftGrass.aseprite" />
     <None Remove="Resources\Images\SmartWater\SmartWaterTopLeftGrass.png" />
     <None Remove="Resources\Images\SmartWater\SmartWaterTopLeftRightGrass.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterBottomLeftRightSnow.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterBottomLeftSnow.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterBottomSnow.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterLeftRightSnow.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterLeftSnow.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterTopBottomLeftSnow.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterTopBottomSnow.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterTopLeftRightSnow.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterTopLeftSnow.png" />
+    <None Remove="Resources\Images\SmartWater\Snow\SmartWaterTopSnow.png" />
     <None Remove="Resources\Images\Title.png" />
     <None Remove="Resources\Images\TreasureChest.png" />
     <None Remove="Resources\Images\TreeOnFire.png" />
+    <None Remove="Resources\Images\Trees\ChristmasTreeBurned.png" />
+    <None Remove="Resources\Images\Trees\ChristmasTreeOnFire.png" />
     <None Remove="Resources\Images\TreeTester.png" />
     <None Remove="Resources\Images\Wall.png" />
     <None Remove="Resources\Images\WaterAmmo.png" />
@@ -243,6 +261,9 @@
     <Content Include="Resources\Images\Badguy\Dragon1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\Badguy\DragonDiagonal.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Badguy\DragonStill.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -262,6 +283,21 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Building Blocks\BridgeOne.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Building Blocks\Fire.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Building Blocks\FirePlace.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Building Blocks\FirePlaceOut.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Grass\SnowGrass.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Menu Images\MenuBackgroundSnow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\SmartWater\Blank\SmartWaterBottom.png">
@@ -292,6 +328,36 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\SmartWater\Blank\SmartWaterTopLeftRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterBottomLeftRightSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterBottomLeftSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterBottomSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterLeftRightSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterLeftSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterTopBottomLeftSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterTopBottomSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterTopLeftRightSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterTopLeftSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\SmartWater\Snow\SmartWaterTopSnow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Trees\BurnedTree.png">
@@ -388,6 +454,12 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Building Blocks\PerrysArtBorder.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Trees\ChristmasTreeBurned.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Trees\ChristmasTreeOnFire.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Trees\PerrysArtChristmasTree.png">
@@ -567,12 +639,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\Audio\" />
-    <Folder Include="Resources\Audio\" />
+    <PackageReference Include="NAudio" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="NAudio" Version="2.1.0" />
+    <Compile Update="Tiles\Fire.cs">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -582,16 +655,34 @@
     <None Update="Resources\Audio\bleah.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\Audio\BOLS.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Audio\BOLS2.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Audio\ButtmunchiansForGame.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Audio\CHL.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Audio\Elwood - Dead lock.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\Audio\ohyeabeautiful.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Audio\Purely Grey - KASTET.mp3">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+    <None Update="Resources\Audio\PWK.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="Resources\Audio\shoot-sound-001.wav">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="Resources\Audio\wffff.wav">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="Resources\Maps\Level6.txt">

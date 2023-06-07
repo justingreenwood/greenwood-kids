@@ -8,8 +8,14 @@ using System.Threading.Tasks;
 
 namespace GameToEarnLegos.Badguys
 {
+
     public class Dragon : Badguy
     {
+        Animation animationDownLeft;
+        Animation animationDownRight;
+        Animation animationUpLeft;
+        Animation animationUpRight;
+        EightWayDirection spriteDirection = EightWayDirection.South;
 
         public Dragon(int col, int row) : base(col, row)
         {
@@ -26,6 +32,10 @@ namespace GameToEarnLegos.Badguys
             animationRight = Animations.DragonRight;
             animationUp = Animations.DragonUp;
             animationDown = Animations.DragonDown;
+            animationDownLeft = Animations.DragonDownLeft;
+            animationDownRight = Animations.DragonDownRight;
+            animationUpLeft = Animations.DragonUpLeft;
+            animationUpRight = Animations.DragonUpRight;
             image = Resources.Image_DragonStillDown;
             AmmoType = "dragonfire";
         }
@@ -33,39 +43,37 @@ namespace GameToEarnLegos.Badguys
         public override void UpdateAnimationState()
         {
             Animation newAnimation = null;
+            spriteDirection = Utility.Get8WayDirection(SpeedLeftOrRight, SpeedUpOrDown, spriteDirection);
 
-            if (SpeedLeftOrRight < -0.5)
+            switch (spriteDirection)
             {
-                if (currentAnimation != animationLeft)
-                {
-                    newAnimation = animationLeft;
-                };
-            }
-            else if (SpeedLeftOrRight > 0.5)
-            {
-                if (currentAnimation != animationRight)
-                {
-                    newAnimation = animationRight;
-                }
-            }
-            else if (SpeedUpOrDown < 0)
-            {
-                if (currentAnimation != animationUp)
-                {
+                case EightWayDirection.North:
                     newAnimation = animationUp;
-                }
-            }
-            else if (SpeedUpOrDown > 0)
-            {
-                if (currentAnimation != animationDown)
-                {
+                    break;
+                case EightWayDirection.NorthEast:
+                    newAnimation = animationUpRight;
+                    break;
+                case EightWayDirection.East:
+                    newAnimation = animationRight;
+                    break;
+                case EightWayDirection.SouthEast:
+                    newAnimation = animationDownRight;
+                    break;
+                case EightWayDirection.South:
                     newAnimation = animationDown;
-                }
+                    break;
+                case EightWayDirection.SouthWest:
+                    newAnimation = animationDownLeft;
+                    break;
+                case EightWayDirection.West:
+                    newAnimation = animationLeft;
+                    break;
+                case EightWayDirection.NorthWest:
+                    newAnimation = animationUpLeft;
+                    break;
             }
-            else
-            {
-                currentAnimation = null;
-            }
+
+           
 
             if (newAnimation != null)
             {
@@ -75,7 +83,6 @@ namespace GameToEarnLegos.Badguys
             }
 
         }
-
 
     }
 }
