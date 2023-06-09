@@ -179,6 +179,18 @@ namespace GameToEarnLegos
         public static Bitmap Image_BadguyKing_Down_1 = new Bitmap(@"Resources\Images\Badguy\BadguyKingForward_1.png");
         public static Bitmap Image_BadguyKing_Down_2 = new Bitmap(@"Resources\Images\Badguy\BadguyKingForward_2.png");
 
+        public static Bitmap Image_BadguyKing_Snow_Right_1 = new Bitmap(@"Resources\Images\Badguy\Snow\KingofDeerSnowRight_1.png");
+        public static Bitmap Image_BadguyKing_Snow_Right_2 = new Bitmap(@"Resources\Images\Badguy\Snow\KingofDeerSnowRight_2.png");
+        public static Bitmap Image_BadguyKing_Snow_Left_1 = new Bitmap(@"Resources\Images\Badguy\Snow\KingofDeerSnowLeft_1.png");
+        public static Bitmap Image_BadguyKing_Snow_Left_2 = new Bitmap(@"Resources\Images\Badguy\Snow\KingofDeerSnowLeft_2.png");
+
+        public static Bitmap Image_BadguyKing_Snow_Up_1 = new Bitmap(@"Resources\Images\Badguy\Snow\KingofDeerBackSnow_1.png");
+        public static Bitmap Image_BadguyKing_Snow_Up_2 = new Bitmap(@"Resources\Images\Badguy\Snow\KingofDeerBackSnow_2.png");
+
+        public static Bitmap Image_BadguyKing_Snow_Down_1 = new Bitmap(@"Resources\Images\Badguy\Snow\KingofDeerSnow.png");
+        public static Bitmap Image_BadguyKing_Snow_Down_2 = new Bitmap(@"Resources\Images\Badguy\Snow\KingofDeerSnow2.png");
+        public static Bitmap Image_Badguy_King_Snow_Dead = new Bitmap(@"Resources\Images\Badguy\Snow\KingofDeerSnowDead.png");
+
         public static Bitmap Image_DragonRight = new Bitmap(@"Resources\Images\Badguy\Dragon1.png");
         public static Bitmap Image_DragonStillRight = new Bitmap(@"Resources\Images\Badguy\DragonStill.png");
         public static Bitmap Image_DragonLeft = FlipXImage(Image_DragonRight);

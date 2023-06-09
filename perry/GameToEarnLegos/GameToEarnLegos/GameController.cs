@@ -99,9 +99,12 @@ namespace GameToEarnLegos
             var visibleRect = SeenRect();
             var smallImage = new Bitmap((int)Math.Ceiling(visibleRect.Right), (int)Math.Ceiling(visibleRect.Bottom));
             var g = Graphics.FromImage(smallImage);
-
-            bigG.DrawImage(Resources.Image_MenuBackground, 0, 0, this._form.Width, this._form.Height);
-
+            if (DateTime.Now.Month >= 12)
+            {
+                bigG.DrawImage(Resources.Image_MenuBackgroundSnow, 0, 0, this._form.Width, this._form.Height);
+            }
+            else
+                bigG.DrawImage(Resources.Image_MenuBackground, 0, 0, this._form.Width, this._form.Height);
             ListReorganizer();
             foreach (IDrawable tile in DrawingList.Where(t => (visibleRect.IntersectsWith(t.Rect()))))
             {
@@ -276,6 +279,7 @@ namespace GameToEarnLegos
 
                 if (e.KeyCode == Keys.Space)
                 {
+
                     if (player.CurrentTypeOfAmmo == "normal")
                     {
                         if (player.NAmmo > 0)
@@ -290,7 +294,7 @@ namespace GameToEarnLegos
                             }
                         }
                     }
-                    else if(player.CurrentTypeOfAmmo == "water")
+                    else if (player.CurrentTypeOfAmmo == "water")
                     {
                         if (player.WAmmo > 0)
                         {
@@ -312,6 +316,7 @@ namespace GameToEarnLegos
                         }
                     }
                 }
+                
             }
             if (e.KeyCode == Keys.Escape)
             {
@@ -853,8 +858,13 @@ namespace GameToEarnLegos
 
                             if(badguy.IsBoss == true)
                             {
+                                if ((badguy.Health < 30f || badguy.isFollowing == true)&&badguy.NoticedPlayer == false)
+                                {
+                                    badguy.NoticedPlayer = true;
+                                }
                                 aliveBosses++;
                                 Boss = badguy;
+                                
                             }
 
                             aliveBadguys++;
@@ -893,11 +903,11 @@ namespace GameToEarnLegos
                                         }
                                     }
 
-                                    if (door.IsClosed == false && badguy.IsBoss && badguy.NoticedPlayer && door.isBossDoor)
-                                    {
-                                        door.IsClosed = true;
-                                        door.image = door.closedImage;
-                                    }
+                                    //if (door.IsClosed == false && badguy.IsBoss && badguy.NoticedPlayer && door.isBossDoor)
+                                    //{
+                                    //    door.IsClosed = true;
+                                    //    door.image = door.closedImage;
+                                    //}
 
                                 }
                                 foreach (Water water in waters.Where(w => (w.Tag == "water")))
@@ -1074,7 +1084,7 @@ namespace GameToEarnLegos
                         foreach (Door door in tiles.Where(t => t.Tag == "door"))
                         {
 
-                            if (ammunition.Rect().IntersectsWith(door.Rect()) && door.IsClosed == true)
+                            if (ammunition.Rect().IntersectsWith(door.Rect()) && (door.IsClosed == true || door.isBossDoor == true))
                             {
                                 ammunition.IsDead = true;
                                 break;
@@ -1202,7 +1212,20 @@ namespace GameToEarnLegos
                             }
                         }
                     }
-                    AliveBadguys = aliveBadguys;
+                    foreach (Door door in tiles.Where(t => t.Tag == "door"))
+                    {
+                        if (door.IsClosed == false && Boss.NoticedPlayer && door.isBossDoor)
+                        {
+                            door.IsClosed = true;
+                            door.image = door.closedImage;
+                        }
+                        if(door.IsClosed == true && player.Rect().IntersectsWith(door.Rect()))
+                        {
+                            player.IsAlive = false;
+                        }
+
+                    }
+                        AliveBadguys = aliveBadguys;
                     AliveTrees = amountOfAliveTrees;
                     BurningTrees = amountOfBurningTrees;
 

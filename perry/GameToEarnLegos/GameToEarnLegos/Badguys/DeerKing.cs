@@ -18,17 +18,31 @@ namespace GameToEarnLegos.Badguys
             Health = 30f;
             isWanderer = false;
             IsBoss = true;
-            animationLeft = Animations.BadguyKingLeft;
-            animationRight = Animations.BadguyKingRight;
-            animationUp = Animations.BadguyKingUp;
-            animationDown = Animations.BadguyKingDown;
-            image = Resources.Image_BadguyKing_Right_1;
+            Width = 20;
+            Height = 20;
+            if (DateTime.Now.Month <= 12)
+            {
+                animationLeft = Animations.BadguyKingSnowLeft;
+                animationRight = Animations.BadguyKingSnowRight;
+                animationUp = Animations.BadguyKingSnowUp;
+                animationDown = Animations.BadguyKingSnowDown;
+                image = Resources.Image_BadguyKing_Snow_Right_1;
+                deadImage = Resources.Image_Badguy_King_Snow_Dead;
+            }
+            else
+            {
+                animationLeft = Animations.BadguyKingLeft;
+                animationRight = Animations.BadguyKingRight;
+                animationUp = Animations.BadguyKingUp;
+                animationDown = Animations.BadguyKingDown;
+                image = Resources.Image_BadguyKing_Right_1;
+            }
         }
         public override bool CheckIfNoticed(Player player)
         {
 
             double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
-            if (distance <= 60)
+            if (distance <= 60 || NoticedPlayer == true)
             {
                 return true;
             }

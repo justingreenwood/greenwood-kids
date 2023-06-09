@@ -75,7 +75,7 @@ namespace GameToEarnLegos.Animate
             }
         };
         public static Animation PlayerIdle = new Animation
-        { 
+        {
             Repeat = false,
             Frames = new List<AnimationFrame>
             {
@@ -220,6 +220,46 @@ namespace GameToEarnLegos.Animate
                 new AnimationFrame{ Image = Resources.Image_DragonDownLeft, Duration = 8 },
             }
         };
+
+        public static Animation BadguyKingSnowRight = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame { Image = Resources.Image_BadguyKing_Snow_Right_1, Duration = 4 },
+                new AnimationFrame { Image = Resources.Image_BadguyKing_Snow_Right_2, Duration = 4 },
+            }
+        };
+        public static Animation BadguyKingSnowLeft = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame { Image = Resources.Image_BadguyKing_Snow_Left_1, Duration = 4 },
+                new AnimationFrame { Image = Resources.Image_BadguyKing_Snow_Left_2, Duration = 4 },
+            }
+        };
+        public static Animation BadguyKingSnowDown = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame{ Image = Resources.Image_BadguyKing_Snow_Down_1, Duration = 4 },
+                new AnimationFrame{ Image = Resources.Image_BadguyKing_Snow_Down_2, Duration = 4 },
+            }
+        };
+        public static Animation BadguyKingSnowUp = new Animation
+        {
+            Frames = new List<AnimationFrame>
+            {
+                new AnimationFrame{ Image = Resources.Image_BadguyKing_Snow_Up_1, Duration = 4 },
+                new AnimationFrame{ Image = Resources.Image_BadguyKing_Snow_Up_2, Duration = 4 },
+            }
+        };
+
+
+
+
+
+
+
     }
 
     public static class AnimationHelper

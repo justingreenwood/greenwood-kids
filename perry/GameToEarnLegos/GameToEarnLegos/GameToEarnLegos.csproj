@@ -39,6 +39,15 @@
     <None Remove="Resources\Images\Badguy\DragonDiagonal.png" />
     <None Remove="Resources\Images\Badguy\DragonStill.aseprite" />
     <None Remove="Resources\Images\Badguy\DragonStill.png" />
+    <None Remove="Resources\Images\Badguy\Snow\KingofDeerBackSnow_1.png" />
+    <None Remove="Resources\Images\Badguy\Snow\KingofDeerBackSnow_2.png" />
+    <None Remove="Resources\Images\Badguy\Snow\KingofDeerSnow.png" />
+    <None Remove="Resources\Images\Badguy\Snow\KingofDeerSnow2.png" />
+    <None Remove="Resources\Images\Badguy\Snow\KingofDeerSnowDead.png" />
+    <None Remove="Resources\Images\Badguy\Snow\KingofDeerSnowLeft_1.png" />
+    <None Remove="Resources\Images\Badguy\Snow\KingofDeerSnowLeft_2.png" />
+    <None Remove="Resources\Images\Badguy\Snow\KingofDeerSnowRight_1.png" />
+    <None Remove="Resources\Images\Badguy\Snow\KingofDeerSnowRight_2.png" />
     <None Remove="Resources\Images\Badguy\TowerBadguy.aseprite" />
     <None Remove="Resources\Images\Badguy\TowerBadguy.png" />
     <None Remove="Resources\Images\BlandDoor.png" />
@@ -265,6 +274,33 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Badguy\DragonStill.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Snow\KingofDeerBackSnow_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Snow\KingofDeerBackSnow_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Snow\KingofDeerSnow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Snow\KingofDeerSnow2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Snow\KingofDeerSnowDead.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Snow\KingofDeerSnowLeft_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Snow\KingofDeerSnowLeft_2.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Snow\KingofDeerSnowRight_1.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Badguy\Snow\KingofDeerSnowRight_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\Badguy\TowerBadguy.png">
