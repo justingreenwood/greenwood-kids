@@ -5,8 +5,8 @@ O                  d            WW    T  O
 O   WWWWWWWW                     WW  T   O
 O T W      W  TTT       TT    T   W      O
 OTT W      W  T     T   TF        W    T O
-OTT W  0            TT           WW T    O
-O T W      W    V V  T           W    P  O
+OTT W  0   E        TT           WW T    O
+O T W      W    V v  T  1        W    P  O
 O   W      W T            V   T WW   T   O
 O   W      W      T T           W    T   O
 O   W      W     TTTTT    V  T  W        O
@@ -18,18 +18,18 @@ O   T        TTWW              WW    TT  O
 O             T           WWWWWW         O
 TT     TTT           T    W  T WWW  WEW  O
 TTT     TT           TTT WW T    WW W WW O
-TT      T  V V V      TTWW  T     WWW  WWW
+TT      T  V v V      TTWW  T     WWW  WWW
 O    T            TT   WW      T         O
-O   TTT    V V V  TTT  E      TT    TT   O
+O   TTT    v V V  TTT  E      TT    TT   O
 O     T          TTTT WW      T     T    O
 O            T     T WW                  O
-O   TT      TTT     WW   V V V           O
+O   TT      TTT     WW   V V v           O
 O  TTTT      TTT    W T TT    GG         O
-O  TTTTT      TT    W TTT  V GLLG    TT  O
+O  TTTTT      TT    W TTT  v GLLG    TT  O
 O   TTTT      WWW   W TTTV   GLLLG    T  O
 WW    T      WW WW WW  T      GGG        O
 OWW          W   WWW      T              O
 O W       W  W           TTT   TTT       O
 O WW     WWW W       TTT  T              O
-O  W     WTWWW      TTTT  T              O
+Og W     WTWWW      TTTT  T              O
 OOOWOOOOOWOOOOOOOOOOOTTOOOOOOOOOOOOOOOOOOO

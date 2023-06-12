@@ -5,11 +5,11 @@ O B   D   D V D   D   B V D   D   B   BTTO
 O B   B   B   B   B   B   B   B   B   BTTO
 O BBDBBBDBBBBBBBBBBBdBBBBBBBBBBBDBBBDBBTTO
 O B   B   B   B           B   B   B   BTTO
-O D V B   D   B           B V D   B   BTTO
+O D V B L D   B           B V D   B   BTTO
 OTB   B   B   B           B   B   B   BTTO
 OTBBBBBBDBBBDBB           BBDBBBBBBBDBBTTO
 OTB   B   B   B     0     B   B   B   BTTO
-OTB   D   B V B           B   D   B   BTTO
+OTB   D   B V B           B   D   B L BTTO
 OTB   B   B   B           B   B   B   BTTO
 OTBBDBBBBBBBBBBBBBBBBBBBBBBBDBBBDBBBDBBTTO
 OTB   B   B   B   B  gB   B   B   B   BTTO
@@ -17,7 +17,7 @@ OTB V B   D   B   D   B   D   B V D   BTTO
 OTB   B   B   B   B   B   B   B   B   BTTO
 OTBBDBBBBBBBDBBBDBBBBBBBDBBBBBBBDBBBDBBTTO
 OTB   B   B   B   B   B   B   B   B   BTTO
-OTB   D   B   D V B   D   B   D V B   BTTO
+OTB L D   B   D V B   D L B   D V B   BTTO
 OTB   B   B   B   B   B   B   B   B   BTTO
 OTBBDBBBDBBBDBBBBBBBDBBBDBBBBBBBDBBBBBBTTO
 OTB   B   B   B   B   B   B   B   B   BTTO
@@ -29,7 +29,7 @@ QQQQQQQQQQQQQQQQQQQQEQQQQQQQQQQQQQQQQQQQQQ
 WWWWWWWWWWWWWWWWWWWWEWWWWWWWWWWWWWWWWWWWWW
 O                 T           V          O
 O     V                          TT      O
-O                        T               O
+O          L             T               O
 O                  P    TTT   V          O
 O      V                                 O
 OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO

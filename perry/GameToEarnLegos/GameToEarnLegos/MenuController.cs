@@ -130,7 +130,7 @@ namespace GameToEarnLegos
                             cheatsOn = false;
                         else
                             cheatsOn = true;
-                        Start();
+                        Refresh();
                     }
                     else if (buttonChoice == 2)
                     {
@@ -141,7 +141,7 @@ namespace GameToEarnLegos
                                 level.IsWon = true;
                             }
                             _AllLevelsWon = true;
-                            Start();
+                            Refresh();
                         }
                     }
                     else if (buttonChoice == 3)
@@ -166,7 +166,7 @@ namespace GameToEarnLegos
                             case "Load":
                                 {
                                     this._form.LoadLatest();
-                                    Start();
+                                    Refresh();
                                     break;
                                 }
                             default: Application.Exit(); break;
@@ -201,22 +201,26 @@ namespace GameToEarnLegos
         public void Start(string startInfo = null)
         {
             _form.PlayMusic(GameSounds.MenuMusic);
+            Refresh();
+            _playButtonPressed = false;
+            _form.Refresh();
+        }
+        public void Refresh()
+        {
             LevelChoices.Clear();
-            foreach (ButtonsInMenu level in LevelFormChoices.Where(l=> l.level != null && l.level.IsWon == true))
+            foreach (ButtonsInMenu level in LevelFormChoices.Where(l => l.level != null && l.level.IsWon == true))
             {
-                if(level == LevelFormChoices[10])
+                if (level == LevelFormChoices[10])
                 {
-                    if(cheatsOn)
+                    if (cheatsOn)
                         LevelChoices.Add(level);
                 }
                 else
                     LevelChoices.Add(level);
             }
-            if(LevelChoices.Count < 10)
-            LevelChoices.Add(LevelFormChoices[LevelChoices.Count()]);
-            LevelChoices.Add(LevelFormChoices[LevelFormChoices.Count()-1]);
-            _playButtonPressed = false;
-            _form.Refresh();
+            if (LevelChoices.Count < 10)
+                LevelChoices.Add(LevelFormChoices[LevelChoices.Count()]);
+            LevelChoices.Add(LevelFormChoices[LevelFormChoices.Count() - 1]);
         }
 
         public void Stop()

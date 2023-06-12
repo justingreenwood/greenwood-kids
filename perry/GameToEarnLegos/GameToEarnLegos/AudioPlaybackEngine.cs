@@ -219,7 +219,9 @@ namespace GameToEarnLegos
         OhYeah,
         CHL,
         RefillWater,
-        Wfff
+        Wfff,
+        Errr,
+        ChChh
 
     }
 

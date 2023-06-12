@@ -37,9 +37,9 @@ namespace GameToEarnLegos.Badguys
             animationUpLeft = Animations.DragonUpLeft;
             animationUpRight = Animations.DragonUpRight;
             image = Resources.Image_DragonStillDown;
+            deadImage = Resources.Image_DragonDead;
             AmmoType = "dragonfire";
         }
-
         public override void UpdateAnimationState()
         {
             Animation newAnimation = null;

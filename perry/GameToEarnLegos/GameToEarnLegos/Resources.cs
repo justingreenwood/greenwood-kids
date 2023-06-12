@@ -18,6 +18,9 @@ namespace GameToEarnLegos
         public static MemoryStream Sound_Chl = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\CHL.wav"));
         public static MemoryStream Sound_Wfff = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Wffff.wav"));
         public static MemoryStream Sound_RefillWater = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\BOLS2.wav"));
+        public static MemoryStream Sound_Errr = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Err.wav"));
+        public static MemoryStream Sound_ChChh = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\ChChh.wav"));
+
         public static Bitmap Image_Wall = new Bitmap(@"Resources\Images\Building Blocks\Wall.png");
         public static Bitmap Image_Border = new Bitmap(@"Resources\Images\Building Blocks\PerrysArtBorder.png");
         public static Bitmap Image_Title = new Bitmap(@"Resources\Images\Menu Images\Title.png");
@@ -205,6 +208,7 @@ namespace GameToEarnLegos
         public static Bitmap Image_DragonUpLeft = RotateNinety(Image_DragonDownLeft);
         public static Bitmap Image_DragonUpRight = RotateNinety(Image_DragonUpLeft);
 
+        public static Bitmap Image_DragonDead = new Bitmap(@"Resources\Images\Badguy\DeadDragon.png");
 
         public static Bitmap Image_A = new Bitmap(@"Resources\Images\Letters\Normal\LetterA.png");
         public static Bitmap Image_B = new Bitmap(@"Resources\Images\Letters\Normal\LetterB.png");

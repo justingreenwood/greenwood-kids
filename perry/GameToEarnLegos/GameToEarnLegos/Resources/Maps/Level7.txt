@@ -4,7 +4,7 @@ OTF           F      TT  TT         W   FO
 OT    TFt     T     TTF          WWEW  TTO
 OT     T              T      WWWWW     TTO
 O         TTT            WWWWW      T   TO
-O        TTFTTTTT    TF  W          TF   O
+O   L    TTFTTTTT    TF  W          TF   O
 OT       TTFTTFTTT    T  E   BBBBBB      O
 OF  TT     TTTTT         W       gBTT   WW
 OT  TF             tf    WW  V   B     WWW
@@ -21,7 +21,7 @@ O  T     T    TT    WWWWW  TT  T     T  FO
 O     t  T         WW          T  t  T  TO
 O  T     T  T      W     v     T     T  TO
 O  TT   TT    T    WWW     v   TT   TT  TO
-O   TTTTT     FT     W          TT TT    O
+O   TTTTT     FT     W          TTLTT    O
 OT                   E     T             O
 OF      T   TT   T   W     FT       T    O
 OT  WWW     FT  TF   WW                TTO
@@ -29,7 +29,7 @@ O  WWWW   WWWWWWWWWWWWWWWWWWWWWWWWWWW  FTO
 O  WWW   WWBBBBBBBBBBBWWBBBBBBBBBBBBW    O
 O        WBB        B  W   B       BWW   O
 OTTT     WB     V   B  WW  B       BBWWW O
-OTTTFT  vED         D   E  D    V   BBBWWO
+OTTTFT  vED    L    D   E  D    V   BBBWWO
 OTgTTTTT WB  V      B  WW  B         ABBWO
-OT       WB         B  W   B     v   ABgWO
+OT     L WB         B  W   B     v   ABgWO
 OOOOOOOOOWOOOOOOOOOOOOOWOOOOOOOOOOOOOOOOWO

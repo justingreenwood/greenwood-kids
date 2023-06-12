@@ -20,7 +20,7 @@ namespace GameToEarnLegos.Badguys
             IsBoss = true;
             Width = 20;
             Height = 20;
-            if (DateTime.Now.Month <= 12)
+            if (DateTime.Now.Month >= 12)
             {
                 animationLeft = Animations.BadguyKingSnowLeft;
                 animationRight = Animations.BadguyKingSnowRight;

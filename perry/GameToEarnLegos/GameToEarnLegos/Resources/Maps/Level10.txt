@@ -15,7 +15,7 @@ Of    WWWWW              f           f  fO
 Off       WWWW                          fO
 Of    t      WWt        t        t      fO
 Ogf        f  WW   WWWWWW                O
-O ff   f       WWWWW    WWWWWWW          O
+OLff   f       WWWWW    WWWWWWW          O
 O        WWWWWWW     fff      WWWWWW     O
 O     WWWW f        fff            WWW   O
 O  WWWW  f      f            ff      WWWWW

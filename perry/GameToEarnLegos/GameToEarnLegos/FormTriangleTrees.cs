@@ -47,6 +47,9 @@ namespace GameToEarnLegos
             soundManager.loadSound(GameSounds.Wfff, Resources.Sound_Wfff, ".wav", audioEngine.Format);
             soundManager.loadSound(GameSounds.CHL, Resources.Sound_Chl, ".wav", audioEngine.Format);
             soundManager.loadSound(GameSounds.RefillWater, Resources.Sound_RefillWater, ".wav", audioEngine.Format);
+            soundManager.loadSound(GameSounds.Errr, Resources.Sound_Errr, ".wav", audioEngine.Format);
+            soundManager.loadSound(GameSounds.ChChh, Resources.Sound_ChChh, ".wav", audioEngine.Format);
+
             //_testing = new TestGameController(this);
             gameController = new GameController(this);
             menuController = new MenuController(this);

@@ -361,7 +361,7 @@ namespace GameToEarnLegos.Badguys
         {
 
             double distance = GetDistance(new PointF(player.X, player.Y), CenterPoint);
-            if (distance <= 120)
+            if (distance <= 120 || NoticedPlayer == true)
             {
                 return true;
             }

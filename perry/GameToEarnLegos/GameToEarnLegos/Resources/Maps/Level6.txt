@@ -8,10 +8,10 @@ OTT       TTT    V      TTT      TTT    TO
 OTT       TTT           TTT     TTT     TO
 OTT      TTT           TTT       TTT    TO
 OTT     TTT           TTT    V    TTT   TO
-OTT     TTTT          TT  BBBDBBB TTTT TTO
+OTT     TTTT          TT  BBBDBBB TTTTLTTO
 OT       Tf           TTg B     BTTT     O
 OT     TfTf            fffB     f       fO
-OT      ff   TTf          B  b    ff  f  O
+OT      ff   TTf          BL b    ff  f  O
 OT         fTfTfTTf       BBBBBBf     Tf O
 O   V      ffTffTf                 Tf  TTO
 O                     V    TT    TfTTT   O

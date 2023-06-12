@@ -932,6 +932,10 @@ namespace GameToEarnLegos
                     }
                     foreach (Badguy boss in Bosses.Where(b=> b.IsDead == false))
                     {
+                        if ((boss.Health < 50f || boss.isFollowing == true) && boss.NoticedPlayer == false)
+                        {
+                            boss.NoticedPlayer = true;
+                        }
                         aliveBosses++;
                         aliveBadguys++;
                         if (boss.canShoot == true)
@@ -1115,7 +1119,7 @@ namespace GameToEarnLegos
                                             _form.PlaySound(GameSounds.Wfff);
                                         }
                                         else
-                                            _form.PlaySound(GameSounds.Bleah);
+                                            _form.PlaySound(GameSounds.Errr);
                                         badguy.IsDead = true;
                                         aliveBadguys--;
                                         if (badguy.IsBoss)
@@ -1146,6 +1150,7 @@ namespace GameToEarnLegos
                                     if (badguy.Health <= 0)
                                     {
                                         badguy.IsDead = true;
+                                        _form.PlaySound(GameSounds.Bleah);
                                         aliveBosses--;
                                         _currentLevel.CurrentScore += 15;
                                     }
@@ -1214,10 +1219,13 @@ namespace GameToEarnLegos
                     }
                     foreach (Door door in tiles.Where(t => t.Tag == "door"))
                     {
-                        if (door.IsClosed == false && Boss.NoticedPlayer && door.isBossDoor)
+                        if (Boss != null)
                         {
-                            door.IsClosed = true;
-                            door.image = door.closedImage;
+                            if (door.IsClosed == false && Boss.NoticedPlayer && door.isBossDoor)
+                            {
+                                door.IsClosed = true;
+                                door.image = door.closedImage;
+                            }
                         }
                         if(door.IsClosed == true && player.Rect().IntersectsWith(door.Rect()))
                         {
@@ -1303,6 +1311,7 @@ namespace GameToEarnLegos
                         if (player.Rect().IntersectsWith(ammoPack.Rect()))
                         {
                             ammoPack.IsPickedUp = true;
+                            _form.PlaySound(GameSounds.ChChh);
                             player.NAmmo += ammoPack.ammountOfAmmo;
                         }
                     }
