@@ -26,6 +26,7 @@ namespace GameToEarnLegos
         private bool isPaused = false;
         private bool EscapeKeyIsUsed = false;
         public bool goToMenu = false;
+        private bool _tipTime = false;
         private bool EscapeKeyIsPressed = false;
         Badguy Boss = null;
 
@@ -52,8 +53,12 @@ namespace GameToEarnLegos
         string[] levelTop => _currentLevel.levelTop;
         string goal => _currentLevel.Goal;
         private int ShootingCoolDown = 5;
+        private float ZoomMax = 3.50f;
+        private float ZoomMin = 0.50f;
+
 
         // These are new variables for the visible rectangle (SeenRect)
+        private const float _startingZoom = 1.0f;
         private float _visibleRectangleZoom = 1.0f;
         private RectangleF _visibleRectangle = RectangleF.Empty;
         private RectangleF _visibleRectangleSizeReference = RectangleF.Empty;
@@ -122,6 +127,7 @@ namespace GameToEarnLegos
             //g.clip(visibleRect.X, visibleRect.Y);
 
             
+            
             if (CHEATS)
             {
                 bigG.FillRectangle(Brushes.Black, 0, 0, this._form.Width / 2, 25);
@@ -148,11 +154,22 @@ namespace GameToEarnLegos
                 bigG.DrawString($"Game Over",
                     SystemFonts.DefaultFont, Brushes.LightGray, 800, 475);
             }
-            else if (isPaused)
+
+            if (isPaused)
             {
-                bigG.FillRectangle(Brushes.Black, 780, 455, 240, 50);
-                bigG.DrawString($"Do you want to exit level? (Y)es (N)o",
-                    SystemFonts.DefaultFont, Brushes.LightGray, 800, 475);
+                if (_tipTime)
+                {
+                    bigG.FillRectangle(Brushes.Black, 680, 410, 410, 50);
+                    bigG.DrawString(_currentLevel.Tip + " Press 'Enter' to start.",
+                        SystemFonts.DefaultFont, Brushes.LightGray, 700, 430);
+
+                }
+                else
+                {
+                    bigG.FillRectangle(Brushes.Black, 780, 455, 240, 50);
+                    bigG.DrawString($"Do you want to exit level? (Y)es (N)o",
+                        SystemFonts.DefaultFont, Brushes.LightGray, 800, 475);
+                }
             }
 
         }
@@ -169,12 +186,12 @@ namespace GameToEarnLegos
                         // player.Speed = player.RunSpeed;
                         player.IsRunning = true;
                     }
-                    if (e.KeyCode == Keys.Z && _visibleRectangleZoom > 0.50f)
+                    if (e.KeyCode == Keys.Z && _visibleRectangleZoom > ZoomMin)
                     {
                         _visibleRectangleZoom -= 0.1f;
                         _visibleRectangle = Rectangle.Empty; // clear the rectangle so it can be resized
                     }
-                    if (e.KeyCode == Keys.X && _visibleRectangleZoom < 3.50f)
+                    if (e.KeyCode == Keys.X && _visibleRectangleZoom < ZoomMax)
                     {
                         _visibleRectangleZoom += 0.1f;
                         _visibleRectangle = Rectangle.Empty; // clear the rectangle so it can be resized
@@ -225,6 +242,90 @@ namespace GameToEarnLegos
                     {
                         player.CurrentTypeOfAmmo = "water";
                     }
+
+                    //Shooting Direction
+                    {
+                        if (player.GoingDown && player.GoingRight)
+                        {
+                            player.LastWentDirection = "southeast";
+                        }
+                        else if (player.GoingDown && player.GoingLeft)
+                        {
+                            player.LastWentDirection = "southwest";
+                        }
+                        else if (player.GoingUp && player.GoingRight)
+                        {
+                            player.LastWentDirection = "northeast";
+                        }
+                        else if (player.GoingUp && player.GoingLeft)
+                        {
+                            player.LastWentDirection = "northwest";
+                        }
+                        else if (player.GoingDown)
+                        {
+                            player.LastWentDirection = "south";
+                        }
+                        else if (player.GoingLeft)
+                        {
+                            player.LastWentDirection = "west";
+                        }
+                        else if (player.GoingRight)
+                        {
+                            player.LastWentDirection = "east";
+                        }
+                        else if (player.GoingUp)
+                        {
+                            player.LastWentDirection = "north";
+                        }
+                    }
+
+                    if (e.KeyCode == Keys.Space)
+                    {
+
+                        if (player.CurrentTypeOfAmmo == "normal")
+                        {
+                            if (player.NAmmo > 0)
+                            {
+                                player.IsShooting = true;
+                                if (ShootingCoolDown == 0)
+                                {
+                                    player.NAmmo -= 1;
+                                    ammunitions.Add(new Ammunition(player.X, player.Y, player.LastWentDirection, "normal"));
+                                    ShootingCoolDown = 10;
+                                    _form.PlaySound(GameSounds.ShootGun1);
+                                }
+                            }
+                        }
+                        else if (player.CurrentTypeOfAmmo == "water")
+                        {
+                            if (player.WAmmo > 0)
+                            {
+                                player.IsShooting = true;
+                                if (ShootingCoolDown == 0)
+                                {
+                                    player.WAmmo -= 1;
+                                    if (player.IsOnFire == false)
+                                    {
+                                        ammunitions.Add(new Ammunition(player.X, player.Y, player.LastWentDirection, "water"));
+                                    }
+                                    else
+                                    {
+                                        _form.PlaySound(GameSounds.Wfff);
+                                        player.IsOnFire = false;
+                                    }
+                                    ShootingCoolDown = 10;
+                                }
+                            }
+                        }
+                    }
+                }
+                else if (_tipTime == true)
+                {
+                    if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Escape)
+                    {
+                        isPaused = false;
+                        _tipTime = false;
+                    }
                 }
                 else
                 {
@@ -241,81 +342,9 @@ namespace GameToEarnLegos
                 {
                     EscapeKeyIsPressed = true;
                 }
-                //Shooting Direction
-                {
-                    if (player.GoingDown && player.GoingRight)
-                    {
-                        player.LastWentDirection = "southeast";
-                    }
-                    else if (player.GoingDown && player.GoingLeft)
-                    {
-                        player.LastWentDirection = "southwest";
-                    }
-                    else if (player.GoingUp && player.GoingRight)
-                    {
-                        player.LastWentDirection = "northeast";
-                    }
-                    else if (player.GoingUp && player.GoingLeft)
-                    {
-                        player.LastWentDirection = "northwest";
-                    }
-                    else if (player.GoingDown)
-                    {
-                        player.LastWentDirection = "south";
-                    }
-                    else if (player.GoingLeft)
-                    {
-                        player.LastWentDirection = "west";
-                    }
-                    else if (player.GoingRight)
-                    {
-                        player.LastWentDirection = "east";
-                    }
-                    else if (player.GoingUp)
-                    {
-                        player.LastWentDirection = "north";
-                    }
-                }
+                
 
-                if (e.KeyCode == Keys.Space)
-                {
-
-                    if (player.CurrentTypeOfAmmo == "normal")
-                    {
-                        if (player.NAmmo > 0)
-                        {
-                            player.IsShooting = true;
-                            if (ShootingCoolDown == 0)
-                            {
-                                player.NAmmo -= 1;
-                                ammunitions.Add(new Ammunition(player.X, player.Y, player.LastWentDirection, "normal"));
-                                ShootingCoolDown = 10;
-                                _form.PlaySound(GameSounds.ShootGun1);
-                            }
-                        }
-                    }
-                    else if (player.CurrentTypeOfAmmo == "water")
-                    {
-                        if (player.WAmmo > 0)
-                        {
-                            player.IsShooting = true;
-                            if (ShootingCoolDown == 0)
-                            {
-                                player.WAmmo -= 1;
-                                if (player.IsOnFire == false)
-                                {
-                                    ammunitions.Add(new Ammunition(player.X, player.Y, player.LastWentDirection, "water"));
-                                }
-                                else
-                                {
-                                    _form.PlaySound(GameSounds.Wfff);
-                                    player.IsOnFire = false;
-                                }
-                                ShootingCoolDown = 10;
-                            }
-                        }
-                    }
-                }
+                
                 
             }
             if (e.KeyCode == Keys.Escape)
@@ -407,9 +436,17 @@ namespace GameToEarnLegos
         {
             _form.PlayMusic(_currentLevel.Music);
             int checkRow = levelTop.Length - 1;
+            
+            _visibleRectangleZoom = _startingZoom;
+            ZoomMax = _currentLevel.ZoomMax;
 
             char lastLetter = 'z';
             Refresh();
+            if (_currentLevel.Tip != null)
+            {
+                _tipTime = true;
+                isPaused = true;
+            }
             for (int row = 0; row < levelTop.Length; row++)
             {
                 var higherLevelRow = levelTop[row];
