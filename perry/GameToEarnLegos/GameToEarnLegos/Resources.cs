@@ -20,6 +20,7 @@ namespace GameToEarnLegos
         public static MemoryStream Sound_RefillWater = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\BOLS2.wav"));
         public static MemoryStream Sound_Errr = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\Err.wav"));
         public static MemoryStream Sound_ChChh = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\ChChh.wav"));
+        public static MemoryStream Sound_JingleBells = new MemoryStream(File.ReadAllBytes(@"Resources\Audio\jingle-bells.mp3"));
 
         public static Bitmap Image_Wall = new Bitmap(@"Resources\Images\Building Blocks\Wall.png");
         public static Bitmap Image_Border = new Bitmap(@"Resources\Images\Building Blocks\PerrysArtBorder.png");

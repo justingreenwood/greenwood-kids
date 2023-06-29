@@ -35,6 +35,7 @@ namespace GameToEarnLegos.Badguys
         public float Height = 15;
         public bool IsBoss = false;
         public string AmmoType = "fire";
+        public int type = 1;
 
         public int UpDownDirection = 0;
         public int RightLeftDirection = 0;

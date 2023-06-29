@@ -1163,6 +1163,14 @@ namespace GameToEarnLegos
                                         {
                                             _currentLevel.CurrentScore += 10;
                                         }
+                                        else if(badguy.typeOfBadguy == "tower")
+                                        {
+                                            _currentLevel.CurrentScore += 5;
+                                        }
+                                        else if (badguy.type == 2)
+                                        {
+                                            _currentLevel.CurrentScore += 2;
+                                        }
                                         else
                                         {
                                             _currentLevel.CurrentScore++;
@@ -1209,13 +1217,16 @@ namespace GameToEarnLegos
                                 {
                                     foreach (Fire fire in tiles.Where(w => w.Tag == "fire"))
                                     {
-                                        if (ammunition.Rect().IntersectsWith(fire.Rect()))
+                                        if (fire.IsOut == false)
                                         {
-                                            _form.PlaySound(GameSounds.Wfff);
-                                            fire.IsOut = true;
-                                            fire.image = fire.Out;
-                                            ammunition.IsDead = true;
-                                            break;
+                                            if (ammunition.Rect().IntersectsWith(fire.Rect()))
+                                            {
+                                                _form.PlaySound(GameSounds.Wfff);
+                                                fire.IsOut = true;
+                                                fire.image = fire.Out;
+                                                ammunition.IsDead = true;
+                                                break;
+                                            }
                                         }
                                     }
                                 }

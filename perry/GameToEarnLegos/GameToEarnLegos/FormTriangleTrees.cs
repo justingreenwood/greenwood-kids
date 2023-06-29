@@ -37,9 +37,16 @@ namespace GameToEarnLegos
         public FormTriangleTrees()
         {
             InitializeComponent();
-
-            soundManager.loadSound(GameSounds.MenuMusic, Resources.Music_InMenu, ".mp3", audioEngine.Format);
-            soundManager.loadSound(GameSounds.GameMusic, Resources.Music_InGame, ".mp3", audioEngine.Format);
+            if (DateTime.Now.Month >= 12)
+            {
+                soundManager.loadSound(GameSounds.MenuMusic, Resources.Sound_JingleBells, ".mp3", audioEngine.Format);
+                soundManager.loadSound(GameSounds.GameMusic, Resources.Sound_JingleBells, ".mp3", audioEngine.Format);
+            }
+            else
+            {
+                soundManager.loadSound(GameSounds.MenuMusic, Resources.Music_InMenu, ".mp3", audioEngine.Format);
+                soundManager.loadSound(GameSounds.GameMusic, Resources.Music_InGame, ".mp3", audioEngine.Format);
+            }
             soundManager.loadSound(GameSounds.LastLevelMusic, Resources.Music_InLastLevel, ".mp3", audioEngine.Format);
             soundManager.loadSound(GameSounds.ShootGun1, Resources.Sound_Shoot, ".wav", audioEngine.Format);
             soundManager.loadSound(GameSounds.Bleah, Resources.Sound_Bleah, ".wav", audioEngine.Format);
@@ -49,7 +56,7 @@ namespace GameToEarnLegos
             soundManager.loadSound(GameSounds.RefillWater, Resources.Sound_RefillWater, ".wav", audioEngine.Format);
             soundManager.loadSound(GameSounds.Errr, Resources.Sound_Errr, ".wav", audioEngine.Format);
             soundManager.loadSound(GameSounds.ChChh, Resources.Sound_ChChh, ".wav", audioEngine.Format);
-
+            
             //_testing = new TestGameController(this);
             gameController = new GameController(this);
             menuController = new MenuController(this);

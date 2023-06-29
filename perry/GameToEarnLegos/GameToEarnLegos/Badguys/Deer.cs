@@ -15,6 +15,7 @@ namespace GameToEarnLegos.Badguys
             _Y = Y = row * Tile.TileSize;
             if (level == 2)
             {
+                type = 2;
                 Health = 6f;
                 BaseSpeed = 2f;
             }

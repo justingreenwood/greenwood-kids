@@ -73,6 +73,7 @@ namespace GameToEarnLegos
         public bool IsWon { get; set; }
         public int HighScore { get; set; }
         public virtual string Goal => "Elimination";
+        
         public virtual GameSounds Music => GameSounds.GameMusic;
         public virtual float ZoomMax => 3.50f;
         public virtual string Tip => null;
