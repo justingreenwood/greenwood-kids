@@ -1,0 +1,10 @@
+
+
+
+body {font-size: 10pt;  background-color: lime;}
+#content {position: absolute; background-color: white; text-align: left; 
+font-family: courier; font-size: 13pt; padding: 5%; left: 10%; right: 10%; top: 150;}
+
+#homeTop{position: absolute;background-color: green;height: 100px; padding: 10px; right: 0px; left: 0px; top: 0}
+
+

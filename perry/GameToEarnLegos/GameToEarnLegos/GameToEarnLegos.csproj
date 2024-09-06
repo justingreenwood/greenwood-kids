@@ -10,6 +10,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Audio\Christmas_Music.mp3" />
+    <None Remove="Resources\Audio\Christmas_Music2.mp3" />
     <None Remove="Resources\Images\Ammopack.png" />
     <None Remove="Resources\Images\Badguy.png" />
     <None Remove="Resources\Images\BadguyFireAmmo.png" />
@@ -201,6 +203,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Resources\Audio\Christmas_Music.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Audio\Christmas_Music2.mp3">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\Ammopack.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

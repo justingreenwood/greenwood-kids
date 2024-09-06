@@ -39,7 +39,7 @@ namespace GameToEarnLegos
             InitializeComponent();
             if (DateTime.Now.Month >= 12)
             {
-                soundManager.loadSound(GameSounds.MenuMusic, Resources.Sound_JingleBells, ".mp3", audioEngine.Format);
+                soundManager.loadSound(GameSounds.MenuMusic, Resources.Sound_Christmas, ".mp3", audioEngine.Format);
                 soundManager.loadSound(GameSounds.GameMusic, Resources.Sound_JingleBells, ".mp3", audioEngine.Format);
             }
             else

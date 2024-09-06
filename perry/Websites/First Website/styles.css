@@ -1,0 +1,66 @@
+
+
+
+
+
+#header{ background-color: #aaa; text-align: center;font-size: 14pt; 
+height: 100px; padding: 5px; margin: 15px 10px 0px 10px}
+#content {position: absolute; background-color: #fedcba; text-align: left; 
+font-family: courier; font-size: 13pt; padding: 10px; left: 190; right: 190; bottom: 150; top: 125;}
+#footer {position: absolute; color: #facade; font-size: 10pt; bottom: 20; right: 18px; left: 18px;}
+#navigation{position: absolute;  width: 150px; border: 1px solid #000; padding: 10px; text-align: center; background-color: #2faced; left: 18px; top: 125; bottom: 150}
+#buttons{position: absolute;background-color: #18f;height: 50px;left: 190; right: 190; padding: 10px; right: 18px; left: 18px; bottom: 80}
+#other{position: absolute;  width: 150px; border: 1px solid #000; padding: 10px; text-align: center; background-color: #baddad; right: 18px; top: 125; bottom: 150}
+
+th{width: 1%; padding: 5px; color: white}
+td{ padding: 4px; text-align: center}
+
+
+.insideLink:link {color: blue}
+.insideLink:visited {color: blue}
+.insideLink:hover {color: yellow}
+.insideLink:active {color: red}
+.aboutLink:link {color: blue}
+.aboutLink:visited {color: black}
+.aboutLink:hover {color: blue}
+.aboutLink:active {color: red}
+ul.ulList li {list-style-image: url(BadguyFireAmmo.png);}
+ol.olList li {list-style-image: none;}
+body {background-color: #abcdef; color: black; font-size: 13pt}
+#AboutSection {background-color: #fedcba; text-align: center; 
+font-family: courier; font-size: 12pt}
+
+
+#HrBtns {
+	margin: 0;
+	padding: 0;
+	text-align: center;	
+	}
+#HrBtns li {
+	list-style: none;
+	display: inline;	
+	}
+#HrBtns li a {
+	color: #fff;
+	background-color: #060;
+	padding: .2em 1em;
+	text-decoration: none;	
+	}
+#HrBtns li a:hover {
+	color: #fff;
+	background-color: #333;
+	}
+colgroup{border: 0}
+colgroup#column{background-color:  #090;}
+colgroup#secondColumn{background-color: yellow;}
+thead{background: blue;}
+tfoot{background: #0f0;}
+
+a:link{color: green; font-weight: bold}
+a:visited {color: black}
+a:hover {color: yellow}
+a:active{color: red}
+
+
+
+

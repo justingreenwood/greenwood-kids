@@ -1,0 +1,66 @@
+<html>
+	<head>
+	<title>Contact Page</title>
+	<link rel="stylesheet" type = "text/css" href="contactusStyles.css">
+	</head>
+	<body>
+		<h2>Email a Person</h2>
+		<p>Requires name and email. Does not require a phone number.</p>
+		<p>WARNING: The person will NOT answer any messages.</p>
+		<form action="" method="post">
+		<fieldset>
+			<legend>Your Contact Information</legend>
+			<label for="Name">Your Name:</label><br />
+			<input type="text" name="Name" size="25"><br />
+			<label for="Email">Your Email:</label><br />
+			<input type="text" name="Email" size="25"><br />
+			<label for="Phone">Your Phone:</label><br />
+			<input type="text" name="Phone" size="25"><br />
+		</fieldset>
+		<fieldset>
+			<legend>Your Message</legend>
+			<label for="Reciever">Who are you contacting?</label><br />
+			<select name="Reciever">
+				<option value="">Please Select</option>
+				<option value="Jack">Jack</option>
+				<option value="John">John</option>
+				<option value="Joey">Joey</option>
+				<option value="Jill">Jill</option>
+			</select>
+			<input type="text" size="25" name="recipient"><br />
+			<label for="Message">Your Message</label>	<br />		
+			<textarea rows="10" cols="50" name="message"></textarea><br />
+		</fieldset>
+		<fieldset>
+			<legend>Your Response</legend>
+			<label for="response">Would you like a response?</label><br />
+			<input type="radio" name="response" value="Nope" />No response.<br />
+			<input type="radio" name="response" value="Email" />Email me.<br />
+			<input type="radio" name="response" value="Phone" />Call me.<br />
+			<input type="submit" name="submit" value="Send Message" />	
+		</fieldset>
+		</form>
+		
+		<!--<form>
+			<input type="text" name="Name" size="25" value="Your Name: "><br />
+			<input type="text" name="Email" size="25" value="Your Email: "><br />
+			<input type="text" name="Phone" size="25" value="Your Phone: "><br />
+			<p>Who are you contacting?</p>
+			<select name="Reciever">
+				<option value="">Please Select</option>
+				<option value="Jack">Jack</option>
+				<option value="John">John</option>
+				<option value="Joey">Joey</option>
+				<option value="Jill">Jill</option>
+			</select>
+			<input type="text" size="25" name="recipient"><br />
+			<textarea rows="10" cols="50" name="message"></textarea><br />
+			<p>Would you like a response?</p>
+			<input type="radio" name="response" value="Nope" />No response.<br />
+			<input type="radio" name="response" value="Email" />Email me.<br />
+			<input type="radio" name="response" value="Phone" />Call me.<br />
+			<input type="submit" name="submit" value="Send Message" />	
+		</form>-->
+				
+	</body>
+</html>

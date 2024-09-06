@@ -1,0 +1,8 @@
+
+
+body {background-color: lime; color: black; font-size:14px;}
+
+input, select, textarea{background-color: #AAA}
+label{padding-top: 10px; display: block}
+fieldset{border-width: 3px 0px 0px 0px; border-color: black;}
+legend{font-size: 18; font-weight: bold}
