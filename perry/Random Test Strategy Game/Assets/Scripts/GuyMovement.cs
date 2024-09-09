@@ -15,9 +15,11 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] int maxHealth = 50;
     public int MaxHealth { get { return maxHealth; } }
     [SerializeField] int currentHealth = 0;
+    public int CurrentHealth { get { return currentHealth; } }
     [SerializeField] int healthIncreaseIncrement = 2;
 
-    [SerializeField] float armor = 0;
+    [SerializeField] int armor = 0;
+    public int Armor { get { return armor; } }
     [SerializeField] float attackRange = 10;
     [SerializeField] int attackDamage = 5;
     [SerializeField] float attackSpeed = 0.75f;
@@ -33,6 +35,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public bool isBuilder = false;
     [SerializeField] public bool isBuilt = false;
     [SerializeField] public bool targetsNearestEnemy = false;
+    [SerializeField] public bool isSelected = false;
 
     [SerializeField] public Sprite unitImage;
 
@@ -336,6 +339,8 @@ public class GuyMovement : MonoBehaviour
                 bank.LowerUnitLimit();
             }
 
+            playerController.Deselect(gameObject);
+            
             Destroy(gameObject);
         }
     }

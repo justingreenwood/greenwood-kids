@@ -22,16 +22,17 @@ public class PlayerController : MonoBehaviour
 
     bool buildModeOn = false;
     bool buildButtonPressed = false;
-    bool buttonPressed = false;
+    bool skipSelection = false;
     public int unitsAlive = 0;
 
     [SerializeField] GameObject largeBuildingPreview;
     [SerializeField] GameObject smallBuildingPreview;
 
 
-    [SerializeField] UnityEngine.UI.Image unitImage;
+    //[SerializeField] UnityEngine.UI.Image unitImage;
     [SerializeField] UnityEngine.UI.Button[] unitUIVisualButtons;
 
+    DisplayInformationToScreen displayInfo;
 
     GameObject currentBuildingPreview;
     ResourceBank resourceBank;
@@ -62,9 +63,7 @@ public class PlayerController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         resourceBank  = GetComponent<ResourceBank>();
         currentBuildingPreview = largeBuildingPreview;
-        
-        
-
+        displayInfo = GetComponent<DisplayInformationToScreen>();       
     }
 
     void Update()
@@ -267,18 +266,16 @@ public class PlayerController : MonoBehaviour
         currentBuildingPreview.SetActive(isBuilding);
 
     }
-
+   
     void UnitSelection(Vector3? groundLocation, GameObject objectHit)
     {
-        if (buildButtonPressed == false && !buttonPressed)
+        if (buildButtonPressed == false && !skipSelection)
         {
-            
-
             if (buildModeOn)
             {
                 SetBuildMode(false);
             }
-            if(objectHit == null || groundLocation.HasValue)
+            if (objectHit == null || groundLocation.HasValue)
             {
                 selectedUnits.Clear();
                 Debug.Log("No more selected.");
@@ -291,7 +288,7 @@ public class PlayerController : MonoBehaviour
             else if (objectHit != null && !selectedUnits.Contains(objectHit))
             {
                 bool shallSkip = false;
-                if(selectedUnits.Count == 1)
+                if (selectedUnits.Count == 1)
                 {
                     if (selectedUnits[0].GetComponent<GuyMovement>().isABuilding)
                     {
@@ -318,16 +315,21 @@ public class PlayerController : MonoBehaviour
             else if (selectedUnits.Contains(objectHit))
             {
                 selectedUnits.Clear();
-                selectedUnits.Add(objectHit);               
+                selectedUnits.Add(objectHit);
             }
         }
         else
         {
             buildButtonPressed = false;
-            buttonPressed = false;
+            skipSelection = false;
         }
         Debug.Log(selectedUnits.Count);
+        EditDisplay();
 
+    }
+
+    private void EditDisplay()
+    {
         //This is for the UI Build Buttons changing
         if (selectedUnits.Count == 1)
         {
@@ -363,11 +365,12 @@ public class PlayerController : MonoBehaviour
         //This is for the UI Unit Visual Buttons changing
         if (selectedUnits.Count > 1)
         {
-            unitImage.gameObject.SetActive(false);
+            //unitImage.gameObject.SetActive(false);
+            displayInfo.ResetDisplay();
 
-            for(int i = 0; i < unitUIVisualButtons.Length; i++)
+            for (int i = 0; i < unitUIVisualButtons.Length; i++)
             {
-                if(i > selectedUnits.Count - 1)
+                if (i > selectedUnits.Count - 1)
                 {
                     unitUIVisualButtons[i].gameObject.SetActive(false);
                 }
@@ -396,25 +399,41 @@ public class PlayerController : MonoBehaviour
         //This is for the UI Unit Visual to become Single Unit Visual
         if (selectedUnits.Count == 1)
         {
-            foreach(var button in unitUIVisualButtons)
+            foreach (var button in unitUIVisualButtons)
             {
-               button.gameObject.SetActive(false);
+                button.gameObject.SetActive(false);
             }
-            unitImage.gameObject.SetActive(true);
+            //unitImage.gameObject.SetActive(true);
             GuyMovement unitAction = selectedUnits[0].GetComponent<GuyMovement>();
-            unitImage.sprite = unitAction.unitImage;
+            //unitImage.sprite = unitAction.unitImage;
+            displayInfo.DisplayUnitInfo(unitAction);
         }
         else
         {
-                unitImage.gameObject.SetActive(false);
+            //unitImage.gameObject.SetActive(false);
+            displayInfo.ResetDisplay();
         }
-        
     }
-    
+
     public void SelectionButtonAction(GameObject selectedGameObject)
     {
-        buttonPressed = true;
+        skipSelection = true;
         selectedUnits.Clear();
         selectedUnits.Add(selectedGameObject);
     }
+
+    public void Deselect(GameObject unit)
+    {
+        foreach(GameObject selected in selectedUnits)
+        {
+            if (selected == unit) 
+            {
+                selectedUnits.Remove(unit);
+                EditDisplay();
+                break;
+            }
+        }
+
+    }
+
 }

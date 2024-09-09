@@ -815,7 +815,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1946436081}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -3961,7 +3961,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1946436081}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -4769,7 +4769,7 @@ GameObject:
   - component: {fileID: 1182316200}
   - component: {fileID: 1182316199}
   m_Layer: 5
-  m_Name: Unit Armor (1)
+  m_Name: Unit Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4787,7 +4787,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1946436081}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -5864,6 +5864,7 @@ GameObject:
   - component: {fileID: 1415117428}
   - component: {fileID: 1415117427}
   - component: {fileID: 1415117429}
+  - component: {fileID: 1415117430}
   m_Layer: 0
   m_Name: YellowPlayer
   m_TagString: Yellow Team
@@ -5895,7 +5896,6 @@ MonoBehaviour:
   unitsAlive: 0
   largeBuildingPreview: {fileID: 877682442}
   smallBuildingPreview: {fileID: 1604248381}
-  unitImage: {fileID: 359607205}
   unitUIVisualButtons:
   - {fileID: 1705642797}
   - {fileID: 1445409377}
@@ -5960,6 +5960,23 @@ MonoBehaviour:
   food: 500
   unitLimit: 0
   gems: 0
+--- !u!114 &1415117430
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1415117426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb686cb411cfb334caeb11dc062edbe9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 1946436080}
+  unitImage: {fileID: 359607205}
+  nameDisplay: {fileID: 1182316199}
+  healthDisplay: {fileID: 274814701}
+  armorDisplay: {fileID: 987426182}
 --- !u!1 &1445409375
 GameObject:
   m_ObjectHideFlags: 0
@@ -7997,9 +8014,9 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 359607204}
+  - {fileID: 1182316198}
   - {fileID: 274814700}
   - {fileID: 987426181}
-  - {fileID: 1182316198}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
