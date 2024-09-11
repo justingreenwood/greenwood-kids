@@ -36,7 +36,6 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public bool isBuilt = false;
     [SerializeField] public bool targetsNearestEnemy = false;
     [SerializeField] public bool isSelected = false;
-
     [SerializeField] public Sprite unitImage;
 
     [SerializeField] public bool canProduceUnits = true;
@@ -71,7 +70,7 @@ public class GuyMovement : MonoBehaviour
     bool isCurrentlyBuilding = false;
     public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
     bool moveActionOn = false;
-
+    DisplayInformationToScreen displayInfo;
 
     Vector3 destination = Vector3.zero;
 
@@ -81,9 +80,7 @@ public class GuyMovement : MonoBehaviour
         playerController = FindObjectOfType<PlayerController>();
         player = playerController.gameObject;
         bank = player.GetComponent<ResourceBank>();
-
-        
-
+        displayInfo = playerController.DisplayInfo();
     }
 
     private void Update()
@@ -241,11 +238,15 @@ public class GuyMovement : MonoBehaviour
         while (necessaryBuildingHealth < buildingActions.maxHealth) 
         {
             yield return new WaitForSeconds(buildingActions.buildSpeed);
-            float distance = Vector3.Distance(newBuilding.transform.position, transform.position);
+            float distance = Vector3.Distance(newBuilding.transform.position, transform.position)-(buildingActions.width/2);
             if (distance <= attackRange)
             {
                 buildingActions.currentHealth += buildingActions.healthIncreaseIncrement;
                 necessaryBuildingHealth += buildingActions.healthIncreaseIncrement;
+                if (buildingActions.isSelected)
+                {
+                    displayInfo.EditUnitInfo(buildingActions.currentHealth, buildingActions.maxHealth);
+                }
             }
         }
         buildingActions.currentHealth = buildingActions.MaxHealth;
@@ -255,7 +256,10 @@ public class GuyMovement : MonoBehaviour
         {
             bank.RaiseUnitLimit();
         }
-
+        if (buildingActions.isSelected)
+        {
+            displayInfo.EditUnitInfo(buildingActions.currentHealth, buildingActions.maxHealth);
+        }
 
     }
 
@@ -342,6 +346,10 @@ public class GuyMovement : MonoBehaviour
             playerController.Deselect(gameObject);
             
             Destroy(gameObject);
+        }
+        else if(isSelected)
+        {
+            displayInfo.EditUnitInfo(currentHealth, maxHealth);
         }
     }
 

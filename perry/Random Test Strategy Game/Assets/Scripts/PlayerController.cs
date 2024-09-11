@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button[] unitUIVisualButtons;
 
     DisplayInformationToScreen displayInfo;
+    public DisplayInformationToScreen DisplayInfo() { return displayInfo;}
 
     GameObject currentBuildingPreview;
     ResourceBank resourceBank;
@@ -55,6 +56,9 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+
+        displayInfo = GetComponent<DisplayInformationToScreen>();
+
     }
 
     void Start()
@@ -63,7 +67,8 @@ public class PlayerController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         resourceBank  = GetComponent<ResourceBank>();
         currentBuildingPreview = largeBuildingPreview;
-        displayInfo = GetComponent<DisplayInformationToScreen>();       
+
+        EditDisplay();
     }
 
     void Update()
@@ -277,12 +282,12 @@ public class PlayerController : MonoBehaviour
             }
             if (objectHit == null || groundLocation.HasValue)
             {
-                selectedUnits.Clear();
+                ClearAllSelectedUnits();
                 Debug.Log("No more selected.");
             }
             else if (!CompareTag(objectHit.tag))
             {
-                selectedUnits.Clear();
+                ClearAllSelectedUnits();
                 Debug.Log("No more selected.");
             }
             else if (objectHit != null && !selectedUnits.Contains(objectHit))
@@ -292,8 +297,8 @@ public class PlayerController : MonoBehaviour
                 {
                     if (selectedUnits[0].GetComponent<GuyMovement>().isABuilding)
                     {
-                        selectedUnits.Clear();
-                        selectedUnits.Add(objectHit);
+                        ClearAllSelectedUnits();
+                        SelectUnit(objectHit);
                         shallSkip = true;
                     }
                 }
@@ -301,21 +306,21 @@ public class PlayerController : MonoBehaviour
                 {
                     if (objectHit.GetComponent<GuyMovement>().isABuilding == false && Input.GetKey(KeyCode.LeftShift))
                     {
-                        selectedUnits.Add(objectHit);
+                        SelectUnit(objectHit);
                         Debug.Log("I am selected with shift.");
                     }
                     else
                     {
-                        selectedUnits.Clear();
-                        selectedUnits.Add(objectHit);
+                        ClearAllSelectedUnits();
+                        SelectUnit(objectHit);
                         Debug.Log("I am a selected unit or building.");
                     }
                 }
             }
             else if (selectedUnits.Contains(objectHit))
             {
-                selectedUnits.Clear();
-                selectedUnits.Add(objectHit);
+                ClearAllSelectedUnits();
+                SelectUnit(objectHit);
             }
         }
         else
@@ -418,8 +423,8 @@ public class PlayerController : MonoBehaviour
     public void SelectionButtonAction(GameObject selectedGameObject)
     {
         skipSelection = true;
-        selectedUnits.Clear();
-        selectedUnits.Add(selectedGameObject);
+        ClearAllSelectedUnits();
+        SelectUnit(selectedGameObject);
     }
 
     public void Deselect(GameObject unit)
@@ -428,12 +433,25 @@ public class PlayerController : MonoBehaviour
         {
             if (selected == unit) 
             {
-                selectedUnits.Remove(unit);
+                selectedUnits.Remove(unit);                
                 EditDisplay();
                 break;
             }
         }
 
     }
+    void ClearAllSelectedUnits()
+    {
+        foreach(var unit in selectedUnits)
+        {
+            unit.GetComponent<GuyMovement>().isSelected = false;
+        }
+        selectedUnits.Clear();
+    }
 
+    void SelectUnit(GameObject unit)
+    {
+        unit.GetComponent<GuyMovement>().isSelected = true;
+        selectedUnits.Add(unit);
+    }
 }

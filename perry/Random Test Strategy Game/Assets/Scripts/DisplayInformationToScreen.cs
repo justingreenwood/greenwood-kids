@@ -23,6 +23,10 @@ public class DisplayInformationToScreen : MonoBehaviour
         armorDisplay.text = $"Armor: {unit.Armor}";
         canvas.enabled = true;
     }
+    public void EditUnitInfo(int health, int maxHealth)
+    {
+        healthDisplay.text = $"Health: {health}/{maxHealth}";
+    }
 
 
     public void ResetDisplay()
