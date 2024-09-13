@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Serialization;
@@ -22,6 +23,7 @@ public class GuyMovement : MonoBehaviour
     public int Armor { get { return armor; } }
     [SerializeField] float attackRange = 10;
     [SerializeField] int attackDamage = 5;
+    public int AttackDamage { get { return attackDamage; } }
     [SerializeField] float attackSpeed = 0.75f;
     [SerializeField] float buildSpeed = 0.05f;
     [SerializeField] float miningSpeed = 4.5f;
@@ -88,6 +90,24 @@ public class GuyMovement : MonoBehaviour
         if (targetsNearestEnemy && target == null && !moveActionOn)
         {
             SearchForTarget();
+        }
+
+        if(isCurrentlyBuilding == false) 
+        {
+            if (unitQueue.Count > 0)
+            {
+                BuildUnit(unitQueue[0]);
+            }
+        }
+
+    }
+    List<GameObject> unitQueue = new List<GameObject>();
+
+    public void AddToQueue(GameObject target)
+    {
+        if (unitQueue.Count < 5)
+        {
+            unitQueue.Add(target);
         }
     }
 
@@ -279,6 +299,7 @@ public class GuyMovement : MonoBehaviour
         pos.x = transform.position.x + 1 / transform.localScale.x;
         pos.x += 2;
         Build(chosenUnit, buildingMaterial, pos);
+        unitQueue.Remove(chosenUnit);
         isCurrentlyBuilding = false;
     }
     public void Repair(GuyMovement target)

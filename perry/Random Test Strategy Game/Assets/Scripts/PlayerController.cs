@@ -127,16 +127,16 @@ public class PlayerController : MonoBehaviour
                 var unitControls = unit.GetComponent<GuyMovement>();
                 if (!unitControls.IsCurrentlyBuilding && unitControls.isBuilt)
                 {
-                    if (unitControls.canProduceUnits && unitsAlive < resourceBank.UnitLimit)
-                    {
-                        unitControls.BuildUnit(chosenBuildOption);
-                        buildModeOn = false;
-                    }
-                    else if (unitControls.isBuilder)
+                    if (unitControls.isBuilder)
                     {
                         SetBuildMode(true, chosenBuildOption);
                         unitControls.basicBuilding = chosenBuildOption;
                     }
+                }
+                if (unitControls.canProduceUnits)
+                {
+                    unitControls.AddToQueue(chosenBuildOption);
+                    buildModeOn = false;
                 }
             }
         }

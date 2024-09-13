@@ -11,7 +11,8 @@ public class DisplayInformationToScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI nameDisplay;
     [SerializeField] TextMeshProUGUI healthDisplay;
     [SerializeField] TextMeshProUGUI armorDisplay;
-   
+    [SerializeField] TextMeshProUGUI damageDisplay;
+
 
 
 
@@ -21,6 +22,7 @@ public class DisplayInformationToScreen : MonoBehaviour
         nameDisplay.text = unit.name;
         healthDisplay.text = $"Health: {unit.CurrentHealth}/{unit.MaxHealth}";
         armorDisplay.text = $"Armor: {unit.Armor}";
+        damageDisplay.text = $"Damage: {unit.AttackDamage}";
         canvas.enabled = true;
     }
     public void EditUnitInfo(int health, int maxHealth)
