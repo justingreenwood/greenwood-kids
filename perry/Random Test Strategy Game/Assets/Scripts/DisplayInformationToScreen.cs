@@ -13,7 +13,7 @@ public class DisplayInformationToScreen : MonoBehaviour
     [SerializeField] TextMeshProUGUI armorDisplay;
     [SerializeField] TextMeshProUGUI damageDisplay;
 
-
+    [SerializeField] UnityEngine.UI.Button[] buildQueueButtons;
 
 
     public void DisplayUnitInfo(GuyMovement unit)
@@ -38,6 +38,10 @@ public class DisplayInformationToScreen : MonoBehaviour
         healthDisplay.text = null;
         armorDisplay.text = null;
         canvas.enabled = false;
+        foreach(var button in buildQueueButtons)
+        {
+            button.gameObject.SetActive(false);
+        }
     }
 
 }

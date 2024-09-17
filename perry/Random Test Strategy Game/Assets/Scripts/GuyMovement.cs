@@ -101,7 +101,19 @@ public class GuyMovement : MonoBehaviour
         }
 
     }
-    List<GameObject> unitQueue = new List<GameObject>();
+    public List<GameObject> unitQueue = new List<GameObject>();
+    public void RemoveUnitFromQueue(int i)
+    {
+        if (i == 0)
+        {
+            StopAllCoroutines();
+            playerController.unitsAlive -= unitQueue[i].GetComponent<GuyMovement>().unitSize;
+            isCurrentlyBuilding = false;
+        }
+        unitQueue.RemoveAt(i);
+        
+
+    }
 
     public void AddToQueue(GameObject target)
     {

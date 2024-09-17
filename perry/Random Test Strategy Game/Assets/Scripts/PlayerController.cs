@@ -41,6 +41,7 @@ public class PlayerController : MonoBehaviour
     List<GameObject> selectedUnits = new List<GameObject>();
     string team = "Yellow Team";
     [SerializeField] UnityEngine.UI.Button[] unitActionButtons;
+    [SerializeField] UnityEngine.UI.Button[] buildQueueButtons;
 
     void Awake()
     {
@@ -136,10 +137,12 @@ public class PlayerController : MonoBehaviour
                 if (unitControls.canProduceUnits)
                 {
                     unitControls.AddToQueue(chosenBuildOption);
+                    EditDisplay();
                     buildModeOn = false;
                 }
             }
         }
+
     }
 
     void UnitAction(Vector3? groundLocation, GameObject objectHit, bool canBuild)
@@ -338,6 +341,7 @@ public class PlayerController : MonoBehaviour
         //This is for the UI Build Buttons changing
         if (selectedUnits.Count == 1)
         {
+            displayInfo.ResetDisplay();
             GuyMovement unitAction = selectedUnits[0].GetComponent<GuyMovement>();
             for (int i = 0; i < unitActionButtons.Length; i++)
             {
@@ -356,6 +360,37 @@ public class PlayerController : MonoBehaviour
                     });
                 }
             }
+
+            if (unitAction.isABuilding)
+            {
+                
+                if(unitAction.unitQueue.Count >= 1)
+                {
+
+                    for (int i = 0; i<= unitAction.unitQueue.Count - 1; i++)
+                    {
+                        GuyMovement uInQAction = unitAction.unitQueue[i].GetComponent<GuyMovement>();
+                        buildQueueButtons[i].onClick.RemoveAllListeners();
+                        buildQueueButtons[i].gameObject.SetActive(true);
+                        buildQueueButtons[i].image.sprite = uInQAction.unitImage;
+                        int j = i;
+                        GuyMovement guyMovement = unitAction;
+                        buildQueueButtons[i].onClick.AddListener(() =>
+                        {
+                            BuildQueueAction(j, guyMovement);
+                        });
+                    }
+                }
+            }
+            else
+            {
+                foreach(var button in buildQueueButtons)
+                {
+                    button.gameObject.SetActive(false);
+                }
+            }
+
+
         }
         else
         {
@@ -418,6 +453,12 @@ public class PlayerController : MonoBehaviour
             //unitImage.gameObject.SetActive(false);
             displayInfo.ResetDisplay();
         }
+    }
+
+    void BuildQueueAction(int j, GuyMovement guyMovement)
+    {
+        skipSelection = true;
+        guyMovement.RemoveUnitFromQueue(j);
     }
 
     public void SelectionButtonAction(GameObject selectedGameObject)
