@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
     bool buildButtonPressed = false;
     bool skipSelection = false;
     public int unitsAlive = 0;
+    public int unitsBeingBuilt = 0;
 
     [SerializeField] GameObject largeBuildingPreview;
     [SerializeField] GameObject smallBuildingPreview;
@@ -136,6 +137,7 @@ public class PlayerController : MonoBehaviour
                 }
                 if (unitControls.canProduceUnits)
                 {
+                    
                     unitControls.AddToQueue(chosenBuildOption);
                     EditDisplay();
                     buildModeOn = false;
@@ -336,7 +338,7 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void EditDisplay()
+    public void EditDisplay()
     {
         //This is for the UI Build Buttons changing
         if (selectedUnits.Count == 1)
@@ -458,11 +460,11 @@ public class PlayerController : MonoBehaviour
     void BuildQueueAction(int j, GuyMovement guyMovement)
     {
         skipSelection = true;
-        guyMovement.RemoveUnitFromQueue(j);
+        guyMovement.RemoveUnitFromQueue(j);       
     }
 
     public void SelectionButtonAction(GameObject selectedGameObject)
-    {
+    {       
         skipSelection = true;
         ClearAllSelectedUnits();
         SelectUnit(selectedGameObject);
@@ -495,4 +497,21 @@ public class PlayerController : MonoBehaviour
         unit.GetComponent<GuyMovement>().isSelected = true;
         selectedUnits.Add(unit);
     }
+
+    bool buttonActionOn = false;
+
+    public void ButtonActionWait()
+    {
+        buttonActionOn = true;
+        StartCoroutine(ButtonActionCoolDown());
+    }
+
+    IEnumerator ButtonActionCoolDown()
+    {
+        yield return new WaitForSeconds(1);
+        buttonActionOn = false;
+    }
+    
+
+
 }

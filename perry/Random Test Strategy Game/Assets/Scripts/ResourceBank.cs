@@ -40,6 +40,38 @@ public class ResourceBank : MonoBehaviour
         return true;
 
     }
+
+    public int borrowedWood = 0;
+    public int borrowedGems = 0;
+    public int borrowedFood = 0;
+    public void BorrowedResources(int wood, int gems, int food)
+    {
+        borrowedWood = wood;
+        borrowedGems = gems;
+        borrowedFood = food;
+    }
+
+    public void ResetBorrowedResources()
+    {
+        borrowedWood = 0;
+        borrowedGems = 0;
+        borrowedFood = 0;
+    }
+
+    public void ResetResources()
+    {
+        wood += borrowedWood;
+        gems += borrowedGems;
+        food += borrowedFood;
+        ResetBorrowedResources();
+    }
+
+    public bool HasEnoughResource(int wood, int gems, int food)
+    {
+        if (wood < 0 || gems < 0 || food < 0) { return false; }
+        if (wood > this.wood || gems > this.gems || food > this.food) { return false; }
+        return true;
+    }
     public void AddResource(ResourceType resourceType, int amount) 
     {
 

@@ -72,6 +72,7 @@ public class GuyMovement : MonoBehaviour
     bool isCurrentlyBuilding = false;
     public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
     bool moveActionOn = false;
+
     DisplayInformationToScreen displayInfo;
 
     Vector3 destination = Vector3.zero;
@@ -108,6 +109,7 @@ public class GuyMovement : MonoBehaviour
         {
             StopAllCoroutines();
             playerController.unitsAlive -= unitQueue[i].GetComponent<GuyMovement>().unitSize;
+            bank.ResetResources();
             isCurrentlyBuilding = false;
         }
         unitQueue.RemoveAt(i);
@@ -311,8 +313,12 @@ public class GuyMovement : MonoBehaviour
         pos.x = transform.position.x + 1 / transform.localScale.x;
         pos.x += 2;
         Build(chosenUnit, buildingMaterial, pos);
+        bank.ResetBorrowedResources();
         unitQueue.Remove(chosenUnit);
+
+        playerController.EditDisplay();
         isCurrentlyBuilding = false;
+
     }
     public void Repair(GuyMovement target)
     {
@@ -343,13 +349,17 @@ public class GuyMovement : MonoBehaviour
     }
     public bool BuildUnit(GameObject chosenUnit)
     {
-        bool willBuild = bank.RemoveResource(basicBuilding.GetComponent<GuyMovement>().UnitWoodCost, basicBuilding.GetComponent<GuyMovement>().unitGemCost, basicBuilding.GetComponent<GuyMovement>().UnitFoodCost);
+        bool willBuild = bank.HasEnoughResource(basicBuilding.GetComponent<GuyMovement>().UnitWoodCost, basicBuilding.GetComponent<GuyMovement>().unitGemCost, basicBuilding.GetComponent<GuyMovement>().UnitFoodCost);
         if (!willBuild)
         {
             Debug.Log("Not enough Resources");
+
             return false;
         }
+        bank.RemoveResource(basicBuilding.GetComponent<GuyMovement>().UnitWoodCost, basicBuilding.GetComponent<GuyMovement>().unitGemCost, basicBuilding.GetComponent<GuyMovement>().UnitFoodCost);
+        bank.BorrowedResources(basicBuilding.GetComponent<GuyMovement>().UnitWoodCost, basicBuilding.GetComponent<GuyMovement>().unitGemCost, basicBuilding.GetComponent<GuyMovement>().UnitFoodCost);
         playerController.unitsAlive++;
+
         StopAllCoroutines();
         StartCoroutine(ProcessBuildUnit(chosenUnit));
         return true;
