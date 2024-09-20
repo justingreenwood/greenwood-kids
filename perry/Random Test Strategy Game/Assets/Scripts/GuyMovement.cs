@@ -31,6 +31,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] float buildingTimeLeft = 0;
     [SerializeField] float moveDelay = 0.5f;
     [SerializeField] float sightRange = 20f;
+    [SerializeField] public UnitType unitType;
 
     [SerializeField] public bool isMovable = true;
     [SerializeField] public bool isABuilding = false;
@@ -65,12 +66,13 @@ public class GuyMovement : MonoBehaviour
     public NavMeshAgent agent;
     PlayerController playerController;
     GameObject player;
-    ResourceBank bank;
+    [SerializeField] ResourceBank bank;
 
     [SerializeField] public GameObject target = null;
 
     bool isCurrentlyBuilding = false;
     public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
+    public bool isCollectingResources = false;
     bool moveActionOn = false;
 
     DisplayInformationToScreen displayInfo;
@@ -82,7 +84,8 @@ public class GuyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         playerController = FindObjectOfType<PlayerController>();
         player = playerController.gameObject;
-        bank = player.GetComponent<ResourceBank>();
+        if(CompareTag(player.tag))
+            bank = player.GetComponent<ResourceBank>();
         displayInfo = playerController.DisplayInfo();
     }
 
@@ -107,10 +110,9 @@ public class GuyMovement : MonoBehaviour
     {
         if (i == 0)
         {
-            StopAllCoroutines();
+            StoppingActivities();
             playerController.unitsAlive -= unitQueue[i].GetComponent<GuyMovement>().unitSize;
             bank.ResetResources();
-            isCurrentlyBuilding = false;
         }
         unitQueue.RemoveAt(i);
         
@@ -188,7 +190,7 @@ public class GuyMovement : MonoBehaviour
 
     public void Attack(GuyMovement enemy)
     {
-        StopAllCoroutines();
+        StoppingActivities();
         StartCoroutine(ProcessAttack(enemy));
     }
 
@@ -240,7 +242,7 @@ public class GuyMovement : MonoBehaviour
     }
     public bool BuildBuilding(Vector3 groundPos)
     {
-        StopAllCoroutines();
+        StoppingActivities();
         GuyMovement building = basicBuilding.GetComponent<GuyMovement>();
         bool willBuild = bank.RemoveResource(building.UnitWoodCost, building.unitGemCost, building.UnitFoodCost);
         if (!willBuild)
@@ -322,7 +324,7 @@ public class GuyMovement : MonoBehaviour
     }
     public void Repair(GuyMovement target)
     {
-        StopAllCoroutines();
+        StoppingActivities();
         Move(target.transform.position);
         StartCoroutine(ProcessRepair(target));
     }
@@ -360,7 +362,7 @@ public class GuyMovement : MonoBehaviour
         bank.BorrowedResources(basicBuilding.GetComponent<GuyMovement>().UnitWoodCost, basicBuilding.GetComponent<GuyMovement>().unitGemCost, basicBuilding.GetComponent<GuyMovement>().UnitFoodCost);
         playerController.unitsAlive++;
 
-        StopAllCoroutines();
+        StoppingActivities();
         StartCoroutine(ProcessBuildUnit(chosenUnit));
         return true;
     }
@@ -398,12 +400,13 @@ public class GuyMovement : MonoBehaviour
 
     public void CollectResources(Resource resource)
     {
-        StopAllCoroutines();
+        StoppingActivities();
         StartCoroutine(ProcessCollectResource(resource));
     }
 
     public IEnumerator ProcessCollectResource(Resource resource)
     {
+        isCollectingResources = true;
         while (resource.Resources>0)
         {
             float distance = Vector3.Distance(resource.transform.position, transform.position);
@@ -421,7 +424,15 @@ public class GuyMovement : MonoBehaviour
             }
             
         }
-
+        isCollectingResources = false;
     }
+
+    public void StoppingActivities()
+    {
+        isCollectingResources = false;
+        isCurrentlyBuilding = false;
+        StopAllCoroutines();
+    }
+
 
 }

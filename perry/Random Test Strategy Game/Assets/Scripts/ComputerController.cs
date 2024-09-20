@@ -8,17 +8,23 @@ public class ComputerController : MonoBehaviour
 {
 
     string team;
-    ResourceBank resourceBank;
+    ResourceBank bank;
     public int unitsAlive = 0;
-    List<GameObject> builderUnits = new List<GameObject>();
-    List<GameObject> buildings = new List<GameObject>();
-    List<GameObject> manAtArmsUnits = new List<GameObject>();
+
+    
+    [SerializeField] List<GuyMovement> peasants = new List<GuyMovement>();
+    [SerializeField] List<GuyMovement> houses = new List<GuyMovement>();
+    [SerializeField] List<GuyMovement> castles = new List<GuyMovement>();
+    [SerializeField] List<GuyMovement> farmland = new List<GuyMovement>();
+    [SerializeField] List<GuyMovement> trainingFields = new List<GuyMovement>();
+    [SerializeField] List<GuyMovement> stables = new List<GuyMovement>();
+    [SerializeField] List<GuyMovement> menAtArms = new List<GuyMovement>();
 
 
     void Start()
     {
         team = gameObject.tag;
-        resourceBank = gameObject.GetComponent<ResourceBank>();
+        bank = gameObject.GetComponent<ResourceBank>();
 
         GuyMovement[] units = FindObjectsOfType<GuyMovement>();
 
@@ -26,17 +32,33 @@ public class ComputerController : MonoBehaviour
         {
             if (CompareTag(unit.gameObject.tag))
             {
-                if (unit.isABuilding)
+                if (unit.unitType == UnitType.Castle)
                 {
-                    buildings.Add(unit.gameObject);
+                    castles.Add(unit);
                 }
-                else if (unit.isBuilder)
+                else if (unit.unitType == UnitType.House)
                 {
-                    builderUnits.Add(unit.gameObject);
+                    houses.Add(unit);
+                }
+                else if (unit.unitType == UnitType.TrainingField)
+                {
+                    trainingFields.Add(unit);
+                }
+                else if (unit.unitType == UnitType.FarmLand)
+                {
+                    farmland.Add(unit);
+                }
+                else if (unit.unitType == UnitType.Stables)
+                {
+                    stables.Add(unit);
+                }
+                else if (unit.unitType == UnitType.Builder)
+                {
+                    peasants.Add(unit);
                 }
                 else
                 {
-                    manAtArmsUnits.Add(unit.gameObject);
+                    menAtArms.Add(unit);
                 }
             }
 
@@ -47,6 +69,43 @@ public class ComputerController : MonoBehaviour
 
     void Update()
     {
+
+        if (castles.Count < 1)
+        {
+            BuildCastle();
+        }
+        else if(peasants.Count < bank.UnitLimit/5 || peasants.Count < 8)
+        {
+            foreach (var castle in castles)
+            {
+                if (!castle.IsCurrentlyBuilding && castle.isBuilt)
+                {
+                    castle.BuildUnit(castle.UnitGameObjects[0]);
+                }
+            }
+        }
+        if(peasants.Count > 4) 
+        {
+            foreach (var trainingField in trainingFields)
+            {
+                if (!trainingField.IsCurrentlyBuilding && trainingField.isBuilt)
+                {
+                    trainingField.BuildUnit(trainingField.UnitGameObjects[0]);
+                }
+            }
+
+        }
+        foreach(var peasant in peasants)
+        {
+            
+        }
+
+
         
+    }
+
+    private void BuildCastle()
+    {
+        throw new NotImplementedException();
     }
 }
