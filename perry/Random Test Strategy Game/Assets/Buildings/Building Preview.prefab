@@ -97,6 +97,7 @@ MonoBehaviour:
     m_Bits: 64
   greenPreview: {fileID: 329094093144182416}
   redPreview: {fileID: 8644870836579379553}
+  width: 8
 --- !u!54 &2219735962011855763
 Rigidbody:
   m_ObjectHideFlags: 0

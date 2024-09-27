@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -55,6 +56,7 @@ public class GuyMovement : MonoBehaviour
     public List<GameObject> UnitGameObjects { get { return unitGameObjects; } }
     public List<UnitType> UnitTypes { get { return unitTypes; } }
 
+    Vector2Int vTwoPosition;
 
     [SerializeField] int unitWoodCost = 0;
     [SerializeField] int unitGemCost = 0;
@@ -79,6 +81,8 @@ public class GuyMovement : MonoBehaviour
 
     Vector3 destination = Vector3.zero;
 
+    BuildingGrid buildGrid;
+
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -87,6 +91,22 @@ public class GuyMovement : MonoBehaviour
         if(CompareTag(player.tag))
             bank = player.GetComponent<ResourceBank>();
         displayInfo = playerController.DisplayInfo();
+
+        if (isABuilding)
+        {
+            buildGrid = playerController.buildGrid;
+            vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
+            foreach (GridSquares i in buildGrid.gridSquares)
+            {
+                if (i.position == vTwoPosition)
+                {
+                    i.isClaimed = true;
+                    //Debug.Log(i.position+ ": " + i.isClaimed);
+                    break;
+                }
+            }
+            //Debug.Log("V2Pos: " + vTwoPosition);
+        }
     }
 
     private void Update()
@@ -202,14 +222,14 @@ public class GuyMovement : MonoBehaviour
             float distance = Vector3.Distance(target.transform.position, transform.position);
             if (distance > attackRange)
             {
-                Debug.Log("Moving");
+                UnityEngine.Debug.Log("Moving");
                 Vector3 destination = Vector3.MoveTowards(transform.position, target.transform.position, distance - attackRange + 1);
                 Move(destination);
                 yield return new WaitForSeconds(moveDelay);
             }
             else
             {
-                Debug.Log("Pew Pew");
+                UnityEngine.Debug.Log("Pew Pew");
                 target.TakeDamage(attackDamage);
                 yield return new WaitForSeconds(attackSpeed);
             }
@@ -258,7 +278,7 @@ public class GuyMovement : MonoBehaviour
         newBuilding.tag = tag;
         newBuilding.GetComponentInChildren<Renderer>().material = buildingMaterial;
 
-
+        //Debug.Log("Ground Pos: "+ groundPos);
         StartCoroutine(ProcessBuild(newBuilding));
         return true;
     }
@@ -341,7 +361,7 @@ public class GuyMovement : MonoBehaviour
                 target.currentHealth += healthIncreaseIncrement;
                 if(bank.Wood<=0)
                 {
-                    Debug.Log("Out of resources.");
+                    UnityEngine.Debug.Log("Out of resources.");
                     break;
                 }
             }
@@ -389,7 +409,14 @@ public class GuyMovement : MonoBehaviour
             }
 
             playerController.Deselect(gameObject);
-            
+            foreach(var i in buildGrid.gridSquares)
+            {
+                if (i.position == vTwoPosition) 
+                {
+                    i.isClaimed = false;
+                }
+            }
+
             Destroy(gameObject);
         }
         else if(isSelected)
@@ -412,7 +439,7 @@ public class GuyMovement : MonoBehaviour
             float distance = Vector3.Distance(resource.transform.position, transform.position);
             if (distance > attackRange)
             {
-                Debug.Log("Moving");
+                UnityEngine.Debug.Log("Moving");
                 Vector3 destination = Vector3.MoveTowards(transform.position, resource.transform.position, distance - attackRange + 1);
                 Move(destination);
                 yield return new WaitForSeconds(moveDelay);

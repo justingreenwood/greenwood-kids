@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     GameObject currentBuildingPreview;
     ResourceBank resourceBank;
+    public BuildingGrid buildGrid;
 
     List<GameObject> selectedUnits = new List<GameObject>();
     string team = "Yellow Team";
@@ -61,6 +62,7 @@ public class PlayerController : MonoBehaviour
 
         displayInfo = GetComponent<DisplayInformationToScreen>();
 
+        buildGrid = FindObjectOfType<BuildingGrid>();
     }
 
     void Start()

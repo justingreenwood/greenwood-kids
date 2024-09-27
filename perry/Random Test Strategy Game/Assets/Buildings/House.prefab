@@ -96,6 +96,14 @@ PrefabInstance:
       propertyPath: m_Extents.z
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834240, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: m_Size.x
+      value: 3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834240, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: m_Size.z
+      value: 3.8
+      objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834243, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: m_RootOrder
       value: 0
