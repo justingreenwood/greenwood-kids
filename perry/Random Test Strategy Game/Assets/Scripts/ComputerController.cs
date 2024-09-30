@@ -76,11 +76,13 @@ public class ComputerController : MonoBehaviour
         }
         else if(peasants.Count < bank.UnitLimit/5 || peasants.Count < 8)
         {
+            if(bank.Food>= 50)
             foreach (var castle in castles)
             {
                 if (!castle.IsCurrentlyBuilding && castle.isBuilt)
                 {
-                    castle.BuildUnit(castle.UnitGameObjects[0]);
+                    GameObject chosenGO = castle.UnitGameObjects[0];
+                    castle.BuildUnit(chosenGO);
                 }
             }
         }

@@ -67,8 +67,9 @@ public class GuyMovement : MonoBehaviour
     public int UnitGemCost { get { return unitGemCost; } }
     public NavMeshAgent agent;
     PlayerController playerController;
+    ComputerController computerController;
     GameObject player;
-    [SerializeField] ResourceBank bank;
+    ResourceBank bank;
 
     [SerializeField] public GameObject target = null;
 
@@ -88,13 +89,24 @@ public class GuyMovement : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         playerController = FindObjectOfType<PlayerController>();
         player = playerController.gameObject;
-        if(CompareTag(player.tag))
+        if (CompareTag(player.tag))
+        {
+            transform.parent = player.transform;
             bank = player.GetComponent<ResourceBank>();
+        }
+        else
+        {
+            transform.parent = FindObjectOfType<ComputerController>().transform;
+            computerController = GetComponentInParent<ComputerController>();
+            bank = computerController.GetComponent<ResourceBank>();
+
+
+        }
         displayInfo = playerController.DisplayInfo();
 
         if (isABuilding)
         {
-            buildGrid = playerController.buildGrid;
+            buildGrid = FindObjectOfType<BuildingGrid>();
             vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
             foreach (GridSquares i in buildGrid.gridSquares)
             {
@@ -116,7 +128,7 @@ public class GuyMovement : MonoBehaviour
             SearchForTarget();
         }
 
-        if(isCurrentlyBuilding == false) 
+        if(isCurrentlyBuilding == false && isBuilt) 
         {
             if (unitQueue.Count > 0)
             {
@@ -371,16 +383,22 @@ public class GuyMovement : MonoBehaviour
     }
     public bool BuildUnit(GameObject chosenUnit)
     {
-        bool willBuild = bank.HasEnoughResource(basicBuilding.GetComponent<GuyMovement>().UnitWoodCost, basicBuilding.GetComponent<GuyMovement>().unitGemCost, basicBuilding.GetComponent<GuyMovement>().UnitFoodCost);
+        GuyMovement chosenGuyM = chosenUnit.GetComponent<GuyMovement>();
+        bool willBuild = bank.HasEnoughResource(chosenGuyM.UnitWoodCost, chosenGuyM.unitGemCost, chosenGuyM.UnitFoodCost);
         if (!willBuild)
         {
             Debug.Log("Not enough Resources");
 
             return false;
         }
-        bank.RemoveResource(basicBuilding.GetComponent<GuyMovement>().UnitWoodCost, basicBuilding.GetComponent<GuyMovement>().unitGemCost, basicBuilding.GetComponent<GuyMovement>().UnitFoodCost);
-        bank.BorrowedResources(basicBuilding.GetComponent<GuyMovement>().UnitWoodCost, basicBuilding.GetComponent<GuyMovement>().unitGemCost, basicBuilding.GetComponent<GuyMovement>().UnitFoodCost);
-        playerController.unitsAlive++;
+        bank.RemoveResource(chosenGuyM.UnitWoodCost, chosenGuyM.unitGemCost, chosenGuyM.UnitFoodCost);
+        bank.BorrowedResources(chosenGuyM.UnitWoodCost, chosenGuyM.unitGemCost, chosenGuyM.UnitFoodCost);
+        if (CompareTag(player.tag))
+            playerController.unitsAlive++;
+        else
+        {
+
+        }
 
         StoppingActivities();
         StartCoroutine(ProcessBuildUnit(chosenUnit));
@@ -392,7 +410,7 @@ public class GuyMovement : MonoBehaviour
         currentHealth -= damage;
         if(currentHealth <= 0)
         {
-            if (CompareTag(playerController.tag))
+            if (CompareTag(player.tag))
             {
                 if (!isABuilding)
                 {
@@ -402,18 +420,21 @@ public class GuyMovement : MonoBehaviour
                 {
                     playerController.unitsAlive--;
                 }
+                playerController.Deselect(gameObject);
             }
             if (hasUnitWorth)
             {
                 bank.LowerUnitLimit();
             }
 
-            playerController.Deselect(gameObject);
-            foreach(var i in buildGrid.gridSquares)
+            if (isABuilding)
             {
-                if (i.position == vTwoPosition) 
+                foreach (var i in buildGrid.gridSquares)
                 {
-                    i.isClaimed = false;
+                    if (i.position == vTwoPosition)
+                    {
+                        i.isClaimed = false;
+                    }
                 }
             }
 
