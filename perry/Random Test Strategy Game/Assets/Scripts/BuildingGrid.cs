@@ -10,7 +10,7 @@ public class BuildingGrid : MonoBehaviour
 
     
     public List<GridSquares> gridSquares = new List<GridSquares>();
- 
+    public Dictionary<Vector2Int, bool> gridSqrsDict = new Dictionary<Vector2Int, bool>();
 
     private void Awake()
     {        
@@ -20,7 +20,11 @@ public class BuildingGrid : MonoBehaviour
             {
                 gridSquares.Add(new GridSquares(new Vector2Int(i * 4,j * 4)));
             }
-        }        
+        }  
+        foreach (GridSquares square in gridSquares)
+        {
+            gridSqrsDict.Add(square.position, square.isClaimed);
+        }
     }
 
     private void Update()

@@ -9,7 +9,7 @@ public class ComputerController : MonoBehaviour
 
     string team;
     ResourceBank bank;
-    public int unitsAlive = 0;
+    //public int unitsAlive = 0;
 
     
     [SerializeField] List<GuyMovement> peasants = new List<GuyMovement>();
@@ -19,6 +19,8 @@ public class ComputerController : MonoBehaviour
     [SerializeField] List<GuyMovement> trainingFields = new List<GuyMovement>();
     [SerializeField] List<GuyMovement> stables = new List<GuyMovement>();
     [SerializeField] List<GuyMovement> menAtArms = new List<GuyMovement>();
+
+    bool canSpendWood = true;
 
 
     void Start()
@@ -69,45 +71,141 @@ public class ComputerController : MonoBehaviour
 
     void Update()
     {
+        PeasantActions();
 
-        if (castles.Count < 1)
+        if (bank.Food >= 50)
         {
-            BuildCastle();
-        }
-        else if(peasants.Count < bank.UnitLimit/5 || peasants.Count < 8)
-        {
-            if(bank.Food>= 50)
-            foreach (var castle in castles)
+            if (peasants.Count < bank.UnitLimit / 5 || peasants.Count < 8)
             {
-                if (!castle.IsCurrentlyBuilding && castle.isBuilt)
+                foreach (var castle in castles)
                 {
-                    GameObject chosenGO = castle.UnitGameObjects[0];
-                    castle.BuildUnit(chosenGO);
+                    if (!castle.IsCurrentlyBuilding && castle.isBuilt)
+                    {
+                        GameObject chosenGO = castle.UnitGameObjects[0];
+                        castle.BuildUnit(chosenGO);
+                    }
                 }
             }
         }
-        if(peasants.Count > 4) 
-        {
-            foreach (var trainingField in trainingFields)
-            {
-                if (!trainingField.IsCurrentlyBuilding && trainingField.isBuilt)
-                {
-                    trainingField.BuildUnit(trainingField.UnitGameObjects[0]);
-                }
-            }
+        
+        TrainingFieldActions();
+        
 
+    }
+
+    private void TrainingFieldActions()
+    {
+        if (trainingFields.Count > 0)
+        {
+            if (peasants.Count > 4)
+            {
+                foreach (var trainingField in trainingFields)
+                {
+                    if (!trainingField.IsCurrentlyBuilding && trainingField.isBuilt)
+                    {
+                        trainingField.BuildUnit(trainingField.UnitGameObjects[0]);
+                    }
+                }
+
+            }
         }
-        foreach(var peasant in peasants)
+    }
+    bool isAUnitBuildingAFarm = false;
+    bool isAUnitBuildingACastle = false;
+    private void PeasantActions()
+    {
+        if (peasants.Count >= 1)
         {
             
+           
+            for (int i = 0; i < peasants.Count; i++)
+            {
+                GuyMovement peasant = peasants[i];
+                //if (peasant.currentAction != UnitActions.Build)
+                if (peasant.currentAction == UnitActions.Nothing)
+                {
+                    if (peasant.currentAction == UnitActions.Attack)
+                    {
+
+                    }
+                    else if (peasant.currentAction == UnitActions.Nothing)
+                    {
+                        if (castles.Count == 0 && !isAUnitBuildingACastle)
+                        {
+                            if (bank.Wood < 50)
+                            {
+                                canSpendWood = false;
+                                CollectWood(peasant);
+                            }
+                            else
+                            {
+                                canSpendWood = true;
+                                BuildCastle(peasant);
+                            }
+                        }
+                        else if (farmland.Count == 0 && !isAUnitBuildingAFarm)
+                        {
+                            if (bank.Wood < 50)
+                            {
+                                canSpendWood = false;
+                                CollectWood(peasant);
+                            }
+                            else
+                            {
+                                canSpendWood = true;
+                                isAUnitBuildingAFarm = true;
+                                //peasant.currentAction = UnitActions.Build;
+                                BuildFarm(peasant);
+                            }
+                        }
+                        else if(farmland.Count >= 1)
+                        {
+                            Farm(peasant);
+                        }
+                        else if (bank.Wood < 2000)
+                        {
+                            CollectWood(peasant);
+                        }
+                    }
+                }
+
+            }
         }
+    }
 
+    private void Farm(GuyMovement peasant)
+    {
+    }
 
+    private void CollectWood(GuyMovement peasant)
+    {
+        peasant.SearchForResource(ResourceType.Wood);
+    }
+
+    void BuildFarm(GuyMovement peasant)
+    {
+        //peasant.currentAction = UnitActions.Searching;
+        Vector3 buildPos = peasant.SearchForPlaceToBuild();
+        if(buildPos != Vector3.zero)
+        {
+
+            peasant.basicBuilding = peasant.UnitGameObjects[4];
+            bool butt = peasant.BuildBuilding(buildPos);
+            Debug.Log(butt);
+        }
+    }
+
+    private void BuildCastle(GuyMovement peasant)
+    {
         
     }
 
-    private void BuildCastle()
+    public void AddUnit(GuyMovement unitAction)
     {
-        throw new NotImplementedException();
+        if (unitAction.unitType == UnitType.Builder)
+        {
+            peasants.Add(unitAction);
+        }
     }
+    
 }

@@ -238,7 +238,7 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("I am building.");
                 if (unitControls.BuildBuilding(previewPos))
                 {
-                    unitControls.Move(previewPos);
+                    //unitControls.Move(previewPos);
                 }
             }
             SetBuildMode(false);

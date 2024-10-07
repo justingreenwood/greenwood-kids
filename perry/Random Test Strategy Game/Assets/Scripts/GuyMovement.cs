@@ -78,6 +78,7 @@ public class GuyMovement : MonoBehaviour
     public bool isCollectingResources = false;
     bool moveActionOn = false;
 
+    public UnitActions currentAction = UnitActions.Nothing;
     DisplayInformationToScreen displayInfo;
 
     Vector3 destination = Vector3.zero;
@@ -103,10 +104,10 @@ public class GuyMovement : MonoBehaviour
 
         }
         displayInfo = playerController.DisplayInfo();
-
+        buildGrid = FindObjectOfType<BuildingGrid>();
         if (isABuilding)
         {
-            buildGrid = FindObjectOfType<BuildingGrid>();
+            
             vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
             foreach (GridSquares i in buildGrid.gridSquares)
             {
@@ -234,20 +235,22 @@ public class GuyMovement : MonoBehaviour
             float distance = Vector3.Distance(target.transform.position, transform.position);
             if (distance > attackRange)
             {
-                UnityEngine.Debug.Log("Moving");
+                currentAction = UnitActions.Move;
+                Debug.Log("Moving");
                 Vector3 destination = Vector3.MoveTowards(transform.position, target.transform.position, distance - attackRange + 1);
                 Move(destination);
                 yield return new WaitForSeconds(moveDelay);
             }
             else
             {
-                UnityEngine.Debug.Log("Pew Pew");
+                currentAction = UnitActions.Attack;
+                Debug.Log("Pew Pew");
                 target.TakeDamage(attackDamage);
                 yield return new WaitForSeconds(attackSpeed);
             }
             
         }
-        
+        currentAction = UnitActions.Nothing;
     }
 
     public void SetNewUnitDestination(Vector3 position)
@@ -263,6 +266,11 @@ public class GuyMovement : MonoBehaviour
         GameObject newGameObject = Instantiate(objectPrefab, groundPos, rotation);
         newGameObject.tag = tag;
         newGameObject.GetComponentInChildren<Renderer>().material = material;
+
+        if(computerController != null)
+        {
+            computerController.AddUnit(newGameObject.GetComponent<GuyMovement>());          
+        }
 
         if(destination != Vector3.zero)
         {
@@ -282,7 +290,8 @@ public class GuyMovement : MonoBehaviour
             Debug.Log("Not enough Resources");
             return false;
         }
-
+        Move(groundPos);
+        currentAction = UnitActions.Build;
         isCurrentlyBuilding = true;
         var rotation = Quaternion.Euler(0, 0, 0);
         groundPos.y += basicBuilding.transform.localScale.y / 2;
@@ -297,6 +306,7 @@ public class GuyMovement : MonoBehaviour
 
     IEnumerator ProcessBuild(GameObject newBuilding)
     {
+        
         GuyMovement buildingActions = newBuilding.GetComponent<GuyMovement>();
 
         int necessaryBuildingHealth = buildingActions.currentHealth;
@@ -328,11 +338,12 @@ public class GuyMovement : MonoBehaviour
         {
             displayInfo.EditUnitInfo(buildingActions.currentHealth, buildingActions.maxHealth);
         }
-
+        currentAction = UnitActions.Nothing;
     }
 
     IEnumerator ProcessBuildUnit(GameObject chosenUnit)
     {
+        currentAction = UnitActions.Build;
         isCurrentlyBuilding = true;
         float x = 0;
         while(x<=timeTakenToBuild)
@@ -352,6 +363,7 @@ public class GuyMovement : MonoBehaviour
 
         playerController.EditDisplay();
         isCurrentlyBuilding = false;
+        currentAction = UnitActions.Nothing;
 
     }
     public void Repair(GuyMovement target)
@@ -363,6 +375,7 @@ public class GuyMovement : MonoBehaviour
 
     IEnumerator ProcessRepair(GuyMovement target)
     {
+        currentAction = UnitActions.Repair;
         while(target.currentHealth < target.maxHealth)
         {
             yield return new WaitForSeconds(buildSpeed);
@@ -373,11 +386,12 @@ public class GuyMovement : MonoBehaviour
                 target.currentHealth += healthIncreaseIncrement;
                 if(bank.Wood<=0)
                 {
-                    UnityEngine.Debug.Log("Out of resources.");
+                    Debug.Log("Out of resources.");
                     break;
                 }
             }
         }
+        currentAction = UnitActions.Nothing;
         //target.currentHealth = target.maxHealth;
 
     }
@@ -454,13 +468,25 @@ public class GuyMovement : MonoBehaviour
 
     public IEnumerator ProcessCollectResource(Resource resource)
     {
+        if(resource.Type == ResourceType.Food)
+        {
+            currentAction = UnitActions.Farm;
+        }
+        else if (resource.Type == ResourceType.Wood)
+        {
+            currentAction = UnitActions.ChopTree;
+        }
+        else
+        {
+            currentAction = UnitActions.Mine;
+        }
         isCollectingResources = true;
         while (resource.Resources>0)
         {
             float distance = Vector3.Distance(resource.transform.position, transform.position);
             if (distance > attackRange)
             {
-                UnityEngine.Debug.Log("Moving");
+                Debug.Log("Moving");
                 Vector3 destination = Vector3.MoveTowards(transform.position, resource.transform.position, distance - attackRange + 1);
                 Move(destination);
                 yield return new WaitForSeconds(moveDelay);
@@ -473,14 +499,178 @@ public class GuyMovement : MonoBehaviour
             
         }
         isCollectingResources = false;
+        currentAction = UnitActions.Nothing;
     }
 
     public void StoppingActivities()
     {
+        currentAction = UnitActions.Nothing;
         isCollectingResources = false;
         isCurrentlyBuilding = false;
         StopAllCoroutines();
     }
 
+
+    public void SearchForResource(ResourceType rType)
+    {
+        Debug.Log("Searching");
+
+        Collider[] potentialResources = Physics.OverlapSphere(transform.position, 50);
+
+        List<Resource> resources = new List<Resource>();
+        foreach (Collider c in potentialResources)
+        {
+            if (c.TryGetComponent(out Resource resource))
+            {
+                if (resource.Type == rType)
+                {
+                    resources.Add(resource);
+                    Debug.Log(resources.Count);
+                }
+            }
+        }
+        float distance = 50;
+        Resource resourceTarget = null;
+        foreach (Resource resource in resources)
+        {
+            if (Vector3.Distance(resource.transform.position, transform.position) < distance)
+            {
+                resourceTarget = resource;
+                distance = Vector3.Distance(resource.transform.position, transform.position);
+            }
+        }
+        if (resourceTarget != null)
+        {
+           CollectResources(resourceTarget);
+        }
+
+    }
+
+    public Vector3 SearchForPlaceToBuild()
+    {
+        List<Vector2Int> list = new List<Vector2Int>();
+        // MATH SECTION
+        Vector3 unitPositionToGrid = Vector3.zero;
+        unitPositionToGrid.x = Mathf.Floor(transform.position.x / gridSize) * gridSize;
+        unitPositionToGrid.x += width / 2;
+        unitPositionToGrid.z = Mathf.Floor(transform.position.z / gridSize) * gridSize;
+        unitPositionToGrid.z += width / 2;
+        int minX = Mathf.CeilToInt(unitPositionToGrid.x)-52;
+        if(minX < 0)
+        {
+            minX = 0;
+        }
+        int minY = Mathf.CeilToInt(unitPositionToGrid.z) - 52;
+        if(minY < 0)
+        {
+            minY = 0;
+        }
+        int maxX = Mathf.CeilToInt(unitPositionToGrid.x) + 52;
+        if (maxX > 496)
+        {
+            maxX = 500 - 8;
+        }
+        int maxY = Mathf.CeilToInt(unitPositionToGrid.z) + 52;
+        if (maxY > 496)
+        {
+            maxY = 500 - 8;
+        }
+
+
+        // LOOP SECTION
+        for(int i = minX; i < maxX; i += 4)
+        {
+            for (int j = minY; j < maxY; j += 4)
+            {
+                if( buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j), out bool isClaimed))
+                {
+                    
+
+                    if(isClaimed == false)
+                    {
+                        if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i+4, j), out bool value))
+                        {
+                            
+                            if (value == true)
+                            {
+                                break;
+                            }
+                        }
+                        if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j + 4), out bool value0))
+                        {
+                            if (value0 == true)
+                            {
+                                break;
+                            }
+                        }
+                        if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i + 4, j+4), out bool value1))
+                        {
+                            if (value1 != true)
+                            {
+                                //currentAction = UnitActions.Build;
+                                Debug.Log("I got here!");
+                                list.Add(new Vector2Int(i,j));
+                                //Vector3 returnValue = new Vector3(i, 0.3f, j);                                
+                               // return returnValue;
+                            }
+                        }
+
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                else
+                {
+                    break;
+                }
+
+
+            }
+        }
+
+        if(list.Count > 0)
+        {
+            Vector2Int lastV2 = Vector2Int.zero;
+            int home = Mathf.FloorToInt(unitPositionToGrid.x + unitPositionToGrid.z);
+            foreach (var v2Int in list)
+            {
+                if(lastV2 == Vector2Int.zero)
+                {
+                    lastV2 = v2Int;
+                }
+                else
+                {
+                    int newInt = v2Int.x + v2Int.y;
+                    int lastInt = lastV2.x + lastV2.y;
+                    int nIH = newInt - home;
+                    int lIH = lastInt - home;
+                    if(0 > nIH)
+                    {
+                        nIH *= (-1);
+                    }
+                    if(lIH < 0)
+                    {
+                        lIH *= (-1);
+                    }
+                    if (nIH < lIH)
+                    {
+                        lastV2 = v2Int;
+                    }
+
+                }
+            }
+            Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);                                
+            return returnValue;
+
+        }
+        else
+        {
+            return Vector3.zero;
+        }
+
+    }
 
 }
