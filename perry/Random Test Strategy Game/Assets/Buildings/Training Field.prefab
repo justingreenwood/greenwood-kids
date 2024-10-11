@@ -56,6 +56,10 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: unitWoodCost
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: basicBuilding
       value: 
       objectReference: {fileID: 4285396289837412784, guid: ca622102177661c418b6719b77a32cb7, type: 3}

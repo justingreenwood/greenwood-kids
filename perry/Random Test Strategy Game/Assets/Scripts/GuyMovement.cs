@@ -266,7 +266,8 @@ public class GuyMovement : MonoBehaviour
         GameObject newGameObject = Instantiate(objectPrefab, groundPos, rotation);
         newGameObject.tag = tag;
         newGameObject.GetComponentInChildren<Renderer>().material = material;
-
+        GuyMovement guyMovement = newGameObject.GetComponent<GuyMovement>();
+        guyMovement.buildingMaterial = material;
         if(computerController != null)
         {
             computerController.AddUnit(newGameObject.GetComponent<GuyMovement>());          
@@ -298,8 +299,8 @@ public class GuyMovement : MonoBehaviour
         GameObject newBuilding = Instantiate(basicBuilding, groundPos, rotation);
         newBuilding.tag = tag;
         newBuilding.GetComponentInChildren<Renderer>().material = buildingMaterial;
-
-        //Debug.Log("Ground Pos: "+ groundPos);
+        //GuyMovement guyMovement = newBuilding.GetComponent<GuyMovement>();
+        //guyMovement.buildingMaterial = buildingMaterial;
         StartCoroutine(ProcessBuild(newBuilding));
         return true;
     }
@@ -337,6 +338,10 @@ public class GuyMovement : MonoBehaviour
         if (buildingActions.isSelected)
         {
             displayInfo.EditUnitInfo(buildingActions.currentHealth, buildingActions.maxHealth);
+        }
+        if(computerController != null)
+        {
+            computerController.AddUnit(buildingActions);
         }
         currentAction = UnitActions.Nothing;
     }
@@ -555,22 +560,22 @@ public class GuyMovement : MonoBehaviour
         unitPositionToGrid.x += width / 2;
         unitPositionToGrid.z = Mathf.Floor(transform.position.z / gridSize) * gridSize;
         unitPositionToGrid.z += width / 2;
-        int minX = Mathf.CeilToInt(unitPositionToGrid.x)-52;
+        int minX = Mathf.CeilToInt(unitPositionToGrid.x)-20;
         if(minX < 0)
         {
             minX = 0;
         }
-        int minY = Mathf.CeilToInt(unitPositionToGrid.z) - 52;
+        int minY = Mathf.CeilToInt(unitPositionToGrid.z) - 20;
         if(minY < 0)
         {
             minY = 0;
         }
-        int maxX = Mathf.CeilToInt(unitPositionToGrid.x) + 52;
+        int maxX = Mathf.CeilToInt(unitPositionToGrid.x) + 20;
         if (maxX > 496)
         {
             maxX = 500 - 8;
         }
-        int maxY = Mathf.CeilToInt(unitPositionToGrid.z) + 52;
+        int maxY = Mathf.CeilToInt(unitPositionToGrid.z) + 20;
         if (maxY > 496)
         {
             maxY = 500 - 8;
@@ -584,13 +589,10 @@ public class GuyMovement : MonoBehaviour
             {
                 if( buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j), out bool isClaimed))
                 {
-                    
-
                     if(isClaimed == false)
                     {
                         if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i+4, j), out bool value))
-                        {
-                            
+                        {         
                             if (value == true)
                             {
                                 break;
@@ -607,15 +609,9 @@ public class GuyMovement : MonoBehaviour
                         {
                             if (value1 != true)
                             {
-                                //currentAction = UnitActions.Build;
-                                Debug.Log("I got here!");
                                 list.Add(new Vector2Int(i,j));
-                                //Vector3 returnValue = new Vector3(i, 0.3f, j);                                
-                               // return returnValue;
                             }
                         }
-
-
                     }
                     else
                     {
@@ -626,8 +622,6 @@ public class GuyMovement : MonoBehaviour
                 {
                     break;
                 }
-
-
             }
         }
 
@@ -643,28 +637,21 @@ public class GuyMovement : MonoBehaviour
                 }
                 else
                 {
-                    int newInt = v2Int.x + v2Int.y;
-                    int lastInt = lastV2.x + lastV2.y;
-                    int nIH = newInt - home;
-                    int lIH = lastInt - home;
-                    if(0 > nIH)
-                    {
-                        nIH *= (-1);
-                    }
-                    if(lIH < 0)
-                    {
-                        lIH *= (-1);
-                    }
-                    if (nIH < lIH)
+                    float xdisl = lastV2.x - transform.position.x;
+                    float ydisl = lastV2.y - transform.position.y;
+                    float xdis = v2Int.x - transform.position.x;
+                    float ydis = v2Int.y - transform.position.y;
+
+                    float lastV2Distance = ydisl*ydisl+xdisl*xdisl;
+                    float currentV2Distance = ydis * ydis + xdis * xdis;
+                    if (currentV2Distance < lastV2Distance)
                     {
                         lastV2 = v2Int;
                     }
-
                 }
             }
             Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);                                
             return returnValue;
-
         }
         else
         {

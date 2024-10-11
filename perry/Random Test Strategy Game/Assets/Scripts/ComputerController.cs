@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class ComputerController : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class ComputerController : MonoBehaviour
     string team;
     ResourceBank bank;
     //public int unitsAlive = 0;
+    public int unitsAlive = 0;
 
-    
     [SerializeField] List<GuyMovement> peasants = new List<GuyMovement>();
     [SerializeField] List<GuyMovement> houses = new List<GuyMovement>();
     [SerializeField] List<GuyMovement> castles = new List<GuyMovement>();
@@ -57,10 +58,12 @@ public class ComputerController : MonoBehaviour
                 else if (unit.unitType == UnitType.Builder)
                 {
                     peasants.Add(unit);
+                    unitsAlive++;
                 }
                 else
                 {
                     menAtArms.Add(unit);
+                    unitsAlive++;
                 }
             }
 
@@ -75,7 +78,7 @@ public class ComputerController : MonoBehaviour
 
         if (bank.Food >= 50)
         {
-            if (peasants.Count < bank.UnitLimit / 5 || peasants.Count < 8)
+            if (peasants.Count < bank.UnitLimit / 5 || peasants.Count < 16)
             {
                 foreach (var castle in castles)
                 {
@@ -83,6 +86,7 @@ public class ComputerController : MonoBehaviour
                     {
                         GameObject chosenGO = castle.UnitGameObjects[0];
                         castle.BuildUnit(chosenGO);
+                        unitsAlive++;
                     }
                 }
             }
@@ -97,13 +101,22 @@ public class ComputerController : MonoBehaviour
     {
         if (trainingFields.Count > 0)
         {
-            if (peasants.Count > 4)
+            if (menAtArms.Count < 12 && bank.Food>=50)
             {
                 foreach (var trainingField in trainingFields)
                 {
-                    if (!trainingField.IsCurrentlyBuilding && trainingField.isBuilt)
+                    if (bank.Food >= 50)
                     {
-                        trainingField.BuildUnit(trainingField.UnitGameObjects[0]);
+                        if (!trainingField.IsCurrentlyBuilding && trainingField.isBuilt)
+                        {
+
+                            trainingField.BuildUnit(trainingField.UnitGameObjects[0]);
+                            unitsAlive++;
+                        }
+                    }
+                    else
+                    {
+                        break;
                     }
                 }
 
@@ -112,6 +125,10 @@ public class ComputerController : MonoBehaviour
     }
     bool isAUnitBuildingAFarm = false;
     bool isAUnitBuildingACastle = false;
+    int amountFarming = 0;
+    int amountCollectingWood = 0;
+    int amountbuildingStructures = 0;
+
     private void PeasantActions()
     {
         if (peasants.Count >= 1)
@@ -154,16 +171,32 @@ public class ComputerController : MonoBehaviour
                             {
                                 canSpendWood = true;
                                 isAUnitBuildingAFarm = true;
-                                //peasant.currentAction = UnitActions.Build;
-                                BuildFarm(peasant);
+                                Build(peasant, 4);
                             }
                         }
-                        else if(farmland.Count >= 1)
+                        else if(farmland.Count >= 1 && amountFarming <4)
                         {
+                            amountFarming++;
                             Farm(peasant);
                         }
-                        else if (bank.Wood < 2000)
+                        else if (amountCollectingWood < 2)
                         {
+                            amountCollectingWood++;
+                            CollectWood(peasant);
+                        }
+                        else if(bank.Wood >= 100 && bank.UnitLimit <= unitsAlive+2)
+                        {
+                            amountbuildingStructures++;
+                            Build(peasant, 1);
+                        }
+                        else if (bank.Wood >= 150 && trainingFields.Count <= 2&& amountbuildingStructures <=2)
+                        {
+                            amountbuildingStructures++;
+                            Build(peasant, 2);
+                        }
+                        else if (bank.Wood < 5000 && amountCollectingWood < 6)
+                        {
+                            amountCollectingWood++;
                             CollectWood(peasant);
                         }
                     }
@@ -175,6 +208,7 @@ public class ComputerController : MonoBehaviour
 
     private void Farm(GuyMovement peasant)
     {
+        peasant.SearchForResource(ResourceType.Food);
     }
 
     private void CollectWood(GuyMovement peasant)
@@ -182,16 +216,15 @@ public class ComputerController : MonoBehaviour
         peasant.SearchForResource(ResourceType.Wood);
     }
 
-    void BuildFarm(GuyMovement peasant)
+    void Build(GuyMovement peasant, int number)
     {
         //peasant.currentAction = UnitActions.Searching;
         Vector3 buildPos = peasant.SearchForPlaceToBuild();
         if(buildPos != Vector3.zero)
         {
 
-            peasant.basicBuilding = peasant.UnitGameObjects[4];
-            bool butt = peasant.BuildBuilding(buildPos);
-            Debug.Log(butt);
+            peasant.basicBuilding = peasant.UnitGameObjects[number];
+            peasant.BuildBuilding(buildPos);
         }
     }
 
@@ -205,6 +238,30 @@ public class ComputerController : MonoBehaviour
         if (unitAction.unitType == UnitType.Builder)
         {
             peasants.Add(unitAction);
+        }
+        else if (unitAction.unitType == UnitType.FarmLand)
+        {
+            farmland.Add(unitAction);
+        }
+        else if (unitAction.unitType == UnitType.TrainingField)
+        {
+            trainingFields.Add(unitAction);
+        }
+        else if (unitAction.unitType == UnitType.ManAtArms)
+        {
+            menAtArms.Add(unitAction);
+        }
+        else if (unitAction.unitType == UnitType.House)
+        {
+            houses.Add(unitAction);
+        }
+        else if (unitAction.unitType == UnitType.Stables)
+        {
+            stables.Add(unitAction);
+        }
+        else if (unitAction.unitType == UnitType.Castle)
+        {
+            castles.Add(unitAction);
         }
     }
     
