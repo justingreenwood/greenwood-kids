@@ -299,6 +299,11 @@ public class GuyMovement : MonoBehaviour
         GameObject newBuilding = Instantiate(basicBuilding, groundPos, rotation);
         newBuilding.tag = tag;
         newBuilding.GetComponentInChildren<Renderer>().material = buildingMaterial;
+
+        if (computerController != null)
+        {
+            computerController.AddUnit(newBuilding.GetComponent<GuyMovement>());
+        }
         //GuyMovement guyMovement = newBuilding.GetComponent<GuyMovement>();
         //guyMovement.buildingMaterial = buildingMaterial;
         StartCoroutine(ProcessBuild(newBuilding));
@@ -339,10 +344,7 @@ public class GuyMovement : MonoBehaviour
         {
             displayInfo.EditUnitInfo(buildingActions.currentHealth, buildingActions.maxHealth);
         }
-        if(computerController != null)
-        {
-            computerController.AddUnit(buildingActions);
-        }
+        
         currentAction = UnitActions.Nothing;
     }
 
