@@ -77,7 +77,20 @@ public class ComputerController : MonoBehaviour
         int farmersNeeded = 0;
         int treeChoppersNeeded = 0;
         int minersNeeded = 0;
-        
+        int amountFarming = 0;
+        int amountCollectingWood = 0;
+        foreach (var peasant in peasants)
+        {
+            if (peasant.currentAction == UnitActions.ChopTree)
+            {
+                amountCollectingWood++;
+            }
+            else if (peasant.currentAction == UnitActions.Farm)
+            {
+                amountFarming++;
+            }
+        }
+
         if(castles.Count > 0)
         {
             if (farmland.Count > 0)
@@ -103,9 +116,9 @@ public class ComputerController : MonoBehaviour
 
         }
 
-        PeasantActions(farmersNeeded, treeChoppersNeeded, minersNeeded);
+        PeasantActions(farmersNeeded, treeChoppersNeeded, minersNeeded, amountFarming, amountCollectingWood);
 
-        if (bank.Food >= 50)
+        if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
         {
             if (peasants.Count < bank.UnitLimit / 5 || peasants.Count < 16)
             {
@@ -120,7 +133,6 @@ public class ComputerController : MonoBehaviour
                 }
             }
         }
-        
         TrainingFieldActions();
         
 
@@ -147,13 +159,13 @@ public class ComputerController : MonoBehaviour
     {
         if (trainingFields.Count > 0)
         {
-            if (menAtArms.Count < 12 && bank.Food>=50)
+            if (menAtArms.Count < 12)
             {
                 foreach (var trainingField in trainingFields)
                 {
                     if (trainingField.isBuilt == true)
                     {
-                        if (bank.Food >= 50)
+                        if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
                         {
                             if (!trainingField.IsCurrentlyBuilding && trainingField.isBuilt)
                             {
@@ -176,10 +188,9 @@ public class ComputerController : MonoBehaviour
         }
     }
 
-    int amountFarming = 0;
-    int amountCollectingWood = 0;
+   
 
-    private void PeasantActions(int farmersNeeded, int treeChoppersNeeded, int minersNeeded)
+    private void PeasantActions(int farmersNeeded, int treeChoppersNeeded, int minersNeeded, int farming, int collectingWood)
     {
         if (peasants.Count >= 1)
         {
@@ -222,14 +233,14 @@ public class ComputerController : MonoBehaviour
                                 Build(peasant, 4);
                             }
                         }
-                        else if(farmland.Count >= 1 && amountFarming <farmersNeeded)
+                        else if(farmland.Count >= 1 && farming < farmersNeeded)
                         {
-                            amountFarming++;
+                            farming++;
                             Farm(peasant);
                         }
-                        else if (amountCollectingWood < treeChoppersNeeded)
+                        else if (collectingWood < treeChoppersNeeded)
                         {
-                            amountCollectingWood++;
+                            collectingWood++;
                             CollectWood(peasant);
                         }
                         else if(bank.Wood >= 100 && bank.UnitLimit <= unitsAlive+2)
@@ -264,11 +275,11 @@ public class ComputerController : MonoBehaviour
     void Build(GuyMovement peasant, int number)
     {
         //peasant.currentAction = UnitActions.Searching;
+        peasant.basicBuilding = peasant.UnitGameObjects[number];
         Vector3 buildPos = peasant.SearchForPlaceToBuild();
         if(buildPos != Vector3.zero)
         {
 
-            peasant.basicBuilding = peasant.UnitGameObjects[number];
             peasant.BuildBuilding(buildPos);
         }
     }

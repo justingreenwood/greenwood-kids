@@ -107,15 +107,47 @@ public class GuyMovement : MonoBehaviour
         buildGrid = FindObjectOfType<BuildingGrid>();
         if (isABuilding)
         {
-            
-            vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
-            foreach (GridSquares i in buildGrid.gridSquares)
+            if (width == 4)
             {
-                if (i.position == vTwoPosition)
+                foreach (GridSquares i in buildGrid.gridSquares)
                 {
-                    i.isClaimed = true;
-                    //Debug.Log(i.position+ ": " + i.isClaimed);
-                    break;
+                    vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
+                    if (i.position == vTwoPosition)
+                    {
+                        i.isClaimed = true;
+                        buildGrid.gridSqrsDict[vTwoPosition] = true;
+                        Debug.Log(i.position + ": " + i.isClaimed);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
+                foreach (GridSquares i in buildGrid.gridSquares)
+                {
+
+                    if (i.position == vTwoPosition)
+                    {
+                        i.isClaimed = true;
+                        buildGrid.gridSqrsDict[vTwoPosition] = true;
+
+                    }
+                    else if (i.position.x == vTwoPosition.x + 4 && i.position.y == vTwoPosition.y)
+                    {
+                        i.isClaimed = true;
+                        buildGrid.gridSqrsDict[vTwoPosition] = true;
+                    }
+                    else if (i.position.x == vTwoPosition.x + 4 && i.position.y == vTwoPosition.y + 4)
+                    {
+                        i.isClaimed = true;
+                        buildGrid.gridSqrsDict[vTwoPosition] = true;
+                    }
+                    else if (i.position.x == vTwoPosition.x && i.position.y == vTwoPosition.y + 4)
+                    {
+                        i.isClaimed = true;
+                        buildGrid.gridSqrsDict[vTwoPosition] = true;
+                    }
                 }
             }
             //Debug.Log("V2Pos: " + vTwoPosition);
@@ -589,25 +621,34 @@ public class GuyMovement : MonoBehaviour
         {
             for (int j = minY; j < maxY; j += 4)
             {
-                if( buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j), out bool isClaimed))
+                if(buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j), out bool isClaimed))
                 {
                     if(isClaimed == false)
                     {
+                        bool continueForth = true;
                         if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i+4, j), out bool value))
                         {         
                             if (value == true)
                             {
-                                break;
+                                continueForth = false;
                             }
                         }
-                        if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j + 4), out bool value0))
+                        else
+                        {
+                            continueForth = false;
+                        }
+                        if (continueForth == true && buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j + 4), out bool value0))
                         {
                             if (value0 == true)
                             {
-                                break;
+                                continueForth = false;
                             }
                         }
-                        if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i + 4, j+4), out bool value1))
+                        else
+                        {
+                            continueForth = false;
+                        }
+                        if (continueForth == true && buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i + 4, j+4), out bool value1))
                         {
                             if (value1 != true)
                             {
@@ -652,7 +693,10 @@ public class GuyMovement : MonoBehaviour
                     }
                 }
             }
-            Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);                                
+            Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);
+            
+
+
             return returnValue;
         }
         else
