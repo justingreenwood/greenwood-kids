@@ -116,6 +116,7 @@ public class GuyMovement : MonoBehaviour
                     {
                         i.isClaimed = true;
                         buildGrid.gridSqrsDict[vTwoPosition] = true;
+
                         Debug.Log(i.position + ": " + i.isClaimed);
                         break;
                     }
@@ -297,8 +298,9 @@ public class GuyMovement : MonoBehaviour
         groundPos.y += objectPrefab.transform.localScale.y / 2;
         GameObject newGameObject = Instantiate(objectPrefab, groundPos, rotation);
         newGameObject.tag = tag;
-        newGameObject.GetComponentInChildren<Renderer>().material = material;
+        newGameObject.GetComponentInChildren<Renderer>().material = buildingMaterial;
         GuyMovement guyMovement = newGameObject.GetComponent<GuyMovement>();
+        
         guyMovement.buildingMaterial = material;
         if(computerController != null)
         {
@@ -331,6 +333,7 @@ public class GuyMovement : MonoBehaviour
         GameObject newBuilding = Instantiate(basicBuilding, groundPos, rotation);
         newBuilding.tag = tag;
         newBuilding.GetComponentInChildren<Renderer>().material = buildingMaterial;
+        newBuilding.GetComponent<GuyMovement>().buildingMaterial = buildingMaterial;
 
         if (computerController != null)
         {
@@ -353,7 +356,7 @@ public class GuyMovement : MonoBehaviour
 
         while (necessaryBuildingHealth < buildingActions.maxHealth) 
         {
-            yield return new WaitForSeconds(buildingActions.buildSpeed);
+            yield return new WaitForSeconds(buildSpeed);
             float distance = Vector3.Distance(newBuilding.transform.position, transform.position)-(buildingActions.width/2);
             if (distance <= attackRange)
             {
@@ -626,7 +629,7 @@ public class GuyMovement : MonoBehaviour
                     if(isClaimed == false)
                     {
                         bool continueForth = true;
-                        if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i+4, j), out bool value))
+                        if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i-4, j), out bool value))
                         {         
                             if (value == true)
                             {
@@ -637,7 +640,7 @@ public class GuyMovement : MonoBehaviour
                         {
                             continueForth = false;
                         }
-                        if (continueForth == true && buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j + 4), out bool value0))
+                        if (continueForth == true && buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j - 4), out bool value0))
                         {
                             if (value0 == true)
                             {
@@ -648,7 +651,7 @@ public class GuyMovement : MonoBehaviour
                         {
                             continueForth = false;
                         }
-                        if (continueForth == true && buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i + 4, j+4), out bool value1))
+                        if (continueForth == true && buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i - 4, j-4), out bool value1))
                         {
                             if (value1 != true)
                             {
@@ -693,8 +696,8 @@ public class GuyMovement : MonoBehaviour
                     }
                 }
             }
-            Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);
-            
+            Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);            
+            Debug.Log(lastV2 +": "+ buildGrid.gridSqrsDict[lastV2]);
 
 
             return returnValue;
