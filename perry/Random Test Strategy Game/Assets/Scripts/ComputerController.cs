@@ -7,12 +7,12 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class ComputerController : MonoBehaviour
 {
-
+    [SerializeField] Vector3 targetCoordinate;
     string team;
     ResourceBank bank;
     //public int unitsAlive = 0;
     public int unitsAlive = 0;
-
+    bool isAttacking = false;
     [SerializeField] List<GuyMovement> peasants = new List<GuyMovement>();
     [SerializeField] List<GuyMovement> houses = new List<GuyMovement>();
     [SerializeField] List<GuyMovement> castles = new List<GuyMovement>();
@@ -135,6 +135,14 @@ public class ComputerController : MonoBehaviour
         }
         TrainingFieldActions();
         
+        if(menAtArms.Count >= 8 && isAttacking == false)
+        {
+            Attack();
+        }
+        else if(isAttacking == true && menAtArms.Count >= 10)
+        {
+            isAttacking = false;
+        }
 
     }
 
@@ -217,7 +225,7 @@ public class ComputerController : MonoBehaviour
                             else
                             {
                                 canSpendWood = true;
-                                BuildCastle(peasant);
+                                Build(peasant, 1);
                             }
                         }
                         else if (farmland.Count == 0)
@@ -284,10 +292,6 @@ public class ComputerController : MonoBehaviour
         }
     }
 
-    private void BuildCastle(GuyMovement peasant)
-    {
-        
-    }
 
     public void AddUnit(GuyMovement unitAction)
     {
@@ -321,4 +325,14 @@ public class ComputerController : MonoBehaviour
         }
     }
     
+    private void Attack()
+    {
+        isAttacking = true;
+        int i = 0;
+        foreach (var unit in menAtArms) 
+        {
+            i++;
+            unit.Move(targetCoordinate);
+        }
+    }
 }
