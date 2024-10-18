@@ -7,9 +7,11 @@ public enum UnitType
     Builder,
     ManAtArms,
     Knight,
+    Archer,
     Castle,
     House,
     Stables,
     TrainingField,
     FarmLand,
+    Tower,
 }

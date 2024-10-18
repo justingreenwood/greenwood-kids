@@ -16,15 +16,15 @@ public class GuyMovement : MonoBehaviour
 
     [SerializeField] int maxHealth = 50;
     public int MaxHealth { get { return maxHealth; } }
-    [SerializeField] int currentHealth = 0;
-    public int CurrentHealth { get { return currentHealth; } }
+    [SerializeField] float currentHealth = 0;
+    public float CurrentHealth { get { return currentHealth; } }
     [SerializeField] int healthIncreaseIncrement = 2;
 
     [SerializeField] int armor = 0;
     public int Armor { get { return armor; } }
     [SerializeField] float attackRange = 10;
-    [SerializeField] int attackDamage = 5;
-    public int AttackDamage { get { return attackDamage; } }
+    [SerializeField] float attackDamage = 5;
+    public float AttackDamage { get { return attackDamage; } }
     [SerializeField] float attackSpeed = 0.75f;
     [SerializeField] float buildSpeed = 0.05f;
     [SerializeField] float miningSpeed = 4.5f;
@@ -350,7 +350,7 @@ public class GuyMovement : MonoBehaviour
         
         GuyMovement buildingActions = newBuilding.GetComponent<GuyMovement>();
 
-        int necessaryBuildingHealth = buildingActions.currentHealth;
+        float necessaryBuildingHealth = buildingActions.currentHealth;
 
         
 
@@ -461,7 +461,7 @@ public class GuyMovement : MonoBehaviour
         return true;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         currentHealth -= damage;
         if(currentHealth <= 0)
@@ -477,6 +477,10 @@ public class GuyMovement : MonoBehaviour
                     playerController.unitsAlive--;
                 }
                 playerController.Deselect(gameObject);
+            }
+            else
+            {
+                computerController.RemoveUnit(this);
             }
             if (hasUnitWorth)
             {

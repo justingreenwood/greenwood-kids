@@ -25,7 +25,7 @@ public class DisplayInformationToScreen : MonoBehaviour
         damageDisplay.text = $"Damage: {unit.AttackDamage}";
         canvas.enabled = true;
     }
-    public void EditUnitInfo(int health, int maxHealth)
+    public void EditUnitInfo(float health, int maxHealth)
     {
         healthDisplay.text = $"Health: {health}/{maxHealth}";
     }

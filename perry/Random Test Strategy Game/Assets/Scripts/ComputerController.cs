@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 using static UnityEngine.UIElements.UxmlAttributeDescription;
 
 public class ComputerController : MonoBehaviour
@@ -325,6 +326,66 @@ public class ComputerController : MonoBehaviour
         }
     }
     
+    public void RemoveUnit(GuyMovement unitAction)
+    {
+        if (unitAction.unitType == UnitType.Builder)
+        {
+            foreach (var unit in from unit in peasants where unit == unitAction select unit)
+            {
+                peasants.Remove(unit);
+                break;
+            }
+        }
+        else if (unitAction.unitType == UnitType.FarmLand)
+        {
+            foreach (var unit in from unit in farmland where unit == unitAction select unit)
+            {
+                farmland.Remove(unit);
+                break;
+            }
+        }
+        else if (unitAction.unitType == UnitType.TrainingField)
+        {
+            foreach (var unit in from unit in trainingFields where unit == unitAction select unit)
+            {
+                trainingFields.Remove(unit);
+                break;
+            }
+        }
+        else if (unitAction.unitType == UnitType.ManAtArms)
+        {
+            foreach (var unit in from unit in menAtArms where unit == unitAction select unit)
+            {
+                menAtArms.Remove(unit);
+                break;
+            }
+        }
+        else if (unitAction.unitType == UnitType.House)
+        {
+            foreach (var unit in from unit in houses where unit == unitAction select unit)
+            {
+                houses.Remove(unit);
+                break;
+            }
+        }
+        else if (unitAction.unitType == UnitType.Stables)
+        {
+            foreach(var unit in from unit in stables where unit == unitAction select unit)
+            {
+                stables.Remove(unit);
+                break;
+            }
+        }
+        else if (unitAction.unitType == UnitType.Castle)
+        {
+            foreach (var unit in from unit in castles where unit == unitAction select unit)
+            {
+                castles.Remove(unit);
+                break;
+            }
+        }
+    }
+
     private void Attack()
     {
         isAttacking = true;
