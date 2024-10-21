@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 2, y: 4, z: 2}
   m_Children: []
   m_Father: {fileID: 2735941847620580938}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5118214260935890058
 MeshFilter:
@@ -154,31 +154,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: unitTypes.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
-      propertyPath: unitTypes.Array.data[0]
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
-      propertyPath: unitTypes.Array.data[1]
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
-      propertyPath: unitTypes.Array.data[2]
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
-      propertyPath: unitTypes.Array.data[3]
+      propertyPath: unitTypes.Array.data[0]
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: unitTypes.Array.data[1]
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
-      propertyPath: unitTypes.Array.data[4]
+      propertyPath: unitTypes.Array.data[2]
       value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: unitTypes.Array.data[3]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: unitTypes.Array.data[4]
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: unitTypes.Array.data[5]
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: unitGameObjects.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: unitGameObjects.Array.data[0]
@@ -200,6 +204,10 @@ PrefabInstance:
       propertyPath: unitGameObjects.Array.data[4]
       value: 
       objectReference: {fileID: 7151396612859795162, guid: 7bb25794f4fdaf84cbb8611dd4e374fd, type: 3}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: unitGameObjects.Array.data[5]
+      value: 
+      objectReference: {fileID: 944349333564221787, guid: eb7dc191e5685914c8db3d32d9b3de04, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
 --- !u!4 &2735941847620580938 stripped

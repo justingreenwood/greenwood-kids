@@ -97,6 +97,7 @@ MonoBehaviour:
   hasUnitWorth: 0
   unitTypes: 
   unitGameObjects: []
+  isSelectedAudio: {fileID: 8300000, guid: 0cb7773d6cfa24141bb4fd35a8081693, type: 3}
   unitWoodCost: 0
   unitGemCost: 0
   unitFoodCost: 50

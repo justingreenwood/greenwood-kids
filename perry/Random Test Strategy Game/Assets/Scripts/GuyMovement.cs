@@ -53,6 +53,9 @@ public class GuyMovement : MonoBehaviour
 
     [SerializeField] List<UnitType> unitTypes;
     [SerializeField] List<GameObject> unitGameObjects;
+
+    [SerializeField] public AudioClip isSelectedAudio;
+
     public List<GameObject> UnitGameObjects { get { return unitGameObjects; } }
     public List<UnitType> UnitTypes { get { return unitTypes; } }
 

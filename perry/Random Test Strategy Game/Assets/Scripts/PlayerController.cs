@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject smallBuildingPreview;
 
 
-    //[SerializeField] UnityEngine.UI.Image unitImage;
+
     [SerializeField] UnityEngine.UI.Button[] unitUIVisualButtons;
 
     DisplayInformationToScreen displayInfo;
@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button[] unitActionButtons;
     [SerializeField] UnityEngine.UI.Button[] buildQueueButtons;
 
+    [SerializeField] AudioClip selectionRemark;
+    AudioSource audioSource;
     void Awake()
     {
         GameObject[] buildingsAndUnits = GameObject.FindGameObjectsWithTag(team);
@@ -71,6 +73,8 @@ public class PlayerController : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         resourceBank  = GetComponent<ResourceBank>();
         currentBuildingPreview = largeBuildingPreview;
+
+        audioSource = GetComponent<AudioSource>();
 
         EditDisplay();
     }
@@ -287,47 +291,49 @@ public class PlayerController : MonoBehaviour
             {
                 SetBuildMode(false);
             }
-            if (objectHit == null || groundLocation.HasValue)
+            else
             {
-                ClearAllSelectedUnits();
-                Debug.Log("No more selected.");
-            }
-            else if (!CompareTag(objectHit.tag))
-            {
-                ClearAllSelectedUnits();
-                Debug.Log("No more selected.");
-            }
-            else if (objectHit != null && !selectedUnits.Contains(objectHit))
-            {
-                bool shallSkip = false;
-                if (selectedUnits.Count == 1)
+                if (objectHit == null || groundLocation.HasValue || !CompareTag(objectHit.tag))
                 {
-                    if (selectedUnits[0].GetComponent<GuyMovement>().isABuilding)
+                    if (!Input.GetKey(KeyCode.LeftShift))
                     {
                         ClearAllSelectedUnits();
-                        SelectUnit(objectHit);
-                        shallSkip = true;
+                        Debug.Log("No more selected.");
                     }
                 }
-                if (!shallSkip)
+                else if (objectHit != null && !selectedUnits.Contains(objectHit))
                 {
-                    if (objectHit.GetComponent<GuyMovement>().isABuilding == false && Input.GetKey(KeyCode.LeftShift))
+                    
+                    bool shallSkip = false;
+                    if (selectedUnits.Count == 1)
                     {
-                        SelectUnit(objectHit);
-                        Debug.Log("I am selected with shift.");
+                        if (selectedUnits[0].GetComponent<GuyMovement>().isABuilding)
+                        {
+                            ClearAllSelectedUnits();
+                            SelectUnit(objectHit);
+                            shallSkip = true;
+                        }
                     }
-                    else
+                    if (!shallSkip)
                     {
-                        ClearAllSelectedUnits();
-                        SelectUnit(objectHit);
-                        Debug.Log("I am a selected unit or building.");
+                        if (objectHit.GetComponent<GuyMovement>().isABuilding == false && Input.GetKey(KeyCode.LeftShift))
+                        {
+                            SelectUnit(objectHit);
+                            Debug.Log("I am selected with shift.");
+                        }
+                        else
+                        {
+                            ClearAllSelectedUnits();
+                            SelectUnit(objectHit);
+                            Debug.Log("I am a selected unit or building.");
+                        }
                     }
                 }
-            }
-            else if (selectedUnits.Contains(objectHit))
-            {
-                ClearAllSelectedUnits();
-                SelectUnit(objectHit);
+                else if (selectedUnits.Contains(objectHit))
+                {
+                    ClearAllSelectedUnits();
+                    SelectUnit(objectHit);
+                }
             }
         }
         else
@@ -496,7 +502,9 @@ public class PlayerController : MonoBehaviour
 
     void SelectUnit(GameObject unit)
     {
-        unit.GetComponent<GuyMovement>().isSelected = true;
+        GuyMovement unitAction = unit.GetComponent<GuyMovement>();
+        unitAction.isSelected = true;
+        PlaySound(unitAction.isSelectedAudio);
         selectedUnits.Add(unit);
     }
 
@@ -513,7 +521,11 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(1);
         buttonActionOn = false;
     }
-    
 
+
+    private void PlaySound(AudioClip audioClip)
+    {
+        audioSource.PlayOneShot(audioClip);
+    }
 
 }
