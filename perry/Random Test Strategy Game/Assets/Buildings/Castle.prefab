@@ -473,6 +473,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2735941847620580983, guid: a81e3fb68396b804db2759e5a8ba9311, type: 3}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: currentHealth
+      value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: unitTypes.Array.size
       value: 1
       objectReference: {fileID: 0}

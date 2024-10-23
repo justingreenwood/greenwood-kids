@@ -263,17 +263,25 @@ public class GuyMovement : MonoBehaviour
         StartCoroutine(ProcessAttack(enemy));
     }
 
-    IEnumerator ProcessAttack(GuyMovement target)
+    IEnumerator ProcessAttack(GuyMovement enemy)
     {
         
-        while(target.currentHealth > 0)
+        while(enemy.currentHealth > 0)
         {
-            float distance = Vector3.Distance(target.transform.position, transform.position);
+            float distance = Vector3.Distance(enemy.transform.position, transform.position);
+            
             if (distance > attackRange)
             {
+
+                if (isABuilding)
+                {
+                    target = null;
+                    break;
+                }
+
                 currentAction = UnitActions.Move;
                 Debug.Log("Moving");
-                Vector3 destination = Vector3.MoveTowards(transform.position, target.transform.position, distance - attackRange + 1);
+                Vector3 destination = Vector3.MoveTowards(transform.position, enemy.transform.position, distance - attackRange + 1);
                 Move(destination);
                 yield return new WaitForSeconds(moveDelay);
             }
@@ -281,9 +289,10 @@ public class GuyMovement : MonoBehaviour
             {
                 currentAction = UnitActions.Attack;
                 Debug.Log("Pew Pew");
-                target.TakeDamage(attackDamage);
+                enemy.TakeDamage(attackDamage);
                 yield return new WaitForSeconds(attackSpeed);
             }
+            
             
         }
         currentAction = UnitActions.Nothing;
@@ -352,10 +361,9 @@ public class GuyMovement : MonoBehaviour
     {
         
         GuyMovement buildingActions = newBuilding.GetComponent<GuyMovement>();
-
+        buildingActions.currentHealth = 10;
         float necessaryBuildingHealth = buildingActions.currentHealth;
 
-        
 
         while (necessaryBuildingHealth < buildingActions.maxHealth) 
         {
