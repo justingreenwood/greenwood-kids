@@ -179,7 +179,7 @@ public class GuyMovement : MonoBehaviour
     {
         if (i == 0)
         {
-            StoppingActivities();
+            StopActivities();
             playerController.unitsAlive -= unitQueue[i].GetComponent<GuyMovement>().unitSize;
             bank.ResetResources();
         }
@@ -259,7 +259,7 @@ public class GuyMovement : MonoBehaviour
 
     public void Attack(GuyMovement enemy)
     {
-        StoppingActivities();
+        StopActivities();
         StartCoroutine(ProcessAttack(enemy));
     }
 
@@ -329,7 +329,7 @@ public class GuyMovement : MonoBehaviour
     }
     public bool BuildBuilding(Vector3 groundPos)
     {
-        StoppingActivities();
+        StopActivities();
         GuyMovement building = basicBuilding.GetComponent<GuyMovement>();
         bool willBuild = bank.RemoveResource(building.UnitWoodCost, building.unitGemCost, building.UnitFoodCost);
         if (!willBuild)
@@ -421,7 +421,7 @@ public class GuyMovement : MonoBehaviour
     }
     public void Repair(GuyMovement target)
     {
-        StoppingActivities();
+        StopActivities();
         Move(target.transform.position);
         StartCoroutine(ProcessRepair(target));
     }
@@ -467,7 +467,7 @@ public class GuyMovement : MonoBehaviour
 
         }
 
-        StoppingActivities();
+        StopActivities();
         StartCoroutine(ProcessBuildUnit(chosenUnit));
         return true;
     }
@@ -519,7 +519,7 @@ public class GuyMovement : MonoBehaviour
 
     public void CollectResources(Resource resource)
     {
-        StoppingActivities();
+        StopActivities();
         StartCoroutine(ProcessCollectResource(resource));
     }
 
@@ -559,7 +559,7 @@ public class GuyMovement : MonoBehaviour
         currentAction = UnitActions.Nothing;
     }
 
-    public void StoppingActivities()
+    public void StopActivities()
     {
         currentAction = UnitActions.Nothing;
         isCollectingResources = false;
@@ -721,6 +721,24 @@ public class GuyMovement : MonoBehaviour
         {
             return Vector3.zero;
         }
+
+    }
+
+    public void EnterBuilding(Tower tower)
+    {
+        StopActivities();
+        Move(tower.transform.position);
+        StartCoroutine(ProcessEnterBuilding(tower));
+    }
+
+    public IEnumerator ProcessEnterBuilding(Tower tower)
+    {
+        float distance = Vector3.Distance(tower.transform.position, transform.position);
+        while(distance > attackRange)
+        {
+            yield return new WaitForSeconds(1);
+        }
+        tower.AddUnit(gameObject);
 
     }
 

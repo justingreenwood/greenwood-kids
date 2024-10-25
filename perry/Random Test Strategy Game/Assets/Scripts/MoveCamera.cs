@@ -17,19 +17,19 @@ public class MoveCamera : MonoBehaviour
 
 
         float speed = movementSpeed * Time.deltaTime;
-        if (Input.GetKey(KeyCode.W) && transform.position.z <= northernLimit)
+        if (Input.GetKey(KeyCode.UpArrow) && transform.position.z <= northernLimit)
         {
             Camera.main.transform.position+=Vector3.forward * speed;
         }
-        if (Input.GetKey(KeyCode.A) && transform.position.x >= westernLimit)
+        if (Input.GetKey(KeyCode.LeftArrow) && transform.position.x >= westernLimit)
         {
             Camera.main.transform.position += Vector3.left * speed;
         }
-        if(Input.GetKey(KeyCode.S) && transform.position.z >= southernLimit)
+        if(Input.GetKey(KeyCode.DownArrow) && transform.position.z >= southernLimit)
         {
             Camera.main.transform.position += Vector3.back * speed;
         }
-        if(Input.GetKey(KeyCode.D) && transform.position.x <= easternLimit)
+        if(Input.GetKey(KeyCode.RightArrow) && transform.position.x <= easternLimit)
         {
             Camera.main.transform.position += Vector3.right * speed;
         }
