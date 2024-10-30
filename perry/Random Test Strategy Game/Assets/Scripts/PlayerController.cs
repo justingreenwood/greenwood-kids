@@ -200,7 +200,14 @@ public class PlayerController : MonoBehaviour
                         else if (CompareTag(objectHit.tag))
                         {
                             if (unitControls.isBuilder)
-                                Repairing(unitControls,objectHit.GetComponent<GuyMovement>());
+                            {
+                                Repairing(unitControls, objectHit.GetComponent<GuyMovement>());
+                            }
+                            else if (objectHit.TryGetComponent(out Tower tower))
+                            {
+                                Debug.Log("Lets GO!!!");
+                                unitControls.EnterTower(tower);
+                            }
                         }
                         else
                         {

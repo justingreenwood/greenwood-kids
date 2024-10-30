@@ -22,7 +22,7 @@ public class DisplayInformationToScreen : MonoBehaviour
         nameDisplay.text = unit.name;
         healthDisplay.text = $"Health: {unit.CurrentHealth}/{unit.MaxHealth}";
         armorDisplay.text = $"Armor: {unit.Armor}";
-        damageDisplay.text = $"Damage: {unit.AttackDamage}";
+        damageDisplay.text = $"Damage: {unit.finalAttackDamage}";
         canvas.enabled = true;
     }
     public void EditUnitInfo(float health, int maxHealth)

@@ -23,8 +23,8 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] int armor = 0;
     public int Armor { get { return armor; } }
     [SerializeField] float attackRange = 10;
-    [SerializeField] float attackDamage = 5;
-    public float AttackDamage { get { return attackDamage; } }
+    [SerializeField] public float attackDamage = 5;
+    public float finalAttackDamage = 0; 
     [SerializeField] float attackSpeed = 0.75f;
     [SerializeField] float buildSpeed = 0.05f;
     [SerializeField] float miningSpeed = 4.5f;
@@ -87,6 +87,10 @@ public class GuyMovement : MonoBehaviour
     Vector3 destination = Vector3.zero;
 
     BuildingGrid buildGrid;
+    private void Awake()
+    {
+        finalAttackDamage = attackDamage;
+    }
 
     void Start()
     {
@@ -289,13 +293,33 @@ public class GuyMovement : MonoBehaviour
             {
                 currentAction = UnitActions.Attack;
                 Debug.Log("Pew Pew");
-                enemy.TakeDamage(attackDamage);
+                enemy.TakeDamage(finalAttackDamage);
                 yield return new WaitForSeconds(attackSpeed);
             }
             
             
         }
         currentAction = UnitActions.Nothing;
+    }
+
+    public void EnterTower(Tower tower)
+    {
+        StopAllCoroutines();
+        Move(tower.transform.position);
+        StartCoroutine(EnteringTower(tower));
+    }
+
+    IEnumerator EnteringTower(Tower tower)
+    {
+        float distance = Vector3.Distance(tower.transform.position, transform.position);
+        while (distance > 4)
+        {
+            distance = Vector3.Distance(tower.transform.position, transform.position);
+
+            yield return new WaitForSeconds(moveDelay);
+        }
+        tower.AddUnit(gameObject);
+        gameObject.SetActive(false);
     }
 
     public void SetNewUnitDestination(Vector3 position)
