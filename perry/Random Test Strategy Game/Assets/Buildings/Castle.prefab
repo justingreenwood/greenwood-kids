@@ -465,8 +465,24 @@ PrefabInstance:
       value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: attackRange
+      value: 35
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: attackSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: attackDamage
+      value: 6.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: hasUnitWorth
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: unitWoodCost
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: basicBuilding
@@ -475,6 +491,10 @@ PrefabInstance:
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: currentHealth
       value: 3000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: targetsNearestEnemy
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: unitTypes.Array.size
@@ -506,8 +526,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+--- !u!1 &7151396612859795162 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5299942570169834302, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+  m_PrefabInstance: {fileID: 3077067933759901156}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7151396612859795175 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5299942570169834243, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
   m_PrefabInstance: {fileID: 3077067933759901156}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2549899759522827714
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7151396612859795162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9588ba88a306b54cb485d82e86ae09c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  housedUnits: []
+  maxHouseUnits: 8

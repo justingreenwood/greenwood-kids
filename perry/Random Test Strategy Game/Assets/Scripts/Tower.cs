@@ -1,19 +1,17 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.UI.CanvasScaler;
 
 public class Tower : MonoBehaviour
 {
 
-    [SerializeField] List<GameObject> housedUnits = new List<GameObject>();
+    [SerializeField] public List<GameObject> housedUnits = new List<GameObject>();
     [SerializeField] int maxHouseUnits = 4;
     int archers = 0;
-    GuyMovement unitActions;
+    GuyMovement guyMovement;
 
     void Start()
     {
-        unitActions = GetComponent<GuyMovement>();
+        guyMovement = GetComponent<GuyMovement>();
         foreach (GameObject unit in housedUnits)
         {
             if (unit.activeSelf)
@@ -26,14 +24,16 @@ public class Tower : MonoBehaviour
             }
 
         }
-        EditDamage();
+        EditAttackSpeed();
     }
 
-    private void EditDamage()
+    private void EditAttackSpeed()
     {
-        unitActions.finalAttackDamage = unitActions.attackDamage * housedUnits.Count;
+
+        guyMovement.finalAttackSpeed = guyMovement.attackSpeed / archers;
     
     }
+    
 
     void Update()
     {
@@ -44,25 +44,31 @@ public class Tower : MonoBehaviour
 
     public void RemoveUnit(int i, GameObject target)
     {      
-        target.SetActive(true);
-        housedUnits.RemoveAt(i);
+        target.SetActive(true);        
         if (target.GetComponent<GuyMovement>().unitType == UnitType.Archer)
         {
             archers--;
         }
-        EditDamage();
+        housedUnits.RemoveAt(i);
+        EditAttackSpeed();
     }
 
     public void AddUnit(GameObject unit)
     {
         if (housedUnits.Count < maxHouseUnits)
         {
+            
             housedUnits.Add(unit);
             if (unit.GetComponent<GuyMovement>().unitType == UnitType.Archer)
             {
                 archers++;
             }
-            EditDamage();
+            unit.gameObject.SetActive(false);
+            EditAttackSpeed();
+            if (guyMovement.playerController != null)
+            {
+                guyMovement.playerController.EditDisplay();
+            }
         }
     }
 

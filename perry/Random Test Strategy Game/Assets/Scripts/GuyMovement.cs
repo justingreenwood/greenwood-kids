@@ -25,7 +25,8 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] float attackRange = 10;
     [SerializeField] public float attackDamage = 5;
     public float finalAttackDamage = 0; 
-    [SerializeField] float attackSpeed = 0.75f;
+    [SerializeField] public float attackSpeed = 0.75f;
+    public float finalAttackSpeed = 0;
     [SerializeField] float buildSpeed = 0.05f;
     [SerializeField] float miningSpeed = 4.5f;
     [SerializeField] float timeTakenToBuild = 20f;
@@ -69,7 +70,7 @@ public class GuyMovement : MonoBehaviour
     public int UnitFoodCost { get { return unitFoodCost; } }
     public int UnitGemCost { get { return unitGemCost; } }
     public NavMeshAgent agent;
-    PlayerController playerController;
+    public PlayerController playerController;
     ComputerController computerController;
     GameObject player;
     ResourceBank bank;
@@ -90,6 +91,7 @@ public class GuyMovement : MonoBehaviour
     private void Awake()
     {
         finalAttackDamage = attackDamage;
+        finalAttackSpeed = attackSpeed;
     }
 
     void Start()
@@ -124,7 +126,7 @@ public class GuyMovement : MonoBehaviour
                         i.isClaimed = true;
                         buildGrid.gridSqrsDict[vTwoPosition] = true;
 
-                        Debug.Log(i.position + ": " + i.isClaimed);
+                        //Debug.Log(i.position + ": " + i.isClaimed);
                         break;
                     }
                 }
@@ -291,10 +293,11 @@ public class GuyMovement : MonoBehaviour
             }
             else
             {
+                yield return new WaitForSeconds(finalAttackSpeed);
                 currentAction = UnitActions.Attack;
                 Debug.Log("Pew Pew");
                 enemy.TakeDamage(finalAttackDamage);
-                yield return new WaitForSeconds(attackSpeed);
+                
             }
             
             
@@ -311,15 +314,15 @@ public class GuyMovement : MonoBehaviour
 
     IEnumerator EnteringTower(Tower tower)
     {
+        float width = tower.GetComponent<GuyMovement>().width+1;
         float distance = Vector3.Distance(tower.transform.position, transform.position);
-        while (distance > 4)
+        while (distance > width)
         {
             distance = Vector3.Distance(tower.transform.position, transform.position);
 
             yield return new WaitForSeconds(moveDelay);
         }
         tower.AddUnit(gameObject);
-        gameObject.SetActive(false);
     }
 
     public void SetNewUnitDestination(Vector3 position)
@@ -501,44 +504,57 @@ public class GuyMovement : MonoBehaviour
         currentHealth -= damage;
         if(currentHealth <= 0)
         {
-            if (CompareTag(player.tag))
-            {
-                if (!isABuilding)
-                {
-                    playerController.unitsAlive--;
-                }
-                else if (isABuilding && isCurrentlyBuilding)
-                {
-                    playerController.unitsAlive--;
-                }
-                playerController.Deselect(gameObject);
-            }
-            else
-            {
-                computerController.RemoveUnit(this);
-            }
-            if (hasUnitWorth)
-            {
-                bank.LowerUnitLimit();
-            }
-
-            if (isABuilding)
-            {
-                foreach (var i in buildGrid.gridSquares)
-                {
-                    if (i.position == vTwoPosition)
-                    {
-                        i.isClaimed = false;
-                    }
-                }
-            }
-
-            Destroy(gameObject);
+            Die();
         }
         else if(isSelected)
         {
             displayInfo.EditUnitInfo(currentHealth, maxHealth);
         }
+    }
+
+    private void Die()
+    {
+        if (CompareTag(player.tag))
+        {
+            if (!isABuilding)
+            {
+                playerController.unitsAlive--;
+            }
+            else if (isABuilding && isCurrentlyBuilding)
+            {
+                playerController.unitsAlive--;
+            }
+            playerController.Deselect(gameObject);
+        }
+        else
+        {
+            computerController.RemoveUnit(this);
+        }
+        if (hasUnitWorth)
+        {
+            bank.LowerUnitLimit();
+        }
+
+        if (isABuilding)
+        {
+            foreach (var i in buildGrid.gridSquares)
+            {
+                if (i.position == vTwoPosition)
+                {
+                    i.isClaimed = false;
+                }
+            }
+            if(TryGetComponent(out Tower tower))
+            {
+                foreach(var unit in tower.housedUnits)
+                {
+                    unit.SetActive(true);
+                }
+            }
+
+        }
+
+        Destroy(gameObject);
     }
 
     public void CollectResources(Resource resource)
@@ -594,7 +610,7 @@ public class GuyMovement : MonoBehaviour
 
     public void SearchForResource(ResourceType rType)
     {
-        Debug.Log("Searching");
+        //Debug.Log("Searching");
 
         Collider[] potentialResources = Physics.OverlapSphere(transform.position, 50);
 
@@ -736,7 +752,7 @@ public class GuyMovement : MonoBehaviour
                 }
             }
             Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);            
-            Debug.Log(lastV2 +": "+ buildGrid.gridSqrsDict[lastV2]);
+            //Debug.Log(lastV2 +": "+ buildGrid.gridSqrsDict[lastV2]);
 
 
             return returnValue;
@@ -748,22 +764,5 @@ public class GuyMovement : MonoBehaviour
 
     }
 
-    public void EnterBuilding(Tower tower)
-    {
-        StopActivities();
-        Move(tower.transform.position);
-        StartCoroutine(ProcessEnterBuilding(tower));
-    }
-
-    public IEnumerator ProcessEnterBuilding(Tower tower)
-    {
-        float distance = Vector3.Distance(tower.transform.position, transform.position);
-        while(distance > attackRange)
-        {
-            yield return new WaitForSeconds(1);
-        }
-        tower.AddUnit(gameObject);
-
-    }
 
 }

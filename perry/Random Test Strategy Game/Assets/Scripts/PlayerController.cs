@@ -44,6 +44,7 @@ public class PlayerController : MonoBehaviour
     string team = "Yellow Team";
     [SerializeField] UnityEngine.UI.Button[] unitActionButtons;
     [SerializeField] UnityEngine.UI.Button[] buildQueueButtons;
+    [SerializeField] UnityEngine.UI.Button[] housedUnitButtons;
 
     [SerializeField] AudioClip selectionRemark;
     AudioSource audioSource;
@@ -189,7 +190,7 @@ public class PlayerController : MonoBehaviour
                             SetBuildMode(false);
                             return;
                         }
-                        if (objectHit.TryGetComponent<Resource>(out Resource resource))
+                        if (objectHit.TryGetComponent(out Resource resource))
                         {
                             if (unitControls.isBuilder)
                             {
@@ -199,9 +200,10 @@ public class PlayerController : MonoBehaviour
                         }
                         else if (CompareTag(objectHit.tag))
                         {
-                            if (unitControls.isBuilder)
+                            GuyMovement objectGuyMovement = objectHit.GetComponent<GuyMovement>();
+                            if (unitControls.isBuilder && objectGuyMovement.CurrentHealth< objectGuyMovement.MaxHealth)
                             {
-                                Repairing(unitControls, objectHit.GetComponent<GuyMovement>());
+                                Repairing(unitControls, objectGuyMovement);
                             }
                             else if (objectHit.TryGetComponent(out Tower tower))
                             {
@@ -355,6 +357,11 @@ public class PlayerController : MonoBehaviour
 
     public void EditDisplay()
     {
+        foreach (var button in housedUnitButtons)
+        {
+            button.onClick.RemoveAllListeners();
+            button.gameObject.SetActive(false);
+        }
         //This is for the UI Build Buttons changing
         if (selectedUnits.Count == 1)
         {
@@ -398,6 +405,25 @@ public class PlayerController : MonoBehaviour
                         });
                     }
                 }
+                if (unitAction.TryGetComponent(out Tower tower))
+                {
+                    
+                    for (int i = 0; i <= tower.housedUnits.Count - 1; i++)
+                    {
+                        GuyMovement housedUnitAction = tower.housedUnits[i].GetComponent<GuyMovement>();
+                        housedUnitButtons[i].onClick.RemoveAllListeners();
+                        housedUnitButtons[i].gameObject.SetActive(true);
+                        housedUnitButtons[i].image.sprite = housedUnitAction.unitImage;
+                        int j = i;
+                        GameObject housedUnit = tower.housedUnits[i];
+                        housedUnitButtons[i].onClick.AddListener(() =>
+                        {
+                            tower.RemoveUnit(j,housedUnit);
+                        });
+                    }
+
+                }
+
             }
             else
             {
