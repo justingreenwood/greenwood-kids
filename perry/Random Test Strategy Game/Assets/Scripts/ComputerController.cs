@@ -21,6 +21,7 @@ public class ComputerController : MonoBehaviour
     [SerializeField] List<GuyMovement> trainingFields = new List<GuyMovement>();
     [SerializeField] List<GuyMovement> stables = new List<GuyMovement>();
     [SerializeField] List<GuyMovement> menAtArms = new List<GuyMovement>();
+    [SerializeField] List<GuyMovement> archers = new List<GuyMovement>();
 
     bool canSpendWood = true;
 
@@ -36,36 +37,8 @@ public class ComputerController : MonoBehaviour
         {
             if (CompareTag(unit.gameObject.tag))
             {
-                if (unit.unitType == UnitType.Castle)
-                {
-                    castles.Add(unit);
-                }
-                else if (unit.unitType == UnitType.House)
-                {
-                    houses.Add(unit);
-                }
-                else if (unit.unitType == UnitType.TrainingField)
-                {
-                    trainingFields.Add(unit);
-                }
-                else if (unit.unitType == UnitType.FarmLand)
-                {
-                    farmland.Add(unit);
-                }
-                else if (unit.unitType == UnitType.Stables)
-                {
-                    stables.Add(unit);
-                }
-                else if (unit.unitType == UnitType.Builder)
-                {
-                    peasants.Add(unit);
-                    unitsAlive++;
-                }
-                else
-                {
-                    menAtArms.Add(unit);
-                    unitsAlive++;
-                }
+                AddUnit(unit);
+                
             }
 
 
@@ -144,7 +117,31 @@ public class ComputerController : MonoBehaviour
         {
             isAttacking = false;
         }
+        if(archers.Count > 0 && castles.Count > 0)
+        {
+            foreach (var castle in castles)
+            {
+                Tower tower = castle.GetComponent<Tower>();
+                if (tower.housedUnits.Count < 8)
+                {
+                    var neededUnits = 8 - tower.housedUnits.Count;
 
+                    foreach (var archer in archers)
+                    {
+                        if (archer.gameObject.activeInHierarchy)
+                        {
+                            if(neededUnits > 0)
+                            {
+                                archer.EnterTower(tower);
+                                neededUnits--;
+                            }
+                        }
+                    }
+                }
+
+            }
+            
+        }
     }
 
     private void EnsureExtraPeasants(int farmersNeeded, int treeChoppersNeeded)
@@ -311,6 +308,10 @@ public class ComputerController : MonoBehaviour
         else if (unitAction.unitType == UnitType.ManAtArms)
         {
             menAtArms.Add(unitAction);
+        }
+        else if (unitAction.unitType == UnitType.Archer)
+        {
+            archers.Add(unitAction);
         }
         else if (unitAction.unitType == UnitType.House)
         {

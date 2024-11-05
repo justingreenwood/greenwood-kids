@@ -41,6 +41,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public bool isBuilt = false;
     [SerializeField] public bool targetsNearestEnemy = false;
     [SerializeField] public bool isSelected = false;
+    public bool isAttacking = false;
     [SerializeField] public Sprite unitImage;
 
     [SerializeField] public bool canProduceUnits = true;
@@ -74,6 +75,8 @@ public class GuyMovement : MonoBehaviour
     ComputerController computerController;
     GameObject player;
     ResourceBank bank;
+
+    public List<GuyMovement> targeters = new List<GuyMovement>();
 
     [SerializeField] public GameObject target = null;
 
@@ -266,6 +269,7 @@ public class GuyMovement : MonoBehaviour
     public void Attack(GuyMovement enemy)
     {
         StopActivities();
+        enemy.targeters.Add(this);
         StartCoroutine(ProcessAttack(enemy));
     }
 
@@ -286,7 +290,7 @@ public class GuyMovement : MonoBehaviour
                 }
 
                 currentAction = UnitActions.Move;
-                Debug.Log("Moving");
+                //Debug.Log("Moving");
                 Vector3 destination = Vector3.MoveTowards(transform.position, enemy.transform.position, distance - attackRange + 1);
                 Move(destination);
                 yield return new WaitForSeconds(moveDelay);
@@ -294,15 +298,13 @@ public class GuyMovement : MonoBehaviour
             else
             {
                 yield return new WaitForSeconds(finalAttackSpeed);
-                currentAction = UnitActions.Attack;
-                Debug.Log("Pew Pew");
-                enemy.TakeDamage(finalAttackDamage);
-                
+                isAttacking = true;
+                enemy.TakeDamage(finalAttackDamage);                
             }
             
             
-        }
-        currentAction = UnitActions.Nothing;
+        }        
+        isAttacking = false;
     }
 
     public void EnterTower(Tower tower)
@@ -322,6 +324,7 @@ public class GuyMovement : MonoBehaviour
 
             yield return new WaitForSeconds(moveDelay);
         }
+        target = null;
         tower.AddUnit(gameObject);
     }
 
@@ -553,7 +556,14 @@ public class GuyMovement : MonoBehaviour
             }
 
         }
-
+        foreach (var targeter in targeters)
+        {
+            if (targeter != null) 
+            {
+                targeter.target = null;
+                targeter.StopAllCoroutines();
+            }
+        }
         Destroy(gameObject);
     }
 
@@ -604,7 +614,11 @@ public class GuyMovement : MonoBehaviour
         currentAction = UnitActions.Nothing;
         isCollectingResources = false;
         isCurrentlyBuilding = false;
-        StopAllCoroutines();
+        if(unitType != UnitType.Castle)
+        {
+            isAttacking = false;
+            StopAllCoroutines();
+        }
     }
 
 
