@@ -156,7 +156,8 @@ public class PlayerController : MonoBehaviour
 
     void UnitAction(Vector3? groundLocation, GameObject objectHit, bool canBuild)
     {
-
+        bool actionDone = false;
+        bool canDoActionSound = true;
         GameObject selectedUnit = selectedUnits[0];
         if (selectedUnit.GetComponent<GuyMovement>().isABuilding) {}
         else 
@@ -170,8 +171,10 @@ public class PlayerController : MonoBehaviour
                     unitControls.target = null;
                     if (groundLocation.HasValue)
                     {
+                        actionDone = true;
                         if (buildModeOn)
                         {
+                            canDoActionSound = false;
                             Building(canBuild, unitControls);
                         }
                         else
@@ -194,6 +197,7 @@ public class PlayerController : MonoBehaviour
                         {
                             if (unitControls.isBuilder)
                             {
+                                actionDone = true;
                                 Debug.Log("I Collect Resource");
                                 unitControls.CollectResources(resource);
                             }
@@ -203,22 +207,30 @@ public class PlayerController : MonoBehaviour
                             GuyMovement objectGuyMovement = objectHit.GetComponent<GuyMovement>();
                             if (unitControls.isBuilder && objectGuyMovement.CurrentHealth< objectGuyMovement.MaxHealth)
                             {
+                                actionDone = true;
                                 Repairing(unitControls, objectGuyMovement);
                             }
                             else if (objectHit.TryGetComponent(out Tower tower))
                             {
+                                actionDone = true;
                                 Debug.Log("Lets GO!!!");
                                 unitControls.EnterTower(tower);
                             }
                         }
                         else
                         {
+                            actionDone = true;
                             unitControls.target = objectHit;
                             unitControls.Attack(objectHit.GetComponent<GuyMovement>());
 
                         }
                     }
                 }
+            }
+            if (actionDone && canDoActionSound)
+            {
+
+                PlaySound(selectedUnit.GetComponent<GuyMovement>().ActionAudio);
             }
         }
     }
@@ -251,7 +263,11 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("I am building.");
                 if (unitControls.BuildBuilding(previewPos))
                 {
-                    //unitControls.Move(previewPos);
+                    PlaySound(unitControls.ActionAudio);
+                }
+                else
+                {
+                    PlaySound(unitControls.IncapableAudio);
                 }
             }
             SetBuildMode(false);
@@ -259,6 +275,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.Log("Can't build there.");
+            PlaySound(unitControls.IncapableAudio);
         }
 
        

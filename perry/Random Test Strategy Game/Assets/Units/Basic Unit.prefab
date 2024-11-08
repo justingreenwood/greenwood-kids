@@ -74,7 +74,9 @@ MonoBehaviour:
   armor: 0
   attackRange: 10
   attackDamage: 5
+  finalAttackDamage: 0
   attackSpeed: 0.75
+  finalAttackSpeed: 0
   buildSpeed: 0.1
   miningSpeed: 15
   timeTakenToBuild: 20
@@ -88,6 +90,7 @@ MonoBehaviour:
   isBuilt: 1
   targetsNearestEnemy: 0
   isSelected: 0
+  isAttacking: 0
   unitImage: {fileID: 21300000, guid: 9ce84ff0fdeb13d4a83f077d075dd9a5, type: 3}
   canProduceUnits: 0
   basicBuilding: {fileID: 5299942570169834302, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
@@ -97,12 +100,16 @@ MonoBehaviour:
   hasUnitWorth: 0
   unitTypes: 
   unitGameObjects: []
-  isSelectedAudio: {fileID: 8300000, guid: 0cb7773d6cfa24141bb4fd35a8081693, type: 3}
+  isSelectedAudio: {fileID: 8300000, guid: f0353b0a76701ce4b8c4fcc0b8ab7fbd, type: 3}
+  IncapableAudio: {fileID: 8300000, guid: bcdfa7f213c8002489ef0f8697600278, type: 3}
+  ActionAudio: {fileID: 8300000, guid: b88aa4deb0d94194389610cc2da1a049, type: 3}
   unitWoodCost: 0
   unitGemCost: 0
   unitFoodCost: 50
   unitSize: 1
   agent: {fileID: 0}
+  playerController: {fileID: 0}
+  targeters: []
   target: {fileID: 0}
   isCollectingResources: 0
   currentAction: 7

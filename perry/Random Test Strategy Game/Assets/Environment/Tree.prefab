@@ -64,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a56d2d22bbe7a4c9c30cdb6e09b8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resources: 100
+  resources: 200
   resourceType: 0
 --- !u!136 &8893227786639118946
 CapsuleCollider:
