@@ -10,7 +10,9 @@ public enum UnitActions
     Farm,         
     Mine,    
     Move,
-    Repair,
     Nothing,
+    Repair,
+    Research,
     Searching,
+    
 }

@@ -249,6 +249,10 @@ PrefabInstance:
       propertyPath: currentHealth
       value: 500
       objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: canProduceUnits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834302, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: m_Name
       value: House

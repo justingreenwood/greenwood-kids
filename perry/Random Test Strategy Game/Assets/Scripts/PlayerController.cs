@@ -46,7 +46,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button[] buildQueueButtons;
     [SerializeField] UnityEngine.UI.Button[] housedUnitButtons;
 
-    [SerializeField] AudioClip selectionRemark;
     AudioSource audioSource;
     void Awake()
     {
@@ -66,6 +65,7 @@ public class PlayerController : MonoBehaviour
         displayInfo = GetComponent<DisplayInformationToScreen>();
 
         buildGrid = FindObjectOfType<BuildingGrid>();
+        WriteDictionary();
     }
 
     void Start()
@@ -124,7 +124,14 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    Dictionary<Technology, bool> technologies = new Dictionary<Technology, bool>();
+    private void WriteDictionary()
+    {
+        technologies.Add(Technology.Weapon, false);
+        technologies.Add(Technology.Armor, false);
+        technologies.Add(Technology.Health, false);
 
+    }
     public void BuildButtonPressed(GameObject chosenBuildOption)
     {
         buildButtonPressed = true;
@@ -159,7 +166,7 @@ public class PlayerController : MonoBehaviour
         bool actionDone = false;
         bool canDoActionSound = true;
         GameObject selectedUnit = selectedUnits[0];
-        if (selectedUnit.GetComponent<GuyMovement>().isABuilding) {}
+        if (selectedUnit.GetComponent<GuyMovement>().isABuilding) { canDoActionSound = false; }
         else 
         { 
             foreach (var unit in selectedUnits)
@@ -388,8 +395,21 @@ public class PlayerController : MonoBehaviour
             {
                 unitActionButtons[i].onClick.RemoveAllListeners();
                 if (i > unitAction.UnitGameObjects.Count - 1)
-                {
-                    unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "X";
+                {                   
+
+                    if (i > unitAction.researchableTechnology.Count - 1)
+                    {
+                        unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "X";
+                    }
+                    else
+                    {
+                        Technology tech = unitAction.researchableTechnology[i];
+                        unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = tech.ToString();                       
+                        unitActionButtons[i].onClick.AddListener(() =>
+                        {
+                            UnitResearch(unitAction,tech);
+                        });
+                    }
                 }
                 else
                 {
@@ -484,7 +504,6 @@ public class PlayerController : MonoBehaviour
                     unitUIVisualButtons[i].onClick.AddListener(() =>
                     {
                         SelectionButtonAction(newGameObject);
-                        //UnitSelection(null, newGameObject);
                     });
                 }
             }
@@ -554,7 +573,10 @@ public class PlayerController : MonoBehaviour
     {
         GuyMovement unitAction = unit.GetComponent<GuyMovement>();
         unitAction.isSelected = true;
-        PlaySound(unitAction.isSelectedAudio);
+        if (!unitAction.isABuilding)
+        {
+            PlaySound(unitAction.isSelectedAudio);
+        }
         selectedUnits.Add(unit);
     }
 
@@ -576,6 +598,25 @@ public class PlayerController : MonoBehaviour
     private void PlaySound(AudioClip audioClip)
     {
         audioSource.PlayOneShot(audioClip);
+    }
+
+    public void UnitResearch(GuyMovement unitAction, Technology t)
+    {
+
+        skipSelection = true;
+        if(unitAction.currentAction != UnitActions.Research)
+        {
+            unitAction.Research(t);
+        }
+        else
+        {
+            Debug.Log("Currently Researching");
+        }
+    }
+    public void Research(Technology t)
+    {
+        technologies[t] = true;
+        
     }
 
 }

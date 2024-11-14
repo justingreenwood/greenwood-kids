@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
 using UnityEditor;
 using UnityEditorInternal;
@@ -30,7 +31,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] float buildSpeed = 0.05f;
     [SerializeField] float miningSpeed = 4.5f;
     [SerializeField] float timeTakenToBuild = 20f;
-    [SerializeField] float buildingTimeLeft = 0;
+    [SerializeField] float buildingTimeLeft = 0;//needs to be viewable on screed
     [SerializeField] float moveDelay = 0.5f;
     [SerializeField] float sightRange = 20f;
     [SerializeField] public UnitType unitType;
@@ -40,14 +41,14 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public bool isBuilder = false;
     [SerializeField] public bool isBuilt = false;
     [SerializeField] public bool targetsNearestEnemy = false;
-    [SerializeField] public bool isSelected = false;
+    public bool isSelected = false;
     public bool isAttacking = false;
     [SerializeField] public Sprite unitImage;
 
     [SerializeField] public bool canProduceUnits = true;
     [SerializeField] public GameObject basicBuilding;
     [SerializeField] public Material buildingMaterial;
-    [SerializeField] int gridSize = 4;
+    int gridSize = 4;
     [SerializeField] public int width = 8;
 
     [SerializeField]  bool hasUnitWorth = false;
@@ -55,6 +56,7 @@ public class GuyMovement : MonoBehaviour
 
     [SerializeField] List<UnitType> unitTypes;
     [SerializeField] List<GameObject> unitGameObjects;
+    [SerializeField] public List<Technology> researchableTechnology;
 
     [SerializeField] public AudioClip isSelectedAudio;
     [SerializeField] public AudioClip IncapableAudio;
@@ -81,7 +83,7 @@ public class GuyMovement : MonoBehaviour
 
     public List<GuyMovement> targeters = new List<GuyMovement>();
 
-    [SerializeField] public GameObject target = null;
+    public GameObject target = null;
 
     bool isCurrentlyBuilding = false;
     public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
@@ -104,7 +106,9 @@ public class GuyMovement : MonoBehaviour
     {
         agent = GetComponent<NavMeshAgent>();
         playerController = FindObjectOfType<PlayerController>();
+       
         player = playerController.gameObject;
+
         if (CompareTag(player.tag))
         {
             transform.parent = player.transform;
@@ -781,5 +785,29 @@ public class GuyMovement : MonoBehaviour
 
     }
 
+    public void Research(Technology t)
+    {
+        Debug.Log("RESEARCHING");
+        StopActivities();
+        currentAction = UnitActions.Research;
+        StartCoroutine(Researching(t));
+    }
+
+    IEnumerator Researching(Technology t)
+    {
+        for (int i = 0; i < 600; i++)
+        {
+            yield return new WaitForSeconds(0.1f);
+
+        }
+        if(playerController != null)
+        {
+            playerController.Research(t);
+        }
+        else
+        {
+
+        }
+    }
 
 }

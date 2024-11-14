@@ -4,14 +4,27 @@ using UnityEngine;
 
 public enum UnitType
 {
-    Builder,
-    ManAtArms,
-    Knight,
     Archer,
+    Builder,
+    Dragon,
+    Knight,
+    LightCalvalry,
+    ManAtArms,
+    PegasusArcher,
+    PegasusKnight,
+    RangedCalvalry,
+    Wizard,
+
+    BlackSmith,
     Castle,
-    House,
-    Stables,
-    TrainingField,
     FarmLand,
+    Library,
+    House,
+    PegasusStables,
+    Stables,
     Tower,
+    TrainingField,    
+    WizardTower,
+   
+    /*TO BE ADDED - SHIPS AND DOCKS*/
 }
