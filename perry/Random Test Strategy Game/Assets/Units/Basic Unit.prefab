@@ -95,11 +95,11 @@ MonoBehaviour:
   canProduceUnits: 0
   basicBuilding: {fileID: 5299942570169834302, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
   buildingMaterial: {fileID: 2100000, guid: d0f81e44aee20a946b9f43d9e56fe4d9, type: 2}
-  gridSize: 4
   width: 8
   hasUnitWorth: 0
   unitTypes: 
   unitGameObjects: []
+  researchableTechnology: 
   isSelectedAudio: {fileID: 8300000, guid: f0353b0a76701ce4b8c4fcc0b8ab7fbd, type: 3}
   IncapableAudio: {fileID: 8300000, guid: bcdfa7f213c8002489ef0f8697600278, type: 3}
   ActionAudio: {fileID: 8300000, guid: b88aa4deb0d94194389610cc2da1a049, type: 3}
@@ -112,7 +112,7 @@ MonoBehaviour:
   targeters: []
   target: {fileID: 0}
   isCollectingResources: 0
-  currentAction: 7
+  currentAction: 6
   unitQueue: []
 --- !u!195 &489722392510816661
 NavMeshAgent:

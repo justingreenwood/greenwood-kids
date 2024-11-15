@@ -47,6 +47,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button[] housedUnitButtons;
 
     AudioSource audioSource;
+    public UnitLibrary unitLibrary;
     void Awake()
     {
         GameObject[] buildingsAndUnits = GameObject.FindGameObjectsWithTag(team);
@@ -76,7 +77,7 @@ public class PlayerController : MonoBehaviour
         currentBuildingPreview = largeBuildingPreview;
 
         audioSource = GetComponent<AudioSource>();
-
+        unitLibrary = GetComponent<UnitLibrary>();
         EditDisplay();
     }
 

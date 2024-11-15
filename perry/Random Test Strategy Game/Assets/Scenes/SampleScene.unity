@@ -2274,6 +2274,7 @@ GameObject:
   - component: {fileID: 977997567}
   - component: {fileID: 977997569}
   - component: {fileID: 977997568}
+  - component: {fileID: 977997570}
   m_Layer: 0
   m_Name: RedPlayer
   m_TagString: Red Team
@@ -2332,6 +2333,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetCoordinate: {x: 0, y: 0, z: 0}
   unitsAlive: 0
+  unitLibrary: {fileID: 0}
+--- !u!114 &977997570
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 977997566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db27629a268c3d4b8df4213edec3cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   peasants: []
   houses: []
   castles: []
@@ -2340,6 +2354,18 @@ MonoBehaviour:
   stables: []
   menAtArms: []
   archers: []
+  knights: []
+  lightCalvalry: []
+  wizardTowers: []
+  pegasusStables: []
+  libraries: []
+  blackSmiths: []
+  wizards: []
+  rangedCalvalry: []
+  pegasusArchers: []
+  dragons: []
+  pegasusKnights: []
+  towers: []
 --- !u!1001 &979991462
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5257,6 +5283,38 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1968080209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968080204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1db27629a268c3d4b8df4213edec3cdf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  peasants: []
+  houses: []
+  castles: []
+  farmland: []
+  trainingFields: []
+  stables: []
+  menAtArms: []
+  archers: []
+  knights: []
+  lightCalvalry: []
+  wizardTowers: []
+  pegasusStables: []
+  libraries: []
+  blackSmiths: []
+  wizards: []
+  rangedCalvalry: []
+  pegasusArchers: []
+  dragons: []
+  pegasusKnights: []
+  towers: []
 --- !u!114 &1992122929 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3187350385743838051, guid: 484c62164f78f294a8b509a731c518c6, type: 3}

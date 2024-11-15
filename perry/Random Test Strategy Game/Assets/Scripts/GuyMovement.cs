@@ -353,7 +353,11 @@ public class GuyMovement : MonoBehaviour
         guyMovement.buildingMaterial = material;
         if(computerController != null)
         {
-            computerController.AddUnit(newGameObject.GetComponent<GuyMovement>());          
+            computerController.unitLibrary.AddUnit(newGameObject.GetComponent<GuyMovement>());          
+        }
+        else if(playerController != null) 
+        {
+            playerController.unitLibrary.AddUnit(newGameObject.GetComponent<GuyMovement>());
         }
 
         if(destination != Vector3.zero)
@@ -376,6 +380,7 @@ public class GuyMovement : MonoBehaviour
         }
         Move(groundPos);
         currentAction = UnitActions.Build;
+        
         isCurrentlyBuilding = true;
         var rotation = Quaternion.Euler(0, 0, 0);
         groundPos.y += basicBuilding.transform.localScale.y / 2;
@@ -386,10 +391,12 @@ public class GuyMovement : MonoBehaviour
 
         if (computerController != null)
         {
-            computerController.AddUnit(newBuilding.GetComponent<GuyMovement>());
+            computerController.unitLibrary.AddUnit(newBuilding.GetComponent<GuyMovement>());
         }
-        //GuyMovement guyMovement = newBuilding.GetComponent<GuyMovement>();
-        //guyMovement.buildingMaterial = buildingMaterial;
+        else if(playerController != null)
+        {
+            playerController.unitLibrary.AddUnit(newBuilding.GetComponent<GuyMovement>());
+        }
         StartCoroutine(ProcessBuild(newBuilding));
         return true;
     }
@@ -535,10 +542,11 @@ public class GuyMovement : MonoBehaviour
                 playerController.unitsAlive--;
             }
             playerController.Deselect(gameObject);
+            playerController.unitLibrary.RemoveUnit(this);
         }
         else
         {
-            computerController.RemoveUnit(this);
+            computerController.unitLibrary.RemoveUnit(this);
         }
         if (hasUnitWorth)
         {
