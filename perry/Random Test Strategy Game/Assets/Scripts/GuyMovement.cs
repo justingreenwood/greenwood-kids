@@ -15,17 +15,17 @@ using static UnityEngine.EventSystems.EventTrigger;
 public class GuyMovement : MonoBehaviour
 {
 
-    [SerializeField] int maxHealth = 50;
-    public int MaxHealth { get { return maxHealth; } }
-    [SerializeField] float currentHealth = 0;
-    public float CurrentHealth { get { return currentHealth; } }
+    [SerializeField] public float maxHealth = 50;
+    
+    [SerializeField] public float currentHealth = 0;
+    public float bonusHealth = 0;
     [SerializeField] int healthIncreaseIncrement = 2;
 
-    [SerializeField] int armor = 0;
-    public int Armor { get { return armor; } }
+    [SerializeField] public int armor = 0;
+    public int bonusArmor = 0;
     [SerializeField] float attackRange = 10;
     [SerializeField] public float attackDamage = 5;
-    public float finalAttackDamage = 0; 
+    public float bonusAttackDamage = 0;
     [SerializeField] public float attackSpeed = 0.75f;
     public float finalAttackSpeed = 0;
     [SerializeField] float buildSpeed = 0.05f;
@@ -98,7 +98,6 @@ public class GuyMovement : MonoBehaviour
     BuildingGrid buildGrid;
     private void Awake()
     {
-        finalAttackDamage = attackDamage;
         finalAttackSpeed = attackSpeed;
     }
 
@@ -282,8 +281,8 @@ public class GuyMovement : MonoBehaviour
 
     IEnumerator ProcessAttack(GuyMovement enemy)
     {
-        
-        while(enemy.currentHealth > 0)
+        float finalAttackDamage;
+        while (enemy.currentHealth > 0)
         {
             float distance = Vector3.Distance(enemy.transform.position, transform.position);
             
@@ -306,6 +305,7 @@ public class GuyMovement : MonoBehaviour
             {
                 yield return new WaitForSeconds(finalAttackSpeed);
                 isAttacking = true;
+                finalAttackDamage = attackDamage + bonusAttackDamage;
                 enemy.TakeDamage(finalAttackDamage);                
             }
             
@@ -349,6 +349,23 @@ public class GuyMovement : MonoBehaviour
         newGameObject.tag = tag;
         newGameObject.GetComponentInChildren<Renderer>().material = buildingMaterial;
         GuyMovement guyMovement = newGameObject.GetComponent<GuyMovement>();
+       
+        if(playerController != null)
+        {
+            if (playerController.Technologies[Technology.Weapon] == true)
+            {
+                guyMovement.bonusAttackDamage = 2;
+            }
+            if (playerController.Technologies[Technology.Armor] == true)
+            {
+                guyMovement.armor += 3;
+            }
+            if (playerController.Technologies[Technology.Health] == true)
+            {
+                guyMovement.maxHealth += 10;
+            }
+        }
+        
         
         guyMovement.buildingMaterial = material;
         if(computerController != null)
@@ -423,7 +440,7 @@ public class GuyMovement : MonoBehaviour
                 }
             }
         }
-        buildingActions.currentHealth = buildingActions.MaxHealth;
+        buildingActions.currentHealth = buildingActions.maxHealth;
         buildingActions.isBuilt = true;
         isCurrentlyBuilding = false;
         if (buildingActions.hasUnitWorth)
@@ -457,7 +474,7 @@ public class GuyMovement : MonoBehaviour
         Build(chosenUnit, buildingMaterial, pos);
         bank.ResetBorrowedResources();
         unitQueue.Remove(chosenUnit);
-
+        
         playerController.EditDisplay();
         isCurrentlyBuilding = false;
         currentAction = UnitActions.Nothing;
@@ -518,7 +535,15 @@ public class GuyMovement : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        currentHealth -= damage;
+        float finalDamage = damage - armor - bonusArmor;
+        if(finalDamage < 1)
+        {
+            currentHealth -= 1;
+        }
+        else
+        {
+            currentHealth -= finalDamage;
+        }      
         if(currentHealth <= 0)
         {
             Die();
@@ -803,7 +828,7 @@ public class GuyMovement : MonoBehaviour
 
     IEnumerator Researching(Technology t)
     {
-        for (int i = 0; i < 600; i++)
+        for (int i = 0; i < 10; i++)
         {
             yield return new WaitForSeconds(0.1f);
 

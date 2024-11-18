@@ -182,4 +182,21 @@ public class UnitLibrary : MonoBehaviour
         }
         
     }
+
+    public List<GuyMovement> Units()
+    {
+        List<GuyMovement> list = new List<GuyMovement>();
+        list.AddRange(archers);
+        list.AddRange(peasants);
+        list.AddRange(menAtArms);
+        list.AddRange(wizards);
+        list.AddRange(knights);
+        list.AddRange(lightCalvalry);
+        list.AddRange(rangedCalvalry);
+        list.AddRange(pegasusArchers);
+        list.AddRange(pegasusKnights);
+        list.AddRange(dragons);
+        return list;
+    }
+
 }

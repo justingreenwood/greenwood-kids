@@ -126,6 +126,7 @@ public class PlayerController : MonoBehaviour
     }
 
     Dictionary<Technology, bool> technologies = new Dictionary<Technology, bool>();
+    public Dictionary<Technology,bool> Technologies { get { return technologies; } }
     private void WriteDictionary()
     {
         technologies.Add(Technology.Weapon, false);
@@ -213,7 +214,7 @@ public class PlayerController : MonoBehaviour
                         else if (CompareTag(objectHit.tag))
                         {
                             GuyMovement objectGuyMovement = objectHit.GetComponent<GuyMovement>();
-                            if (unitControls.isBuilder && objectGuyMovement.CurrentHealth< objectGuyMovement.MaxHealth)
+                            if (unitControls.isBuilder && objectGuyMovement.currentHealth< objectGuyMovement.maxHealth)
                             {
                                 actionDone = true;
                                 Repairing(unitControls, objectGuyMovement);
@@ -617,7 +618,31 @@ public class PlayerController : MonoBehaviour
     public void Research(Technology t)
     {
         technologies[t] = true;
-        
+        if(t == Technology.Armor)
+        {
+            foreach(var guy in unitLibrary.Units())
+            {
+                guy.bonusArmor+=3;
+            }
+        }
+        else if (t == Technology.Weapon)
+        {
+            foreach (var guy in unitLibrary.Units())
+            {
+                guy.bonusAttackDamage += 2;
+            }
+        }
+        else if (t == Technology.Health)
+        {
+            foreach (var guy in unitLibrary.Units())
+            {
+                guy.maxHealth += 10;
+                guy.currentHealth += 10;
+                guy.bonusHealth += 10;
+            }
+        }
+        EditDisplay();
+
     }
 
 }

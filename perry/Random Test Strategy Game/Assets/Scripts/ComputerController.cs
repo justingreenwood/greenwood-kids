@@ -11,7 +11,6 @@ public class ComputerController : MonoBehaviour
     [SerializeField] Vector3 targetCoordinate;
     string team;
     ResourceBank bank;
-    //public int unitsAlive = 0;
     public int unitsAlive = 0;
     bool isAttacking = false;
     public UnitLibrary unitLibrary;
