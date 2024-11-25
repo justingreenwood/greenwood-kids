@@ -1,5 +1,50 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4679629360035426524
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 5299942570169834243}
+    m_Modifications:
+    - target: {fileID: 2378996300108138024, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378996300108138024, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378996300108138024, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378996300108138024, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378996300108138024, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378996300108138024, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2378996300108138024, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366237204478121815, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_Name
+      value: Build Time Visual Aid
+      objectReference: {fileID: 0}
+    - target: {fileID: 3366237204478121815, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 333f907ea96844845a9613a6557468fb, type: 3}
 --- !u!1001 &5712528348083190442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -162,6 +207,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 489722392510816660, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
   m_PrefabInstance: {fileID: 5712528348083190442}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &5299942570169834243 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 489722392510816681, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+  m_PrefabInstance: {fileID: 5712528348083190442}
+  m_PrefabAsset: {fileID: 0}
 --- !u!208 &1258411675778210531
 NavMeshObstacle:
   m_ObjectHideFlags: 0
@@ -178,3 +228,26 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: 0, y: 2.5, z: 0}
   m_TimeToStationary: 0.5
+--- !u!114 &3592590011972228834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299942570169834302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8511120b9c0f947439d544d6626b4cc7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildTimeVisual: {fileID: 1965179720656117942, guid: 8a4fb960fc1d63144914a834110bff61, type: 3}
+  buildingTimeLeft: 0
+  timeTakenToBuild: 20
+  buildSpeed: 0.05
+  width: 8
+  isBuilt: 1
+  researchableTechnology: 
+  unitQueue: []
+  buildTimeVisualTMP: {fileID: 0}
+  buildGrid: {fileID: 0}
+  vTwoPosition: {x: 0, y: 0}

@@ -5182,139 +5182,6 @@ Canvas:
   m_CorrespondingSourceObject: {fileID: 3664605679929830820, guid: e4e66d47199d8674486dbfe56217575c, type: 3}
   m_PrefabInstance: {fileID: 3664605680265653332}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1968080204 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8132214706231762169, guid: af09cf3b32f75e8499d3065b9a6d072d, type: 3}
-  m_PrefabInstance: {fileID: 8132214705499285131}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &1968080208
-AudioSource:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968080204}
-  m_Enabled: 1
-  serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
-  m_Volume: 1
-  m_Pitch: 1
-  Loop: 0
-  Mute: 0
-  Spatialize: 0
-  SpatializePostEffects: 0
-  Priority: 128
-  DopplerLevel: 1
-  MinDistance: 1
-  MaxDistance: 500
-  Pan2D: 0
-  rolloffMode: 0
-  BypassEffects: 0
-  BypassListenerEffects: 0
-  BypassReverbZones: 0
-  rolloffCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  panLevelCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  spreadCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
-  reverbZoneMixCustomCurve:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 1
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &1968080209
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968080204}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1db27629a268c3d4b8df4213edec3cdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  peasants: []
-  houses: []
-  castles: []
-  farmland: []
-  trainingFields: []
-  stables: []
-  menAtArms: []
-  archers: []
-  knights: []
-  lightCalvalry: []
-  wizardTowers: []
-  pegasusStables: []
-  libraries: []
-  blackSmiths: []
-  wizards: []
-  rangedCalvalry: []
-  pegasusArchers: []
-  dragons: []
-  pegasusKnights: []
-  towers: []
 --- !u!114 &1992122929 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3187350385743838051, guid: 484c62164f78f294a8b509a731c518c6, type: 3}
@@ -6067,7 +5934,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5896030375230862189, guid: 2e88b7fb9249692499a069e2008fdadd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 57.34
+      value: 60.4
       objectReference: {fileID: 0}
     - target: {fileID: 5896030375230862189, guid: 2e88b7fb9249692499a069e2008fdadd, type: 3}
       propertyPath: m_LocalPosition.y
@@ -6075,15 +5942,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5896030375230862189, guid: 2e88b7fb9249692499a069e2008fdadd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 76.2
+      value: 32.4
       objectReference: {fileID: 0}
     - target: {fileID: 5896030375230862189, guid: 2e88b7fb9249692499a069e2008fdadd, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7933534
+      value: 0.8660254
       objectReference: {fileID: 0}
     - target: {fileID: 5896030375230862189, guid: 2e88b7fb9249692499a069e2008fdadd, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.60876137
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5896030375230862189, guid: 2e88b7fb9249692499a069e2008fdadd, type: 3}
       propertyPath: m_LocalRotation.y
@@ -6095,7 +5962,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5896030375230862189, guid: 2e88b7fb9249692499a069e2008fdadd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 75
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 5896030375230862189, guid: 2e88b7fb9249692499a069e2008fdadd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y

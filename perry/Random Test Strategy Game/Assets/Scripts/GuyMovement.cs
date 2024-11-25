@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
+using TMPro;
 using UnityEditor;
 using UnityEditorInternal;
 using UnityEngine;
@@ -30,16 +31,13 @@ public class GuyMovement : MonoBehaviour
     public float finalAttackSpeed = 0;
     [SerializeField] float buildSpeed = 0.05f;
     [SerializeField] float miningSpeed = 4.5f;
-    [SerializeField] float timeTakenToBuild = 20f;
-    [SerializeField] float buildingTimeLeft = 0;//needs to be viewable on screed
     [SerializeField] float moveDelay = 0.5f;
     [SerializeField] float sightRange = 20f;
     [SerializeField] public UnitType unitType;
 
     [SerializeField] public bool isMovable = true;
     [SerializeField] public bool isABuilding = false;
-    [SerializeField] public bool isBuilder = false;
-    [SerializeField] public bool isBuilt = false;
+    [SerializeField] public bool isBuilder = false;    
     [SerializeField] public bool targetsNearestEnemy = false;
     public bool isSelected = false;
     public bool isAttacking = false;
@@ -48,15 +46,14 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public bool canProduceUnits = true;
     [SerializeField] public GameObject basicBuilding;
     [SerializeField] public Material buildingMaterial;
-    int gridSize = 4;
-    [SerializeField] public int width = 8;
+
 
     [SerializeField]  bool hasUnitWorth = false;
     public bool HasUnitWorth {  get { return hasUnitWorth; } }
 
     [SerializeField] List<UnitType> unitTypes;
     [SerializeField] List<GameObject> unitGameObjects;
-    [SerializeField] public List<Technology> researchableTechnology;
+
 
     [SerializeField] public AudioClip isSelectedAudio;
     [SerializeField] public AudioClip IncapableAudio;
@@ -65,13 +62,13 @@ public class GuyMovement : MonoBehaviour
 
     public List<GameObject> UnitGameObjects { get { return unitGameObjects; } }
     public List<UnitType> UnitTypes { get { return unitTypes; } }
+    int  gridSize = 4;
 
-    Vector2Int vTwoPosition;
 
     [SerializeField] int unitWoodCost = 0;
     [SerializeField] int unitGemCost = 0;
     [SerializeField] int unitFoodCost = 0;
-    [SerializeField] int unitSize = 1;
+    [SerializeField] public int unitSize = 1;
     public int UnitWoodCost { get { return unitWoodCost; } }
     public int UnitFoodCost { get { return unitFoodCost; } }
     public int UnitGemCost { get { return unitGemCost; } }
@@ -95,6 +92,9 @@ public class GuyMovement : MonoBehaviour
 
     Vector3 destination = Vector3.zero;
 
+    Building buildingActions;
+    public Building BuildingActions { get { return buildingActions; } }
+
     BuildingGrid buildGrid;
     private void Awake()
     {
@@ -103,6 +103,11 @@ public class GuyMovement : MonoBehaviour
 
     void Start()
     {
+        if(isABuilding)
+        {
+            buildingActions = GetComponent<Building>();
+        }
+
         agent = GetComponent<NavMeshAgent>();
         playerController = FindObjectOfType<PlayerController>();
        
@@ -123,54 +128,6 @@ public class GuyMovement : MonoBehaviour
         }
         displayInfo = playerController.DisplayInfo();
         buildGrid = FindObjectOfType<BuildingGrid>();
-        if (isABuilding)
-        {
-            if (width == 4)
-            {
-                foreach (GridSquares i in buildGrid.gridSquares)
-                {
-                    vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
-                    if (i.position == vTwoPosition)
-                    {
-                        i.isClaimed = true;
-                        buildGrid.gridSqrsDict[vTwoPosition] = true;
-
-                        //Debug.Log(i.position + ": " + i.isClaimed);
-                        break;
-                    }
-                }
-            }
-            else
-            {
-                vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
-                foreach (GridSquares i in buildGrid.gridSquares)
-                {
-
-                    if (i.position == vTwoPosition)
-                    {
-                        i.isClaimed = true;
-                        buildGrid.gridSqrsDict[vTwoPosition] = true;
-
-                    }
-                    else if (i.position.x == vTwoPosition.x + 4 && i.position.y == vTwoPosition.y)
-                    {
-                        i.isClaimed = true;
-                        buildGrid.gridSqrsDict[vTwoPosition] = true;
-                    }
-                    else if (i.position.x == vTwoPosition.x + 4 && i.position.y == vTwoPosition.y + 4)
-                    {
-                        i.isClaimed = true;
-                        buildGrid.gridSqrsDict[vTwoPosition] = true;
-                    }
-                    else if (i.position.x == vTwoPosition.x && i.position.y == vTwoPosition.y + 4)
-                    {
-                        i.isClaimed = true;
-                        buildGrid.gridSqrsDict[vTwoPosition] = true;
-                    }
-                }
-            }
-            //Debug.Log("V2Pos: " + vTwoPosition);
-        }
     }
 
     private void Update()
@@ -179,36 +136,8 @@ public class GuyMovement : MonoBehaviour
         {
             SearchForTarget();
         }
-
-        if(isCurrentlyBuilding == false && isBuilt) 
-        {
-            if (unitQueue.Count > 0)
-            {
-                BuildUnit(unitQueue[0]);
-            }
-        }
-
-    }
-    public List<GameObject> unitQueue = new List<GameObject>();
-    public void RemoveUnitFromQueue(int i)
-    {
-        if (i == 0)
-        {
-            StopActivities();
-            playerController.unitsAlive -= unitQueue[i].GetComponent<GuyMovement>().unitSize;
-            bank.ResetResources();
-        }
-        unitQueue.RemoveAt(i);
         
 
-    }
-
-    public void AddToQueue(GameObject target)
-    {
-        if (unitQueue.Count < 5)
-        {
-            unitQueue.Add(target);
-        }
     }
 
     private void SearchForTarget()
@@ -323,7 +252,7 @@ public class GuyMovement : MonoBehaviour
 
     IEnumerator EnteringTower(Tower tower)
     {
-        float width = tower.GetComponent<GuyMovement>().width+1;
+        float width = tower.GetComponent<Building>().width+1;
         float distance = Vector3.Distance(tower.transform.position, transform.position);
         while (distance > width)
         {
@@ -379,7 +308,7 @@ public class GuyMovement : MonoBehaviour
 
         if(destination != Vector3.zero)
         {
-            newGameObject.GetComponent<GuyMovement>().isBuilt = true;
+            newGameObject.GetComponent<Building>().isBuilt = true;
             newGameObject.GetComponent<GuyMovement>().Move(destination);
         }
 
@@ -421,65 +350,41 @@ public class GuyMovement : MonoBehaviour
     IEnumerator ProcessBuild(GameObject newBuilding)
     {
         
-        GuyMovement buildingActions = newBuilding.GetComponent<GuyMovement>();
-        buildingActions.currentHealth = 10;
-        float necessaryBuildingHealth = buildingActions.currentHealth;
+        GuyMovement buildingGM = newBuilding.GetComponent<GuyMovement>();
+        Building buildingActions = newBuilding.GetComponent<Building>();
+        buildingGM.currentHealth = 10;
+        float necessaryBuildingHealth = buildingGM.currentHealth;
 
 
-        while (necessaryBuildingHealth < buildingActions.maxHealth) 
+        while (necessaryBuildingHealth < buildingGM.maxHealth) 
         {
             yield return new WaitForSeconds(buildSpeed);
             float distance = Vector3.Distance(newBuilding.transform.position, transform.position)-(buildingActions.width/2);
             if (distance <= attackRange)
             {
-                buildingActions.currentHealth += buildingActions.healthIncreaseIncrement;
-                necessaryBuildingHealth += buildingActions.healthIncreaseIncrement;
-                if (buildingActions.isSelected)
+                buildingGM.currentHealth += buildingGM.healthIncreaseIncrement;
+                necessaryBuildingHealth += buildingGM.healthIncreaseIncrement;
+                if (buildingGM.isSelected)
                 {
-                    displayInfo.EditUnitInfo(buildingActions.currentHealth, buildingActions.maxHealth);
+                    displayInfo.EditUnitInfo(buildingGM.currentHealth, buildingGM.maxHealth);
                 }
             }
         }
-        buildingActions.currentHealth = buildingActions.maxHealth;
+        buildingGM.currentHealth = buildingGM.maxHealth;
         buildingActions.isBuilt = true;
         isCurrentlyBuilding = false;
-        if (buildingActions.hasUnitWorth)
+        if (buildingGM.hasUnitWorth)
         {
             bank.RaiseUnitLimit();
         }
-        if (buildingActions.isSelected)
+        if (buildingGM.isSelected)
         {
-            displayInfo.EditUnitInfo(buildingActions.currentHealth, buildingActions.maxHealth);
+            displayInfo.EditUnitInfo(buildingGM.currentHealth, buildingGM.maxHealth);
         }
         
         currentAction = UnitActions.Nothing;
     }
 
-    IEnumerator ProcessBuildUnit(GameObject chosenUnit)
-    {
-        currentAction = UnitActions.Build;
-        isCurrentlyBuilding = true;
-        float x = 0;
-        while(x<=timeTakenToBuild)
-        {
-
-            yield return new WaitForSeconds(buildSpeed);
-            x += buildSpeed;
-            buildingTimeLeft = timeTakenToBuild - x;
-        }
-
-        Vector3 pos = transform.position;
-        pos.x = transform.position.x + 1 / transform.localScale.x;
-        pos.x += 2;
-        Build(chosenUnit, buildingMaterial, pos);
-        bank.ResetBorrowedResources();
-        unitQueue.Remove(chosenUnit);
-        
-        playerController.EditDisplay();
-        isCurrentlyBuilding = false;
-        currentAction = UnitActions.Nothing;
-
-    }
     public void Repair(GuyMovement target)
     {
         StopActivities();
@@ -506,31 +411,7 @@ public class GuyMovement : MonoBehaviour
             }
         }
         currentAction = UnitActions.Nothing;
-        //target.currentHealth = target.maxHealth;
 
-    }
-    public bool BuildUnit(GameObject chosenUnit)
-    {
-        GuyMovement chosenGuyM = chosenUnit.GetComponent<GuyMovement>();
-        bool willBuild = bank.HasEnoughResource(chosenGuyM.UnitWoodCost, chosenGuyM.unitGemCost, chosenGuyM.UnitFoodCost);
-        if (!willBuild)
-        {
-            Debug.Log("Not enough Resources");
-
-            return false;
-        }
-        bank.RemoveResource(chosenGuyM.UnitWoodCost, chosenGuyM.unitGemCost, chosenGuyM.UnitFoodCost);
-        bank.BorrowedResources(chosenGuyM.UnitWoodCost, chosenGuyM.unitGemCost, chosenGuyM.UnitFoodCost);
-        if (CompareTag(player.tag))
-            playerController.unitsAlive++;
-        else
-        {
-
-        }
-
-        StopActivities();
-        StartCoroutine(ProcessBuildUnit(chosenUnit));
-        return true;
     }
 
     public void TakeDamage(float damage)
@@ -580,9 +461,10 @@ public class GuyMovement : MonoBehaviour
 
         if (isABuilding)
         {
+            Building buildingActions = GetComponent<Building>();
             foreach (var i in buildGrid.gridSquares)
             {
-                if (i.position == vTwoPosition)
+                if (i.position == buildingActions.vTwoPosition)
                 {
                     i.isClaimed = false;
                 }
@@ -661,10 +543,8 @@ public class GuyMovement : MonoBehaviour
         }
     }
 
-
     public void SearchForResource(ResourceType rType)
     {
-        //Debug.Log("Searching");
 
         Collider[] potentialResources = Physics.OverlapSphere(transform.position, 50);
 
@@ -703,9 +583,9 @@ public class GuyMovement : MonoBehaviour
         // MATH SECTION
         Vector3 unitPositionToGrid = Vector3.zero;
         unitPositionToGrid.x = Mathf.Floor(transform.position.x / gridSize) * gridSize;
-        unitPositionToGrid.x += width / 2;
+        unitPositionToGrid.x += gridSize / 2;
         unitPositionToGrid.z = Mathf.Floor(transform.position.z / gridSize) * gridSize;
-        unitPositionToGrid.z += width / 2;
+        unitPositionToGrid.z += gridSize / 2;
         int minX = Mathf.CeilToInt(unitPositionToGrid.x)-20;
         if(minX < 0)
         {
@@ -818,29 +698,6 @@ public class GuyMovement : MonoBehaviour
 
     }
 
-    public void Research(Technology t)
-    {
-        Debug.Log("RESEARCHING");
-        StopActivities();
-        currentAction = UnitActions.Research;
-        StartCoroutine(Researching(t));
-    }
 
-    IEnumerator Researching(Technology t)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            yield return new WaitForSeconds(0.1f);
-
-        }
-        if(playerController != null)
-        {
-            playerController.Research(t);
-        }
-        else
-        {
-
-        }
-    }
 
 }

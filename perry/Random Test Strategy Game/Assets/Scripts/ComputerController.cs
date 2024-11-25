@@ -81,10 +81,10 @@ public class ComputerController : MonoBehaviour
             {
                 foreach (var castle in unitLibrary.castles)
                 {
-                    if (!castle.IsCurrentlyBuilding && castle.isBuilt)
+                    if (!castle.IsCurrentlyBuilding && castle.BuildingActions.isBuilt)
                     {
                         GameObject chosenGO = castle.UnitGameObjects[0];
-                        castle.BuildUnit(chosenGO);
+                        castle.BuildingActions.BuildUnit(chosenGO);
                         unitsAlive++;
                     }
                 }
@@ -152,13 +152,13 @@ public class ComputerController : MonoBehaviour
             {
                 foreach (var trainingField in unitLibrary.trainingFields)
                 {
-                    if (trainingField.isBuilt == true)
+                    if (trainingField.BuildingActions.isBuilt == true)
                     {
                         if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
                         {
-                            if (!trainingField.IsCurrentlyBuilding && trainingField.isBuilt)
+                            if (!trainingField.IsCurrentlyBuilding && trainingField.BuildingActions.isBuilt)
                             {
-                                trainingField.BuildUnit(trainingField.UnitGameObjects[0]);
+                                trainingField.BuildingActions.BuildUnit(trainingField.UnitGameObjects[0]);
                                 unitsAlive++;
                             }
                         }

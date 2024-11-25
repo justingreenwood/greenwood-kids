@@ -113,15 +113,7 @@ public class PlayerController : MonoBehaviour
 
                 UnitAction(groundLocation, objectHit, canBuild);
             }
-        }
-
-        
-        
-
-        //if(Input.GetKeyDown(KeyCode.B)) 
-        //{
-        //BuildButtonPressed();
-        //}
+        }       
 
     }
 
@@ -143,20 +135,23 @@ public class PlayerController : MonoBehaviour
             {
                 
                 var unitControls = unit.GetComponent<GuyMovement>();
-                if (!unitControls.IsCurrentlyBuilding && unitControls.isBuilt)
+                if (unit.TryGetComponent(out Building buildingAction))
                 {
-                    if (unitControls.isBuilder)
+
+                    if (unitControls.canProduceUnits)
                     {
-                        SetBuildMode(true, chosenBuildOption);
-                        unitControls.basicBuilding = chosenBuildOption;
+
+                        buildingAction.AddToQueue(chosenBuildOption);
+                        EditDisplay();
+                        buildModeOn = false;
                     }
                 }
-                if (unitControls.canProduceUnits)
+                else if (!unitControls.IsCurrentlyBuilding && unitControls.isBuilder)
                 {
-                    
-                    unitControls.AddToQueue(chosenBuildOption);
-                    EditDisplay();
-                    buildModeOn = false;
+
+                    SetBuildMode(true, chosenBuildOption);
+                    unitControls.basicBuilding = chosenBuildOption;
+
                 }
             }
         }
@@ -246,7 +241,7 @@ public class PlayerController : MonoBehaviour
 
     void Repairing(GuyMovement unitControls, GuyMovement target)
     {
-        if (target.isBuilt)
+        if (target.GetComponent<Building>().isBuilt)
         {
 
             if (resourceBank.Wood >= 1)
@@ -305,7 +300,7 @@ public class PlayerController : MonoBehaviour
         buildModeOn = isBuilding;
         Debug.Log(buildModeOn);
         currentBuildingPreview.SetActive(false);
-        if (building.GetComponent<GuyMovement>().width == 4)
+        if (building.GetComponent<Building>().width == 4)
         {
             currentBuildingPreview = smallBuildingPreview;
         }
@@ -393,46 +388,56 @@ public class PlayerController : MonoBehaviour
         {
             displayInfo.ResetDisplay();
             GuyMovement unitAction = selectedUnits[0].GetComponent<GuyMovement>();
+            int x = 0;
             for (int i = 0; i < unitActionButtons.Length; i++)
             {
                 unitActionButtons[i].onClick.RemoveAllListeners();
-                if (i > unitAction.UnitGameObjects.Count - 1)
-                {                   
+                var tMPro = unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>();
 
-                    if (i > unitAction.researchableTechnology.Count - 1)
+                if (i > unitAction.UnitGameObjects.Count - 1)
+                {
+                    tMPro.text = "X";
+                    if (unitAction.isABuilding)
                     {
-                        unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "X";
-                    }
-                    else
-                    {
-                        Technology tech = unitAction.researchableTechnology[i];
-                        unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = tech.ToString();                       
-                        unitActionButtons[i].onClick.AddListener(() =>
+                        Building buildingActions = unitAction.GetComponent<Building>();
+                        if (x > buildingActions.researchableTechnology.Count - 1)
                         {
-                            UnitResearch(unitAction,tech);
-                        });
+                        }
+                        else
+                        {                           
+                            Technology tech = buildingActions.researchableTechnology[x];
+                            tMPro.text = tech.ToString();
+                            unitActionButtons[i].onClick.AddListener(() =>
+                            {
+                                UnitResearch(buildingActions, tech);
+                            });
+                            x++;
+                        }
+
                     }
                 }
                 else
                 {
-                    unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = unitAction.UnitTypes[i].ToString();
+                    tMPro.text = unitAction.UnitTypes[i].ToString();
                     GameObject newGameObject = unitAction.UnitGameObjects[i];
                     unitActionButtons[i].onClick.AddListener(() =>
                     {
                         BuildButtonPressed(newGameObject);
                     });
                 }
+                
             }
 
             if (unitAction.isABuilding)
             {
-                
-                if(unitAction.unitQueue.Count >= 1)
+                Building buildingActions = unitAction.GetComponent<Building>();
+
+                if (buildingActions.unitQueue.Count >= 1)
                 {
 
-                    for (int i = 0; i<= unitAction.unitQueue.Count - 1; i++)
+                    for (int i = 0; i <= buildingActions.unitQueue.Count - 1; i++)
                     {
-                        GuyMovement uInQAction = unitAction.unitQueue[i].GetComponent<GuyMovement>();
+                        GuyMovement uInQAction = buildingActions.unitQueue[i].GetComponent<GuyMovement>();
                         buildQueueButtons[i].onClick.RemoveAllListeners();
                         buildQueueButtons[i].gameObject.SetActive(true);
                         buildQueueButtons[i].image.sprite = uInQAction.unitImage;
@@ -440,7 +445,7 @@ public class PlayerController : MonoBehaviour
                         GuyMovement guyMovement = unitAction;
                         buildQueueButtons[i].onClick.AddListener(() =>
                         {
-                            BuildQueueAction(j, guyMovement);
+                            BuildQueueAction(j, buildingActions);
                         });
                     }
                 }
@@ -524,22 +529,19 @@ public class PlayerController : MonoBehaviour
             {
                 button.gameObject.SetActive(false);
             }
-            //unitImage.gameObject.SetActive(true);
             GuyMovement unitAction = selectedUnits[0].GetComponent<GuyMovement>();
-            //unitImage.sprite = unitAction.unitImage;
             displayInfo.DisplayUnitInfo(unitAction);
         }
         else
         {
-            //unitImage.gameObject.SetActive(false);
             displayInfo.ResetDisplay();
         }
     }
 
-    void BuildQueueAction(int j, GuyMovement guyMovement)
+    void BuildQueueAction(int j, Building buildingAction)
     {
         skipSelection = true;
-        guyMovement.RemoveUnitFromQueue(j);       
+        buildingAction.RemoveUnitFromQueue(j);       
     }
 
     public void SelectionButtonAction(GameObject selectedGameObject)
@@ -602,13 +604,13 @@ public class PlayerController : MonoBehaviour
         audioSource.PlayOneShot(audioClip);
     }
 
-    public void UnitResearch(GuyMovement unitAction, Technology t)
+    public void UnitResearch(Building buildingAction, Technology t)
     {
-
+        
         skipSelection = true;
-        if(unitAction.currentAction != UnitActions.Research)
+        if(buildingAction.GMovement.currentAction != UnitActions.Research)
         {
-            unitAction.Research(t);
+            buildingAction.Research(t);
         }
         else
         {
