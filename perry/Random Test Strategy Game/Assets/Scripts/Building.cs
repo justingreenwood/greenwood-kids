@@ -10,9 +10,9 @@ public class Building : MonoBehaviour
     [SerializeField] public GameObject buildTimeVisual;
 
 
+
     [SerializeField] float buildingTimeLeft = 0;//needs to be viewable on screen
     [SerializeField] float timeTakenToBuild = 20f;
-    [SerializeField] float buildSpeed = 0.05f;
     [SerializeField] public float width = 8;
 
     [SerializeField] public bool isBuilt = false;
@@ -24,7 +24,7 @@ public class Building : MonoBehaviour
     bool isCurrentlyBuilding = false;
     public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
 
-    public TextMeshPro buildTimeVisualTMP;
+    [SerializeField] public TextMeshPro buildTimeVisualTMP;
     public BuildingGrid buildGrid;
     public Vector2Int vTwoPosition;
     GuyMovement guyMovement;
@@ -59,9 +59,8 @@ public class Building : MonoBehaviour
 
 
         }
-        buildTimeVisualTMP = buildTimeVisual.GetComponent<TextMeshPro>();
 
-        int width =Mathf.RoundToInt(gameObject.transform.localScale.x);
+        int width = Mathf.RoundToInt(gameObject.transform.localScale.x);
 
         if (width == 4)
         {
@@ -106,7 +105,8 @@ public class Building : MonoBehaviour
                 }
             }
         }
-        Debug.Log("Value is " + researchableTechnology);
+
+        buildTimeVisualTMP.text = "";
     }
 
     private void Update()
@@ -166,14 +166,16 @@ public class Building : MonoBehaviour
         guyMovement.currentAction = UnitActions.Build;
         isCurrentlyBuilding = true;
         float x = 0;
+        float buildSpeed = timeTakenToBuild / 20;
         while (x <= timeTakenToBuild)
         {
 
             yield return new WaitForSeconds(buildSpeed);
             x += buildSpeed;
             buildingTimeLeft = timeTakenToBuild - x;
+            buildTimeVisualTMP.text += "N";
         }
-
+        buildTimeVisualTMP.text = "";
         Vector3 pos = transform.position;
         pos.x = transform.position.x + 1 / transform.localScale.x;
         pos.x += 2;
@@ -210,6 +212,5 @@ public class Building : MonoBehaviour
 
         }
     }
-
 
 }

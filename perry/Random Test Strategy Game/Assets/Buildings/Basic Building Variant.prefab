@@ -45,6 +45,17 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+--- !u!114 &7200266810991213434 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2530212237663800230, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+  m_PrefabInstance: {fileID: 4679629360035426524}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &5712528348083190442
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -243,11 +254,10 @@ MonoBehaviour:
   buildTimeVisual: {fileID: 1965179720656117942, guid: 8a4fb960fc1d63144914a834110bff61, type: 3}
   buildingTimeLeft: 0
   timeTakenToBuild: 20
-  buildSpeed: 0.05
   width: 8
   isBuilt: 1
   researchableTechnology: 
   unitQueue: []
-  buildTimeVisualTMP: {fileID: 0}
+  buildTimeVisualTMP: {fileID: 7200266810991213434}
   buildGrid: {fileID: 0}
   vTwoPosition: {x: 0, y: 0}
