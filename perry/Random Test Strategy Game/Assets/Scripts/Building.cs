@@ -39,6 +39,7 @@ public class Building : MonoBehaviour
     {
         buildGrid = FindObjectOfType<BuildingGrid>();
         guyMovement = GetComponent<GuyMovement>();
+        guyMovement.isABuilding = true;
     }
 
     private void Start()
@@ -51,7 +52,7 @@ public class Building : MonoBehaviour
             transform.parent = player.transform;
             bank = player.GetComponent<ResourceBank>();
         }
-        else
+        else if(tag != null)
         {
             transform.parent = FindObjectOfType<ComputerController>().transform;
             computerController = GetComponentInParent<ComputerController>();

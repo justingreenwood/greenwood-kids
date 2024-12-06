@@ -1146,6 +1146,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d0f81e44aee20a946b9f43d9e56fe4d9, type: 2}
+    - target: {fileID: 3821560606773383976, guid: dc619f2cf14f6a145bb86c3452e115f0, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4279957504
+      objectReference: {fileID: 0}
     - target: {fileID: 4969110892055112303, guid: dc619f2cf14f6a145bb86c3452e115f0, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1161,10 +1165,6 @@ PrefabInstance:
     - target: {fileID: 7151396612859795168, guid: dc619f2cf14f6a145bb86c3452e115f0, type: 3}
       propertyPath: isBuilt
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7151396612859795168, guid: dc619f2cf14f6a145bb86c3452e115f0, type: 3}
-      propertyPath: currentHealth
-      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 7151396612859795175, guid: dc619f2cf14f6a145bb86c3452e115f0, type: 3}
       propertyPath: m_RootOrder
@@ -1569,7 +1569,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &977997567
 Transform:
   m_ObjectHideFlags: 0

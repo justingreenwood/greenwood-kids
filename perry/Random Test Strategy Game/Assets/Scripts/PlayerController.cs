@@ -10,6 +10,7 @@ using TMPro;
 using UnityEngine.Events;
 using System.Linq;
 using System.Linq.Expressions;
+using TMPro.Examples;
 
 public class PlayerController : MonoBehaviour
 {
@@ -135,9 +136,9 @@ public class PlayerController : MonoBehaviour
             {
                 
                 var unitControls = unit.GetComponent<GuyMovement>();
-                if (unit.TryGetComponent(out Building buildingAction))
+                if (unitControls.isABuilding)
                 {
-
+                    Building buildingAction = unit.GetComponent<Building>();
                     if (unitControls.canProduceUnits)
                     {
 
@@ -146,11 +147,10 @@ public class PlayerController : MonoBehaviour
                         buildModeOn = false;
                     }
                 }
-                else if (!unitControls.IsCurrentlyBuilding && unitControls.isBuilder)
+                else if (!unitControls.isCurrentlyBuilding && unitControls.isABuilder)
                 {
-
                     SetBuildMode(true, chosenBuildOption);
-                    unitControls.basicBuilding = chosenBuildOption;
+                    unitControls.BuilderActions.basicBuilding = chosenBuildOption;
 
                 }
             }
@@ -169,7 +169,7 @@ public class PlayerController : MonoBehaviour
             foreach (var unit in selectedUnits)
             {
                 var unitControls = unit.GetComponent<GuyMovement>();
-                if (!unitControls.IsCurrentlyBuilding)
+                if (!unitControls.isCurrentlyBuilding)
                 {
                     unitControls.StopAllCoroutines();
                     unitControls.target = null;
@@ -199,17 +199,17 @@ public class PlayerController : MonoBehaviour
                         }
                         if (objectHit.TryGetComponent(out Resource resource))
                         {
-                            if (unitControls.isBuilder)
+                            if (unitControls.isABuilder)
                             {
                                 actionDone = true;
                                 Debug.Log("I Collect Resource");
-                                unitControls.CollectResources(resource);
+                                unitControls.BuilderActions.CollectResources(resource);
                             }
                         }
                         else if (CompareTag(objectHit.tag))
                         {
                             GuyMovement objectGuyMovement = objectHit.GetComponent<GuyMovement>();
-                            if (unitControls.isBuilder && objectGuyMovement.currentHealth< objectGuyMovement.maxHealth)
+                            if (unitControls.isABuilder && objectGuyMovement.currentHealth< objectGuyMovement.maxHealth)
                             {
                                 actionDone = true;
                                 Repairing(unitControls, objectGuyMovement);
@@ -246,7 +246,7 @@ public class PlayerController : MonoBehaviour
 
             if (resourceBank.Wood >= 1)
             {
-                unitControls.Repair(target);
+                unitControls.BuilderActions.Repair(target);
                 Debug.Log("Repairing");
             }
             else
@@ -265,7 +265,7 @@ public class PlayerController : MonoBehaviour
             if (canBuild)
             {
                 Debug.Log("I am building.");
-                if (unitControls.BuildBuilding(previewPos))
+                if (unitControls.BuilderActions.BuildBuilding(previewPos))
                 {
                     PlaySound(unitControls.ActionAudio);
                 }

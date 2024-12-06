@@ -17,11 +17,11 @@ public class GuyMovement : MonoBehaviour
 {
 
     [SerializeField] public float maxHealth = 50;
-    
+
     [SerializeField] public float currentHealth = 0;
     public float bonusHealth = 0;
     [SerializeField] int healthIncreaseIncrement = 2;
-
+    public int healthII { get {  return healthIncreaseIncrement; } }
     [SerializeField] public int armor = 0;
     public int bonusArmor = 0;
     [SerializeField] float attackRange = 10;
@@ -29,27 +29,27 @@ public class GuyMovement : MonoBehaviour
     public float bonusAttackDamage = 0;
     [SerializeField] public float attackSpeed = 0.75f;
     public float finalAttackSpeed = 0;
-    [SerializeField] float buildSpeed = 0.05f;
-    [SerializeField] float miningSpeed = 4.5f;
-    [SerializeField] float moveDelay = 0.5f;
+ 
+    
+    [SerializeField] public float moveDelay = 0.5f;
     [SerializeField] float sightRange = 20f;
     [SerializeField] public UnitType unitType;
 
     [SerializeField] public bool isMovable = true;
-    [SerializeField] public bool isABuilding = false;
-    [SerializeField] public bool isBuilder = false;    
     [SerializeField] public bool targetsNearestEnemy = false;
+    public bool isABuilding = false;
+    [SerializeField] public bool isABuilder = false;    
     public bool isSelected = false;
     public bool isAttacking = false;
     [SerializeField] public Sprite unitImage;
 
     [SerializeField] public bool canProduceUnits = true;
-    [SerializeField] public GameObject basicBuilding;
+
     [SerializeField] public Material buildingMaterial;
 
 
-    [SerializeField]  bool hasUnitWorth = false;
-    public bool HasUnitWorth {  get { return hasUnitWorth; } }
+    [SerializeField] bool hasUnitWorth = false;
+    public bool HasUnitWorth { get { return hasUnitWorth; } }
 
     [SerializeField] List<UnitType> unitTypes;
     [SerializeField] List<GameObject> unitGameObjects;
@@ -62,7 +62,6 @@ public class GuyMovement : MonoBehaviour
 
     public List<GameObject> UnitGameObjects { get { return unitGameObjects; } }
     public List<UnitType> UnitTypes { get { return unitTypes; } }
-    int  gridSize = 4;
 
 
     [SerializeField] int unitWoodCost = 0;
@@ -74,7 +73,7 @@ public class GuyMovement : MonoBehaviour
     public int UnitGemCost { get { return unitGemCost; } }
     public NavMeshAgent agent;
     public PlayerController playerController;
-    ComputerController computerController;
+    public ComputerController computerController;
     GameObject player;
     ResourceBank bank;
 
@@ -82,20 +81,24 @@ public class GuyMovement : MonoBehaviour
 
     public GameObject target = null;
 
-    bool isCurrentlyBuilding = false;
-    public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
+    public bool isCurrentlyBuilding = false;
+
     public bool isCollectingResources = false;
     bool moveActionOn = false;
 
     public UnitActions currentAction = UnitActions.Nothing;
-    DisplayInformationToScreen displayInfo;
+    public DisplayInformationToScreen displayInfo;
 
-    Vector3 destination = Vector3.zero;
+    public Vector3 destination = Vector3.zero;
 
     Building buildingActions;
-    public Building BuildingActions { get { return buildingActions; } }
+    Builder builderActions;
+    public HPNonUIVisAid hPNonUIVisAid;
 
-    BuildingGrid buildGrid;
+    public Building BuildingActions { get { return buildingActions; } }
+    public Builder BuilderActions { get { return builderActions; } }
+    public BuildingGrid buildGrid;
+
     private void Awake()
     {
         finalAttackSpeed = attackSpeed;
@@ -103,14 +106,20 @@ public class GuyMovement : MonoBehaviour
 
     void Start()
     {
-        if(isABuilding)
+        if (isABuilding)
         {
             buildingActions = GetComponent<Building>();
         }
+        else if(isABuilder)
+        {
+            builderActions = GetComponent<Builder>();
+        }
 
+        hPNonUIVisAid = GetComponentInChildren<HPNonUIVisAid>();
+        hPNonUIVisAid.EditTMP(currentHealth, maxHealth);
         agent = GetComponent<NavMeshAgent>();
         playerController = FindObjectOfType<PlayerController>();
-       
+
         player = playerController.gameObject;
 
         if (CompareTag(player.tag))
@@ -136,7 +145,7 @@ public class GuyMovement : MonoBehaviour
         {
             SearchForTarget();
         }
-        
+
 
     }
 
@@ -214,7 +223,7 @@ public class GuyMovement : MonoBehaviour
         while (enemy.currentHealth > 0)
         {
             float distance = Vector3.Distance(enemy.transform.position, transform.position);
-            
+
             if (distance > attackRange)
             {
 
@@ -235,11 +244,11 @@ public class GuyMovement : MonoBehaviour
                 yield return new WaitForSeconds(finalAttackSpeed);
                 isAttacking = true;
                 finalAttackDamage = attackDamage + bonusAttackDamage;
-                enemy.TakeDamage(finalAttackDamage);                
+                enemy.TakeDamage(finalAttackDamage);
             }
-            
-            
-        }        
+
+
+        }
         isAttacking = false;
     }
 
@@ -252,7 +261,7 @@ public class GuyMovement : MonoBehaviour
 
     IEnumerator EnteringTower(Tower tower)
     {
-        float width = tower.GetComponent<Building>().width+1;
+        float width = tower.GetComponent<Building>().width + 1;
         float distance = Vector3.Distance(tower.transform.position, transform.position);
         while (distance > width)
         {
@@ -271,15 +280,15 @@ public class GuyMovement : MonoBehaviour
 
     public void Build(GameObject objectPrefab, Material material, Vector3 groundPos)
     {
-        
+
         var rotation = Quaternion.Euler(0, 0, 0);
         groundPos.y += objectPrefab.transform.localScale.y / 2;
         GameObject newGameObject = Instantiate(objectPrefab, groundPos, rotation);
         newGameObject.tag = tag;
         newGameObject.GetComponentInChildren<Renderer>().material = buildingMaterial;
         GuyMovement guyMovement = newGameObject.GetComponent<GuyMovement>();
-       
-        if(playerController != null)
+
+        if (playerController != null)
         {
             if (playerController.Technologies[Technology.Weapon] == true)
             {
@@ -294,19 +303,19 @@ public class GuyMovement : MonoBehaviour
                 guyMovement.maxHealth += 10;
             }
         }
-        
-        
+
+
         guyMovement.buildingMaterial = material;
-        if(computerController != null)
+        if (computerController != null)
         {
-            computerController.unitLibrary.AddUnit(newGameObject.GetComponent<GuyMovement>());          
+            computerController.uLib.AddUnit(newGameObject.GetComponent<GuyMovement>());
         }
-        else if(playerController != null) 
+        else if (playerController != null)
         {
             playerController.unitLibrary.AddUnit(newGameObject.GetComponent<GuyMovement>());
         }
 
-        if(destination != Vector3.zero)
+        if (destination != Vector3.zero)
         {
             newGameObject.GetComponent<Building>().isBuilt = true;
             newGameObject.GetComponent<GuyMovement>().Move(destination);
@@ -314,125 +323,27 @@ public class GuyMovement : MonoBehaviour
 
 
     }
-    public bool BuildBuilding(Vector3 groundPos)
-    {
-        StopActivities();
-        GuyMovement building = basicBuilding.GetComponent<GuyMovement>();
-        bool willBuild = bank.RemoveResource(building.UnitWoodCost, building.unitGemCost, building.UnitFoodCost);
-        if (!willBuild)
-        {
-            Debug.Log("Not enough Resources");
-            return false;
-        }
-        Move(groundPos);
-        currentAction = UnitActions.Build;
-        
-        isCurrentlyBuilding = true;
-        var rotation = Quaternion.Euler(0, 0, 0);
-        groundPos.y += basicBuilding.transform.localScale.y / 2;
-        GameObject newBuilding = Instantiate(basicBuilding, groundPos, rotation);
-        newBuilding.tag = tag;
-        newBuilding.GetComponentInChildren<Renderer>().material = buildingMaterial;
-        newBuilding.GetComponent<GuyMovement>().buildingMaterial = buildingMaterial;
-
-        if (computerController != null)
-        {
-            computerController.unitLibrary.AddUnit(newBuilding.GetComponent<GuyMovement>());
-        }
-        else if(playerController != null)
-        {
-            playerController.unitLibrary.AddUnit(newBuilding.GetComponent<GuyMovement>());
-        }
-        StartCoroutine(ProcessBuild(newBuilding));
-        return true;
-    }
-
-    IEnumerator ProcessBuild(GameObject newBuilding)
-    {
-        
-        GuyMovement buildingGM = newBuilding.GetComponent<GuyMovement>();
-        Building buildingActions = newBuilding.GetComponent<Building>();
-        buildingGM.currentHealth = 10;
-        float necessaryBuildingHealth = buildingGM.currentHealth;
-
-
-        while (necessaryBuildingHealth < buildingGM.maxHealth) 
-        {
-            yield return new WaitForSeconds(buildSpeed);
-            float distance = Vector3.Distance(newBuilding.transform.position, transform.position)-(buildingActions.width/2);
-            if (distance <= attackRange)
-            {
-                buildingGM.currentHealth += buildingGM.healthIncreaseIncrement;
-                necessaryBuildingHealth += buildingGM.healthIncreaseIncrement;
-                if (buildingGM.isSelected)
-                {
-                    displayInfo.EditUnitInfo(buildingGM.currentHealth, buildingGM.maxHealth);
-                }
-            }
-        }
-        buildingGM.currentHealth = buildingGM.maxHealth;
-        buildingActions.isBuilt = true;
-        isCurrentlyBuilding = false;
-        if (buildingGM.hasUnitWorth)
-        {
-            bank.RaiseUnitLimit();
-        }
-        if (buildingGM.isSelected)
-        {
-            displayInfo.EditUnitInfo(buildingGM.currentHealth, buildingGM.maxHealth);
-        }
-        
-        currentAction = UnitActions.Nothing;
-    }
-
-    public void Repair(GuyMovement target)
-    {
-        StopActivities();
-        Move(target.transform.position);
-        StartCoroutine(ProcessRepair(target));
-    }
-
-    IEnumerator ProcessRepair(GuyMovement target)
-    {
-        currentAction = UnitActions.Repair;
-        while(target.currentHealth < target.maxHealth)
-        {
-            yield return new WaitForSeconds(buildSpeed);
-            float distance = Vector3.Distance(target.gameObject.transform.position, transform.position);
-            if (distance <= attackRange)
-            {
-                bank.RemoveResource(1, 0, 0);
-                target.currentHealth += healthIncreaseIncrement;
-                if(bank.Wood<=0)
-                {
-                    Debug.Log("Out of resources.");
-                    break;
-                }
-            }
-        }
-        currentAction = UnitActions.Nothing;
-
-    }
 
     public void TakeDamage(float damage)
     {
         float finalDamage = damage - armor - bonusArmor;
-        if(finalDamage < 1)
+        if (finalDamage < 1)
         {
             currentHealth -= 1;
         }
         else
         {
             currentHealth -= finalDamage;
-        }      
-        if(currentHealth <= 0)
+        }
+        if (currentHealth <= 0)
         {
             Die();
         }
-        else if(isSelected)
+        else if (isSelected)
         {
             displayInfo.EditUnitInfo(currentHealth, maxHealth);
         }
+        hPNonUIVisAid.EditTMP(currentHealth, maxHealth);
     }
 
     private void Die()
@@ -450,9 +361,9 @@ public class GuyMovement : MonoBehaviour
             playerController.Deselect(gameObject);
             playerController.unitLibrary.RemoveUnit(this);
         }
-        else
+        else if(tag != null)
         {
-            computerController.unitLibrary.RemoveUnit(this);
+            computerController.uLib.RemoveUnit(this);
         }
         if (hasUnitWorth)
         {
@@ -469,9 +380,9 @@ public class GuyMovement : MonoBehaviour
                     i.isClaimed = false;
                 }
             }
-            if(TryGetComponent(out Tower tower))
+            if (TryGetComponent(out Tower tower))
             {
-                foreach(var unit in tower.housedUnits)
+                foreach (var unit in tower.housedUnits)
                 {
                     unit.SetActive(true);
                 }
@@ -480,7 +391,7 @@ public class GuyMovement : MonoBehaviour
         }
         foreach (var targeter in targeters)
         {
-            if (targeter != null) 
+            if (targeter != null)
             {
                 targeter.target = null;
                 targeter.StopAllCoroutines();
@@ -489,215 +400,18 @@ public class GuyMovement : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void CollectResources(Resource resource)
-    {
-        StopActivities();
-        StartCoroutine(ProcessCollectResource(resource));
-    }
-
-    public IEnumerator ProcessCollectResource(Resource resource)
-    {
-        if(resource.Type == ResourceType.Food)
-        {
-            currentAction = UnitActions.Farm;
-        }
-        else if (resource.Type == ResourceType.Wood)
-        {
-            currentAction = UnitActions.ChopTree;
-        }
-        else
-        {
-            currentAction = UnitActions.Mine;
-        }
-        isCollectingResources = true;
-        while (resource.Resources>0)
-        {
-            float distance = Vector3.Distance(resource.transform.position, transform.position);
-            if (distance > attackRange)
-            {
-                Debug.Log("Moving");
-                Vector3 destination = Vector3.MoveTowards(transform.position, resource.transform.position, distance - attackRange + 1);
-                Move(destination);
-                yield return new WaitForSeconds(moveDelay);
-            }
-            else
-            {
-                yield return new WaitForSeconds(miningSpeed);
-                bank.AddResource(resource.Type, resource.CollectResource(8));
-            }
-            
-        }
-        isCollectingResources = false;
-        currentAction = UnitActions.Nothing;
-    }
-
+    
     public void StopActivities()
     {
         currentAction = UnitActions.Nothing;
         isCollectingResources = false;
         isCurrentlyBuilding = false;
-        if(unitType != UnitType.Castle)
+        if (unitType != UnitType.Castle)
         {
             isAttacking = false;
             StopAllCoroutines();
         }
     }
 
-    public void SearchForResource(ResourceType rType)
-    {
-
-        Collider[] potentialResources = Physics.OverlapSphere(transform.position, 50);
-
-        List<Resource> resources = new List<Resource>();
-        foreach (Collider c in potentialResources)
-        {
-            if (c.TryGetComponent(out Resource resource))
-            {
-                if (resource.Type == rType)
-                {
-                    resources.Add(resource);
-                    Debug.Log(resources.Count);
-                }
-            }
-        }
-        float distance = 50;
-        Resource resourceTarget = null;
-        foreach (Resource resource in resources)
-        {
-            if (Vector3.Distance(resource.transform.position, transform.position) < distance)
-            {
-                resourceTarget = resource;
-                distance = Vector3.Distance(resource.transform.position, transform.position);
-            }
-        }
-        if (resourceTarget != null)
-        {
-           CollectResources(resourceTarget);
-        }
-
-    }
-
-    public Vector3 SearchForPlaceToBuild()
-    {
-        List<Vector2Int> list = new List<Vector2Int>();
-        // MATH SECTION
-        Vector3 unitPositionToGrid = Vector3.zero;
-        unitPositionToGrid.x = Mathf.Floor(transform.position.x / gridSize) * gridSize;
-        unitPositionToGrid.x += gridSize / 2;
-        unitPositionToGrid.z = Mathf.Floor(transform.position.z / gridSize) * gridSize;
-        unitPositionToGrid.z += gridSize / 2;
-        int minX = Mathf.CeilToInt(unitPositionToGrid.x)-20;
-        if(minX < 0)
-        {
-            minX = 0;
-        }
-        int minY = Mathf.CeilToInt(unitPositionToGrid.z) - 20;
-        if(minY < 0)
-        {
-            minY = 0;
-        }
-        int maxX = Mathf.CeilToInt(unitPositionToGrid.x) + 20;
-        if (maxX > 496)
-        {
-            maxX = 500 - 8;
-        }
-        int maxY = Mathf.CeilToInt(unitPositionToGrid.z) + 20;
-        if (maxY > 496)
-        {
-            maxY = 500 - 8;
-        }
-
-
-        // LOOP SECTION
-        for(int i = minX; i < maxX; i += 4)
-        {
-            for (int j = minY; j < maxY; j += 4)
-            {
-                if(buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j), out bool isClaimed))
-                {
-                    if(isClaimed == false)
-                    {
-                        bool continueForth = true;
-                        if (buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i-4, j), out bool value))
-                        {         
-                            if (value == true)
-                            {
-                                continueForth = false;
-                            }
-                        }
-                        else
-                        {
-                            continueForth = false;
-                        }
-                        if (continueForth == true && buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i, j - 4), out bool value0))
-                        {
-                            if (value0 == true)
-                            {
-                                continueForth = false;
-                            }
-                        }
-                        else
-                        {
-                            continueForth = false;
-                        }
-                        if (continueForth == true && buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i - 4, j-4), out bool value1))
-                        {
-                            if (value1 != true)
-                            {
-                                list.Add(new Vector2Int(i,j));
-                            }
-                        }
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
-
-        if(list.Count > 0)
-        {
-            Vector2Int lastV2 = Vector2Int.zero;
-            int home = Mathf.FloorToInt(unitPositionToGrid.x + unitPositionToGrid.z);
-            foreach (var v2Int in list)
-            {
-                if(lastV2 == Vector2Int.zero)
-                {
-                    lastV2 = v2Int;
-                }
-                else
-                {
-                    float xdisl = lastV2.x - transform.position.x;
-                    float ydisl = lastV2.y - transform.position.y;
-                    float xdis = v2Int.x - transform.position.x;
-                    float ydis = v2Int.y - transform.position.y;
-
-                    float lastV2Distance = ydisl*ydisl+xdisl*xdisl;
-                    float currentV2Distance = ydis * ydis + xdis * xdis;
-                    if (currentV2Distance < lastV2Distance)
-                    {
-                        lastV2 = v2Int;
-                    }
-                }
-            }
-            Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);            
-            //Debug.Log(lastV2 +": "+ buildGrid.gridSqrsDict[lastV2]);
-
-
-            return returnValue;
-        }
-        else
-        {
-            return Vector3.zero;
-        }
-
-    }
-
-
-
+  
 }
