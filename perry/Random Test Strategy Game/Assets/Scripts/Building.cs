@@ -7,8 +7,8 @@ using UnityEngine;
 
 public class Building : MonoBehaviour
 {
-    [SerializeField] public GameObject buildTimeVisual;
-
+    [SerializeField] public GameObject buildingPreview;
+    [SerializeField] GameObject buildTimeVisGO;
 
 
     [SerializeField] float buildingTimeLeft = 0;//needs to be viewable on screen
@@ -24,7 +24,7 @@ public class Building : MonoBehaviour
     bool isCurrentlyBuilding = false;
     public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
 
-    [SerializeField] public TextMeshPro buildTimeVisualTMP;
+    [SerializeField] public TextMeshPro buildTimeVisTMP;
     public BuildingGrid buildGrid;
     public Vector2Int vTwoPosition;
     GuyMovement guyMovement;
@@ -40,6 +40,7 @@ public class Building : MonoBehaviour
         buildGrid = FindObjectOfType<BuildingGrid>();
         guyMovement = GetComponent<GuyMovement>();
         guyMovement.isABuilding = true;
+        buildTimeVisTMP = buildTimeVisGO.GetComponentInChildren<TextMeshPro>();
     }
 
     private void Start()
@@ -107,7 +108,7 @@ public class Building : MonoBehaviour
             }
         }
 
-        buildTimeVisualTMP.text = "";
+        buildTimeVisTMP.text = "";
     }
 
     private void Update()
@@ -164,6 +165,7 @@ public class Building : MonoBehaviour
 
     IEnumerator ProcessBuildUnit(GameObject chosenUnit)
     {
+        buildTimeVisGO.SetActive(true);
         guyMovement.currentAction = UnitActions.Build;
         isCurrentlyBuilding = true;
         float x = 0;
@@ -174,9 +176,10 @@ public class Building : MonoBehaviour
             yield return new WaitForSeconds(buildSpeed);
             x += buildSpeed;
             buildingTimeLeft = timeTakenToBuild - x;
-            buildTimeVisualTMP.text += "N";
+            buildTimeVisTMP.text += "N";
         }
-        buildTimeVisualTMP.text = "";
+        buildTimeVisTMP.text = "";
+        buildTimeVisGO.SetActive(false);
         Vector3 pos = transform.position;
         pos.x = transform.position.x + 1 / transform.localScale.x;
         pos.x += 2;
@@ -187,7 +190,7 @@ public class Building : MonoBehaviour
         playerController.EditDisplay();
         isCurrentlyBuilding = false;
         guyMovement.currentAction = UnitActions.Nothing;
-
+        
     }
 
     public void Research(Technology t)
@@ -199,13 +202,17 @@ public class Building : MonoBehaviour
 
     IEnumerator Researching(Technology t)
     {
-        for (int i = 0; i < 10; i++)
+        buildTimeVisGO.SetActive(true);
+        for (int i = 0; i < 20; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(1f);
+            buildTimeVisTMP.text += "N";
 
         }
+        buildTimeVisGO.SetActive(false);
         if (playerController != null)
         {
+            researchableTechnology.Remove(t);
             playerController.Research(t);
         }
         else

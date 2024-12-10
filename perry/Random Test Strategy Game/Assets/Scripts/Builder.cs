@@ -86,10 +86,10 @@ public class Builder : MonoBehaviour
             {
                 buildingGM.currentHealth += buildingGM.healthII;
                 necessaryBuildingHealth += buildingGM.healthII;
+                buildingGM.hPNonUIVisAid.EditTMP(buildingGM.currentHealth, buildingGM.maxHealth);
                 if (buildingGM.isSelected)
                 {
-                    guyMovement.displayInfo.EditUnitInfo(buildingGM.currentHealth, buildingGM.maxHealth);
-                    buildingGM.hPNonUIVisAid.EditTMP(buildingGM.currentHealth,buildingGM.maxHealth);
+                    guyMovement.displayInfo.EditUnitInfo(buildingGM.currentHealth, buildingGM.maxHealth);             
                 }
             }
         }

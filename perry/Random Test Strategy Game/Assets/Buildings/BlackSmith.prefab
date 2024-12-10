@@ -169,6 +169,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2136364271582155586, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2136364271582155586, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834243, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -280,6 +288,14 @@ PrefabInstance:
     - target: {fileID: 5299942570169834302, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: m_Name
       value: BlackSmith
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917430523026367978, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8917430523026367978, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}

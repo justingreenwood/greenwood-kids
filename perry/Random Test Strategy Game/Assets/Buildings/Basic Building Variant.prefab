@@ -223,14 +223,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8511120b9c0f947439d544d6626b4cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildTimeVisual: {fileID: 1965179720656117942, guid: 8a4fb960fc1d63144914a834110bff61, type: 3}
+  buildingPreview: {fileID: 1965179720656117942, guid: 8a4fb960fc1d63144914a834110bff61, type: 3}
+  buildTimeVisGO: {fileID: 8391808852919792789}
   buildingTimeLeft: 0
   timeTakenToBuild: 20
   width: 8
   isBuilt: 1
   researchableTechnology: 
   unitQueue: []
-  buildTimeVisualTMP: {fileID: 8781994844799133796}
+  buildTimeVisTMP: {fileID: 0}
   buildGrid: {fileID: 0}
   vTwoPosition: {x: 0, y: 0}
 --- !u!1001 &6540061564745835458
@@ -264,16 +265,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Build Time Visual Aid (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 3366237204478121815, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 333f907ea96844845a9613a6557468fb, type: 3}
---- !u!114 &8781994844799133796 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2530212237663800230, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+--- !u!1 &8391808852919792789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3366237204478121815, guid: 333f907ea96844845a9613a6557468fb, type: 3}
   m_PrefabInstance: {fileID: 6540061564745835458}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
