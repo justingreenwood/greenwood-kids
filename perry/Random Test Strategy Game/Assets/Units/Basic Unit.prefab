@@ -80,20 +80,17 @@ MonoBehaviour:
   bonusAttackDamage: 0
   attackSpeed: 0.75
   finalAttackSpeed: 0
-  buildSpeed: 0.1
-  miningSpeed: 15
   moveDelay: 0.5
   sightRange: 20
   unitType: 0
   isMovable: 1
-  isABuilding: 0
-  isBuilder: 1
   targetsNearestEnemy: 0
+  isABuilding: 0
+  isABuilder: 0
   isSelected: 0
   isAttacking: 0
   unitImage: {fileID: 21300000, guid: 9ce84ff0fdeb13d4a83f077d075dd9a5, type: 3}
   canProduceUnits: 0
-  basicBuilding: {fileID: 5299942570169834302, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
   buildingMaterial: {fileID: 2100000, guid: d0f81e44aee20a946b9f43d9e56fe4d9, type: 2}
   hasUnitWorth: 0
   unitTypes: 
@@ -107,10 +104,16 @@ MonoBehaviour:
   unitSize: 1
   agent: {fileID: 0}
   playerController: {fileID: 0}
+  computerController: {fileID: 0}
   targeters: []
   target: {fileID: 0}
+  isCurrentlyBuilding: 0
   isCollectingResources: 0
   currentAction: 6
+  displayInfo: {fileID: 0}
+  destination: {x: 0, y: 0, z: 0}
+  hPNonUIVisAid: {fileID: 0}
+  buildGrid: {fileID: 0}
 --- !u!195 &489722392510816661
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -220,6 +223,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Visual Aid
       objectReference: {fileID: 0}
+    - target: {fileID: 3366237204478121815, guid: 333f907ea96844845a9613a6557468fb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 333f907ea96844845a9613a6557468fb, type: 3}
 --- !u!1 &6726051107267688599 stripped
@@ -245,3 +252,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 10
+  unitGO: {fileID: 0}

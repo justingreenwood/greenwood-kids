@@ -9,6 +9,7 @@ public class HPNonUIVisAid : MonoBehaviour
     TextMeshPro tMP;
 
     [SerializeField] int size = 20;
+    [SerializeField] GameObject unitGO;
 
     public int Size {  get { return size; } }
 
@@ -16,7 +17,10 @@ public class HPNonUIVisAid : MonoBehaviour
     {
         tMP = GetComponentInChildren<TextMeshPro>();
     }
+    private void Update()
+    {
 
+    }
     public void EditTMP(float currentHealth, float maxHealth)
     {
         string text = "";

@@ -557,6 +557,15 @@ public class PlayerController : MonoBehaviour
         {
             if (selected == unit) 
             {
+                var unitAction = unit.GetComponent<GuyMovement>();
+                unitAction.hPNonUIVisAid.gameObject.SetActive(false);
+                if (unitAction.isABuilding)
+                {
+                    if (unitAction.currentAction == UnitActions.Build || unitAction.currentAction == UnitActions.Research)
+                    {
+                        unitAction.BuildingActions.buildTimeVisGO.SetActive(false);
+                    }
+                }
                 selectedUnits.Remove(unit);                
                 EditDisplay();
                 break;
@@ -568,7 +577,16 @@ public class PlayerController : MonoBehaviour
     {
         foreach(var unit in selectedUnits)
         {
-            unit.GetComponent<GuyMovement>().isSelected = false;
+            var unitAction = unit.GetComponent<GuyMovement>();
+            unitAction.hPNonUIVisAid.gameObject.SetActive(false);
+            if(unitAction.isABuilding)
+            {
+                if (unitAction.currentAction == UnitActions.Build || unitAction.currentAction == UnitActions.Research)
+                {
+                    unitAction.BuildingActions.buildTimeVisGO.SetActive(false);
+                }
+            }
+            unitAction.isSelected = false;
         }
         selectedUnits.Clear();
     }
@@ -576,10 +594,18 @@ public class PlayerController : MonoBehaviour
     void SelectUnit(GameObject unit)
     {
         GuyMovement unitAction = unit.GetComponent<GuyMovement>();
+        unitAction.hPNonUIVisAid.gameObject.SetActive(true);
         unitAction.isSelected = true;
         if (!unitAction.isABuilding)
         {
             PlaySound(unitAction.isSelectedAudio);
+        }
+        else
+        {
+            if (unitAction.currentAction == UnitActions.Build || unitAction.currentAction == UnitActions.Research)
+            {
+                unitAction.BuildingActions.buildTimeVisGO.SetActive(true);
+            }
         }
         selectedUnits.Add(unit);
     }

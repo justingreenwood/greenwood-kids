@@ -8,7 +8,7 @@ using UnityEngine;
 public class Building : MonoBehaviour
 {
     [SerializeField] public GameObject buildingPreview;
-    [SerializeField] GameObject buildTimeVisGO;
+    [SerializeField] public GameObject buildTimeVisGO;
 
 
     [SerializeField] float buildingTimeLeft = 0;//needs to be viewable on screen
@@ -109,6 +109,7 @@ public class Building : MonoBehaviour
         }
 
         buildTimeVisTMP.text = "";
+        buildTimeVisGO.SetActive(false);
     }
 
     private void Update()

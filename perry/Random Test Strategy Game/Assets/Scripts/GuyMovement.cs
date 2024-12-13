@@ -117,6 +117,7 @@ public class GuyMovement : MonoBehaviour
 
         hPNonUIVisAid = GetComponentInChildren<HPNonUIVisAid>();
         hPNonUIVisAid.EditTMP(currentHealth, maxHealth);
+        hPNonUIVisAid.gameObject.SetActive(false);
         agent = GetComponent<NavMeshAgent>();
         playerController = FindObjectOfType<PlayerController>();
 
