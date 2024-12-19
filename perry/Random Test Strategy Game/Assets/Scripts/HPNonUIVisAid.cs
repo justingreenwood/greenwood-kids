@@ -10,12 +10,12 @@ public class HPNonUIVisAid : MonoBehaviour
 
     [SerializeField] int size = 20;
     [SerializeField] GameObject unitGO;
-
     public int Size {  get { return size; } }
 
     void Awake()
     {
         tMP = GetComponentInChildren<TextMeshPro>();
+
     }
     private void Update()
     {

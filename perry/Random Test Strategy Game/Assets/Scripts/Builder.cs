@@ -15,7 +15,7 @@ public class Builder : MonoBehaviour
     ResourceBank bank;
     BuildingGrid buildGrid;
 
-    float actionRange = 3;
+    float actionRange = 5.5f;
     float moveDelay;
     
     int gridSize = 4;
@@ -112,6 +112,7 @@ public class Builder : MonoBehaviour
 
     public void Repair(GuyMovement target)
     {
+        Debug.Log("repair");
         guyMovement.StopActivities();
         guyMovement.Move(target.transform.position);
         StartCoroutine(ProcessRepair(target));
@@ -119,20 +120,28 @@ public class Builder : MonoBehaviour
 
     IEnumerator ProcessRepair(GuyMovement target)
     {
+        bool started = false;
         guyMovement.currentAction = UnitActions.Repair;
         while (target.currentHealth < target.maxHealth)
         {
-            yield return new WaitForSeconds(buildSpeed);
+            yield return new WaitForSeconds(0.5f);
             float distance = Vector3.Distance(target.gameObject.transform.position, transform.position);
+            Debug.Log(distance);
             if (distance <= actionRange)
             {
+                started = true;
+                Debug.Log("repairing");
                 bank.RemoveResource(1, 0, 0);
-                target.currentHealth += guyMovement.healthII;
+                target.currentHealth += target.healthII;
                 if (bank.Wood <= 0)
                 {
                     Debug.Log("Out of resources.");
                     break;
                 }
+            }
+            else if(started == true)
+            {
+                break;
             }
         }
         guyMovement.currentAction = UnitActions.Nothing;
@@ -163,7 +172,6 @@ public class Builder : MonoBehaviour
             float distance = Vector3.Distance(resource.transform.position, transform.position);
             if (distance > actionRange)
             {
-                Debug.Log("Moving");
                 Vector3 destination = Vector3.MoveTowards(transform.position, resource.transform.position, distance - actionRange + 1);
                 guyMovement.Move(destination);
                 yield return new WaitForSeconds(moveDelay);
@@ -180,18 +188,18 @@ public class Builder : MonoBehaviour
     }
     public void SearchForResource(ResourceType rType)
     {
-
         Collider[] potentialResources = Physics.OverlapSphere(transform.position, 50);
 
         List<Resource> resources = new List<Resource>();
         foreach (Collider c in potentialResources)
         {
+            
             if (c.TryGetComponent(out Resource resource))
             {
                 if (resource.Type == rType)
                 {
+                    
                     resources.Add(resource);
-                    Debug.Log(resources.Count);
                 }
             }
         }

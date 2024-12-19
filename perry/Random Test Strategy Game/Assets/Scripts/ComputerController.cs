@@ -44,21 +44,79 @@ public class ComputerController : MonoBehaviour
         }
 
     }
-
+    bool canLoopAgain = true;
+    bool needToCheck = true;
     void Update()
     {
-        if (uLib.farmland.Count < 1)
+        if (needToCheck)
         {
-            if (bank.Wood < 50)
+            if (uLib.peasants.Count >= 3)
             {
-                Build(uLib.peasants[0], 12);
+
+                if (uLib.farmland.Count < 1)
+                {
+                    if (bank.Wood < 50)
+                    {
+                        Build(uLib.peasants[0], 4);
+
+                    }
+                }
+                else if (amountFarming < 2 && canLoopAgain)
+                {
+                    StuffAndStuff(amountFarming, ResourceType.Food);
+                }
+                if (amountCollectingWood < 2 && canLoopAgain)
+                {
+                    StuffAndStuff(amountCollectingWood, ResourceType.Wood);
+                }
 
             }
+            else if (uLib.peasants.Count == 2)
+            {
+                if (uLib.farmland.Count >= 1)
+                {
+                    uLib.peasants[0].BuilderActions.SearchForResource(ResourceType.Food);
+                    uLib.peasants[1].BuilderActions.SearchForResource(ResourceType.Wood);
+                }
+                else
+                {
+                    uLib.peasants[0].BuilderActions.SearchForResource(ResourceType.Wood);
+                    uLib.peasants[1].BuilderActions.SearchForResource(ResourceType.Wood);
+                }
+            }
+            else if (uLib.peasants.Count == 1)
+            {
+                if (uLib.farmland.Count >= 1)
+                {
+                    uLib.peasants[0].BuilderActions.SearchForResource(ResourceType.Wood);
+                }
+                else
+                {
+                    uLib.peasants[0].BuilderActions.SearchForResource(ResourceType.Food);
+                }
+            }
+            needToCheck = false;
         }
-        
-        
 
+    }
 
+    private void StuffAndStuff(int amount, ResourceType type)
+    {
+        canLoopAgain = false;
+        foreach (var peasant in uLib.peasants)
+        {
+            if (peasant.currentAction == UnitActions.Nothing)
+            {
+                
+                peasant.BuilderActions.SearchForResource(type);
+                amount++;
+                if (amount == 2)
+                {
+                    canLoopAgain = true;
+                    break;
+                }
+            }
+        }
     }
 
     private void EditWorkers()
