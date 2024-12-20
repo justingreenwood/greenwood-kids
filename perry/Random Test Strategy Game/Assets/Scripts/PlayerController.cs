@@ -173,6 +173,11 @@ public class PlayerController : MonoBehaviour
                 {
                     unitControls.StopAllCoroutines();
                     unitControls.target = null;
+                    if (unitControls.isABuilder && !unitControls.isCurrentlyBuilding)
+                    {
+                        unitControls.currentAction = UnitActions.Nothing;
+                        unitControls.BuilderActions.StopAllCoroutines();
+                    }
                     if (groundLocation.HasValue)
                     {
                         actionDone = true;

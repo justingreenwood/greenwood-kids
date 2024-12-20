@@ -185,6 +185,10 @@ public class Building : MonoBehaviour
         pos.x = transform.position.x + 1 / transform.localScale.x;
         pos.x += 2;
         guyMovement.Build(chosenUnit, guyMovement.buildingMaterial, pos);
+        if(computerController != null)
+        {
+            computerController.ShouldWeAttack();
+        }
         bank.ResetBorrowedResources();
         unitQueue.Remove(chosenUnit);
 

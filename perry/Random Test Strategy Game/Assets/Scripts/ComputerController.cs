@@ -9,6 +9,10 @@ using static UnityEngine.UIElements.UxmlAttributeDescription;
 public class ComputerController : MonoBehaviour
 {
     [SerializeField] Vector3 targetCoordinate;
+
+    [SerializeField] int amountToAttack = 8;
+    [SerializeField] bool attackAtStart = false;
+
     string team;
     ResourceBank bank;
     public int unitsAlive = 0;
@@ -42,7 +46,10 @@ public class ComputerController : MonoBehaviour
             peasant.BuilderActions.SearchForResource(ResourceType.Wood);
             amountCollectingWood++;
         }
-
+        if (attackAtStart)
+        {
+            ShouldWeAttack();
+        }
     }
     bool canLoopAgain = true;
     bool needToCheck = true;
@@ -63,11 +70,11 @@ public class ComputerController : MonoBehaviour
                 }
                 else if (amountFarming < 2 && canLoopAgain)
                 {
-                    StuffAndStuff(amountFarming, ResourceType.Food);
+                    ResourceCollectorDelegator(amountFarming, ResourceType.Food);
                 }
                 if (amountCollectingWood < 2 && canLoopAgain)
                 {
-                    StuffAndStuff(amountCollectingWood, ResourceType.Wood);
+                    ResourceCollectorDelegator(amountCollectingWood, ResourceType.Wood);
                 }
 
             }
@@ -97,10 +104,22 @@ public class ComputerController : MonoBehaviour
             }
             needToCheck = false;
         }
+        
+    }
+    public void ShouldWeAttack()
+    {
+        
+        int units = uLib.archers.Count+uLib.menAtArms.Count;
+        Debug.Log(units);
+        if (units >= amountToAttack)
+        {
+            Debug.Log("Got Here");
+            Attack();
+        }
 
     }
 
-    private void StuffAndStuff(int amount, ResourceType type)
+    private void ResourceCollectorDelegator(int amount, ResourceType type)
     {
         canLoopAgain = false;
         foreach (var peasant in uLib.peasants)
@@ -216,7 +235,13 @@ public class ComputerController : MonoBehaviour
         foreach (var unit in uLib.menAtArms) 
         {
             i++;
+            unit.Move(targetCoordinate);           
+        }
+        foreach (var unit in uLib.archers)
+        {
+            i++;
             unit.Move(targetCoordinate);
         }
+
     }
 }

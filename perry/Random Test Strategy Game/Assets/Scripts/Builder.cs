@@ -157,6 +157,7 @@ public class Builder : MonoBehaviour
         if (resource.Type == ResourceType.Food)
         {
             guyMovement.currentAction = UnitActions.Farm;
+            resource.GetComponent<Farmland>().AddFarmer(guyMovement);
         }
         else if (resource.Type == ResourceType.Wood)
         {

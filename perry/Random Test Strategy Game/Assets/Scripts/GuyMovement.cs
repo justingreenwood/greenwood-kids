@@ -271,6 +271,7 @@ public class GuyMovement : MonoBehaviour
             yield return new WaitForSeconds(moveDelay);
         }
         target = null;
+        RemoveTargeters();
         tower.AddUnit(gameObject);
     }
 
@@ -362,7 +363,7 @@ public class GuyMovement : MonoBehaviour
             playerController.Deselect(gameObject);
             playerController.unitLibrary.RemoveUnit(this);
         }
-        else if(tag != null)
+        else if (tag != null)
         {
             computerController.uLib.RemoveUnit(this);
         }
@@ -388,8 +389,18 @@ public class GuyMovement : MonoBehaviour
                     unit.SetActive(true);
                 }
             }
+            if (TryGetComponent(out Farmland farmland))
+            {
+                farmland.ClearFarmers();
+            }
 
         }
+        RemoveTargeters();
+        Destroy(gameObject);
+    }
+
+    public void RemoveTargeters()
+    {
         foreach (var targeter in targeters)
         {
             if (targeter != null)
@@ -398,10 +409,8 @@ public class GuyMovement : MonoBehaviour
                 targeter.StopAllCoroutines();
             }
         }
-        Destroy(gameObject);
     }
 
-    
     public void StopActivities()
     {
         currentAction = UnitActions.Nothing;

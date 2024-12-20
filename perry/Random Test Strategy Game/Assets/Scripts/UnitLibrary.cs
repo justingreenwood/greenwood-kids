@@ -27,7 +27,8 @@ public class UnitLibrary : MonoBehaviour
     [SerializeField] public List<GuyMovement> dragons = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> pegasusKnights = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> towers = new List<GuyMovement>();
-    void Start()
+
+    private void Awake()
     {
         GuyMovement[] units = FindObjectsOfType<GuyMovement>();
 
@@ -41,6 +42,10 @@ public class UnitLibrary : MonoBehaviour
 
 
         }
+    }
+    void Start()
+    {
+
     }
 
     public void AddUnit(GuyMovement unitAction)

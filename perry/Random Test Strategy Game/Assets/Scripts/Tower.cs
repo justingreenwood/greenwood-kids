@@ -35,13 +35,6 @@ public class Tower : MonoBehaviour
     }
     
 
-    void Update()
-    {
-        
-
-
-    }
-
     public void RemoveUnit(int i, GameObject target)
     {      
         target.SetActive(true);        
