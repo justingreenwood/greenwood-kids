@@ -23,22 +23,22 @@ public class Builder : MonoBehaviour
     private void Awake()
     {
         guyMovement = GetComponent<GuyMovement>();
+        
         guyMovement.isABuilder = true;
     }
 
     void Start()
     {
         playerController = guyMovement.playerController;
-        computerController = guyMovement.computerController;
-        buildGrid = guyMovement.buildGrid;
+        computerController = GetComponentInParent<ComputerController>();
         moveDelay = guyMovement.moveDelay;
         bank = GetComponentInParent<ResourceBank>();
-        
+        buildGrid = FindObjectOfType<BuildingGrid>();
+
     }
    
     public bool BuildBuilding(Vector3 groundPos)
-    {
-        guyMovement.StopActivities();
+    {      
         GuyMovement building = basicBuilding.GetComponent<GuyMovement>();
         bool willBuild = bank.RemoveResource(building.UnitWoodCost, building.UnitGemCost, building.UnitFoodCost);
         if (!willBuild)
@@ -46,6 +46,8 @@ public class Builder : MonoBehaviour
             Debug.Log("Not enough Resources");
             return false;
         }
+        guyMovement.StopActivities();
+        StopAllCoroutines();
         guyMovement.Move(groundPos);
         guyMovement.currentAction = UnitActions.Build;
         guyMovement.isCurrentlyBuilding = true;
@@ -106,7 +108,10 @@ public class Builder : MonoBehaviour
         //{
         //    displayInfo.EditUnitInfo(buildingGM.currentHealth, buildingGM.maxHealth);
         //}
-
+        if (computerController != null)
+        {
+            computerController.needToCheck = true;
+        }
         guyMovement.currentAction = UnitActions.Nothing;
     }
 
@@ -227,9 +232,9 @@ public class Builder : MonoBehaviour
         // MATH SECTION
         Vector3 unitPositionToGrid = Vector3.zero;
         unitPositionToGrid.x = Mathf.Floor(transform.position.x / gridSize) * gridSize;
-        unitPositionToGrid.x += gridSize / 2;
+        //unitPositionToGrid.x += gridSize / 2;
         unitPositionToGrid.z = Mathf.Floor(transform.position.z / gridSize) * gridSize;
-        unitPositionToGrid.z += gridSize / 2;
+        //unitPositionToGrid.z += gridSize / 2;
         int minX = Mathf.CeilToInt(unitPositionToGrid.x) - 20;
         if (minX < 0)
         {
@@ -250,8 +255,6 @@ public class Builder : MonoBehaviour
         {
             maxY = 500 - 8;
         }
-
-
         // LOOP SECTION
         for (int i = minX; i < maxX; i += 4)
         {
@@ -286,6 +289,7 @@ public class Builder : MonoBehaviour
                         }
                         if (continueForth == true && buildGrid.gridSqrsDict.TryGetValue(new Vector2Int(i - 4, j - 4), out bool value1))
                         {
+                            
                             if (value1 != true)
                             {
                                 list.Add(new Vector2Int(i, j));

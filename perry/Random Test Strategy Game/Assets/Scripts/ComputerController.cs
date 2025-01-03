@@ -52,9 +52,10 @@ public class ComputerController : MonoBehaviour
         }
     }
     bool canLoopAgain = true;
-    bool needToCheck = true;
+    public bool needToCheck = true;
     void Update()
     {
+        
         if (needToCheck)
         {
             if (uLib.peasants.Count >= 3)
@@ -104,7 +105,15 @@ public class ComputerController : MonoBehaviour
             }
             needToCheck = false;
         }
-        
+
+        if (uLib.farmland.Count < 1)
+        {
+            if (bank.Wood >= 50)
+            {
+                Build(uLib.peasants[0], 4);
+            }                
+        }
+
     }
     public void ShouldWeAttack()
     {
@@ -223,7 +232,6 @@ public class ComputerController : MonoBehaviour
         Vector3 buildPos = peasant.BuilderActions.SearchForPlaceToBuild();
         if(buildPos != Vector3.zero)
         {
-
             peasant.BuilderActions.BuildBuilding(buildPos);
         }
     }
