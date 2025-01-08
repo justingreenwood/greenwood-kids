@@ -59,10 +59,10 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public AudioClip IncapableAudio;
     [SerializeField] public AudioClip ActionAudio;
 
-
+    //[SerializeField] public Dictionary<UnitType, GameObject> unitTypes = new Dictionary<UnitType, GameObject>();
     public List<GameObject> UnitGameObjects { get { return unitGameObjects; } }
     public List<UnitType> UnitTypes { get { return unitTypes; } }
-
+    
 
     [SerializeField] int unitWoodCost = 0;
     [SerializeField] int unitGemCost = 0;
@@ -292,15 +292,15 @@ public class GuyMovement : MonoBehaviour
 
         if (playerController != null)
         {
-            if (playerController.Technologies[Technology.Weapon] == true)
+            if (playerController.Technologies[Technology.WeaponI] == true)
             {
                 guyMovement.bonusAttackDamage = 2;
             }
-            if (playerController.Technologies[Technology.Armor] == true)
+            if (playerController.Technologies[Technology.ArmorI] == true)
             {
                 guyMovement.armor += 3;
             }
-            if (playerController.Technologies[Technology.Health] == true)
+            if (playerController.Technologies[Technology.HealthI] == true)
             {
                 guyMovement.maxHealth += 10;
             }
@@ -389,9 +389,13 @@ public class GuyMovement : MonoBehaviour
                     unit.SetActive(true);
                 }
             }
-            if (TryGetComponent(out Farmland farmland))
+            else if (TryGetComponent(out Farmland farmland))
             {
                 farmland.ClearFarmers();
+            }
+            if(currentAction == UnitActions.Research)
+            {
+                buildingActions.StopResearch();
             }
 
         }

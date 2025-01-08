@@ -19,6 +19,7 @@ public class Building : MonoBehaviour
 
     [SerializeField] public List<Technology> researchableTechnology = new List<Technology>();
 
+    Information information;
     public List<GameObject> unitQueue = new List<GameObject>();
 
     bool isCurrentlyBuilding = false;
@@ -35,12 +36,15 @@ public class Building : MonoBehaviour
     GameObject player;
     ResourceBank bank;
 
+    Technology currentTech = Technology.Nothing;
+
     private void Awake()
     {
         buildGrid = FindObjectOfType<BuildingGrid>();
         guyMovement = GetComponent<GuyMovement>();
         guyMovement.isABuilding = true;
         buildTimeVisTMP = buildTimeVisGO.GetComponentInChildren<TextMeshPro>();
+        information = FindObjectOfType<Information>();
     }
 
     private void Start()
@@ -207,6 +211,8 @@ public class Building : MonoBehaviour
 
     IEnumerator Researching(Technology t)
     {
+        currentTech = t;
+        information.Research(t);
         buildTimeVisGO.SetActive(true);
         for (int i = 0; i < 20; i++)
         {
@@ -220,10 +226,17 @@ public class Building : MonoBehaviour
             researchableTechnology.Remove(t);
             playerController.Research(t);
         }
-        else
-        {
-
-        }
+        buildTimeVisTMP.text = "";
+        guyMovement.currentAction = UnitActions.Nothing;
+        
     }
+    public void StopResearch()
+    {
+        StopAllCoroutines();
+        guyMovement.currentAction = UnitActions.Nothing;
+        information.StopResearch(currentTech);
+        currentTech = Technology.Nothing;
+    }
+
 
 }

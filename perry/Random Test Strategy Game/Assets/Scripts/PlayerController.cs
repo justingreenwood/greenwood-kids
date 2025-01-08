@@ -122,9 +122,9 @@ public class PlayerController : MonoBehaviour
     public Dictionary<Technology,bool> Technologies { get { return technologies; } }
     private void WriteDictionary()
     {
-        technologies.Add(Technology.Weapon, false);
-        technologies.Add(Technology.Armor, false);
-        technologies.Add(Technology.Health, false);
+        technologies.Add(Technology.WeaponI, false);
+        technologies.Add(Technology.ArmorI, false);
+        technologies.Add(Technology.HealthI, false);
 
     }
     public void BuildButtonPressed(GameObject chosenBuildOption)
@@ -651,21 +651,21 @@ public class PlayerController : MonoBehaviour
     public void Research(Technology t)
     {
         technologies[t] = true;
-        if(t == Technology.Armor)
+        if(t == Technology.ArmorI)
         {
             foreach(var guy in unitLibrary.Units())
             {
                 guy.bonusArmor+=3;
             }
         }
-        else if (t == Technology.Weapon)
+        else if (t == Technology.WeaponI)
         {
             foreach (var guy in unitLibrary.Units())
             {
                 guy.bonusAttackDamage += 2;
             }
         }
-        else if (t == Technology.Health)
+        else if (t == Technology.HealthI)
         {
             foreach (var guy in unitLibrary.Units())
             {

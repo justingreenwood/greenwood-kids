@@ -4,7 +4,14 @@ using UnityEngine;
 
 public enum Technology
 {
-    Health,
-    Armor,
-    Weapon,
+    HealthI,
+    HealthII,
+    HealthIII,
+    ArmorI,
+    ArmorII,
+    ArmorIII,
+    WeaponI,
+    WeaponII, 
+    WeaponIII,
+    Nothing
 }
