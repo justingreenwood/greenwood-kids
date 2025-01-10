@@ -131,13 +131,13 @@ public class Builder : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             float distance = Vector3.Distance(target.gameObject.transform.position, transform.position);
-            Debug.Log(distance);
             if (distance <= actionRange)
             {
                 started = true;
                 Debug.Log("repairing");
                 bank.RemoveResource(1, 0, 0);
                 target.currentHealth += target.healthII;
+                playerController.EditDisplay();
                 if (bank.Wood <= 0)
                 {
                     Debug.Log("Out of resources.");

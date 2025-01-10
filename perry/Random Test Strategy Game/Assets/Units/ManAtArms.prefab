@@ -223,7 +223,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: attackDamage
-      value: 50
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: basicBuilding
@@ -236,6 +236,10 @@ PrefabInstance:
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: targetsNearestEnemy
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972645810006223336, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6959243986399247608, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: m_Name

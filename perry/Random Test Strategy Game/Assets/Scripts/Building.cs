@@ -19,7 +19,7 @@ public class Building : MonoBehaviour
 
     [SerializeField] public List<Technology> researchableTechnology = new List<Technology>();
 
-    Information information;
+    Information techInfo;
     public List<GameObject> unitQueue = new List<GameObject>();
 
     bool isCurrentlyBuilding = false;
@@ -44,7 +44,7 @@ public class Building : MonoBehaviour
         guyMovement = GetComponent<GuyMovement>();
         guyMovement.isABuilding = true;
         buildTimeVisTMP = buildTimeVisGO.GetComponentInChildren<TextMeshPro>();
-        information = FindObjectOfType<Information>();
+
     }
 
     private void Start()
@@ -54,6 +54,7 @@ public class Building : MonoBehaviour
         player = playerController.gameObject;
         if (CompareTag(player.tag))
         {
+            techInfo = playerController.TechInfo;
             transform.parent = player.transform;
             bank = player.GetComponent<ResourceBank>();
         }
@@ -212,7 +213,7 @@ public class Building : MonoBehaviour
     IEnumerator Researching(Technology t)
     {
         currentTech = t;
-        information.Research(t);
+        techInfo.Research(t);
         buildTimeVisGO.SetActive(true);
         for (int i = 0; i < 20; i++)
         {
@@ -221,10 +222,10 @@ public class Building : MonoBehaviour
 
         }
         buildTimeVisGO.SetActive(false);
-        if (playerController != null)
+        if (techInfo != null)
         {
             researchableTechnology.Remove(t);
-            playerController.Research(t);
+            techInfo.ResearchCompletion(t);
         }
         buildTimeVisTMP.text = "";
         guyMovement.currentAction = UnitActions.Nothing;
@@ -234,7 +235,7 @@ public class Building : MonoBehaviour
     {
         StopAllCoroutines();
         guyMovement.currentAction = UnitActions.Nothing;
-        information.StopResearch(currentTech);
+        techInfo.StopResearch(currentTech);
         currentTech = Technology.Nothing;
     }
 

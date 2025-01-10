@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button[] unitUIVisualButtons;
 
     DisplayInformationToScreen displayInfo;
-    public DisplayInformationToScreen DisplayInfo() { return displayInfo;}
+    public DisplayInformationToScreen DisplayInfo() { return displayInfo; }
 
     GameObject currentBuildingPreview;
     ResourceBank resourceBank;
@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
 
     AudioSource audioSource;
     public UnitLibrary unitLibrary;
+    Information techInfo;
+    public Information TechInfo { get { return techInfo; } }
     void Awake()
     {
         GameObject[] buildingsAndUnits = GameObject.FindGameObjectsWithTag(team);
@@ -65,9 +67,8 @@ public class PlayerController : MonoBehaviour
         }
 
         displayInfo = GetComponent<DisplayInformationToScreen>();
-
+        techInfo = GetComponent<Information>();
         buildGrid = FindObjectOfType<BuildingGrid>();
-        WriteDictionary();
     }
 
     void Start()
@@ -118,15 +119,6 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    Dictionary<Technology, bool> technologies = new Dictionary<Technology, bool>();
-    public Dictionary<Technology,bool> Technologies { get { return technologies; } }
-    private void WriteDictionary()
-    {
-        technologies.Add(Technology.WeaponI, false);
-        technologies.Add(Technology.ArmorI, false);
-        technologies.Add(Technology.HealthI, false);
-
-    }
     public void BuildButtonPressed(GameObject chosenBuildOption)
     {
         buildButtonPressed = true;
@@ -637,9 +629,9 @@ public class PlayerController : MonoBehaviour
 
     public void UnitResearch(Building buildingAction, Technology t)
     {
-        
+
         skipSelection = true;
-        if(buildingAction.GMovement.currentAction != UnitActions.Research)
+        if (buildingAction.GMovement.currentAction != UnitActions.Research)
         {
             buildingAction.Research(t);
         }
@@ -648,34 +640,6 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Currently Researching");
         }
     }
-    public void Research(Technology t)
-    {
-        technologies[t] = true;
-        if(t == Technology.ArmorI)
-        {
-            foreach(var guy in unitLibrary.Units())
-            {
-                guy.bonusArmor+=3;
-            }
-        }
-        else if (t == Technology.WeaponI)
-        {
-            foreach (var guy in unitLibrary.Units())
-            {
-                guy.bonusAttackDamage += 2;
-            }
-        }
-        else if (t == Technology.HealthI)
-        {
-            foreach (var guy in unitLibrary.Units())
-            {
-                guy.maxHealth += 10;
-                guy.currentHealth += 10;
-                guy.bonusHealth += 10;
-            }
-        }
-        EditDisplay();
 
-    }
 
 }

@@ -98,7 +98,7 @@ public class GuyMovement : MonoBehaviour
     public Building BuildingActions { get { return buildingActions; } }
     public Builder BuilderActions { get { return builderActions; } }
     public BuildingGrid buildGrid;
-
+    Information techInfo;
     private void Awake()
     {
         finalAttackSpeed = attackSpeed;
@@ -126,6 +126,7 @@ public class GuyMovement : MonoBehaviour
         if (CompareTag(player.tag))
         {
             transform.parent = player.transform;
+            techInfo = playerController.TechInfo;
             bank = player.GetComponent<ResourceBank>();
         }
         else
@@ -290,20 +291,11 @@ public class GuyMovement : MonoBehaviour
         newGameObject.GetComponentInChildren<Renderer>().material = buildingMaterial;
         GuyMovement guyMovement = newGameObject.GetComponent<GuyMovement>();
 
-        if (playerController != null)
+        if (techInfo != null)
         {
-            if (playerController.Technologies[Technology.WeaponI] == true)
-            {
-                guyMovement.bonusAttackDamage = 2;
-            }
-            if (playerController.Technologies[Technology.ArmorI] == true)
-            {
-                guyMovement.armor += 3;
-            }
-            if (playerController.Technologies[Technology.HealthI] == true)
-            {
-                guyMovement.maxHealth += 10;
-            }
+            guyMovement.bonusAttackDamage = +techInfo.Technologies[Technology.Weapon] * 2;
+            guyMovement.armor += techInfo.Technologies[Technology.Armor] * 3;
+            //guyMovement.maxHealth += techInfo.Technologies[Technology.Health] * 5;
         }
 
 
