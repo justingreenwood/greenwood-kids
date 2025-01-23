@@ -230,8 +230,9 @@ public class PlayerController : MonoBehaviour
             }
             if (actionDone && canDoActionSound)
             {
-
-                PlaySound(selectedUnit.GetComponent<GuyMovement>().ActionAudio);
+                AudioClip[] unitActionAudio = selectedUnit.GetComponent<GuyMovement>().ActionAudio; 
+                int i = Random.Range(0, unitActionAudio.Length);
+                PlaySound(unitActionAudio[i]);
             }
         }
     }
@@ -264,11 +265,13 @@ public class PlayerController : MonoBehaviour
                 Debug.Log("I am building.");
                 if (unitControls.BuilderActions.BuildBuilding(previewPos))
                 {
-                    PlaySound(unitControls.ActionAudio);
+                    int i = Random.Range(0, unitControls.ActionAudio.Length);
+                    PlaySound(unitControls.ActionAudio[i]);
                 }
                 else
                 {
-                    PlaySound(unitControls.IncapableAudio);
+                    int i = Random.Range(0, unitControls.IncapableAudio.Length);
+                    PlaySound(unitControls.IncapableAudio[i]);
                 }
             }
             SetBuildMode(false);
@@ -276,7 +279,8 @@ public class PlayerController : MonoBehaviour
         else
         {
             Debug.Log("Can't build there.");
-            PlaySound(unitControls.IncapableAudio);
+            int i = Random.Range(0, unitControls.IncapableAudio.Length);
+            PlaySound(unitControls.IncapableAudio[i]);
         }
 
        
@@ -386,95 +390,113 @@ public class PlayerController : MonoBehaviour
             displayInfo.ResetDisplay();
             GuyMovement unitAction = selectedUnits[0].GetComponent<GuyMovement>();
             int x = 0;
-            for (int i = 0; i < unitActionButtons.Length; i++)
+            if (unitAction.currentAction == UnitActions.Research)
             {
-                unitActionButtons[i].onClick.RemoveAllListeners();
-                var tMPro = unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-
-                if (i > unitAction.UnitGameObjects.Count - 1)
+                foreach (var asdf in unitActionButtons)
                 {
-                    tMPro.text = "X";
-                    if (unitAction.isABuilding)
-                    {
-                        Building buildingActions = unitAction.GetComponent<Building>();
-                        if (x > buildingActions.researchableTechnology.Count - 1)
-                        {
-                        }
-                        else
-                        {                           
-                            Technology tech = buildingActions.researchableTechnology[x];
-                            tMPro.text = tech.ToString();
-                            unitActionButtons[i].onClick.AddListener(() =>
-                            {
-                                UnitResearch(buildingActions, tech);
-                            });
-                            x++;
-                        }
-
-                    }
+                    asdf.onClick.RemoveAllListeners();
+                    asdf.GetComponentInChildren<TextMeshProUGUI>().text = "X";
                 }
-                else
+                var tMPro = unitActionButtons[8].GetComponentInChildren<TextMeshProUGUI>();
+                tMPro.text = "Cancel";
+                unitActionButtons[8].onClick.AddListener(() =>
                 {
-                    tMPro.text = unitAction.UnitTypes[i].ToString();
-                    GameObject newGameObject = unitAction.UnitGameObjects[i];
-                    unitActionButtons[i].onClick.AddListener(() =>
-                    {
-                        BuildButtonPressed(newGameObject);
-                    });
-                }
-                
-            }
-
-            if (unitAction.isABuilding)
-            {
-                Building buildingActions = unitAction.GetComponent<Building>();
-
-                if (buildingActions.unitQueue.Count >= 1)
-                {
-
-                    for (int i = 0; i <= buildingActions.unitQueue.Count - 1; i++)
-                    {
-                        GuyMovement uInQAction = buildingActions.unitQueue[i].GetComponent<GuyMovement>();
-                        buildQueueButtons[i].onClick.RemoveAllListeners();
-                        buildQueueButtons[i].gameObject.SetActive(true);
-                        buildQueueButtons[i].image.sprite = uInQAction.unitImage;
-                        int j = i;
-                        GuyMovement guyMovement = unitAction;
-                        buildQueueButtons[i].onClick.AddListener(() =>
-                        {
-                            BuildQueueAction(j, buildingActions);
-                        });
-                    }
-                }
-                if (unitAction.TryGetComponent(out Tower tower))
-                {
-                    
-                    for (int i = 0; i <= tower.housedUnits.Count - 1; i++)
-                    {
-                        GuyMovement housedUnitAction = tower.housedUnits[i].GetComponent<GuyMovement>();
-                        housedUnitButtons[i].onClick.RemoveAllListeners();
-                        housedUnitButtons[i].gameObject.SetActive(true);
-                        housedUnitButtons[i].image.sprite = housedUnitAction.unitImage;
-                        int j = i;
-                        GameObject housedUnit = tower.housedUnits[i];
-                        housedUnitButtons[i].onClick.AddListener(() =>
-                        {
-                            tower.RemoveUnit(j,housedUnit);
-                        });
-                    }
-
-                }
+                    StopResearch(unitAction);
+                });
 
             }
             else
             {
-                foreach(var button in buildQueueButtons)
+                for (int i = 0; i < unitActionButtons.Length; i++)
                 {
-                    button.gameObject.SetActive(false);
+                    unitActionButtons[i].onClick.RemoveAllListeners();
+                    var tMPro = unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+
+                    if (i > unitAction.UnitGameObjects.Count - 1)
+                    {
+                        tMPro.text = "X";
+                        if (unitAction.isABuilding)
+                        {
+                            Building buildingActions = unitAction.GetComponent<Building>();
+                            if (x > buildingActions.researchableTechnology.Count - 1)
+                            {
+                            }
+                            else
+                            {
+                                ITech tech = buildingActions.researchableTechnology[x];
+                                
+                                tMPro.text = tech.ToString();
+                                unitActionButtons[i].onClick.AddListener(() =>
+                                {
+                                    UnitResearch(buildingActions, tech);
+                                });
+                                x++;
+                            }
+
+                        }
+                    }
+                    else
+                    {
+                        tMPro.text = unitAction.UnitTypes[i].ToString();
+                        GameObject newGameObject = unitAction.UnitGameObjects[i];
+                        unitActionButtons[i].onClick.AddListener(() =>
+                        {
+                            BuildButtonPressed(newGameObject);
+                        });
+                    }
+
                 }
+
+                if (unitAction.isABuilding)
+                {
+                    Building buildingActions = unitAction.GetComponent<Building>();
+
+                    if (buildingActions.unitQueue.Count >= 1)
+                    {
+
+                        for (int i = 0; i <= buildingActions.unitQueue.Count - 1; i++)
+                        {
+                            GuyMovement uInQAction = buildingActions.unitQueue[i].GetComponent<GuyMovement>();
+                            buildQueueButtons[i].onClick.RemoveAllListeners();
+                            buildQueueButtons[i].gameObject.SetActive(true);
+                            buildQueueButtons[i].image.sprite = uInQAction.unitImage;
+                            int j = i;
+                            GuyMovement guyMovement = unitAction;
+                            buildQueueButtons[i].onClick.AddListener(() =>
+                            {
+                                BuildQueueAction(j, buildingActions);
+                            });
+                        }
+                    }
+                    if (unitAction.TryGetComponent(out Tower tower))
+                    {
+
+                        for (int i = 0; i <= tower.housedUnits.Count - 1; i++)
+                        {
+                            GuyMovement housedUnitAction = tower.housedUnits[i].GetComponent<GuyMovement>();
+                            housedUnitButtons[i].onClick.RemoveAllListeners();
+                            housedUnitButtons[i].gameObject.SetActive(true);
+                            housedUnitButtons[i].image.sprite = housedUnitAction.unitImage;
+                            int j = i;
+                            GameObject housedUnit = tower.housedUnits[i];
+                            housedUnitButtons[i].onClick.AddListener(() =>
+                            {
+                                tower.RemoveUnit(j, housedUnit);
+                            });
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    foreach (var button in buildQueueButtons)
+                    {
+                        button.gameObject.SetActive(false);
+                    }
+                }
+
             }
-
-
         }
         else
         {
@@ -595,7 +617,8 @@ public class PlayerController : MonoBehaviour
         unitAction.isSelected = true;
         if (!unitAction.isABuilding)
         {
-            PlaySound(unitAction.isSelectedAudio);
+            int i = Random.Range(0, unitAction.isSelectedAudio.Length);
+            PlaySound(unitAction.isSelectedAudio[i]);
         }
         else
         {
@@ -627,7 +650,7 @@ public class PlayerController : MonoBehaviour
         audioSource.PlayOneShot(audioClip);
     }
 
-    public void UnitResearch(Building buildingAction, Technology t)
+    public void UnitResearch(Building buildingAction, ITech t)
     {
 
         skipSelection = true;
@@ -639,6 +662,11 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Currently Researching");
         }
+    }
+    public void StopResearch(GuyMovement unitAction)
+    {
+        skipSelection = true;
+        unitAction.BuildingActions.StopResearch();
     }
 
 

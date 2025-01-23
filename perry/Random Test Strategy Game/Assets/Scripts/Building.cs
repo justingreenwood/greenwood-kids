@@ -17,7 +17,7 @@ public class Building : MonoBehaviour
 
     [SerializeField] public bool isBuilt = false;
 
-    [SerializeField] public List<Technology> researchableTechnology = new List<Technology>();
+    [SerializeField] public List<ITech> researchableTechnology = new List<ITech>();
 
     Information techInfo;
     public List<GameObject> unitQueue = new List<GameObject>();
@@ -36,8 +36,8 @@ public class Building : MonoBehaviour
     GameObject player;
     ResourceBank bank;
 
-    Technology currentTech = Technology.Nothing;
-
+    TechType currentTech = TechType.Nothing;
+    public TechType CTech { get { return currentTech; } }
     private void Awake()
     {
         buildGrid = FindObjectOfType<BuildingGrid>();
@@ -150,7 +150,7 @@ public class Building : MonoBehaviour
     public bool BuildUnit(GameObject chosenUnit)
     {
         GuyMovement chosenGuyM = chosenUnit.GetComponent<GuyMovement>();
-        bool willBuild = bank.HasEnoughResource(chosenGuyM.UnitWoodCost, chosenGuyM.UnitGemCost, chosenGuyM.UnitFoodCost);
+        bool willBuild = bank.HasEnoughResource(chosenGuyM.UnitFoodCost, chosenGuyM.UnitWoodCost, chosenGuyM.UnitGemCost);
         if (!willBuild)
         {
             Debug.Log("Not enough Resources");
@@ -203,17 +203,27 @@ public class Building : MonoBehaviour
         
     }
 
-    public void Research(Technology t)
+    public bool Research(ITech t)
     {
+        bool willBuild = bank.HasEnoughResource(t.foodCost,t.woodCost,t.gemCost);
+        if (!willBuild)
+        {
+            Debug.Log("Not enough Resources");
+
+            return false;
+        }
         Debug.Log("RESEARCHING");
         guyMovement.currentAction = UnitActions.Research;
+
         StartCoroutine(Researching(t));
+        return true;
     }
 
-    IEnumerator Researching(Technology t)
-    {
-        currentTech = t;
-        techInfo.Research(t);
+    IEnumerator Researching(ITech t)
+    {     
+
+        currentTech = t.techType;
+        techInfo.Research(t.techType);
         buildTimeVisGO.SetActive(true);
         for (int i = 0; i < 20; i++)
         {
@@ -225,7 +235,7 @@ public class Building : MonoBehaviour
         if (techInfo != null)
         {
             researchableTechnology.Remove(t);
-            techInfo.ResearchCompletion(t);
+            techInfo.ResearchCompletion(t.techType);
         }
         buildTimeVisTMP.text = "";
         guyMovement.currentAction = UnitActions.Nothing;
@@ -235,8 +245,9 @@ public class Building : MonoBehaviour
     {
         StopAllCoroutines();
         guyMovement.currentAction = UnitActions.Nothing;
+        buildTimeVisGO.SetActive(false);
         techInfo.StopResearch(currentTech);
-        currentTech = Technology.Nothing;
+        currentTech = TechType.Nothing;
     }
 
 

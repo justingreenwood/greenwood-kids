@@ -7,6 +7,4 @@ public enum ResourceType
     Wood,
     Gems,
     Food,
-
-
 }

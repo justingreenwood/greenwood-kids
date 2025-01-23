@@ -113,6 +113,26 @@ public class ComputerController : MonoBehaviour
                 Build(uLib.peasants[0], 4);
             }                
         }
+        else if(bank.Wood >= 100)
+        {
+            needToCheck = true;
+            if (uLib.trainingFields.Count < 1)
+            {
+                if (bank.Wood >= 150)
+                {
+                    Build(uLib.peasants[0], 2);
+                }
+            }
+            if(unitsAlive>= bank.UnitLimit)
+            {
+                Build(uLib.peasants[0], 1);
+            }
+        }     
+        else
+        {
+            TrainingFieldActions();
+            ShouldWeAttack();
+        }
 
     }
     public void ShouldWeAttack()
@@ -228,11 +248,16 @@ public class ComputerController : MonoBehaviour
 
     void Build(GuyMovement peasant, int number)
     {
-        peasant.BuilderActions.basicBuilding = peasant.UnitGameObjects[number];
-        Vector3 buildPos = peasant.BuilderActions.SearchForPlaceToBuild();
-        if(buildPos != Vector3.zero)
+        if (peasant.currentAction != UnitActions.Build)
         {
-            peasant.BuilderActions.BuildBuilding(buildPos);
+
+
+            peasant.BuilderActions.basicBuilding = peasant.UnitGameObjects[number];
+            Vector3 buildPos = peasant.BuilderActions.SearchForPlaceToBuild();
+            if (buildPos != Vector3.zero)
+            {
+                peasant.BuilderActions.BuildBuilding(buildPos);
+            }
         }
     }
 

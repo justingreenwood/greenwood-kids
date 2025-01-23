@@ -7,35 +7,55 @@ using UnityEngine;
 public class Information : MonoBehaviour
 {
     UnitLibrary uLib;
-
-    Dictionary<Technology, int> technologies = new Dictionary<Technology, int>();
-    public Dictionary<Technology, int> Technologies { get { return technologies; } }
+    List<ITech> technologies = new List<ITech>();
+    public List<ITech> Technologies { get { return technologies; } }
+    WeaponTechI WeaponI = new WeaponTechI();
+    WeaponTechII WeaponII = new WeaponTechII();
+    ArmorTechI ArmorI = new ArmorTechI();
+    ArmorTechII ArmorII = new ArmorTechII();
+    HealthTechI HealthI = new HealthTechI();
+    HealthTechII HealthII = new HealthTechII();
     //[SerializeField] Dictionary<Technology, GameObject> techGameObjects = new Dictionary<Technology, GameObject>();
-    public List<Technology> viewableTech = new List<Technology>();
+    public List<ITech> viewableTech = new List<ITech>();
 
 
     private void Awake()
     {
         uLib = GetComponent<UnitLibrary>();
-        technologies.Add(Technology.Weapon, 0);
-        technologies.Add(Technology.Armor, 0);
-        foreach (Technology tech in technologies.Keys)
-        {
-            viewableTech.Add(tech);
-        }
+        viewableTech.Add(WeaponI);
+        //technologies.Add(WeaponII);
+        viewableTech.Add(ArmorI);
+        //technologies.Add(ArmorII);
+        
     }
     private void Start()
     {
         EditViewableTech();
     }
-    public void Research(Technology tech)
+    public void Research(TechType tech)
     {
-        viewableTech.Remove(tech);
+        ITech it = HealthI;
+        foreach(ITech IT in viewableTech)
+        {
+            if(IT.techType == tech)
+            {
+                it = IT;
+            }
+        }
+        viewableTech.Remove(it);
         EditViewableTech();
     }
-    public void StopResearch(Technology tech)
+    public void StopResearch(TechType tech)
     {
-        viewableTech.Insert((int)tech, tech);
+        ITech it = HealthI;
+        foreach (ITech IT in viewableTech)
+        {
+            if (IT.techType == tech)
+            {
+                it = IT;
+            }
+        }
+        viewableTech.Add(it);
         EditViewableTech();
     }
 
@@ -48,32 +68,58 @@ public class Information : MonoBehaviour
     }
 
     
-    public void ResearchCompletion(Technology t)
+    public void ResearchCompletion(TechType t)
     {
-        technologies[t] += 1;
-        if (t == Technology.Armor)
+        if (t == TechType.Armor)
         {
+            if (technologies.Contains(ArmorI))
+            {
+                technologies.Add(ArmorII);
+            }
+            else
+            {
+                technologies.Add(ArmorI);
+            }
             foreach (var guy in uLib.Units())
             {
                 guy.bonusArmor += 3;
             }
         }
-        else if (t == Technology.Weapon)
+        else if (t == TechType.Weapon)
         {
+            if (technologies.Contains(WeaponI))
+            {
+                technologies.Add(WeaponII);
+            }
+            else
+            {
+                technologies.Add(WeaponI);
+                viewableTech.Add(WeaponII);
+            }
+
             foreach (var guy in uLib.Units())
             {
                 guy.bonusAttackDamage += 2;
             }
         }
-        //else if (t == Technology.Health)
-        //{
-        //    foreach (var guy in uLib.Units())
-        //    {
-        //        guy.maxHealth += 10;
-        //        guy.currentHealth += 10;
-        //        guy.bonusHealth += 10;
-        //    }
-        //}
+        else if (t == TechType.Health)
+        {
+            if (technologies.Contains(HealthI))
+            {
+                technologies.Add(HealthII);
+            }
+            else
+            {
+                technologies.Add(HealthI);
+                viewableTech.Add(HealthII);
+            }
+            foreach (var guy in uLib.Units())
+            {
+                guy.maxHealth += 10;
+                guy.currentHealth += 10;
+                guy.bonusHealth += 10;
+            }
+        }
         GetComponent<PlayerController>().EditDisplay();
 
     }

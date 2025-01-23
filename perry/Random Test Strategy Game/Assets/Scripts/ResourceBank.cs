@@ -66,7 +66,7 @@ public class ResourceBank : MonoBehaviour
         ResetBorrowedResources();
     }
 
-    public bool HasEnoughResource(int wood, int gems, int food)
+    public bool HasEnoughResource(int food, int wood, int gems)
     {
         if (wood < 0 || gems < 0 || food < 0) { return false; }
         if (wood > this.wood || gems > this.gems || food > this.food) { return false; }

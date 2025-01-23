@@ -21,7 +21,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public float currentHealth = 0;
     public float bonusHealth = 0;
     [SerializeField] int healthIncreaseIncrement = 2;
-    public int healthII { get {  return healthIncreaseIncrement; } }
+    public int healthII { get { return healthIncreaseIncrement; } }
     [SerializeField] public int armor = 0;
     public int bonusArmor = 0;
     [SerializeField] float attackRange = 10;
@@ -29,8 +29,8 @@ public class GuyMovement : MonoBehaviour
     public float bonusAttackDamage = 0;
     [SerializeField] public float attackSpeed = 0.75f;
     public float finalAttackSpeed = 0;
- 
-    
+
+
     [SerializeField] public float moveDelay = 0.5f;
     [SerializeField] float sightRange = 20f;
     [SerializeField] public UnitType unitType;
@@ -38,7 +38,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public bool isMovable = true;
     [SerializeField] public bool targetsNearestEnemy = false;
     public bool isABuilding = false;
-    [SerializeField] public bool isABuilder = false;    
+    [SerializeField] public bool isABuilder = false;
     public bool isSelected = false;
     public bool isAttacking = false;
     [SerializeField] public Sprite unitImage;
@@ -55,9 +55,9 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] List<GameObject> unitGameObjects;
 
 
-    [SerializeField] public AudioClip isSelectedAudio;
-    [SerializeField] public AudioClip IncapableAudio;
-    [SerializeField] public AudioClip ActionAudio;
+    [SerializeField] public AudioClip[] isSelectedAudio;
+    [SerializeField] public AudioClip[] IncapableAudio;
+    [SerializeField] public AudioClip[] ActionAudio;
 
     //[SerializeField] public Dictionary<UnitType, GameObject> unitTypes = new Dictionary<UnitType, GameObject>();
     public List<GameObject> UnitGameObjects { get { return unitGameObjects; } }
@@ -293,9 +293,31 @@ public class GuyMovement : MonoBehaviour
 
         if (techInfo != null)
         {
-            guyMovement.bonusAttackDamage = +techInfo.Technologies[Technology.Weapon] * 2;
-            guyMovement.armor += techInfo.Technologies[Technology.Armor] * 3;
-            //guyMovement.maxHealth += techInfo.Technologies[Technology.Health] * 5;
+            int healthies = 0;
+            int armories = 0;
+            int weaponies = 0;
+            foreach (ITech t in techInfo.Technologies)
+            {
+                if(t.techType == TechType.Health)
+                {
+                    healthies++;
+                }
+                else if (t.techType == TechType.Weapon)
+                {
+                    healthies++;
+                }
+                else if (t.techType == TechType.Armor)
+                {
+                    healthies++;
+                }
+                else
+                {
+                    Debug.Log("There is a problem with Technology.");
+                }
+            }
+            guyMovement.bonusAttackDamage = +weaponies * 2;
+            guyMovement.armor += armories * 3;
+            guyMovement.maxHealth += healthies * 5;
         }
 
 
