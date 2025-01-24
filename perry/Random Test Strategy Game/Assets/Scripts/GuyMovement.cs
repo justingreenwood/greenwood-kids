@@ -98,6 +98,12 @@ public class GuyMovement : MonoBehaviour
     public Building BuildingActions { get { return buildingActions; } }
     public Builder BuilderActions { get { return builderActions; } }
     public BuildingGrid buildGrid;
+
+    public int borrowedFood = 0;
+    public int borrowedWood = 0;
+    public int borrowedGems = 0;
+
+
     Information techInfo;
     private void Awake()
     {
@@ -441,5 +447,27 @@ public class GuyMovement : MonoBehaviour
         }
     }
 
-  
+    void BorrowedResources(int food, int wood, int gems)
+    {
+        borrowedWood += wood;
+        borrowedGems += gems;
+        borrowedFood += food;
+    }
+    public void BorrowResources(int food, int wood, int gems)
+    {
+        BorrowedResources(food, wood, gems);
+        bank.RemoveResource(food, wood, gems);
+    }
+
+    public void ResetBorrowedResources()
+    {
+        borrowedWood = 0;
+        borrowedGems = 0;
+        borrowedFood = 0;
+    }
+    public void ReturnBorrowedResources()
+    {
+        bank.AddResources(borrowedFood, borrowedWood, borrowedGems);
+        ResetBorrowedResources();
+    }
 }

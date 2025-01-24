@@ -40,7 +40,7 @@ public class Builder : MonoBehaviour
     public bool BuildBuilding(Vector3 groundPos)
     {      
         GuyMovement building = basicBuilding.GetComponent<GuyMovement>();
-        bool willBuild = bank.RemoveResource(building.UnitWoodCost, building.UnitGemCost, building.UnitFoodCost);
+        bool willBuild = bank.RemoveResource(building.UnitFoodCost,building.UnitWoodCost, building.UnitGemCost);
         if (!willBuild)
         {
             Debug.Log("Not enough Resources");
@@ -100,14 +100,9 @@ public class Builder : MonoBehaviour
         buildingGM.hPNonUIVisAid.EditTMP(buildingGM.currentHealth, buildingGM.maxHealth);
         buildingActions.isBuilt = true;
         guyMovement.isCurrentlyBuilding = false;
-        //if (buildingGM.hasUnitWorth)
-        //{
+
         bank.RaiseUnitLimit();
-        //}
-        //if (buildingGM.isSelected)
-        //{
-        //    displayInfo.EditUnitInfo(buildingGM.currentHealth, buildingGM.maxHealth);
-        //}
+
         if (computerController != null)
         {
             computerController.needToCheck = true;
@@ -135,7 +130,7 @@ public class Builder : MonoBehaviour
             {
                 started = true;
                 Debug.Log("repairing");
-                bank.RemoveResource(1, 0, 0);
+                bank.RemoveResource(0, 1, 0);
                 target.currentHealth += target.healthII;
                 playerController.EditDisplay();
                 if (bank.Wood <= 0)

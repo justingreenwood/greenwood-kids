@@ -17,15 +17,13 @@ public class Information : MonoBehaviour
     HealthTechII HealthII = new HealthTechII();
     //[SerializeField] Dictionary<Technology, GameObject> techGameObjects = new Dictionary<Technology, GameObject>();
     public List<ITech> viewableTech = new List<ITech>();
-
+    List<ITech> currentlyResearchedTech = new List<ITech>();
 
     private void Awake()
     {
         uLib = GetComponent<UnitLibrary>();
         viewableTech.Add(WeaponI);
-        //technologies.Add(WeaponII);
         viewableTech.Add(ArmorI);
-        //technologies.Add(ArmorII);
         
     }
     private void Start()
@@ -43,12 +41,13 @@ public class Information : MonoBehaviour
             }
         }
         viewableTech.Remove(it);
+        currentlyResearchedTech.Add(it);
         EditViewableTech();
     }
     public void StopResearch(TechType tech)
     {
         ITech it = HealthI;
-        foreach (ITech IT in viewableTech)
+        foreach (ITech IT in currentlyResearchedTech)
         {
             if (IT.techType == tech)
             {

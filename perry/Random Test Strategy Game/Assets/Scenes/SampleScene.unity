@@ -2446,9 +2446,6 @@ MonoBehaviour:
   food: 100
   unitLimit: 8
   gems: 0
-  borrowedWood: 0
-  borrowedGems: 0
-  borrowedFood: 0
 --- !u!114 &977997569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3226,7 +3223,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ae8cb937047b2c45905564cb5260629, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  viewableTech: 
 --- !u!4 &1251566317 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2735941847620580938, guid: a81e3fb68396b804db2759e5a8ba9311, type: 3}
@@ -6470,11 +6466,15 @@ PrefabInstance:
       objectReference: {fileID: 552755410}
     - target: {fileID: 8132214706231762174, guid: af09cf3b32f75e8499d3065b9a6d072d, type: 3}
       propertyPath: food
-      value: 100
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 8132214706231762174, guid: af09cf3b32f75e8499d3065b9a6d072d, type: 3}
+      propertyPath: gems
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8132214706231762174, guid: af09cf3b32f75e8499d3065b9a6d072d, type: 3}
       propertyPath: wood
-      value: 100
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 8132214706231762175, guid: af09cf3b32f75e8499d3065b9a6d072d, type: 3}
       propertyPath: m_RootOrder

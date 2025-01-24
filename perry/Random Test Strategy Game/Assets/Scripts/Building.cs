@@ -1,3 +1,4 @@
+using Newtonsoft.Json.Bson;
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -133,7 +134,8 @@ public class Building : MonoBehaviour
         if (i == 0)
         {
             playerController.unitsAlive -= unitQueue[i].GetComponent<GuyMovement>().unitSize;
-            bank.ResetResources();
+            StopAllActivities();
+            guyMovement.ReturnBorrowedResources();
         }
         unitQueue.RemoveAt(i);
 
@@ -157,8 +159,7 @@ public class Building : MonoBehaviour
 
             return false;
         }
-        bank.RemoveResource(chosenGuyM.UnitWoodCost, chosenGuyM.UnitGemCost, chosenGuyM.UnitFoodCost);
-        bank.BorrowedResources(chosenGuyM.UnitWoodCost, chosenGuyM.UnitGemCost, chosenGuyM.UnitFoodCost);
+        guyMovement.BorrowResources(chosenGuyM.UnitFoodCost,chosenGuyM.UnitWoodCost, chosenGuyM.UnitGemCost);
         if (CompareTag(player.tag))
             playerController.unitsAlive++;
         else
@@ -194,7 +195,7 @@ public class Building : MonoBehaviour
         {
             computerController.ShouldWeAttack();
         }
-        bank.ResetBorrowedResources();
+        guyMovement.ResetBorrowedResources();
         unitQueue.Remove(chosenUnit);
 
         playerController.EditDisplay();
@@ -212,6 +213,7 @@ public class Building : MonoBehaviour
 
             return false;
         }
+        guyMovement.BorrowResources(t.foodCost, t.woodCost, t.gemCost);
         Debug.Log("RESEARCHING");
         guyMovement.currentAction = UnitActions.Research;
 
@@ -235,6 +237,7 @@ public class Building : MonoBehaviour
         if (techInfo != null)
         {
             researchableTechnology.Remove(t);
+            guyMovement.ResetBorrowedResources();
             techInfo.ResearchCompletion(t.techType);
         }
         buildTimeVisTMP.text = "";
@@ -248,7 +251,15 @@ public class Building : MonoBehaviour
         buildTimeVisGO.SetActive(false);
         techInfo.StopResearch(currentTech);
         currentTech = TechType.Nothing;
+        buildTimeVisTMP.text = "";
+        guyMovement.ReturnBorrowedResources();
     }
 
+    public void StopAllActivities()
+    {
+        StopAllCoroutines();
+        guyMovement.StopActivities();
+        buildTimeVisTMP.text = "";
+    }
 
 }
