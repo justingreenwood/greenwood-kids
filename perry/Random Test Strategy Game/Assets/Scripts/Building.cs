@@ -122,8 +122,10 @@ public class Building : MonoBehaviour
     {
         if (isCurrentlyBuilding == false && isBuilt)
         {
+            
             if (unitQueue.Count > 0)
             {
+                Debug.Log("You got here! yippee");
                 BuildUnit(unitQueue[0]);
             }
         }
@@ -259,6 +261,8 @@ public class Building : MonoBehaviour
     {
         StopAllCoroutines();
         guyMovement.StopActivities();
+        isCurrentlyBuilding = false;
+        buildTimeVisGO.SetActive(false);
         buildTimeVisTMP.text = "";
     }
 

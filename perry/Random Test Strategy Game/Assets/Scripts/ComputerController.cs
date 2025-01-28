@@ -51,13 +51,13 @@ public class ComputerController : MonoBehaviour
             ShouldWeAttack();
         }
     }
-    bool canLoopAgain = true;
     public bool needToCheck = true;
     void Update()
     {
         
         if (needToCheck)
         {
+            Debug.Log("Check Time");
             if (uLib.peasants.Count >= 3)
             {
 
@@ -69,11 +69,11 @@ public class ComputerController : MonoBehaviour
 
                     }
                 }
-                else if (amountFarming < 2 && canLoopAgain)
+                else if (amountFarming < 2)
                 {
                     ResourceCollectorDelegator(amountFarming, ResourceType.Food);
                 }
-                if (amountCollectingWood < 2 && canLoopAgain)
+                if (amountCollectingWood < 2)
                 {
                     ResourceCollectorDelegator(amountCollectingWood, ResourceType.Wood);
                 }
@@ -123,16 +123,17 @@ public class ComputerController : MonoBehaviour
                     Build(uLib.peasants[0], 2);
                 }
             }
-            if(unitsAlive>= bank.UnitLimit)
+            else
+            {
+                TrainingFieldActions();
+                ShouldWeAttack();
+            }
+            if (unitsAlive>= bank.UnitLimit)
             {
                 Build(uLib.peasants[0], 1);
             }
         }     
-        else
-        {
-            TrainingFieldActions();
-            ShouldWeAttack();
-        }
+       
 
     }
     public void ShouldWeAttack()
@@ -150,7 +151,6 @@ public class ComputerController : MonoBehaviour
 
     private void ResourceCollectorDelegator(int amount, ResourceType type)
     {
-        canLoopAgain = false;
         foreach (var peasant in uLib.peasants)
         {
             if (peasant.currentAction == UnitActions.Nothing)
@@ -160,7 +160,6 @@ public class ComputerController : MonoBehaviour
                 amount++;
                 if (amount == 2)
                 {
-                    canLoopAgain = true;
                     break;
                 }
             }
@@ -214,7 +213,7 @@ public class ComputerController : MonoBehaviour
             {
                 foreach (var trainingField in uLib.trainingFields)
                 {
-                    if (trainingField.BuildingActions.isBuilt == true)
+                    if (trainingField.BuildingActions.isBuilt == true && trainingField.currentAction == UnitActions.Nothing)
                     {
                         if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
                         {
