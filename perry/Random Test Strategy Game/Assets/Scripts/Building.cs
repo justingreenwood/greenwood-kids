@@ -14,7 +14,7 @@ public class Building : MonoBehaviour
 
     [SerializeField] float buildingTimeLeft = 0;//needs to be viewable on screen
     [SerializeField] float timeTakenToBuild = 20f;
-    [SerializeField] public float width = 8;
+    [SerializeField] public int width = 8;
 
     [SerializeField] public bool isBuilt = false;
 
@@ -45,7 +45,6 @@ public class Building : MonoBehaviour
         guyMovement = GetComponent<GuyMovement>();
         guyMovement.isABuilding = true;
         buildTimeVisTMP = buildTimeVisGO.GetComponentInChildren<TextMeshPro>();
-
     }
 
     private void Start()
@@ -68,18 +67,19 @@ public class Building : MonoBehaviour
 
         }
 
-        int width = Mathf.RoundToInt(gameObject.transform.localScale.x);
+        //int width = Mathf.RoundToInt(gameObject.transform.localScale.x);
 
         if (width == 4)
         {
             foreach (GridSquares i in buildGrid.gridSquares)
             {
                 vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
+                Debug.Log("pos: " + vTwoPosition);
                 if (i.position == vTwoPosition)
                 {
                     i.isClaimed = true;
                     buildGrid.gridSqrsDict[vTwoPosition] = true;
-
+                    Debug.Log("claimed: " + vTwoPosition);
                     break;
                 }
             }

@@ -59,7 +59,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public AudioClip[] IncapableAudio;
     [SerializeField] public AudioClip[] ActionAudio;
 
-    //[SerializeField] public Dictionary<UnitType, GameObject> unitTypes = new Dictionary<UnitType, GameObject>();
+   
     public List<GameObject> UnitGameObjects { get { return unitGameObjects; } }
     public List<UnitType> UnitTypes { get { return unitTypes; } }
     

@@ -306,26 +306,16 @@ public class Builder : MonoBehaviour
         if (list.Count > 0)
         {
             Vector2Int lastV2 = Vector2Int.zero;
+            float shortestDist = 1000;
             int home = Mathf.FloorToInt(unitPositionToGrid.x + unitPositionToGrid.z);
             foreach (var v2Int in list)
             {
-                if (lastV2 == Vector2Int.zero)
+                float dist = Vector2.Distance(v2Int, new Vector2(unitPositionToGrid.x, unitPositionToGrid.z));
+                if (dist < shortestDist)
                 {
-                    lastV2 = v2Int;
-                }
-                else
-                {
-                    float xdisl = lastV2.x - transform.position.x;
-                    float ydisl = lastV2.y - transform.position.y;
-                    float xdis = v2Int.x - transform.position.x;
-                    float ydis = v2Int.y - transform.position.y;
 
-                    float lastV2Distance = ydisl * ydisl + xdisl * xdisl;
-                    float currentV2Distance = ydis * ydis + xdis * xdis;
-                    if (currentV2Distance < lastV2Distance)
-                    {
-                        lastV2 = v2Int;
-                    }
+                    lastV2 = v2Int;
+                    shortestDist = dist;
                 }
             }
             Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);
