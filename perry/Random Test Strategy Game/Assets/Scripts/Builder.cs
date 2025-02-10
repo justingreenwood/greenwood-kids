@@ -305,21 +305,8 @@ public class Builder : MonoBehaviour
 
         if (list.Count > 0)
         {
-            Vector2Int lastV2 = Vector2Int.zero;
-            float shortestDist = 1000;
-            int home = Mathf.FloorToInt(unitPositionToGrid.x + unitPositionToGrid.z);
-            foreach (var v2Int in list)
-            {
-                float dist = Vector2.Distance(v2Int, new Vector2(unitPositionToGrid.x, unitPositionToGrid.z));
-                if (dist < shortestDist)
-                {
-
-                    lastV2 = v2Int;
-                    shortestDist = dist;
-                }
-            }
-            Vector3 returnValue = new Vector3(lastV2.x, 0.3f, lastV2.y);
-
+            int random = Random.Range(0, list.Count);
+            Vector3 returnValue = new Vector3(list[random].x, 0f, list[random].y);
 
             return returnValue;
         }

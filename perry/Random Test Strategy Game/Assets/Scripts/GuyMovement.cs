@@ -310,11 +310,11 @@ public class GuyMovement : MonoBehaviour
                 }
                 else if (t.techType == TechType.Weapon)
                 {
-                    healthies++;
+                    weaponies++;
                 }
                 else if (t.techType == TechType.Armor)
                 {
-                    healthies++;
+                    armories++;
                 }
                 else
                 {

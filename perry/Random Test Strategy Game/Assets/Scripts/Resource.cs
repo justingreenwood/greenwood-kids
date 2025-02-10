@@ -10,12 +10,21 @@ public class Resource : MonoBehaviour
     public int Resources {  get { return resources; } }
     [SerializeField] ResourceType resourceType;
     public ResourceType Type { get {  return resourceType; } }
+    BuildingGrid buildingGrid;
+    Vector2Int vTwoPosition;
+    private void Start()
+    {
+        buildingGrid = FindObjectOfType<BuildingGrid>();
+        vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x), Mathf.RoundToInt(transform.position.z));
+        buildingGrid.gridSqrsDict[vTwoPosition] = true;
+    }
 
- 
     private void Update()
     {
+        
         if (resources <= 0)
         {
+            buildingGrid.gridSqrsDict[vTwoPosition] = false;
             Destroy(gameObject);
         }
     }

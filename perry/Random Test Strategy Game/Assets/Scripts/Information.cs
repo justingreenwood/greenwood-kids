@@ -119,6 +119,10 @@ public class Information : MonoBehaviour
                 guy.bonusHealth += 10;
             }
         }
+        foreach(ITech tec in technologies) 
+        {
+            Debug.Log(tec.techType);
+        }
         GetComponent<PlayerController>().EditDisplay();
 
     }

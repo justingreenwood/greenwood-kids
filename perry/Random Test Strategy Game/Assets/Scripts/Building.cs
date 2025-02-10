@@ -49,6 +49,7 @@ public class Building : MonoBehaviour
 
     private void Start()
     {
+
         playerController = FindObjectOfType<PlayerController>();
 
         player = playerController.gameObject;
@@ -68,50 +69,20 @@ public class Building : MonoBehaviour
         }
 
         //int width = Mathf.RoundToInt(gameObject.transform.localScale.x);
-
+        vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
         if (width == 4)
         {
-            foreach (GridSquares i in buildGrid.gridSquares)
-            {
-                vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
-                Debug.Log("pos: " + vTwoPosition);
-                if (i.position == vTwoPosition)
-                {
-                    i.isClaimed = true;
-                    buildGrid.gridSqrsDict[vTwoPosition] = true;
-                    Debug.Log("claimed: " + vTwoPosition);
-                    break;
-                }
-            }
+            buildGrid.gridSqrsDict[vTwoPosition] = true;
         }
         else
         {
-            vTwoPosition = new Vector2Int(Mathf.RoundToInt(transform.position.x) - width / 2, Mathf.RoundToInt(transform.position.z) - width / 2);
-            foreach (GridSquares i in buildGrid.gridSquares)
-            {
-
-                if (i.position == vTwoPosition)
-                {
-                    i.isClaimed = true;
-                    buildGrid.gridSqrsDict[vTwoPosition] = true;
-
-                }
-                else if (i.position.x == vTwoPosition.x + 4 && i.position.y == vTwoPosition.y)
-                {
-                    i.isClaimed = true;
-                    buildGrid.gridSqrsDict[vTwoPosition] = true;
-                }
-                else if (i.position.x == vTwoPosition.x + 4 && i.position.y == vTwoPosition.y + 4)
-                {
-                    i.isClaimed = true;
-                    buildGrid.gridSqrsDict[vTwoPosition] = true;
-                }
-                else if (i.position.x == vTwoPosition.x && i.position.y == vTwoPosition.y + 4)
-                {
-                    i.isClaimed = true;
-                    buildGrid.gridSqrsDict[vTwoPosition] = true;
-                }
-            }
+            Vector2Int v2PosTL = new Vector2Int(vTwoPosition.x,vTwoPosition.y+4);
+            Vector2Int v2PosTR = new Vector2Int(vTwoPosition.x + 4, vTwoPosition.y + 4);
+            Vector2Int v2PosBL = new Vector2Int(vTwoPosition.x + 4, vTwoPosition.y);
+            buildGrid.gridSqrsDict[vTwoPosition] = true;
+            buildGrid.gridSqrsDict[v2PosTL] = true;
+            buildGrid.gridSqrsDict[v2PosBL] = true;
+            buildGrid.gridSqrsDict[vTwoPosition] = true;
         }
 
         buildTimeVisTMP.text = "";
@@ -218,7 +189,6 @@ public class Building : MonoBehaviour
         guyMovement.BorrowResources(t.foodCost, t.woodCost, t.gemCost);
         Debug.Log("RESEARCHING");
         guyMovement.currentAction = UnitActions.Research;
-
         StartCoroutine(Researching(t));
         return true;
     }
@@ -227,6 +197,7 @@ public class Building : MonoBehaviour
     {     
 
         currentTech = t.techType;
+        Debug.Log(t.techType);
         techInfo.Research(t.techType);
         buildTimeVisGO.SetActive(true);
         for (int i = 0; i < 20; i++)

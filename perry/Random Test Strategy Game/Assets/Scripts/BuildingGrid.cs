@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,17 +15,20 @@ public class BuildingGrid : MonoBehaviour
 
     private void Awake()
     {        
-        for (int i = 0; i < width/4; i++)
+        for (int i = 0; i < width; i+=4)
         {
-            for (int j = 0; j < depth / 4; j++)
+            for (int j = 0; j < depth / 4; j+=4)
             {
-                gridSquares.Add(new GridSquares(new Vector2Int(i * 4,j * 4)));
+                Vector2Int v2Int = new Vector2Int(i, j);
+                gridSquares.Add(new GridSquares(v2Int));
+
             }
-        }  
+        }
         foreach (GridSquares square in gridSquares)
         {
-            gridSqrsDict.Add(square.position, square.isClaimed);
+            gridSqrsDict.Add(square.position, false);
         }
+
     }
 
     private void Update()
