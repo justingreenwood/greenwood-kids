@@ -40,6 +40,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816681, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816681, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
@@ -229,7 +233,6 @@ MonoBehaviour:
   timeTakenToBuild: 20
   width: 8
   isBuilt: 1
-  researchableTechnology: 
   unitQueue: []
   buildTimeVisTMP: {fileID: 0}
   buildGrid: {fileID: 0}

@@ -37,6 +37,7 @@ public class GuyMovement : MonoBehaviour
 
     [SerializeField] public bool isMovable = true;
     [SerializeField] public bool targetsNearestEnemy = false;
+    [SerializeField] bool isFlying = false;
     public bool isABuilding = false;
     [SerializeField] public bool isABuilder = false;
     public bool isSelected = false;
@@ -68,6 +69,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] int unitGemCost = 0;
     [SerializeField] int unitFoodCost = 0;
     [SerializeField] public int unitSize = 1;
+
     public int UnitWoodCost { get { return unitWoodCost; } }
     public int UnitFoodCost { get { return unitFoodCost; } }
     public int UnitGemCost { get { return unitGemCost; } }
@@ -199,7 +201,19 @@ public class GuyMovement : MonoBehaviour
     public void Move(Vector3? groundLocation)
     {
         if (isMovable)
-            agent.SetDestination(groundLocation.Value);
+        {
+            if (isFlying)
+            {
+                Vector3 targetPos = groundLocation.Value;
+                targetPos.y = 10;
+                agent.SetDestination(targetPos);
+            }
+            else
+            {
+                agent.SetDestination(groundLocation.Value);
+            }
+            
+        }           
         else
         {
             SetNewUnitDestination(groundLocation.Value);
