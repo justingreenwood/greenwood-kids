@@ -643,7 +643,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 240417433}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 335570126}
@@ -2485,13 +2485,13 @@ MonoBehaviour:
   menAtArms: []
   archers: []
   knights: []
-  lightCalvalry: []
+  lightCavalry: []
   wizardTowers: []
   pegasusStables: []
   libraries: []
   blackSmiths: []
   wizards: []
-  rangedCalvalry: []
+  rangedCavalry: []
   pegasusArchers: []
   dragons: []
   pegasusKnights: []
@@ -3473,7 +3473,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4285396289837412784, guid: fb39f245d3b36d94e8900b23d4f19e30, type: 3}
       propertyPath: m_Name
-      value: Light Calvalry
+      value: Light Cavalry
       objectReference: {fileID: 0}
     - target: {fileID: 4285396289837412784, guid: fb39f245d3b36d94e8900b23d4f19e30, type: 3}
       propertyPath: m_TagString
@@ -3598,7 +3598,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 944349333564221798, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 944349333564221798, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3692,7 +3692,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 944349333564221798, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 944349333564221798, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5465,7 +5465,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 944349333564221798, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 944349333564221798, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5582,7 +5582,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7151396612859795175, guid: dc619f2cf14f6a145bb86c3452e115f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7151396612859795175, guid: dc619f2cf14f6a145bb86c3452e115f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5728,10 +5728,6 @@ PrefabInstance:
       value: 47.77282
       objectReference: {fileID: 0}
     - target: {fileID: 2735941847620580938, guid: a81e3fb68396b804db2759e5a8ba9311, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2735941847620580938, guid: a81e3fb68396b804db2759e5a8ba9311, type: 3}
       propertyPath: m_LocalPosition.z
       value: 73.04033
       objectReference: {fileID: 0}
@@ -5801,7 +5797,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1881573588422884097, guid: 753a79948f6a33e45b6687d6bcb9f748, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 1881573588422884097, guid: 753a79948f6a33e45b6687d6bcb9f748, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5939,7 +5935,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7151396612859795175, guid: 8bbb7608fa5717340a2aef923c088db1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.0000038146973
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 7151396612859795175, guid: 8bbb7608fa5717340a2aef923c088db1, type: 3}
       propertyPath: m_LocalPosition.z

@@ -8,11 +8,11 @@ public enum UnitType
     Builder,
     Dragon,
     Knight,
-    LightCalvalry,
+    LightCavalry,
     ManAtArms,
     PegasusArcher,
     PegasusKnight,
-    RangedCalvalry,
+    RangedCavalry,
     Wizard,
 
     BlackSmith,

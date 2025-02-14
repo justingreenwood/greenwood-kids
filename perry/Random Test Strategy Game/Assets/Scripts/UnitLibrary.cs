@@ -15,14 +15,14 @@ public class UnitLibrary : MonoBehaviour
     [SerializeField] public List<GuyMovement> archers = new List<GuyMovement>();
 
     [SerializeField] public List<GuyMovement> knights = new List<GuyMovement>();
-    [SerializeField] public List<GuyMovement> lightCalvalry = new List<GuyMovement>();
+    [SerializeField] public List<GuyMovement> lightCavalry = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> wizardTowers = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> pegasusStables = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> libraries = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> blackSmiths = new List<GuyMovement>();
 
     [SerializeField] public List<GuyMovement> wizards = new List<GuyMovement>();
-    [SerializeField] public List<GuyMovement> rangedCalvalry = new List<GuyMovement>();
+    [SerializeField] public List<GuyMovement> rangedCavalry = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> pegasusArchers = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> dragons = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> pegasusKnights = new List<GuyMovement>();
@@ -82,8 +82,8 @@ public class UnitLibrary : MonoBehaviour
             case UnitType.Library:
                 libraries.Add(unitAction);
                 break;
-            case UnitType.LightCalvalry:
-                lightCalvalry.Add(unitAction);
+            case UnitType.LightCavalry:
+                lightCavalry.Add(unitAction);
                 break;
             case UnitType.ManAtArms:
                 menAtArms.Add(unitAction);
@@ -94,8 +94,8 @@ public class UnitLibrary : MonoBehaviour
             case UnitType.PegasusKnight:
                 pegasusKnights.Add(unitAction);
                 break;
-            case UnitType.RangedCalvalry:
-                rangedCalvalry.Add(unitAction);
+            case UnitType.RangedCavalry:
+                rangedCavalry.Add(unitAction);
                 break;
             case UnitType.Stables:
                 stables.Add(unitAction);
@@ -148,8 +148,8 @@ public class UnitLibrary : MonoBehaviour
             case UnitType.Library:
                 list = libraries;
                 break;
-            case UnitType.LightCalvalry:
-                list = lightCalvalry;
+            case UnitType.LightCavalry:
+                list = lightCavalry;
                 break;
             case UnitType.ManAtArms:
                 list = menAtArms;
@@ -160,8 +160,8 @@ public class UnitLibrary : MonoBehaviour
             case UnitType.PegasusKnight:
                 list = pegasusKnights;
                 break;
-            case UnitType.RangedCalvalry:
-                list = rangedCalvalry;
+            case UnitType.RangedCavalry:
+                list = rangedCavalry;
                 break;
             case UnitType.Stables:
                 list = stables;
@@ -196,8 +196,8 @@ public class UnitLibrary : MonoBehaviour
         list.AddRange(menAtArms);
         list.AddRange(wizards);
         list.AddRange(knights);
-        list.AddRange(lightCalvalry);
-        list.AddRange(rangedCalvalry);
+        list.AddRange(lightCavalry);
+        list.AddRange(rangedCavalry);
         list.AddRange(pegasusArchers);
         list.AddRange(pegasusKnights);
         list.AddRange(dragons);

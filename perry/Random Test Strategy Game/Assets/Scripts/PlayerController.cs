@@ -220,10 +220,22 @@ public class PlayerController : MonoBehaviour
                         }
                         else
                         {
-                            actionDone = true;
-                            unitControls.target = objectHit;
-                            unitControls.Attack(objectHit.GetComponent<GuyMovement>());
+                            GuyMovement targetControls = objectHit.GetComponent<GuyMovement>();
+                            if (targetControls.isFlying && !unitControls.canAttackFlying)
+                            {
+                                Debug.Log("I cannot attack that.");
+                                AudioClip[] unitActionAudio = selectedUnit.GetComponent<GuyMovement>().IncapableAudio;
+                                int i = Random.Range(0, unitActionAudio.Length);
+                                PlaySound(unitActionAudio[i]);
+                            }
+                            else
+                            {
 
+                                actionDone = true;
+                                unitControls.target = objectHit;
+                                unitControls.Attack(objectHit.GetComponent<GuyMovement>());
+                            }
+                            
                         }
                     }
                 }

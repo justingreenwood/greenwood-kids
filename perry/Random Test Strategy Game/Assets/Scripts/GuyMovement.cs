@@ -37,7 +37,8 @@ public class GuyMovement : MonoBehaviour
 
     [SerializeField] public bool isMovable = true;
     [SerializeField] public bool targetsNearestEnemy = false;
-    [SerializeField] bool isFlying = false;
+    [SerializeField] public bool canAttackFlying = false;
+    [SerializeField] public bool isFlying = false;
     public bool isABuilding = false;
     [SerializeField] public bool isABuilder = false;
     public bool isSelected = false;
@@ -181,6 +182,12 @@ public class GuyMovement : MonoBehaviour
                 i--;
                 amount--;
             }
+            else if(g.isFlying && !canAttackFlying)
+            {
+                enemies.Remove(enemies[i]);
+                i--;
+                amount--;
+            }
         }
         float distance = sightRange;
         foreach (GameObject enemy in enemies)
@@ -305,7 +312,8 @@ public class GuyMovement : MonoBehaviour
     {
 
         var rotation = Quaternion.Euler(0, 0, 0);
-        groundPos.y += objectPrefab.transform.localScale.y / 2;
+        //groundPos.y += objectPrefab.transform.localScale.y / 2;
+        groundPos.y = 0.1f;
         GameObject newGameObject = Instantiate(objectPrefab, groundPos, rotation);
         newGameObject.tag = tag;
         newGameObject.GetComponentInChildren<Renderer>().material = buildingMaterial;

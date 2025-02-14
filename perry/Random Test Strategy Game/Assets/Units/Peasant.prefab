@@ -252,6 +252,10 @@ PrefabInstance:
       propertyPath: unitGameObjects.Array.data[5]
       value: 
       objectReference: {fileID: 944349333564221787, guid: eb7dc191e5685914c8db3d32d9b3de04, type: 3}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: unitGameObjects.Array.data[6]
+      value: 
+      objectReference: {fileID: 944349333564221787, guid: eb7dc191e5685914c8db3d32d9b3de04, type: 3}
     - target: {fileID: 5972645810006223336, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: m_RootOrder
       value: 1
