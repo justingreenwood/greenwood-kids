@@ -10,8 +10,8 @@ public class Building : MonoBehaviour
 {
     [SerializeField] public GameObject buildingPreview;
     [SerializeField] public GameObject buildTimeVisGO;
-
-
+    [SerializeField] public GameObject buildingUpgrade;
+    [SerializeField] public UnitType buildingUpgradeType;
     [SerializeField] float buildingTimeLeft = 0;//needs to be viewable on screen
     [SerializeField] float timeTakenToBuild = 20f;
     [SerializeField] public int width = 8;
@@ -24,6 +24,7 @@ public class Building : MonoBehaviour
     public List<GameObject> unitQueue = new List<GameObject>();
 
     bool isCurrentlyBuilding = false;
+    public bool isUpgradeable = false;
     public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
 
     [SerializeField] public TextMeshPro buildTimeVisTMP;
@@ -45,6 +46,10 @@ public class Building : MonoBehaviour
         guyMovement = GetComponent<GuyMovement>();
         guyMovement.isABuilding = true;
         buildTimeVisTMP = buildTimeVisGO.GetComponentInChildren<TextMeshPro>();
+        if(buildingUpgrade != null)
+        {
+            isUpgradeable = true;
+        }
     }
 
     private void Start()
@@ -97,7 +102,7 @@ public class Building : MonoBehaviour
             if (unitQueue.Count > 0)
             {
                 Debug.Log("You got here! yippee");
-                BuildUnit(unitQueue[0]);
+                BuildUnit(unitQueue[0], false);
             }
         }
     }
@@ -122,7 +127,7 @@ public class Building : MonoBehaviour
             unitQueue.Add(target);
         }
     }
-    public bool BuildUnit(GameObject chosenUnit)
+    public bool BuildUnit(GameObject chosenUnit, bool isUpgrade)
     {
         GuyMovement chosenGuyM = chosenUnit.GetComponent<GuyMovement>();
         bool willBuild = bank.HasEnoughResource(chosenGuyM.UnitFoodCost, chosenGuyM.UnitWoodCost, chosenGuyM.UnitGemCost);
@@ -139,11 +144,11 @@ public class Building : MonoBehaviour
         {
 
         }
-        StartCoroutine(ProcessBuildUnit(chosenUnit));
+        StartCoroutine(ProcessBuildUnit(chosenUnit, isUpgrade));
         return true;
     }
 
-    IEnumerator ProcessBuildUnit(GameObject chosenUnit)
+    IEnumerator ProcessBuildUnit(GameObject chosenUnit, bool isUpgrade)
     {
         buildTimeVisGO.SetActive(true);
         guyMovement.currentAction = UnitActions.Build;
@@ -163,7 +168,12 @@ public class Building : MonoBehaviour
         Vector3 pos = transform.position;
         pos.x = transform.position.x + 1 / transform.localScale.x;
         pos.x += 2;
+        if(isUpgrade)
+        {
+            pos.x -= 3;
+        }
         guyMovement.Build(chosenUnit, guyMovement.buildingMaterial, pos);
+        
         if(computerController != null)
         {
             computerController.ShouldWeAttack();
@@ -174,6 +184,10 @@ public class Building : MonoBehaviour
         playerController.EditDisplay();
         isCurrentlyBuilding = false;
         guyMovement.currentAction = UnitActions.Nothing;
+        if (isUpgrade)
+        {
+            guyMovement.Die();
+        }
         
     }
 
@@ -226,6 +240,19 @@ public class Building : MonoBehaviour
         currentTech = TechType.Nothing;
         buildTimeVisTMP.text = "";
         guyMovement.ReturnBorrowedResources();
+    }
+
+    public bool UpgradeBuilding()
+    {
+        if (guyMovement.currentAction == UnitActions.Nothing)
+        {
+            BuildUnit(buildingUpgrade, true);
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public void StopAllActivities()

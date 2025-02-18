@@ -390,7 +390,7 @@ public class GuyMovement : MonoBehaviour
         hPNonUIVisAid.EditTMP(currentHealth, maxHealth);
     }
 
-    private void Die()
+    public void Die()
     {
         if (CompareTag(player.tag))
         {

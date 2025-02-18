@@ -11,6 +11,8 @@ using UnityEngine.Events;
 using System.Linq;
 using System.Linq.Expressions;
 using TMPro.Examples;
+using Newtonsoft.Json.Bson;
+using static UnityEngine.UI.CanvasScaler;
 
 public class PlayerController : MonoBehaviour
 {
@@ -148,6 +150,18 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+    }
+    public void UpgradeButtonPressed()
+    {
+        buildButtonPressed = true;
+        var unit = selectedUnits[0];
+        var unitControls = unit.GetComponent<GuyMovement>();
+        Building buildingAction = unit.GetComponent<Building>();
+        bool itPassed = buildingAction.UpgradeBuilding();
+        if (!itPassed)
+        {
+            Debug.Log("This building cannot upgrade while doing another action.");
+        }
     }
 
     void UnitAction(Vector3? groundLocation, GameObject objectHit, bool canBuild)
@@ -444,7 +458,19 @@ public class PlayerController : MonoBehaviour
                                 });
                                 x++;
                             }
-
+                            if (i == 6)
+                            {
+                                if (buildingActions.isUpgradeable)
+                                {
+                                    string type = buildingActions.buildingUpgradeType.ToString();
+                                    tMPro.text = "Upgrade building to "+ type;
+                                    GameObject newGameObject = buildingActions.buildingUpgrade;
+                                    unitActionButtons[i].onClick.AddListener(() =>
+                                    {
+                                        UpgradeButtonPressed();
+                                    });
+                                }
+                            }
                         }
                     }
                     else
@@ -498,7 +524,7 @@ public class PlayerController : MonoBehaviour
                         }
 
                     }
-
+                    
                 }
                 else
                 {

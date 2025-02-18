@@ -219,7 +219,7 @@ public class ComputerController : MonoBehaviour
                         {
                             if (!trainingField.isCurrentlyBuilding && trainingField.BuildingActions.isBuilt)
                             {
-                                trainingField.BuildingActions.BuildUnit(trainingField.UnitGameObjects[0]);
+                                trainingField.BuildingActions.BuildUnit(trainingField.UnitGameObjects[0], false);
                                 unitsAlive++;
                             }
                         }
