@@ -46,7 +46,7 @@ public class Building : MonoBehaviour
         guyMovement = GetComponent<GuyMovement>();
         guyMovement.isABuilding = true;
         buildTimeVisTMP = buildTimeVisGO.GetComponentInChildren<TextMeshPro>();
-        if(buildingUpgrade != null)
+        if (buildingUpgrade != null)
         {
             isUpgradeable = true;
         }

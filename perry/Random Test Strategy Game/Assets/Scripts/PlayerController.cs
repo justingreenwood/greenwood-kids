@@ -164,6 +164,13 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void FailedRequirementButton(string requirements)
+    {
+        buildButtonPressed = true;
+        Debug.Log(requirements+ "is needed for this unit to be built.");
+        // ADD: "You cannot build that."
+    }
+
     void UnitAction(Vector3? groundLocation, GameObject objectHit, bool canBuild)
     {
         bool actionDone = false;
@@ -446,6 +453,7 @@ public class PlayerController : MonoBehaviour
                             Building buildingActions = unitAction.GetComponent<Building>();
                             if (x > buildingActions.researchableTechnology.Count - 1)
                             {
+
                             }
                             else
                             {
@@ -476,11 +484,40 @@ public class PlayerController : MonoBehaviour
                     else
                     {
                         tMPro.text = unitAction.UnitTypes[i].ToString();
-                        GameObject newGameObject = unitAction.UnitGameObjects[i];
-                        unitActionButtons[i].onClick.AddListener(() =>
+                        GameObject newGameObject = unitAction.UnitGameObjects[i];                        
+                        if (unitAction.isABuilding)
                         {
-                            BuildButtonPressed(newGameObject);
-                        });
+                            GuyMovement buildUnitAction = newGameObject.GetComponent<GuyMovement>();
+                            string failedRequirements = null;
+                            if (buildUnitAction.requiredStructures.Count != 0)
+                            {
+                                failedRequirements = unitLibrary.CheckRequirements(buildUnitAction.requiredStructures);
+                                if(failedRequirements!= null)
+                                    Debug.Log(failedRequirements + " this has failed");
+                            }
+                            if(failedRequirements ==null)
+                            {
+                                unitActionButtons[i].onClick.AddListener(() =>
+                                {
+                                    BuildButtonPressed(newGameObject);
+                                });
+                            }
+                            else
+                            {
+                                unitActionButtons[i].onClick.AddListener(() =>
+                                {
+                                    FailedRequirementButton(failedRequirements);
+                                });
+                            }
+
+                        }
+                        else
+                        {
+                            unitActionButtons[i].onClick.AddListener(() =>
+                            {
+                                BuildButtonPressed(newGameObject);
+                            });
+                        }
                     }
 
                 }
@@ -500,6 +537,7 @@ public class PlayerController : MonoBehaviour
                             buildQueueButtons[i].image.sprite = uInQAction.unitImage;
                             int j = i;
                             GuyMovement guyMovement = unitAction;
+
                             buildQueueButtons[i].onClick.AddListener(() =>
                             {
                                 BuildQueueAction(j, buildingActions);

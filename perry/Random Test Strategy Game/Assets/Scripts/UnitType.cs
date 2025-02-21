@@ -26,5 +26,6 @@ public enum UnitType
     TrainingField,    
     WizardTower,
    
+    None,
     /*TO BE ADDED - SHIPS AND DOCKS*/
 }

@@ -51,6 +51,10 @@ public class HPNonUIVisAid : MonoBehaviour
         {
             tMP.color = Color.yellow;
         }
+        else if(currentHealth >= maxHealth/1.25)
+        {
+            tMP.color = Color.green;
+        }
         tMP.text = text;
 
     }

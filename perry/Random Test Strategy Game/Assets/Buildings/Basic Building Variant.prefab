@@ -229,11 +229,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   buildingPreview: {fileID: 1965179720656117942, guid: 8a4fb960fc1d63144914a834110bff61, type: 3}
   buildTimeVisGO: {fileID: 8391808852919792789}
+  buildingUpgrade: {fileID: 0}
+  buildingUpgradeType: 20
   buildingTimeLeft: 0
   timeTakenToBuild: 20
   width: 8
   isBuilt: 1
   unitQueue: []
+  isUpgradeable: 0
   buildTimeVisTMP: {fileID: 0}
   buildGrid: {fileID: 0}
   vTwoPosition: {x: 0, y: 0}

@@ -59,13 +59,9 @@ public class Builder : MonoBehaviour
         newBuilding.GetComponentInChildren<Renderer>().material = guyMovement.buildingMaterial;
         newBuilding.GetComponent<GuyMovement>().buildingMaterial = guyMovement.buildingMaterial;
 
-        if (computerController != null)
+        if (tag != "Yellow Team")
         {
             computerController.uLib.AddUnit(newBuilding.GetComponent<GuyMovement>());
-        }
-        else if (playerController != null)
-        {
-            playerController.unitLibrary.AddUnit(newBuilding.GetComponent<GuyMovement>());
         }
         StartCoroutine(ProcessBuild(newBuilding));
         return true;
@@ -94,6 +90,11 @@ public class Builder : MonoBehaviour
                     guyMovement.displayInfo.EditUnitInfo(buildingGM.currentHealth, buildingGM.maxHealth);             
                 }
             }
+        }
+
+        if (playerController != null)
+        {
+            playerController.unitLibrary.AddUnit(newBuilding.GetComponent<GuyMovement>());
         }
 
         buildingGM.currentHealth = buildingGM.maxHealth;

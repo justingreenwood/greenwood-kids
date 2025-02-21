@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.UI.CanvasScaler;
 
 public class UnitLibrary : MonoBehaviour
 {
@@ -28,6 +29,8 @@ public class UnitLibrary : MonoBehaviour
     [SerializeField] public List<GuyMovement> pegasusKnights = new List<GuyMovement>();
     [SerializeField] public List<GuyMovement> towers = new List<GuyMovement>();
 
+    Dictionary<UnitType, bool> unitTypeDict = new Dictionary<UnitType, bool>();
+
     private void Awake()
     {
         GuyMovement[] units = FindObjectsOfType<GuyMovement>();
@@ -45,7 +48,11 @@ public class UnitLibrary : MonoBehaviour
     }
     void Start()
     {
-
+        Debug.Log(unitTypeDict.Count+" dict count");
+        foreach(var asdf in unitTypeDict.Values)
+        {
+            Debug.Log(asdf.ToString());
+        }
     }
 
     public void AddUnit(GuyMovement unitAction)
@@ -113,6 +120,14 @@ public class UnitLibrary : MonoBehaviour
                 wizardTowers.Add(unitAction);
                 break;           
         }
+        if (!unitTypeDict.ContainsKey(unitAction.unitType))
+        {
+            unitTypeDict.Add(unitAction.unitType, true);
+        }
+        else 
+        { 
+            unitTypeDict[unitAction.unitType] = true; 
+        }
         
     }
 
@@ -178,14 +193,42 @@ public class UnitLibrary : MonoBehaviour
             case UnitType.WizardTower:
                 list = wizardTowers;
                 break;
+
         }
 
         foreach (var unit in from unit in list where unit == unitAction select unit)
         {
             list.Remove(unit);
+            if(list.Count == 0)
+            {
+                
+                unitTypeDict[unitAction.unitType] = false;
+            }
             break;
         }
         
+    }
+
+    public string CheckRequirements(List<UnitType> FRS)
+    {
+        string requirements = "";
+        foreach (var unit in FRS)
+        {
+            Debug.Log(unit + " checked");
+            if (!unitTypeDict.ContainsKey(unit))
+            {
+                Debug.Log(unit + " checked again");
+                unitTypeDict.Add(unit, false);
+                requirements += $"{unit} ";
+            }
+            else if (unitTypeDict[unit] == false) 
+            {
+
+                requirements += $"{unit} ";
+            }           
+        }
+        if (requirements != "")return requirements;else return null;
+
     }
 
     public List<GuyMovement> Units()

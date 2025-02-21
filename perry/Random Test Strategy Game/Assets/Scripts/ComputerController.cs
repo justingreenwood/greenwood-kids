@@ -140,7 +140,7 @@ public class ComputerController : MonoBehaviour
     {
         
         int units = uLib.archers.Count+uLib.menAtArms.Count;
-        Debug.Log(units);
+        //Debug.Log(units);
         if (units >= amountToAttack)
         {
             Debug.Log("Got Here");
