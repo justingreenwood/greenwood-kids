@@ -14,5 +14,5 @@ public enum UnitActions
     Repair,
     Research,
     Searching,
-    
+    Upgrading,
 }

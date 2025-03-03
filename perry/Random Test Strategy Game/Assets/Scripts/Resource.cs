@@ -40,8 +40,7 @@ public class Resource : MonoBehaviour
         {
             int newAmount = resources;
             resources = 0;
-            return newAmount;
-            
+            return newAmount;           
         }
 
     }

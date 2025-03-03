@@ -416,6 +416,10 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3592590011972228834, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: raisesUnitLimit
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834243, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -476,6 +480,10 @@ PrefabInstance:
       propertyPath: attackSpeed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: coloredPart
+      value: 
+      objectReference: {fileID: 1403048989897147240}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: attackDamage
       value: 6.5

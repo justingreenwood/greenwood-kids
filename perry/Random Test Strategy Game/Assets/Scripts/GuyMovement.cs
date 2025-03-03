@@ -48,10 +48,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public bool canProduceUnits = true;
 
     [SerializeField] public Material buildingMaterial;
-
-
-    [SerializeField] bool hasUnitWorth = false;
-    public bool HasUnitWorth { get { return hasUnitWorth; } }
+    [SerializeField] public Renderer coloredPart;
 
     [SerializeField] List<UnitType> unitTypes;
     [SerializeField] List<GameObject> unitGameObjects;
@@ -316,8 +313,9 @@ public class GuyMovement : MonoBehaviour
         groundPos.y = 0.1f;
         GameObject newGameObject = Instantiate(objectPrefab, groundPos, rotation);
         newGameObject.tag = tag;
-        newGameObject.GetComponentInChildren<Renderer>().material = buildingMaterial;
+        
         GuyMovement guyMovement = newGameObject.GetComponent<GuyMovement>();
+        guyMovement.coloredPart.material = buildingMaterial;
 
         if (techInfo != null)
         {
@@ -409,14 +407,15 @@ public class GuyMovement : MonoBehaviour
         {
             computerController.uLib.RemoveUnit(this);
         }
-        if (hasUnitWorth)
-        {
-            bank.LowerUnitLimit();
-        }
-
+        
         if (isABuilding)
         {
             Building buildingActions = GetComponent<Building>();
+            if (buildingActions.raisesUnitLimit)
+            {
+                bank.LowerUnitLimit();
+            }
+
             foreach (var i in buildGrid.gridSquares)
             {
                 if (i.position == buildingActions.vTwoPosition)

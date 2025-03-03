@@ -18,6 +18,8 @@ public class Building : MonoBehaviour
 
     [SerializeField] public bool isBuilt = false;
 
+    [SerializeField] public bool raisesUnitLimit = false;
+
     [SerializeField] public List<ITech> researchableTechnology = new List<ITech>();
 
     Information techInfo;
@@ -139,11 +141,10 @@ public class Building : MonoBehaviour
         }
         guyMovement.BorrowResources(chosenGuyM.UnitFoodCost,chosenGuyM.UnitWoodCost, chosenGuyM.UnitGemCost);
         if (CompareTag(player.tag))
-            playerController.unitsAlive++;
-        else
         {
-
+            playerController.unitsAlive++;
         }
+
         StartCoroutine(ProcessBuildUnit(chosenUnit, isUpgrade));
         return true;
     }
@@ -151,7 +152,10 @@ public class Building : MonoBehaviour
     IEnumerator ProcessBuildUnit(GameObject chosenUnit, bool isUpgrade)
     {
         buildTimeVisGO.SetActive(true);
-        guyMovement.currentAction = UnitActions.Build;
+        if (!isUpgrade)
+        {
+            guyMovement.currentAction = UnitActions.Build;
+        }
         isCurrentlyBuilding = true;
         float x = 0;
         float buildSpeed = timeTakenToBuild / 20;
@@ -246,6 +250,7 @@ public class Building : MonoBehaviour
     {
         if (guyMovement.currentAction == UnitActions.Nothing)
         {
+            guyMovement.currentAction = UnitActions.Upgrading;
             BuildUnit(buildingUpgrade, true);
             return true;
         }
@@ -262,6 +267,12 @@ public class Building : MonoBehaviour
         isCurrentlyBuilding = false;
         buildTimeVisGO.SetActive(false);
         buildTimeVisTMP.text = "";
+    }
+
+    public void CancelUpgrade()
+    {
+        StopAllActivities();
+        guyMovement.ReturnBorrowedResources();
     }
 
 }

@@ -27,6 +27,16 @@ public class Builder : MonoBehaviour
         guyMovement.isABuilder = true;
     }
 
+    private void Update()
+    {
+        if (!guyMovement.isCollectingResources)
+        {
+            if (guyMovement.currentAction == UnitActions.ChopTree)
+            {
+                SearchForResource(ResourceType.Wood);
+            }
+        }
+    }
     void Start()
     {
         playerController = guyMovement.playerController;
@@ -102,7 +112,10 @@ public class Builder : MonoBehaviour
         buildingActions.isBuilt = true;
         guyMovement.isCurrentlyBuilding = false;
 
-        bank.RaiseUnitLimit();
+        if (buildingActions.raisesUnitLimit)
+        {
+            bank.RaiseUnitLimit();
+        }        
 
         if (computerController != null)
         {
@@ -186,7 +199,6 @@ public class Builder : MonoBehaviour
 
         }
         guyMovement.isCollectingResources = false;
-        guyMovement.currentAction = UnitActions.Nothing;
     }
     public void SearchForResource(ResourceType rType)
     {
@@ -218,6 +230,11 @@ public class Builder : MonoBehaviour
         if (resourceTarget != null)
         {
             CollectResources(resourceTarget);
+        }
+        else
+        {
+           
+            guyMovement.currentAction = UnitActions.Nothing;
         }
 
     }

@@ -23,10 +23,10 @@ public class ResourceBank : MonoBehaviour
 
     private void Start()
     {
-        GuyMovement[] buildings = GetComponentsInChildren<GuyMovement>();
-        foreach (GuyMovement building in buildings)
+        Building[] buildings = GetComponentsInChildren<Building>();
+        foreach (Building building in buildings)
         {
-            if (building.HasUnitWorth)
+            if (building.raisesUnitLimit)
             {
                 RaiseUnitLimit();
             }

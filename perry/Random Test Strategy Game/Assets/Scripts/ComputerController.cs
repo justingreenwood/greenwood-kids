@@ -42,8 +42,8 @@ public class ComputerController : MonoBehaviour
         
         foreach(GuyMovement peasant in uLib.peasants)
         {
-            
-            peasant.BuilderActions.SearchForResource(ResourceType.Wood);
+
+            peasant.currentAction = UnitActions.ChopTree;
             amountCollectingWood++;
         }
         if (attackAtStart)

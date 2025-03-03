@@ -450,33 +450,50 @@ public class PlayerController : MonoBehaviour
                         tMPro.text = "X";
                         if (unitAction.isABuilding)
                         {
+                            
                             Building buildingActions = unitAction.GetComponent<Building>();
-                            if (x > buildingActions.researchableTechnology.Count - 1)
+                            if (unitAction.currentAction != UnitActions.Upgrading)
                             {
+                                if (x > buildingActions.researchableTechnology.Count - 1)
+                                {
 
+                                }
+                                else
+                                {
+                                    ITech tech = buildingActions.researchableTechnology[x];
+
+                                    tMPro.text = tech.ToString();
+                                    unitActionButtons[i].onClick.AddListener(() =>
+                                    {
+                                        UnitResearch(buildingActions, tech);
+                                    });
+                                    x++;
+                                }
+                                if (i == 6)
+                                {
+                                    if (buildingActions.isUpgradeable)
+                                    {
+                                        string type = buildingActions.buildingUpgradeType.ToString();
+                                        tMPro.text = "Upgrade building to " + type;
+                                        GameObject newGameObject = buildingActions.buildingUpgrade;
+                                        unitActionButtons[i].onClick.AddListener(() =>
+                                        {
+                                            UpgradeButtonPressed();
+                                        });
+                                    }
+                                }
                             }
                             else
                             {
-                                ITech tech = buildingActions.researchableTechnology[x];
-                                
-                                tMPro.text = tech.ToString();
-                                unitActionButtons[i].onClick.AddListener(() =>
+                                if (i == 6)
                                 {
-                                    UnitResearch(buildingActions, tech);
-                                });
-                                x++;
-                            }
-                            if (i == 6)
-                            {
-                                if (buildingActions.isUpgradeable)
-                                {
-                                    string type = buildingActions.buildingUpgradeType.ToString();
-                                    tMPro.text = "Upgrade building to "+ type;
-                                    GameObject newGameObject = buildingActions.buildingUpgrade;
+
+                                    tMPro.text = "Cancel";
                                     unitActionButtons[i].onClick.AddListener(() =>
                                     {
-                                        UpgradeButtonPressed();
+                                        CancelUpgrade(unitAction);
                                     });
+
                                 }
                             }
                         }
@@ -487,29 +504,36 @@ public class PlayerController : MonoBehaviour
                         GameObject newGameObject = unitAction.UnitGameObjects[i];                        
                         if (unitAction.isABuilding)
                         {
-                            GuyMovement buildUnitAction = newGameObject.GetComponent<GuyMovement>();
-                            string failedRequirements = null;
-                            if (buildUnitAction.requiredStructures.Count != 0)
+                            if (unitAction.currentAction != UnitActions.Upgrading)
                             {
-                                failedRequirements = unitLibrary.CheckRequirements(buildUnitAction.requiredStructures);
-                                if(failedRequirements!= null)
-                                    Debug.Log(failedRequirements + " this has failed");
-                            }
-                            if(failedRequirements ==null)
-                            {
-                                unitActionButtons[i].onClick.AddListener(() =>
+                                GuyMovement buildUnitAction = newGameObject.GetComponent<GuyMovement>();
+                                string failedRequirements = null;
+                                if (buildUnitAction.requiredStructures.Count != 0)
                                 {
-                                    BuildButtonPressed(newGameObject);
-                                });
+                                    failedRequirements = unitLibrary.CheckRequirements(buildUnitAction.requiredStructures);
+                                    if (failedRequirements != null)
+                                        Debug.Log(failedRequirements + " this has failed");
+                                }
+                                if (failedRequirements == null)
+                                {
+                                    unitActionButtons[i].onClick.AddListener(() =>
+                                    {
+                                        BuildButtonPressed(newGameObject);
+                                    });
+                                }
+                                else
+                                {
+                                    unitActionButtons[i].onClick.AddListener(() =>
+                                    {
+                                        FailedRequirementButton(failedRequirements);
+                                    });
+                                }
                             }
                             else
                             {
-                                unitActionButtons[i].onClick.AddListener(() =>
-                                {
-                                    FailedRequirementButton(failedRequirements);
-                                });
+                                tMPro.text = "X";
+                                
                             }
-
                         }
                         else
                         {
@@ -745,5 +769,10 @@ public class PlayerController : MonoBehaviour
         unitAction.BuildingActions.StopResearch();
     }
 
+    public void CancelUpgrade(GuyMovement unitAction)
+    {
+        buildButtonPressed = true;
+        unitAction.BuildingActions.CancelUpgrade();
+    }
 
 }
