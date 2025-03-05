@@ -6,7 +6,7 @@ using static UnityEngine.UI.CanvasScaler;
 
 public class DisplayInformationToScreen : MonoBehaviour
 {
-    [SerializeField] Canvas canvas;
+    [SerializeField] Canvas SUCanvas;
     [SerializeField] UnityEngine.UI.Image unitImage;
     [SerializeField] TextMeshProUGUI nameDisplay;
     [SerializeField] TextMeshProUGUI healthDisplay;
@@ -23,7 +23,7 @@ public class DisplayInformationToScreen : MonoBehaviour
         healthDisplay.text = $"Health: {unit.currentHealth}/{unit.maxHealth}";
         armorDisplay.text = $"Armor: {unit.armor+ unit.bonusArmor}";
         damageDisplay.text = $"Damage: {unit.attackDamage+ unit.bonusAttackDamage}";
-        canvas.enabled = true;
+        SUCanvas.enabled = true;
     }
     public void EditUnitInfo(float health, float maxHealth)
     {
@@ -37,7 +37,7 @@ public class DisplayInformationToScreen : MonoBehaviour
         nameDisplay.text = null;
         healthDisplay.text = null;
         armorDisplay.text = null;
-        canvas.enabled = false;
+        SUCanvas.enabled = false;
         foreach(var button in buildQueueButtons)
         {
             button.gameObject.SetActive(false);

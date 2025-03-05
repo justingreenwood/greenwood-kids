@@ -58,8 +58,8 @@ MonoBehaviour:
     m_Bits: 512
   unitsAlive: 0
   unitsBeingBuilt: 0
-  largeBuildingPreview: {fileID: 0}
-  smallBuildingPreview: {fileID: 0}
+  largeBuildingPreview: {fileID: 1965179720656117942, guid: 8a4fb960fc1d63144914a834110bff61, type: 3}
+  smallBuildingPreview: {fileID: 1965179720656117942, guid: 308f2a68eca928644baa36f8d08e9be4, type: 3}
   unitUIVisualButtons:
   - {fileID: 0}
   - {fileID: 0}
@@ -91,7 +91,7 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   housedUnitButtons: []
-  unitLibrary: {fileID: 0}
+  unitLibrary: {fileID: -1339214239857380232}
 --- !u!114 &8132214706231762174
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -108,9 +108,6 @@ MonoBehaviour:
   food: 500
   unitLimit: 0
   gems: 0
-  borrowedWood: 0
-  borrowedGems: 0
-  borrowedFood: 0
 --- !u!114 &8132214706231762173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,13 +153,13 @@ MonoBehaviour:
   menAtArms: []
   archers: []
   knights: []
-  lightCalvalry: []
+  lightCavalry: []
   wizardTowers: []
   pegasusStables: []
   libraries: []
   blackSmiths: []
   wizards: []
-  rangedCalvalry: []
+  rangedCavalry: []
   pegasusArchers: []
   dragons: []
   pegasusKnights: []
