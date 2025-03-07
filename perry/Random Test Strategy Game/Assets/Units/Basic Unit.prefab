@@ -81,23 +81,35 @@ MonoBehaviour:
   attackSpeed: 0.75
   finalAttackSpeed: 0
   moveDelay: 0.5
-  sightRange: 20
+  sightRange: 50
   unitType: 0
   isMovable: 1
   targetsNearestEnemy: 0
+  canAttackFlying: 0
+  isFlying: 0
   isABuilding: 0
   isABuilder: 0
   isSelected: 0
   isAttacking: 0
   unitImage: {fileID: 21300000, guid: 9ce84ff0fdeb13d4a83f077d075dd9a5, type: 3}
   canProduceUnits: 0
-  buildingMaterial: {fileID: 2100000, guid: d0f81e44aee20a946b9f43d9e56fe4d9, type: 2}
-  hasUnitWorth: 0
+  buildingMaterial: {fileID: 0}
+  coloredPart: {fileID: 0}
   unitTypes: 
   unitGameObjects: []
-  isSelectedAudio: {fileID: 8300000, guid: f0353b0a76701ce4b8c4fcc0b8ab7fbd, type: 3}
-  IncapableAudio: {fileID: 8300000, guid: bcdfa7f213c8002489ef0f8697600278, type: 3}
-  ActionAudio: {fileID: 8300000, guid: b88aa4deb0d94194389610cc2da1a049, type: 3}
+  requiredStructures: 
+  isSelectedAudio:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  IncapableAudio:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  ActionAudio:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   unitWoodCost: 0
   unitGemCost: 0
   unitFoodCost: 50
@@ -114,6 +126,9 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   hPNonUIVisAid: {fileID: 0}
   buildGrid: {fileID: 0}
+  borrowedFood: 0
+  borrowedWood: 0
+  borrowedGems: 0
 --- !u!195 &489722392510816661
 NavMeshAgent:
   m_ObjectHideFlags: 0

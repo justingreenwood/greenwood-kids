@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8132214706231762173}
   - component: {fileID: -1339214239857380232}
   - component: {fileID: -6985119941459870105}
+  - component: {fileID: 1193765939253706670}
   m_Layer: 0
   m_Name: YellowPlayer
   m_TagString: Yellow Team
@@ -120,7 +121,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb686cb411cfb334caeb11dc062edbe9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canvas: {fileID: 0}
+  SUCanvas: {fileID: 0}
   unitImage: {fileID: 0}
   nameDisplay: {fileID: 0}
   healthDisplay: {fileID: 0}
@@ -260,3 +261,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1193765939253706670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132214706231762169}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ae8cb937047b2c45905564cb5260629, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

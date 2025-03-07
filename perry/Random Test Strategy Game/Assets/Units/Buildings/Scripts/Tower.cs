@@ -29,8 +29,20 @@ public class Tower : MonoBehaviour
 
     private void EditAttackSpeed()
     {
+        
+        if(archers > 0)
+        {
 
-        guyMovement.finalAttackSpeed = guyMovement.attackSpeed / archers;
+            guyMovement.finalAttackSpeed = guyMovement.attackSpeed / archers;
+            guyMovement.targetsNearestEnemy = true;
+        }
+        else
+        {
+            guyMovement.StopActivities();
+            guyMovement.target = null;
+            guyMovement.targetsNearestEnemy = false;
+        }
+       
     
     }
     
