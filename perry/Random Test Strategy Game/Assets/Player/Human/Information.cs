@@ -9,22 +9,50 @@ public class Information : MonoBehaviour
     UnitLibrary uLib;
     List<ITech> technologies = new List<ITech>();
     public List<ITech> Technologies { get { return technologies; } }
-    WeaponTechI WeaponI = new WeaponTechI();
-    WeaponTechII WeaponII = new WeaponTechII();
+   
+    MeleeTechI MeleeI = new MeleeTechI();
+    MeleeTechII MeleeII;
+    
+    BowDamageTechI BowDamageI = new BowDamageTechI();
+    BowDamageTechII BowDamageII;
+    
+    MagicDamageTechI MagicDamageI = new MagicDamageTechI();
+    MagicDamageTechII MagicDamageII;
+
     ArmorTechI ArmorI = new ArmorTechI();
-    ArmorTechII ArmorII = new ArmorTechII();
-    HealthTechI HealthI = new HealthTechI();
-    HealthTechII HealthII = new HealthTechII();
-    //[SerializeField] Dictionary<Technology, GameObject> techGameObjects = new Dictionary<Technology, GameObject>();
-    public List<ITech> viewableTech = new List<ITech>();
+    ArmorTechII ArmorII;
+    
+    MountArmorTechI MountArmorI;
+    MountArmorTechII MountArmorII;
+
+    MountHPTechI MountHPI = new MountHPTechI();
+    MountHPTechII MountHPII;
+
+    public List<ITech> viewableBlacksmithTech = new List<ITech>();
+    public List<ITech> viewableLibraryTech = new List<ITech>();
     List<ITech> currentlyResearchedTech = new List<ITech>();
 
     private void Awake()
     {
         uLib = GetComponent<UnitLibrary>();
-        viewableTech.Add(WeaponI);
-        viewableTech.Add(ArmorI);
-        
+       
+        MeleeII = new MeleeTechII(MeleeI);
+        BowDamageII = new BowDamageTechII(BowDamageI);
+        MagicDamageII = new MagicDamageTechII(MagicDamageI);
+        ArmorII = new ArmorTechII(ArmorI);
+        MountArmorI = new MountArmorTechI(ArmorI);
+        MountArmorII = new MountArmorTechII(MountArmorI,ArmorII);        
+        MountHPII = new MountHPTechII(MountHPI);
+
+        viewableBlacksmithTech.Add(MeleeI);
+        viewableBlacksmithTech.Add(BowDamageI);
+        viewableBlacksmithTech.Add(ArmorI);
+        viewableBlacksmithTech.Add(MountArmorI);
+
+        viewableLibraryTech.Add(MountHPI);
+        viewableLibraryTech.Add(MagicDamageI);
+
+
     }
     private void Start()
     {
@@ -32,21 +60,31 @@ public class Information : MonoBehaviour
     }
     public void Research(TechType tech)
     {
-        ITech it = HealthI;
-        foreach(ITech IT in viewableTech)
+        ITech it = null;
+        foreach(ITech IT in viewableBlacksmithTech)
         {
             if(IT.techType == tech)
             {
                 it = IT;
+                viewableBlacksmithTech.Remove(it);
+                break;
             }
         }
-        viewableTech.Remove(it);
+        foreach (ITech IT in viewableLibraryTech)
+        {
+            if (IT.techType == tech)
+            {
+                it = IT;
+                viewableLibraryTech.Remove(it);
+                break;
+            }
+        }
         currentlyResearchedTech.Add(it);
         EditViewableTech();
     }
-    public void StopResearch(TechType tech)
+    public void StopResearch(TechType tech, UnitType unitType)
     {
-        ITech it = HealthI;
+        ITech it = MountHPI;
         foreach (ITech IT in currentlyResearchedTech)
         {
             if (IT.techType == tech)
@@ -54,7 +92,14 @@ public class Information : MonoBehaviour
                 it = IT;
             }
         }
-        viewableTech.Add(it);
+        if(unitType == UnitType.BlackSmith)
+        {
+            viewableBlacksmithTech.Add(it);
+        }
+        else
+        {
+            viewableLibraryTech.Add(it);
+        }
         EditViewableTech();
     }
 
@@ -62,7 +107,11 @@ public class Information : MonoBehaviour
     {
         foreach(GuyMovement blackSmith in uLib.blackSmiths)
         {
-            blackSmith.BuildingActions.researchableTechnology = viewableTech;
+            blackSmith.BuildingActions.researchableTechnology = viewableBlacksmithTech;
+        }
+        foreach (GuyMovement library in uLib.libraries)
+        {
+            library.BuildingActions.researchableTechnology = viewableLibraryTech;
         }
     }
 
@@ -78,41 +127,92 @@ public class Information : MonoBehaviour
             else
             {
                 technologies.Add(ArmorI);
+                viewableBlacksmithTech.Add(ArmorII);
             }
-            foreach (var guy in uLib.Units())
+            foreach (var guy in uLib.ArmoredUnits())
             {
                 guy.bonusArmor += 3;
             }
         }
-        else if (t == TechType.Weapon)
+        else if (t == TechType.MountArmor)
         {
-            if (technologies.Contains(WeaponI))
+            if (technologies.Contains(MountArmorI))
             {
-                technologies.Add(WeaponII);
+                technologies.Add(MountArmorII);
             }
             else
             {
-                technologies.Add(WeaponI);
-                viewableTech.Add(WeaponII);
+                technologies.Add(MountArmorI);
+                viewableBlacksmithTech.Add(MountArmorII);
+            }
+            foreach (var guy in uLib.MountedUnits())
+            {
+                guy.bonusArmor += 3;
+            }
+        }
+        else if (t == TechType.Melee)
+        {
+            if (technologies.Contains(MeleeI))
+            {
+                technologies.Add(MeleeII);
+            }
+            else
+            {
+                technologies.Add(MeleeI);
+                viewableBlacksmithTech.Add(MeleeII);
             }
 
-            foreach (var guy in uLib.Units())
+            foreach (var guy in uLib.MeleeUnits())
             {
                 guy.bonusAttackDamage += 2;
             }
         }
-        else if (t == TechType.Health)
+        else if (t == TechType.BowDamage)
         {
-            if (technologies.Contains(HealthI))
+            if (technologies.Contains(BowDamageI))
             {
-                technologies.Add(HealthII);
+                technologies.Add(BowDamageII);
             }
             else
             {
-                technologies.Add(HealthI);
-                viewableTech.Add(HealthII);
+                technologies.Add(BowDamageI);
+                viewableBlacksmithTech.Add(BowDamageII);
             }
-            foreach (var guy in uLib.Units())
+
+            foreach (var guy in uLib.RangedUnits())
+            {
+                guy.bonusAttackDamage += 2;
+            }
+        }
+        else if (t == TechType.MagicDamage)
+        {
+            if (technologies.Contains(MagicDamageI))
+            {
+                technologies.Add(MagicDamageII);
+            }
+            else
+            {
+                technologies.Add(MagicDamageI);
+                viewableBlacksmithTech.Add(MagicDamageII);
+            }
+
+            foreach (var guy in uLib.MagicUnits())
+            {
+                guy.bonusAttackDamage += 2;
+            }
+        }
+        else if (t == TechType.MountHP)
+        {
+            if (technologies.Contains(MountHPI))
+            {
+                technologies.Add(MountHPII);
+            }
+            else
+            {
+                technologies.Add(MountHPI);
+                viewableBlacksmithTech.Add(MountHPII);
+            }
+            foreach (var guy in uLib.MountedUnits())
             {
                 guy.maxHealth += 10;
                 guy.currentHealth += 10;
@@ -123,8 +223,44 @@ public class Information : MonoBehaviour
         {
             Debug.Log(tec.techType);
         }
+
         GetComponent<PlayerController>().EditDisplay();
 
     }
 
+    public string CheckRequirements(ITech tech)
+    {
+
+        string requirements = " ";
+
+        foreach(ITech requiredTech in tech.requiredTechnologies)
+        {
+            Debug.Log(requiredTech.techType);
+            if (!currentlyResearchedTech.Contains(requiredTech))
+            {
+                Debug.Log("I check Requirements");
+                if (requirements != " ")
+                {
+                    requirements += $" and {requiredTech}";
+                }
+                else
+                {
+                    requirements += requiredTech;
+                }              
+            }
+        }
+        string uTypesString = uLib.CheckRequirements(tech.requiredUnitType);
+        if(uTypesString != null)
+        {
+            if(requirements == " ")
+            {
+                requirements += uTypesString;
+            }
+            else 
+            {
+                requirements += $"; {uTypesString}";
+            }
+        }
+        if (requirements != " ") return requirements; else return null;
+    }
 }

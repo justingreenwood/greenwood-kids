@@ -82,7 +82,11 @@ MonoBehaviour:
   finalAttackSpeed: 0
   moveDelay: 0.5
   sightRange: 50
-  unitType: 0
+  unitType: 20
+  weaponType: 9
+  armorType: 9
+  healthType: 9
+  rangeType: 9
   isMovable: 1
   targetsNearestEnemy: 0
   canAttackFlying: 0

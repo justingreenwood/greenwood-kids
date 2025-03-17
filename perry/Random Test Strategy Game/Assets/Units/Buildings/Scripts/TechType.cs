@@ -4,8 +4,14 @@ using UnityEngine;
 
 public enum TechType
 {
-    Health,
     Armor,
-    Weapon,
+    Melee,
+    BowDamage,
+    BowRange,
+    MagicDamage,
+    MagicRange,
+    MountHP,
+    MountArmor,
+    Structure,
     Nothing
 }

@@ -197,6 +197,13 @@ public class Building : MonoBehaviour
 
     public bool Research(ITech t)
     {
+        string failedRequirements = techInfo.CheckRequirements(t);
+        if (failedRequirements != null)
+        {
+            Debug.Log("Requires:" + failedRequirements);
+
+            return false;
+        }
         bool willBuild = bank.HasEnoughResource(t.foodCost,t.woodCost,t.gemCost);
         if (!willBuild)
         {
@@ -240,7 +247,7 @@ public class Building : MonoBehaviour
         StopAllCoroutines();
         guyMovement.currentAction = UnitActions.Nothing;
         buildTimeVisGO.SetActive(false);
-        techInfo.StopResearch(currentTech);
+        techInfo.StopResearch(currentTech, guyMovement.unitType);
         currentTech = TechType.Nothing;
         buildTimeVisTMP.text = "";
         guyMovement.ReturnBorrowedResources();

@@ -193,8 +193,20 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: armorType
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: maxHealth
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: healthType
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: weaponType
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: coloredPart

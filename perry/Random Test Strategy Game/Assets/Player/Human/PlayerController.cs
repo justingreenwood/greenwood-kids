@@ -456,7 +456,6 @@ public class PlayerController : MonoBehaviour
                             {
                                 if (x > buildingActions.researchableTechnology.Count - 1)
                                 {
-
                                 }
                                 else
                                 {

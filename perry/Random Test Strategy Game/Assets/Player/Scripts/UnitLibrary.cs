@@ -246,5 +246,50 @@ public class UnitLibrary : MonoBehaviour
         list.AddRange(dragons);
         return list;
     }
-
+    public List<GuyMovement> MeleeUnits()
+    {
+        List<GuyMovement> list = new List<GuyMovement>();
+        list.AddRange(peasants);
+        list.AddRange(menAtArms);
+        list.AddRange(knights);
+        list.AddRange(lightCavalry);
+        list.AddRange(pegasusKnights);
+        return list;
+    }
+    public List<GuyMovement> RangedUnits()
+    {
+        List<GuyMovement> list = new List<GuyMovement>();
+        list.AddRange(archers);
+        list.AddRange(rangedCavalry);
+        list.AddRange(pegasusArchers);
+        return list;
+    }
+    public List<GuyMovement> MountedUnits()
+    {
+        List<GuyMovement> list = new List<GuyMovement>();
+        list.AddRange(knights);
+        list.AddRange(lightCavalry);
+        list.AddRange(rangedCavalry);
+        list.AddRange(pegasusArchers);
+        list.AddRange(pegasusKnights);
+        list.AddRange(dragons);
+        return list;
+    }
+    public List<GuyMovement> ArmoredUnits()
+    {
+        List<GuyMovement> list = new List<GuyMovement>();
+        list.AddRange(archers);
+        list.AddRange(peasants);
+        list.AddRange(menAtArms);
+        list.AddRange(wizards);
+        list.AddRange(knights);
+        return list;
+    }
+    public List<GuyMovement> MagicUnits()
+    {
+        List<GuyMovement> list = new List<GuyMovement>();
+        list.AddRange(wizards);
+        list.AddRange(dragons);
+        return list;
+    }
 }

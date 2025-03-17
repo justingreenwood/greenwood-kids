@@ -35,6 +35,13 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] float sightRange = 20f;
     [SerializeField] public UnitType unitType;
 
+    [SerializeField] public TechType weaponType;
+    [SerializeField] public TechType armorType;
+    [SerializeField] public TechType healthType;
+    [SerializeField] public TechType rangeType;
+
+
+
     [SerializeField] public bool isMovable = true;
     [SerializeField] public bool targetsNearestEnemy = false;
     [SerializeField] public bool canAttackFlying = false;
@@ -134,6 +141,8 @@ public class GuyMovement : MonoBehaviour
             transform.parent = player.transform;
             techInfo = playerController.TechInfo;
             bank = player.GetComponent<ResourceBank>();
+
+
         }
         else
         {
@@ -317,34 +326,34 @@ public class GuyMovement : MonoBehaviour
         GuyMovement guyMovement = newGameObject.GetComponent<GuyMovement>();
         guyMovement.coloredPart.material = buildingMaterial;
 
-        if (techInfo != null)
-        {
-            int healthies = 0;
-            int armories = 0;
-            int weaponies = 0;
-            foreach (ITech t in techInfo.Technologies)
-            {
-                if(t.techType == TechType.Health)
-                {
-                    healthies++;
-                }
-                else if (t.techType == TechType.Weapon)
-                {
-                    weaponies++;
-                }
-                else if (t.techType == TechType.Armor)
-                {
-                    armories++;
-                }
-                else
-                {
-                    Debug.Log("There is a problem with Technology.");
-                }
-            }
-            guyMovement.bonusAttackDamage = +weaponies * 2;
-            guyMovement.armor += armories * 3;
-            guyMovement.maxHealth += healthies * 5;
-        }
+        //if (techInfo != null)
+        //{
+        //    int healthies = 0;
+        //    int armories = 0;
+        //    int weaponies = 0;
+        //    foreach (ITech t in techInfo.Technologies)
+        //    {
+        //        if(t.techType == TechType.Health)
+        //        {
+        //            healthies++;
+        //        }
+        //        else if (t.techType == TechType.Weapon)
+        //        {
+        //            weaponies++;
+        //        }
+        //        else if (t.techType == TechType.Armor)
+        //        {
+        //            armories++;
+        //        }
+        //        else
+        //        {
+        //            Debug.Log("There is a problem with Technology.");
+        //        }
+        //    }
+        //    guyMovement.bonusAttackDamage += weaponies * 2;
+        //    guyMovement.armor += armories * 3;
+        //    guyMovement.maxHealth += healthies * 5;
+        //}
 
 
         guyMovement.buildingMaterial = material;
