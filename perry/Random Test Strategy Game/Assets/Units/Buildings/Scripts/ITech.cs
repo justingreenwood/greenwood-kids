@@ -10,8 +10,8 @@ public interface ITech
     public int gemCost { get; }
     public int foodCost { get; }
 
-    public List<UnitType> requiredUnitType { get; }
-    public List<ITech> requiredTechnologies { get; }
+    public List<UnitType> RequiredUnitType { get;}
+    public List<ITech> RequiredTechnologies { get;}
 
 
 }
@@ -23,8 +23,11 @@ public class MountHPTechI : ITech
     public int woodCost => 0;
     public int gemCost => 100;
     public int foodCost => 150;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public MountHPTechI() 
     {
         requiredUnitType.Add(UnitType.Stables);
@@ -39,8 +42,10 @@ public class MountHPTechII : ITech
     public  int woodCost => 0;
     public  int gemCost => 200;
     public  int foodCost => 300;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public MountHPTechII(MountHPTechI mHPTI)
     {
         requiredUnitType.Add(UnitType.Stables);
@@ -54,8 +59,10 @@ public class MeleeTechI : ITech
     public int woodCost => 150;
     public int gemCost => 100;
     public int foodCost => 0;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public MeleeTechI()
     {
     }
@@ -67,8 +74,10 @@ public class MeleeTechII : ITech
     public int woodCost => 300;
     public int gemCost => 200;
     public int foodCost => 0;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public MeleeTechII(MeleeTechI mTI)
     {
         requiredUnitType.Add(UnitType.Library);
@@ -83,8 +92,10 @@ public class BowDamageTechI : ITech
     public int woodCost => 150;
     public int gemCost => 100;
     public int foodCost => 0;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public BowDamageTechI()
     {
     }
@@ -96,12 +107,15 @@ public class BowDamageTechII : ITech
     public int woodCost => 300;
     public int gemCost => 200;
     public int foodCost => 0;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public BowDamageTechII(BowDamageTechI bDTI)
     {
         requiredUnitType.Add(UnitType.Library);
         requiredTechnologies.Add(bDTI);
+        Debug.Log(RequiredTechnologies[0] + " exists. Yippee!");
     }
 }
 public class MagicDamageTechI : ITech
@@ -111,8 +125,10 @@ public class MagicDamageTechI : ITech
     public int woodCost => 0;
     public int gemCost => 300;
     public int foodCost => 150;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public MagicDamageTechI()
     {
     }
@@ -124,8 +140,10 @@ public class MagicDamageTechII : ITech
     public int woodCost => 00;
     public int gemCost => 600;
     public int foodCost => 300;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public MagicDamageTechII(MagicDamageTechI mDTI)
     {
         requiredUnitType.Add(UnitType.WizardTower);
@@ -139,8 +157,10 @@ public class ArmorTechI : ITech
     public int woodCost => 50;
     public int gemCost => 150;
     public int foodCost => 50;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public ArmorTechI()
     {
     }
@@ -153,8 +173,10 @@ public class ArmorTechII : ITech
     public int woodCost => 100;
     public int gemCost => 300;
     public int foodCost => 100;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public ArmorTechII(ArmorTechI aTI)
     {
         requiredUnitType.Add(UnitType.Library);
@@ -168,8 +190,10 @@ public class MountArmorTechI : ITech
     public int woodCost => 50;
     public int gemCost => 150;
     public int foodCost => 50;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public MountArmorTechI(ArmorTechI aTI)
     {
         requiredUnitType.Add(UnitType.Stables);
@@ -184,8 +208,10 @@ public class MountArmorTechII : ITech
     public int woodCost => 100;
     public int gemCost => 300;
     public int foodCost => 100;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public MountArmorTechII(MountArmorTechI mATI, ArmorTechII aTII)
     {
         requiredUnitType.Add(UnitType.WizardTower);
@@ -203,8 +229,10 @@ public class StructureTechI : ITech
     public int woodCost => 300;
     public int gemCost => 150;
     public int foodCost => 100;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public StructureTechI()
     {
     }
@@ -217,8 +245,10 @@ public class StructureTechII : ITech
     public int woodCost => 600;
     public int gemCost => 300;
     public int foodCost => 200;
-    public List<UnitType> requiredUnitType => new List<UnitType>();
-    public List<ITech> requiredTechnologies => new List<ITech>();
+    List<UnitType> requiredUnitType = new List<UnitType>();
+    List<ITech> requiredTechnologies = new List<ITech>();
+    public List<UnitType> RequiredUnitType => requiredUnitType;
+    public List<ITech> RequiredTechnologies => requiredTechnologies;
     public StructureTechII(StructureTechI sTI)
     {
         requiredUnitType.Add(UnitType.Library);

@@ -52,7 +52,7 @@ public class Information : MonoBehaviour
         viewableLibraryTech.Add(MountHPI);
         viewableLibraryTech.Add(MagicDamageI);
 
-
+        //Debug.Log(BowDamageII.requiredTechnologies[0] + " exists. Yippee!");
     }
     private void Start()
     {
@@ -233,7 +233,7 @@ public class Information : MonoBehaviour
 
         string requirements = " ";
 
-        foreach(ITech requiredTech in tech.requiredTechnologies)
+        foreach(ITech requiredTech in tech.RequiredTechnologies)
         {
             Debug.Log(requiredTech.techType);
             if (!currentlyResearchedTech.Contains(requiredTech))
@@ -249,7 +249,7 @@ public class Information : MonoBehaviour
                 }              
             }
         }
-        string uTypesString = uLib.CheckRequirements(tech.requiredUnitType);
+        string uTypesString = uLib.CheckRequirements(tech.RequiredUnitType);
         if(uTypesString != null)
         {
             if(requirements == " ")
