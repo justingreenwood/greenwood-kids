@@ -18,6 +18,7 @@ public class ComputerController : MonoBehaviour
     public int unitsAlive = 0;
     bool isAttacking = false;
     public UnitLibrary uLib;
+    public Information techInfo;
 
     bool canSpendWood = true;
 
@@ -35,6 +36,7 @@ public class ComputerController : MonoBehaviour
     {
         team = gameObject.tag;
         bank = gameObject.GetComponent<ResourceBank>();
+        techInfo = gameObject.GetComponent<Information>();
 
         GuyMovement[] units = FindObjectsOfType<GuyMovement>();
 
@@ -65,7 +67,7 @@ public class ComputerController : MonoBehaviour
                 {
                     if (bank.Wood < 50)
                     {
-                        Build(uLib.peasants[0], 4);
+                        Build(uLib.peasants[0], UnitType.FarmLand);
 
                     }
                 }
@@ -105,34 +107,60 @@ public class ComputerController : MonoBehaviour
             }
             needToCheck = false;
         }
-
-        if (uLib.farmland.Count < 1)
+        if (uLib.peasants.Count >= 2)
         {
-            if (bank.Wood >= 50)
+            if (uLib.farmland.Count < 1)
             {
-                Build(uLib.peasants[0], 4);
-            }                
-        }
-        else if(bank.Wood >= 100)
-        {
-            needToCheck = true;
-            if (uLib.trainingFields.Count < 1)
-            {
-                if (bank.Wood >= 150)
+                if (bank.Wood >= 50)
                 {
-                    Build(uLib.peasants[0], 2);
+                    Build(uLib.peasants[0], UnitType.FarmLand);
                 }
             }
             else
             {
-                TrainingFieldActions();
-                ShouldWeAttack();
+                needToCheck = true;
+                if (uLib.castles.Count < 1)
+                {
+                    if (bank.Wood >= 1000)
+                    {
+                        Build(uLib.peasants[0], UnitType.TrainingField);
+                    }
+                }
+                else
+                {
+                    CastleActions();
+
+                    if (uLib.trainingFields.Count < 1)
+                    {
+                        if (bank.Wood >= 150)
+                        {
+                            Build(uLib.peasants[0], UnitType.TrainingField);
+                        }
+                    }
+                    else
+                    {
+                        TrainingFieldActions();
+
+                        if (uLib.blackSmiths.Count < 1)
+                        {
+                            if (bank.Wood >= 250 && bank.Gems >= 50)
+                            {
+                                Build(uLib.peasants[0], UnitType.BlackSmith);
+                            }
+                        }
+                        else
+                        {
+                            BlackSmithActions();
+                        }
+                    }
+                }
+
+                if (unitsAlive >= bank.UnitLimit)
+                {
+                    Build(uLib.peasants[0], UnitType.House);
+                }
             }
-            if (unitsAlive>= bank.UnitLimit)
-            {
-                Build(uLib.peasants[0], 1);
-            }
-        }     
+        }
        
 
     }
@@ -236,29 +264,56 @@ public class ComputerController : MonoBehaviour
 
             }
         }
+        ShouldWeAttack();
     }
 
-   
+    private void CastleActions()
+    {
+        if (uLib.peasants.Count < 12)
+        {
+            if (bank.UnitLimit > unitsAlive && bank.Food >= 50)
+            {
+                GuyMovement castle = uLib.castles[0];
+                if (castle.currentAction == UnitActions.Nothing)
+                {
+                    castle.BuildingActions.BuildUnit(castle.UnitGameObjects[0], false);
+                }
+            }
+        }
+    }
+
+    private void BlackSmithActions()
+    {
+        
+        GuyMovement blackSmith = uLib.blackSmiths[0];
+        Building blacksmithBuilding = blackSmith.BuildingActions;
+        if (blackSmith.currentAction == UnitActions.Nothing)
+        {
+            //RIGHT HERE
+            blacksmithBuilding.Research(blacksmithBuilding.researchableTechnology[0]);
+        }
+    }
 
     private void PeasantActions(int farmersNeeded, int treeChoppersNeeded, int minersNeeded, int farming, int collectingWood)
     {
        
     }
 
-    void Build(GuyMovement peasant, int number)
+    void Build(GuyMovement peasant, UnitType type)
     {
         if (peasant.currentAction != UnitActions.Build)
         {
 
 
-            peasant.BuilderActions.basicBuilding = peasant.UnitGameObjects[number];
-            Vector3 buildPos = peasant.BuilderActions.SearchForPlaceToBuild();
+            //peasant.BuilderActions.basicBuilding = peasant.UnitGameObjects[number];
+            Vector3 buildPos = peasant.BuilderActions.SearchForPlaceToBuild(type);
             if (buildPos != Vector3.zero)
             {
                 peasant.BuilderActions.BuildBuilding(buildPos);
             }
         }
     }
+
 
     private void Attack()
     {

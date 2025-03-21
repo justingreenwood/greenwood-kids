@@ -239,8 +239,20 @@ public class Builder : MonoBehaviour
 
     }
 
-    public Vector3 SearchForPlaceToBuild()
+    public Vector3 SearchForPlaceToBuild(UnitType type)
     {
+
+        for(int i = 0; i<guyMovement.UnitTypes.Count;i++)
+        {
+            if (guyMovement.UnitTypes[i] == type)
+            {
+                basicBuilding = guyMovement.UnitGameObjects[i];
+                Debug.Log("We will build thingy.");
+                break;
+            }
+
+        }
+
         List<Vector2Int> list = new List<Vector2Int>();
         // MATH SECTION
         Vector3 unitPositionToGrid = Vector3.zero;
