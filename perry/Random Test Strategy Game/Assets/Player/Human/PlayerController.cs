@@ -232,7 +232,7 @@ public class PlayerController : MonoBehaviour
                                 actionDone = true;
                                 Repairing(unitControls, objectGuyMovement);
                             }
-                            else if (objectHit.TryGetComponent(out Tower tower))
+                            else if (objectHit.TryGetComponent(out TowerActions tower))
                             {
                                 actionDone = true;
                                 Debug.Log("Lets GO!!!");
@@ -567,7 +567,7 @@ public class PlayerController : MonoBehaviour
                             });
                         }
                     }
-                    if (unitAction.TryGetComponent(out Tower tower))
+                    if (unitAction.TryGetComponent(out TowerActions tower))
                     {
 
                         for (int i = 0; i <= tower.housedUnits.Count - 1; i++)

@@ -71,7 +71,7 @@ public class Building : MonoBehaviour
             transform.parent = FindObjectOfType<ComputerController>().transform;
             computerController = GetComponentInParent<ComputerController>();
             bank = computerController.GetComponent<ResourceBank>();
-
+            techInfo = computerController.techInfo;
 
         }
 
@@ -151,7 +151,8 @@ public class Building : MonoBehaviour
 
     IEnumerator ProcessBuildUnit(GameObject chosenUnit, bool isUpgrade)
     {
-        buildTimeVisGO.SetActive(true);
+        if (computerController == null)
+            buildTimeVisGO.SetActive(true);
         if (!isUpgrade)
         {
             guyMovement.currentAction = UnitActions.Build;
@@ -167,8 +168,11 @@ public class Building : MonoBehaviour
             buildingTimeLeft = timeTakenToBuild - x;
             buildTimeVisTMP.text += "N";
         }
-        buildTimeVisTMP.text = "";
-        buildTimeVisGO.SetActive(false);
+        if (computerController == null)
+        {
+            buildTimeVisTMP.text = "";
+            buildTimeVisGO.SetActive(false);
+        }
         Vector3 pos = transform.position;
         pos.x = transform.position.x + 1 / transform.localScale.x;
         pos.x += 2;
@@ -197,6 +201,7 @@ public class Building : MonoBehaviour
 
     public bool Research(ITech t)
     {
+        Debug.Log(techInfo.name+ " Bologna");
         string failedRequirements = techInfo.CheckRequirements(t);
         if (failedRequirements != null)
         {
@@ -224,19 +229,28 @@ public class Building : MonoBehaviour
         currentTech = t.techType;
         Debug.Log(t.techType);
         techInfo.Research(t.techType);
-        buildTimeVisGO.SetActive(true);
+        if (computerController == null)
+        {
+            buildTimeVisGO.SetActive(true);
+        }
         for (int i = 0; i < 20; i++)
         {
             yield return new WaitForSeconds(1f);
-            buildTimeVisTMP.text += "N";
+            if (computerController == null)
+                buildTimeVisTMP.text += "N";
 
         }
-        buildTimeVisGO.SetActive(false);
+        if (computerController == null)
+            buildTimeVisGO.SetActive(false);
         if (techInfo != null)
         {
             researchableTechnology.Remove(t);
             guyMovement.ResetBorrowedResources();
             techInfo.ResearchCompletion(t.techType);
+            if(playerController != null) 
+            {
+                playerController.EditDisplay();
+            }
         }
         buildTimeVisTMP.text = "";
         guyMovement.currentAction = UnitActions.Nothing;

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Farmland : MonoBehaviour
+public class FarmlandActions : MonoBehaviour
 {
     List<GuyMovement> farmers = new List<GuyMovement>();
     int farmerLimit = 4;

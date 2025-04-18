@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tower : MonoBehaviour
+public class TowerActions : MonoBehaviour
 {
 
     [SerializeField] public List<GameObject> housedUnits = new List<GameObject>();

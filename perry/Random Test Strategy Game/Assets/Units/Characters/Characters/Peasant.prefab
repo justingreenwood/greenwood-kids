@@ -147,7 +147,7 @@ PrefabInstance:
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: unitImage
       value: 
-      objectReference: {fileID: 21300000, guid: 1dfa4d5a2c98d294fb30cb72ef8d0965, type: 3}
+      objectReference: {fileID: 21300000, guid: f971758cb9c3bcb4c88839696c4fee12, type: 3}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: buildSpeed
       value: 0.05
@@ -307,3 +307,15 @@ MonoBehaviour:
   basicBuilding: {fileID: 0}
   buildSpeed: 0.05
   miningSpeed: 4.5
+--- !u!114 &-1834828791915376760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2735941847620580983}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97c231490e33e9844a2bc74cc8c22652, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

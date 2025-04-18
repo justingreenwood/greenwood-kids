@@ -54,8 +54,10 @@ public class Information : MonoBehaviour
 
         //Debug.Log(BowDamageII.requiredTechnologies[0] + " exists. Yippee!");
     }
+    
     private void Start()
     {
+
         EditViewableTech();
     }
     public void Research(TechType tech)
@@ -223,13 +225,13 @@ public class Information : MonoBehaviour
         {
             Debug.Log(tec.techType);
         }
-
-        GetComponent<PlayerController>().EditDisplay();
+        //GetComponent<PlayerController>().EditDisplay();
 
     }
 
     public string CheckRequirements(ITech tech)
     {
+        Debug.Log("I Here");
 
         string requirements = " ";
 

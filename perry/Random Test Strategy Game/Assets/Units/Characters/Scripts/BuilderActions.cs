@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Builder : MonoBehaviour
+public class BuilderActions : MonoBehaviour
 {
 
     [SerializeField] public GameObject basicBuilding;
@@ -92,8 +92,8 @@ public class Builder : MonoBehaviour
             float distance = Vector3.Distance(newBuilding.transform.position, transform.position) - (buildingActions.width / 2);
             if (distance <= actionRange)
             {
-                buildingGM.currentHealth += buildingGM.healthII;
-                necessaryBuildingHealth += buildingGM.healthII;
+                buildingGM.currentHealth += buildingGM.healthIncInc;
+                necessaryBuildingHealth += buildingGM.healthIncInc;
                 buildingGM.hPNonUIVisAid.EditTMP(buildingGM.currentHealth, buildingGM.maxHealth);
                 if (buildingGM.isSelected)
                 {
@@ -145,7 +145,7 @@ public class Builder : MonoBehaviour
                 started = true;
                 Debug.Log("repairing");
                 bank.RemoveResource(0, 1, 0);
-                target.currentHealth += target.healthII;
+                target.currentHealth += target.healthIncInc;
                 playerController.EditDisplay();
                 if (bank.Wood <= 0)
                 {
@@ -171,7 +171,7 @@ public class Builder : MonoBehaviour
         if (resource.Type == ResourceType.Food)
         {
             guyMovement.currentAction = UnitActions.Farm;
-            resource.GetComponent<Farmland>().AddFarmer(guyMovement);
+            resource.GetComponent<FarmlandActions>().AddFarmer(guyMovement);
         }
         else if (resource.Type == ResourceType.Wood)
         {

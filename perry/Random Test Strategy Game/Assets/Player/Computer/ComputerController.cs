@@ -30,8 +30,16 @@ public class ComputerController : MonoBehaviour
     int amountMining = 0;
     int amountWorking = 0;
     
+    UnitType currentTask;
+    int currentWoodGoal = 0;
+    int currentFoodGoal = 0;
+    int currentGemGoal = 0;
+    bool taskStarted = false;
+
+
 
     bool needCollectors = true;
+
     void Start()
     {
         team = gameObject.tag;
@@ -56,113 +64,172 @@ public class ComputerController : MonoBehaviour
     public bool needToCheck = true;
     void Update()
     {
+        if (currentTask == UnitType.None)
+        {   if (uLib.castles.Count < 1)
+            {
+                currentTask = UnitType.Castle;
+                currentWoodGoal = 1000;
+            }
+            else if (uLib.farmland.Count < 1)
+            {
+                currentTask = UnitType.FarmLand;
+                currentWoodGoal = 100;
+            }
+            else if (uLib.houses.Count < 1)
+            {
+                currentTask = UnitType.House;
+                currentWoodGoal = 100;
+            }
+            else if (uLib.trainingFields.Count < 1)
+            {
+                currentTask = UnitType.TrainingField;
+                currentWoodGoal = 150;
+            }
+            else if (uLib.houses.Count < 2)
+            {
+                currentTask = UnitType.House;
+                currentWoodGoal = 100;
+            }
+            else if (uLib.stables.Count < 1)
+            {
+                currentTask = UnitType.Stables;
+                currentWoodGoal = 250;
+                currentFoodGoal = 200;
+            }
+            else if (uLib.houses.Count < 3)
+            {
+                currentTask = UnitType.House;
+                currentWoodGoal = 100;
+            }
+            else if (uLib.blackSmiths.Count < 1)
+            {
+                currentTask = UnitType.BlackSmith;
+                currentWoodGoal = 250;
+                currentGemGoal = 100;
+            }
+            else if (uLib.trainingFields.Count < 2)
+            {
+                currentTask = UnitType.TrainingField;
+                currentWoodGoal = 150;
+            }
+            else if (uLib.houses.Count < 4)
+            {
+                currentTask = UnitType.House;
+                currentWoodGoal = 100;
+            }
+            else if (uLib.libraries.Count < 1)
+            {
+                currentTask = UnitType.Library;
+                currentWoodGoal = 3000;
+                currentGemGoal = 200;
+            }
+            else if (uLib.houses.Count < 5)
+            {
+                currentTask = UnitType.House;
+                currentWoodGoal = 100;
+            }
+            else if (uLib.pegasusStables.Count < 1)
+            {
+                currentTask = UnitType.PegasusStables;
+                currentWoodGoal = 300;
+                currentGemGoal = 50;
+                currentFoodGoal = 200;
+            }
+            else if (uLib.houses.Count < 6)
+            {
+                currentTask = UnitType.House;
+                currentWoodGoal = 100;
+            }
+            else if (uLib.wizardTowers.Count < 1)
+            {
+                currentTask = UnitType.WizardTower;
+                currentWoodGoal = 200;
+                currentGemGoal = 300;
+                currentFoodGoal = 100;
+            }
+            else if (uLib.houses.Count < 6)
+            {
+                currentTask = UnitType.House;
+                currentWoodGoal = 100;
+            }            
+            else if (uLib.wizardTowers.Count < 2)
+            {
+                currentTask = UnitType.WizardTower;
+                currentWoodGoal = 200;
+                currentGemGoal = 300;
+                currentFoodGoal = 100;
+            }
+            else if (uLib.houses.Count < 7)
+            {
+                currentTask = UnitType.House;
+                currentWoodGoal = 100;
+            }
+            else if (uLib.towers.Count < 4)
+            {
+                currentTask = UnitType.Tower;
+                currentWoodGoal = 200;
+            }
+            else if (uLib.houses.Count < 8)
+            {
+                currentTask = UnitType.House;
+                currentWoodGoal = 100;
+            }
+        }
+
+        if(currentTask != UnitType.None && !taskStarted)
+        {
+            StartTask(currentTask);
+        }
+
+        if(currentWoodGoal >= bank.Wood && currentGemGoal >= bank.Gems && currentFoodGoal >= bank.Food)
+        {
+            foreach(var peasant in uLib.peasants)
+            {
+                if (peasant.currentAction!= UnitActions.Build)
+                {
+                    Build(peasant, currentTask);
+                    ResetGoal();
+                    break;
+                }
+
+            }
+        }
         
-        if (needToCheck)
+
+
+        if(uLib.blackSmiths.Count >= 1)
         {
-            Debug.Log("Check Time");
-            if (uLib.peasants.Count >= 3)
-            {
-
-                if (uLib.farmland.Count < 1)
-                {
-                    if (bank.Wood < 50)
-                    {
-                        Build(uLib.peasants[0], UnitType.FarmLand);
-
-                    }
-                }
-                else if (amountFarming < 2)
-                {
-                    ResourceCollectorDelegator(amountFarming, ResourceType.Food);
-                }
-                if (amountCollectingWood < 2)
-                {
-                    ResourceCollectorDelegator(amountCollectingWood, ResourceType.Wood);
-                }
-
-            }
-            else if (uLib.peasants.Count == 2)
-            {
-                if (uLib.farmland.Count >= 1)
-                {
-                    uLib.peasants[0].BuilderActions.SearchForResource(ResourceType.Food);
-                    uLib.peasants[1].BuilderActions.SearchForResource(ResourceType.Wood);
-                }
-                else
-                {
-                    uLib.peasants[0].BuilderActions.SearchForResource(ResourceType.Wood);
-                    uLib.peasants[1].BuilderActions.SearchForResource(ResourceType.Wood);
-                }
-            }
-            else if (uLib.peasants.Count == 1)
-            {
-                if (uLib.farmland.Count >= 1)
-                {
-                    uLib.peasants[0].BuilderActions.SearchForResource(ResourceType.Wood);
-                }
-                else
-                {
-                    uLib.peasants[0].BuilderActions.SearchForResource(ResourceType.Food);
-                }
-            }
-            needToCheck = false;
+            BlackSmithActions();
         }
-        if (uLib.peasants.Count >= 2)
+
+
+    }
+    void StartTask(UnitType type)
+    {
+        
+        if (uLib.peasants.Count >= 3)
         {
-            if (uLib.farmland.Count < 1)
+            foreach (var peasant in uLib.peasants)
             {
-                if (bank.Wood >= 50)
+                
+
+                if(currentGemGoal != 0)
                 {
-                    Build(uLib.peasants[0], UnitType.FarmLand);
+
+                    
                 }
+                
             }
-            else
-            {
-                needToCheck = true;
-                if (uLib.castles.Count < 1)
-                {
-                    if (bank.Wood >= 1000)
-                    {
-                        Build(uLib.peasants[0], UnitType.TrainingField);
-                    }
-                }
-                else
-                {
-                    CastleActions();
-
-                    if (uLib.trainingFields.Count < 1)
-                    {
-                        if (bank.Wood >= 150)
-                        {
-                            Build(uLib.peasants[0], UnitType.TrainingField);
-                        }
-                    }
-                    else
-                    {
-                        TrainingFieldActions();
-
-                        if (uLib.blackSmiths.Count < 1)
-                        {
-                            if (bank.Wood >= 250 && bank.Gems >= 50)
-                            {
-                                Build(uLib.peasants[0], UnitType.BlackSmith);
-                            }
-                        }
-                        else
-                        {
-                            BlackSmithActions();
-                        }
-                    }
-                }
-
-                if (unitsAlive >= bank.UnitLimit)
-                {
-                    Build(uLib.peasants[0], UnitType.House);
-                }
-            }
+            EditWorkers();
         }
-       
-
+    }
+    void ResetGoal()
+    {
+        currentFoodGoal = 0;
+        currentGemGoal = 0;
+        currentWoodGoal = 0;
+        currentTask = UnitType.None;
+        taskStarted = false;
     }
     public void ShouldWeAttack()
     {
@@ -191,6 +258,7 @@ public class ComputerController : MonoBehaviour
                     break;
                 }
             }
+
         }
     }
 
@@ -231,6 +299,42 @@ public class ComputerController : MonoBehaviour
             treeChoppersNeeded--;
             farmersNeeded--;
         }
+    }
+
+    public void BuilderActions(GuyMovement unitAction)
+    {
+
+        if (uLib.farmland.Count < 1)
+        {
+            if(bank.Wood >= 1)
+                Build(unitAction, UnitType.FarmLand);
+            else
+                ResourceCollectorDelegator(amountCollectingWood, ResourceType.Wood);
+        }
+        else if (uLib.castles.Count < 1)
+        {
+            if (bank.Wood >= 1)
+                Build(unitAction, UnitType.Castle);
+            else
+                ResourceCollectorDelegator(amountCollectingWood, ResourceType.Wood);
+        }
+        else if (amountCollectingWood < 1)
+        {
+            ResourceCollectorDelegator(amountCollectingWood, ResourceType.Wood);
+        }
+        else if (amountFarming < 1)
+        {
+            ResourceCollectorDelegator(amountFarming, ResourceType.Food);
+        }
+        else if (amountMining < 1)
+        {
+            ResourceCollectorDelegator(amountMining, ResourceType.Gems);
+        }
+        else
+        {
+        }
+
+
     }
 
     private void TrainingFieldActions()
@@ -289,14 +393,30 @@ public class ComputerController : MonoBehaviour
         Building blacksmithBuilding = blackSmith.BuildingActions;
         if (blackSmith.currentAction == UnitActions.Nothing)
         {
-            //RIGHT HERE
-            blacksmithBuilding.Research(blacksmithBuilding.researchableTechnology[0]);
+            if (blacksmithBuilding.researchableTechnology.Count>0)
+            {
+                ITech tech = blacksmithBuilding.researchableTechnology[0];
+                Debug.Log(tech.techType);
+                //RIGHT HERE
+                blacksmithBuilding.Research(tech);
+            }
         }
     }
 
-    private void PeasantActions(int farmersNeeded, int treeChoppersNeeded, int minersNeeded, int farming, int collectingWood)
+    private void LibraryActions()
     {
-       
+        GuyMovement library = uLib.libraries[0];
+        Building libraryBuilding = library.BuildingActions;
+        if (library.currentAction == UnitActions.Nothing)
+        {
+            if (libraryBuilding.researchableTechnology.Count > 0)
+            {
+                ITech tech = libraryBuilding.researchableTechnology[0];
+                Debug.Log(tech.techType);
+                //RIGHT HERE
+                libraryBuilding.Research(tech);
+            }
+        }
     }
 
     void Build(GuyMovement peasant, UnitType type)
@@ -330,5 +450,30 @@ public class ComputerController : MonoBehaviour
             unit.Move(targetCoordinate);
         }
 
+    }
+    public void GetJob(GuyMovement unitAction)
+    {
+        if(unitAction.unitType == UnitType.Builder)
+        {
+            BuilderActions(unitAction);
+        }
+        switch (unitAction.unitType)
+        {
+            case UnitType.Builder:
+
+                BuilderActions(unitAction);
+                break;
+            //case UnitType.BlackSmith:
+
+            //    BlackSmithActions(unitAction);
+            //    break;
+            //case UnitType.Castle:
+
+            //    CastleActions(unitAction);
+            //    break;
+
+
+
+        }
     }
 }

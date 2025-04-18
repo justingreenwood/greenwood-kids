@@ -153,8 +153,16 @@ PrefabInstance:
       value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: armorType
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: maxHealth
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: healthType
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: unitWoodCost
@@ -242,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resources: 9999
   resourceType: 2
---- !u!114 &4137949339897678189
+--- !u!114 &6946163164255529413
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -251,6 +259,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7151396612859795162}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 629d0d203fbaf484e929b0c6d23ed296, type: 3}
+  m_Script: {fileID: 11500000, guid: 778e36fc033c3d84d91fc702151284fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

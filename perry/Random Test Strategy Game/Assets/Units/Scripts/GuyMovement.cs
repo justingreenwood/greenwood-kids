@@ -21,7 +21,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public float currentHealth = 0;
     public float bonusHealth = 0;
     [SerializeField] int healthIncreaseIncrement = 2;
-    public int healthII { get { return healthIncreaseIncrement; } }
+    public int healthIncInc { get { return healthIncreaseIncrement; } }
     [SerializeField] public int armor = 0;
     public int bonusArmor = 0;
     [SerializeField] float attackRange = 10;
@@ -99,11 +99,11 @@ public class GuyMovement : MonoBehaviour
     public Vector3 destination = Vector3.zero;
 
     Building buildingActions;
-    Builder builderActions;
+    BuilderActions builderActions;
     public HPNonUIVisAid hPNonUIVisAid;
 
     public Building BuildingActions { get { return buildingActions; } }
-    public Builder BuilderActions { get { return builderActions; } }
+    public BuilderActions BuilderActions { get { return builderActions; } }
     public BuildingGrid buildGrid;
 
     public int borrowedFood = 0;
@@ -125,7 +125,7 @@ public class GuyMovement : MonoBehaviour
         }
         else if(isABuilder)
         {
-            builderActions = GetComponent<Builder>();
+            builderActions = GetComponent<BuilderActions>();
         }
 
         hPNonUIVisAid = GetComponentInChildren<HPNonUIVisAid>();
@@ -287,14 +287,14 @@ public class GuyMovement : MonoBehaviour
         isAttacking = false;
     }
 
-    public void EnterTower(Tower tower)
+    public void EnterTower(TowerActions tower)
     {
         StopAllCoroutines();
         Move(tower.transform.position);
         StartCoroutine(EnteringTower(tower));
     }
 
-    IEnumerator EnteringTower(Tower tower)
+    IEnumerator EnteringTower(TowerActions tower)
     {
         float width = tower.GetComponent<Building>().width + 1;
         float distance = Vector3.Distance(tower.transform.position, transform.position);
@@ -432,14 +432,14 @@ public class GuyMovement : MonoBehaviour
                     i.isClaimed = false;
                 }
             }
-            if (TryGetComponent(out Tower tower))
+            if (TryGetComponent(out TowerActions tower))
             {
                 foreach (var unit in tower.housedUnits)
                 {
                     unit.SetActive(true);
                 }
             }
-            else if (TryGetComponent(out Farmland farmland))
+            else if (TryGetComponent(out FarmlandActions farmland))
             {
                 farmland.ClearFarmers();
             }
