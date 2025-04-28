@@ -338,6 +338,12 @@ public class BuilderActions : MonoBehaviour
             int random = Random.Range(0, list.Count);
             Vector3 returnValue = new Vector3(list[random].x, 0f, list[random].y);
 
+            if(type == UnitType.House)
+            {
+                returnValue.x -= 2;
+                returnValue.z -= 2;
+            }
+
             return returnValue;
         }
         else

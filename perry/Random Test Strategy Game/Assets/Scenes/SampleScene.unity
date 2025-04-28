@@ -457,6 +457,10 @@ PrefabInstance:
       value: House (2)
       objectReference: {fileID: 0}
     - target: {fileID: 944349333564221787, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 944349333564221787, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
       propertyPath: m_TagString
       value: Red Team
       objectReference: {fileID: 0}
@@ -728,7 +732,7 @@ GameObject:
   m_Component:
   - component: {fileID: 664429606}
   m_Layer: 0
-  m_Name: allow workers to change to what is needed
+  m_Name: continue work on Com Contrl
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2657,6 +2661,10 @@ PrefabInstance:
     - target: {fileID: 944349333564221787, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
       propertyPath: m_Name
       value: House (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 944349333564221787, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 944349333564221787, guid: 301c19ca7f9402b47a2f5d5b2baeaea6, type: 3}
       propertyPath: m_TagString

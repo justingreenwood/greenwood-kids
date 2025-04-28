@@ -9,6 +9,7 @@ TagManager:
   - Tree
   - Buttons
   - Blue Team
+  - Gems
   layers:
   - Default
   - TransparentFX
