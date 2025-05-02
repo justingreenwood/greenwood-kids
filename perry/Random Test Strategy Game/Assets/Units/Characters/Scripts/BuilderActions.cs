@@ -88,6 +88,10 @@ public class BuilderActions : MonoBehaviour
 
         while (necessaryBuildingHealth < buildingGM.maxHealth)
         {
+            if(newBuilding == null)
+            {
+                guyMovement.StopActivities();
+            }
             yield return new WaitForSeconds(buildSpeed);
             float distance = Vector3.Distance(newBuilding.transform.position, transform.position) - (buildingActions.width / 2);
             if (distance <= actionRange)

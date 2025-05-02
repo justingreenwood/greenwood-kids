@@ -105,15 +105,17 @@ public class Information : MonoBehaviour
         EditViewableTech();
     }
 
-    void EditViewableTech()
+    public void EditViewableTech()
     {
-        foreach(GuyMovement blackSmith in uLib.blackSmiths)
+        foreach (GuyMovement blackSmith in uLib.blackSmiths)
         {
-            blackSmith.BuildingActions.researchableTechnology = viewableBlacksmithTech;
+            Building building = blackSmith.GetComponent<Building>();
+            building.researchableTechnology = viewableBlacksmithTech;
         }
         foreach (GuyMovement library in uLib.libraries)
         {
-            library.BuildingActions.researchableTechnology = viewableLibraryTech;
+            Building building = library.GetComponent<Building>();
+            building.researchableTechnology = viewableLibraryTech;
         }
     }
 

@@ -3394,6 +3394,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1511839429843354046, guid: 1a4035de733ef2047809849280000a5c, type: 3}
+      propertyPath: food
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511839429843354046, guid: 1a4035de733ef2047809849280000a5c, type: 3}
+      propertyPath: gems
+      value: 10000
+      objectReference: {fileID: 0}
+    - target: {fileID: 1511839429843354046, guid: 1a4035de733ef2047809849280000a5c, type: 3}
+      propertyPath: wood
+      value: 100000
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1a4035de733ef2047809849280000a5c, type: 3}
 --- !u!1001 &3187350384893647186

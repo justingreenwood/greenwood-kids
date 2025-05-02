@@ -80,6 +80,14 @@ public class ComputerController : MonoBehaviour
         {
             BlackSmithActions();
         }
+        if (uLib.libraries.Count >= 1)
+        {
+            LibraryActions();
+        }
+        if (uLib.stables.Count >= 1)
+        {
+            StablesActions();
+        }
 
         if (currentTask == UnitType.None)
         {
@@ -198,53 +206,54 @@ public class ComputerController : MonoBehaviour
             }
         }
 
-        if(currentTask != UnitType.None && !taskStarted)
+        if (currentTask != UnitType.None && !taskStarted)
         {
             Debug.Log("I am starting the task.");
             StartTask(currentTask);
         }
-
-        if (DoWeMeetRequirements())
+        else if (currentTask != UnitType.None && taskStarted)
         {
-            Debug.Log("We have what we need.");
-            if (currentTask != UnitType.PegasusStables)
+            if (DoWeMeetRequirements())
             {
-                foreach (var peasant in uLib.peasants)
+                Debug.Log("We have what we need.");
+                if (currentTask == UnitType.PegasusStables)
                 {
-                    if (peasant.currentAction != UnitActions.Build)
+                    Building buildingActions = uLib.stables[0].GetComponent<GuyMovement>().BuildingActions;
+                    if (buildingActions.isBuilt && buildingActions.GMovement.currentAction == UnitActions.Nothing)
                     {
-                        bool success = Build(peasant, currentTask);
+                        bool success = buildingActions.UpgradeBuilding();
                         if (success)
                         {
-                           
+                            ignorePS = true;
                             ResetGoal();
                         }
                         Debug.Log("Task Completed!");
-                        break;
                     }
-
                 }
-            }
-            else
-            {
-                Building buildingActions = uLib.stables[0].GetComponent<GuyMovement>().BuildingActions;
-                if (buildingActions.isBuilt)
+                else
                 {
-                    bool success = buildingActions.UpgradeBuilding();
-                    if (success)
+                    foreach (var peasant in uLib.peasants)
                     {
-                        ignorePS = true;
-                        ResetGoal();
+                        if (peasant.currentAction != UnitActions.Build)
+                        {
+                            bool success = Build(peasant, currentTask);
+                            if (success)
+                            {
+                                if (currentTask == UnitType.BlackSmith || currentTask == UnitType.Library)
+                                {
+                                    techInfo.EditViewableTech();
+                                }
+                                ResetGoal();
+                            }
+                            Debug.Log("Task Completed!");
+                            break;
+                        }
+
                     }
-                    Debug.Log("Task Completed!");
                 }
+
             }
         }
-
-
-        
-
-
     }
     void StartTask(UnitType type)
     {
@@ -482,18 +491,40 @@ public class ComputerController : MonoBehaviour
     {
         if (uLib.trainingFields.Count > 0)
         {
-            if (uLib.menAtArms.Count < 12)
+            if (uLib.menAtArms.Count < 12 || uLib.archers.Count<8)
             {
                 foreach (var trainingField in uLib.trainingFields)
                 {
                     if (trainingField.BuildingActions.isBuilt == true && trainingField.currentAction == UnitActions.Nothing)
                     {
-                        if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
+                        if (uLib.menAtArms.Count < 12)
                         {
-                            if (!trainingField.isCurrentlyBuilding && trainingField.BuildingActions.isBuilt)
+                            if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
                             {
-                                trainingField.BuildingActions.BuildUnit(trainingField.UnitGameObjects[0], false);
-                                unitsAlive++;
+                                if (!trainingField.isCurrentlyBuilding && trainingField.BuildingActions.isBuilt)
+                                {
+                                    trainingField.BuildingActions.BuildUnit(trainingField.UnitGameObjects[0], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        else if(uLib.archers.Count < 8)
+                        {
+                            if (bank.Food >= 50 && bank.Wood >= 20 && bank.UnitLimit > unitsAlive)
+                            {
+                                if (!trainingField.isCurrentlyBuilding && trainingField.BuildingActions.isBuilt)
+                                {
+                                    trainingField.BuildingActions.BuildUnit(trainingField.UnitGameObjects[1], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
                             }
                         }
                         else
@@ -544,6 +575,7 @@ public class ComputerController : MonoBehaviour
         }
     }
 
+
     private void LibraryActions()
     {
         GuyMovement library = uLib.libraries[0];
@@ -560,6 +592,43 @@ public class ComputerController : MonoBehaviour
         }
     }
 
+    private void StablesActions()
+    {
+        if (uLib.trainingFields.Count > 0)
+        {
+            if (uLib.knights.Count < 6)
+            {
+                foreach (var stables in uLib.stables)
+                {
+                    if (currentTask != UnitType.PegasusStables)
+                    {
+                        if (stables.BuildingActions.isBuilt == true && stables.currentAction == UnitActions.Nothing)
+                        {
+                            if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
+                            {
+                                if (!stables.isCurrentlyBuilding && stables.BuildingActions.isBuilt)
+                                {
+                                    stables.BuildingActions.BuildUnit(stables.UnitGameObjects[0], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+
     bool Build(GuyMovement peasant, UnitType type)
     {
         bool successful = false;
@@ -567,7 +636,7 @@ public class ComputerController : MonoBehaviour
         {          
             //peasant.BuilderActions.basicBuilding = peasant.UnitGameObjects[number];
             Vector3 buildPos = peasant.BuilderActions.SearchForPlaceToBuild(type);
-            if (buildPos != Vector3.zero)
+            if (buildPos != Vector3.zero && buildPos!= null)
             {
                 successful = peasant.BuilderActions.BuildBuilding(buildPos);
             }
@@ -580,15 +649,21 @@ public class ComputerController : MonoBehaviour
     {
         isAttacking = true;
         int i = 0;
-        foreach (var unit in uLib.menAtArms) 
+        if (uLib.menAtArms.Count > 0)
         {
-            i++;
-            unit.Move(targetCoordinate);           
+            foreach (var unit in uLib.menAtArms)
+            {
+                i++;
+                unit.Move(targetCoordinate);
+            }
         }
-        foreach (var unit in uLib.archers)
+        if (uLib.archers.Count > 0)
         {
-            i++;
-            unit.Move(targetCoordinate);
+            foreach (var unit in uLib.archers)
+            {
+                i++;
+                unit.Move(targetCoordinate);
+            }
         }
 
     }
