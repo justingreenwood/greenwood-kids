@@ -166,7 +166,8 @@ public class Building : MonoBehaviour
             yield return new WaitForSeconds(buildSpeed);
             x += buildSpeed;
             buildingTimeLeft = timeTakenToBuild - x;
-            buildTimeVisTMP.text += "N";
+            if (computerController == null)
+                buildTimeVisTMP.text += "N";
         }
         if (computerController == null)
         {
@@ -188,10 +189,10 @@ public class Building : MonoBehaviour
         }
         guyMovement.ResetBorrowedResources();
         unitQueue.Remove(chosenUnit);
-
-        playerController.EditDisplay();
         isCurrentlyBuilding = false;
         guyMovement.currentAction = UnitActions.Nothing;
+        playerController.EditDisplay();
+        
         if (isUpgrade)
         {
             guyMovement.Die();

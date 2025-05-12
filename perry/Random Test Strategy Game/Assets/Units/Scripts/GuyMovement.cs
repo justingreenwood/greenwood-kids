@@ -399,6 +399,10 @@ public class GuyMovement : MonoBehaviour
 
     public void Die()
     {
+        if (isSelected)
+        {
+            playerController.Deselect(gameObject);
+        }
         if (CompareTag(player.tag))
         {
             if (!isABuilding)
@@ -409,7 +413,6 @@ public class GuyMovement : MonoBehaviour
             {
                 playerController.unitsAlive--;
             }
-            playerController.Deselect(gameObject);
             playerController.unitLibrary.RemoveUnit(this);
         }
         else if (tag != null)
