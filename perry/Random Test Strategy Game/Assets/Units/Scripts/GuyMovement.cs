@@ -420,6 +420,20 @@ public class GuyMovement : MonoBehaviour
             computerController.uLib.RemoveUnit(this);
         }
         
+        if(isABuilder && currentAction == UnitActions.Build)
+        {
+            if (builderActions.newBuilding == null)
+            {
+                Debug.Log("Problem!!!!!!!!!");
+
+            }
+            else
+            {
+                builderActions.newBuilding.GetComponent<Building>().hasBuilder = false;
+            }
+            
+        }
+
         if (isABuilding)
         {
             Building buildingActions = GetComponent<Building>();

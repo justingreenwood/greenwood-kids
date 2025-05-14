@@ -28,6 +28,7 @@ public class Building : MonoBehaviour
     bool isCurrentlyBuilding = false;
     public bool isUpgradeable = false;
     public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
+    public bool hasBuilder = false;
 
     [SerializeField] public TextMeshPro buildTimeVisTMP;
     public BuildingGrid buildGrid;

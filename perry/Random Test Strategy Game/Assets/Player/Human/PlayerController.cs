@@ -231,7 +231,14 @@ public class PlayerController : MonoBehaviour
                         else if (CompareTag(objectHit.tag))
                         {
                             GuyMovement objectGuyMovement = objectHit.GetComponent<GuyMovement>();
-                            if (unitControls.isABuilder && objectGuyMovement.currentHealth< objectGuyMovement.maxHealth)
+                            if (unitControls.isABuilder && !objectGuyMovement.BuildingActions.isBuilt)
+                            {
+                                if (!objectGuyMovement.BuildingActions.hasBuilder)
+                                {
+                                    unitControls.BuilderActions.FinishBuild(objectHit);
+                                }
+                            }
+                            else if (unitControls.isABuilder && objectGuyMovement.currentHealth< objectGuyMovement.maxHealth)
                             {
                                 actionDone = true;
                                 Repairing(unitControls, objectGuyMovement);

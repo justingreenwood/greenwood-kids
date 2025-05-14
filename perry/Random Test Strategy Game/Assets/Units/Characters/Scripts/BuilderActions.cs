@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +15,7 @@ public class BuilderActions : MonoBehaviour
     ComputerController computerController;
     ResourceBank bank;
     BuildingGrid buildGrid;
+    public GameObject newBuilding;
 
     float actionRange = 5.5f;
     float moveDelay;
@@ -55,36 +57,53 @@ public class BuilderActions : MonoBehaviour
         {
             Debug.Log("Not enough Resources");
             return false;
-        }
+        }       
+        var rotation = Quaternion.Euler(0, 0, 0);
+        groundPos.y += basicBuilding.transform.localScale.y / 2;
+        newBuilding = Instantiate(basicBuilding, groundPos, rotation);        
+        newBuilding.tag = tag;
+
         guyMovement.StopActivities();
         StopAllCoroutines();
         guyMovement.Move(groundPos);
         guyMovement.currentAction = UnitActions.Build;
         guyMovement.isCurrentlyBuilding = true;
-        var rotation = Quaternion.Euler(0, 0, 0);
-        groundPos.y += basicBuilding.transform.localScale.y / 2;
-        GameObject newBuilding = Instantiate(basicBuilding, groundPos, rotation);
-        building = newBuilding.GetComponent<GuyMovement>();       
-        newBuilding.tag = tag;
+
         newBuilding.GetComponentInChildren<Renderer>().material = guyMovement.buildingMaterial;
         newBuilding.GetComponent<GuyMovement>().buildingMaterial = guyMovement.buildingMaterial;
-
         if (tag != "Yellow Team")
         {
             computerController.uLib.AddUnit(newBuilding.GetComponent<GuyMovement>());
         }
-        StartCoroutine(ProcessBuild(newBuilding));
+        StartCoroutine(ProcessBuild(false));
         return true;
     }
 
-    IEnumerator ProcessBuild(GameObject newBuilding)
+    public void FinishBuild(GameObject building)
     {
+        newBuilding = building;
+        guyMovement.StopActivities();
+        StopAllCoroutines();
 
+        Vector3 groundPos = newBuilding.transform.localPosition;
+        groundPos.y = 0;
+
+        guyMovement.Move(groundPos);
+        guyMovement.currentAction = UnitActions.Build;
+        guyMovement.isCurrentlyBuilding = true;
+        StartCoroutine(ProcessBuild(true));
+    }
+    IEnumerator ProcessBuild(bool isStarted)
+    {
+        
         GuyMovement buildingGM = newBuilding.GetComponent<GuyMovement>();
         Building buildingActions = newBuilding.GetComponent<Building>();
-        buildingGM.currentHealth = 10;
+        buildingActions.hasBuilder = true;
+        if (!isStarted)
+        {
+            buildingGM.currentHealth = 10;
+        }    
         float necessaryBuildingHealth = buildingGM.currentHealth;
-
 
         while (necessaryBuildingHealth < buildingGM.maxHealth)
         {
@@ -127,7 +146,6 @@ public class BuilderActions : MonoBehaviour
         }
         guyMovement.currentAction = UnitActions.Nothing;
     }
-
     public void Repair(GuyMovement target)
     {
         Debug.Log("repair");
@@ -339,7 +357,7 @@ public class BuilderActions : MonoBehaviour
 
         if (list.Count > 0)
         {
-            int random = Random.Range(0, list.Count);
+            int random = UnityEngine.Random.Range(0, list.Count);
             Vector3 returnValue = new Vector3(list[random].x, 0f, list[random].y);
 
             if(type == UnitType.House)
