@@ -429,7 +429,10 @@ public class GuyMovement : MonoBehaviour
             }
             else
             {
-                builderActions.newBuilding.GetComponent<Building>().hasBuilder = false;
+                Building buildingActions = builderActions.newBuilding.GetComponent<Building>();
+                buildingActions.builder = null;
+                buildingActions.hasBuilder = false;
+
             }
             
         }
@@ -463,6 +466,11 @@ public class GuyMovement : MonoBehaviour
             if(currentAction == UnitActions.Research)
             {
                 buildingActions.StopResearch();
+            }
+
+            if (buildingActions.hasBuilder)
+            {
+                buildingActions.builder.StopActivities();
             }
 
         }

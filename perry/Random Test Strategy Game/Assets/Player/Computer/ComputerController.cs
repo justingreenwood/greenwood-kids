@@ -16,6 +16,7 @@ public class ComputerController : MonoBehaviour
     string team;
     ResourceBank bank;
     public int unitsAlive = 0;
+    public bool mayNeedToAttack = false;
     bool isAttacking = false;
     public UnitLibrary uLib;
     public Information techInfo;
@@ -39,7 +40,7 @@ public class ComputerController : MonoBehaviour
     bool needGems = false;
     bool taskStarted = false;
     bool ignorePS = false;
-
+    
 
     bool needCollectors = true;
 
@@ -67,6 +68,12 @@ public class ComputerController : MonoBehaviour
     public bool needToCheck = true;
     void Update()
     {
+
+        if (mayNeedToAttack)
+        {
+            ShouldWeAttack();
+            mayNeedToAttack = false;
+        }
 
         if (uLib.castles.Count >= 1)
         {

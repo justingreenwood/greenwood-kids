@@ -29,6 +29,7 @@ public class Building : MonoBehaviour
     public bool isUpgradeable = false;
     public bool IsCurrentlyBuilding { get { return isCurrentlyBuilding; } }
     public bool hasBuilder = false;
+    public GuyMovement builder = null;
 
     [SerializeField] public TextMeshPro buildTimeVisTMP;
     public BuildingGrid buildGrid;
@@ -152,8 +153,11 @@ public class Building : MonoBehaviour
 
     IEnumerator ProcessBuildUnit(GameObject chosenUnit, bool isUpgrade)
     {
-        if (computerController == null)
+        if (computerController == null&&guyMovement.isSelected)
+        {
             buildTimeVisGO.SetActive(true);
+        }
+            
         if (!isUpgrade)
         {
             guyMovement.currentAction = UnitActions.Build;
@@ -186,13 +190,16 @@ public class Building : MonoBehaviour
         
         if(computerController != null)
         {
-            computerController.ShouldWeAttack();
+            computerController.mayNeedToAttack = true;
         }
         guyMovement.ResetBorrowedResources();
         unitQueue.Remove(chosenUnit);
         isCurrentlyBuilding = false;
         guyMovement.currentAction = UnitActions.Nothing;
-        playerController.EditDisplay();
+        if (computerController == null)
+        {
+            playerController.EditDisplay();
+        }
         
         if (isUpgrade)
         {
@@ -249,7 +256,7 @@ public class Building : MonoBehaviour
             researchableTechnology.Remove(t);
             guyMovement.ResetBorrowedResources();
             techInfo.ResearchCompletion(t.techType);
-            if(playerController != null) 
+            if(computerController == null) 
             {
                 playerController.EditDisplay();
             }

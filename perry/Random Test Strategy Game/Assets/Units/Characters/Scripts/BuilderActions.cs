@@ -63,6 +63,11 @@ public class BuilderActions : MonoBehaviour
         newBuilding = Instantiate(basicBuilding, groundPos, rotation);        
         newBuilding.tag = tag;
 
+        GuyMovement buildingGM = newBuilding.GetComponent<GuyMovement>();
+        Building buildingActions = newBuilding.GetComponent<Building>();
+        buildingActions.builder = guyMovement;
+        buildingActions.hasBuilder = true;
+
         guyMovement.StopActivities();
         StopAllCoroutines();
         guyMovement.Move(groundPos);
@@ -98,15 +103,18 @@ public class BuilderActions : MonoBehaviour
         
         GuyMovement buildingGM = newBuilding.GetComponent<GuyMovement>();
         Building buildingActions = newBuilding.GetComponent<Building>();
-        buildingActions.hasBuilder = true;
+        
         if (!isStarted)
         {
+            buildingActions.builder = guyMovement;
+            buildingActions.hasBuilder = true;
             buildingGM.currentHealth = 10;
         }    
         float necessaryBuildingHealth = buildingGM.currentHealth;
 
         while (necessaryBuildingHealth < buildingGM.maxHealth)
         {
+            
             if(newBuilding == null)
             {
                 guyMovement.StopActivities();
@@ -145,6 +153,7 @@ public class BuilderActions : MonoBehaviour
             computerController.needToCheck = true;
         }
         guyMovement.currentAction = UnitActions.Nothing;
+        buildingActions.hasBuilder = false;
     }
     public void Repair(GuyMovement target)
     {
