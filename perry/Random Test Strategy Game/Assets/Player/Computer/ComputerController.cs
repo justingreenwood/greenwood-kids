@@ -40,9 +40,11 @@ public class ComputerController : MonoBehaviour
     bool needGems = false;
     bool taskStarted = false;
     bool ignorePS = false;
-    
+    bool haveAnUnfinishedBuilding = false;
 
     bool needCollectors = true;
+
+    Building unfinishedBuilding = null;
 
     void Start()
     {
@@ -73,6 +75,20 @@ public class ComputerController : MonoBehaviour
         {
             ShouldWeAttack();
             mayNeedToAttack = false;
+        }
+
+        if(haveAnUnfinishedBuilding)
+        {
+            foreach(GuyMovement peasant in uLib.peasants)
+            {
+                if(peasant.currentAction != UnitActions.Build)
+                {
+                    peasant.BuilderActions.FinishBuild(unfinishedBuilding.gameObject);
+                    haveAnUnfinishedBuilding=false;
+                    unfinishedBuilding = null;
+                    break;
+                }
+            }
         }
 
         if (uLib.castles.Count >= 1)
@@ -457,6 +473,11 @@ public class ComputerController : MonoBehaviour
         }
     }
 
+    public void NeedBuilder(Building building)
+    {
+        haveAnUnfinishedBuilding = true;
+        unfinishedBuilding = building;
+    }
 
     public void BuilderActions(GuyMovement unitAction)
     {
@@ -493,6 +514,7 @@ public class ComputerController : MonoBehaviour
 
 
     }
+
 
     private void TrainingFieldActions()
     {

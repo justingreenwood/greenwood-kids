@@ -91,7 +91,8 @@ public class Building : MonoBehaviour
             buildGrid.gridSqrsDict[vTwoPosition] = true;
             buildGrid.gridSqrsDict[v2PosTL] = true;
             buildGrid.gridSqrsDict[v2PosBL] = true;
-            buildGrid.gridSqrsDict[vTwoPosition] = true;
+            buildGrid.gridSqrsDict[v2PosTR] = true;
+            //Debug.Log($"These have been claimed: {vTwoPosition} {v2PosTL} {v2PosBL} {v2PosTR}");
         }
 
         buildTimeVisTMP.text = "";
@@ -105,7 +106,7 @@ public class Building : MonoBehaviour
             
             if (unitQueue.Count > 0)
             {
-                Debug.Log("You got here! yippee");
+                //Debug.Log("You got here! yippee");
                 BuildUnit(unitQueue[0], false);
             }
         }

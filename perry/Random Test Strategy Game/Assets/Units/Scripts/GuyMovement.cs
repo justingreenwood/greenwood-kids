@@ -429,9 +429,14 @@ public class GuyMovement : MonoBehaviour
             }
             else
             {
+
                 Building buildingActions = builderActions.newBuilding.GetComponent<Building>();
                 buildingActions.builder = null;
                 buildingActions.hasBuilder = false;
+                if(computerController!= null)
+                {
+                    computerController.NeedBuilder(buildingActions);
+                }
 
             }
             

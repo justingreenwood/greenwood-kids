@@ -360,6 +360,12 @@ public class PlayerController : MonoBehaviour
    
     void UnitSelection(Vector3? groundLocation, GameObject objectHit)
     {
+        bool shiftIsPressed = false;
+        if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
+        {
+            shiftIsPressed = true;
+        }
+
         if (buildButtonPressed == false && !skipSelection)
         {
             if (buildModeOn)
@@ -370,11 +376,20 @@ public class PlayerController : MonoBehaviour
             {
                 if (objectHit == null || groundLocation.HasValue)
                 {
-                    if (!Input.GetKey(KeyCode.LeftShift))
+                    if (!shiftIsPressed)
                     {
                         ClearAllSelectedUnits();
                         selectedUnitIsBadguy = false;
                         Debug.Log("No more selected.");
+                    }
+                }
+                else if (objectHit.TryGetComponent<GuyMovement>(out GuyMovement gM) == false)
+                {
+                    if (!shiftIsPressed)
+                    {
+                        ClearAllSelectedUnits();
+                        selectedUnitIsBadguy = false;
+                        Debug.Log("You hit a resource.");
                     }
                 }
                 else if (!CompareTag(objectHit.tag))
@@ -405,7 +420,7 @@ public class PlayerController : MonoBehaviour
                         }
                         if (!shallSkip)
                         {
-                            if (objectHit.GetComponent<GuyMovement>().isABuilding == false && Input.GetKey(KeyCode.LeftShift))
+                            if (objectHit.GetComponent<GuyMovement>().isABuilding == false && shiftIsPressed)
                             {
                                 SelectUnit(objectHit);
                                 Debug.Log("I am selected with shift.");

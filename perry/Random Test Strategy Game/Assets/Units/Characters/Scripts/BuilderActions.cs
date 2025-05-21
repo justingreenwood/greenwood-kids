@@ -369,12 +369,12 @@ public class BuilderActions : MonoBehaviour
             int random = UnityEngine.Random.Range(0, list.Count);
             Vector3 returnValue = new Vector3(list[random].x, 0f, list[random].y);
 
-            if(type == UnitType.House)
+            if(type == UnitType.House|| type == UnitType.Tower || type == UnitType.WizardTower)
             {
                 returnValue.x -= 2;
                 returnValue.z -= 2;
             }
-
+            Debug.Log("The value is: "+ returnValue);
             return returnValue;
         }
         else
