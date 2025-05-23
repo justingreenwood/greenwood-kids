@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditorInternal;
 using UnityEngine;
 
 public class BuilderActions : MonoBehaviour
@@ -15,6 +16,7 @@ public class BuilderActions : MonoBehaviour
     ComputerController computerController;
     ResourceBank bank;
     BuildingGrid buildGrid;
+    FarmlandActions farmland;
     public GameObject newBuilding;
 
     float actionRange = 5.5f;
@@ -195,14 +197,29 @@ public class BuilderActions : MonoBehaviour
     public void CollectResources(Resource resource)
     {
         guyMovement.StopActivities();
+        if (resource.Type == ResourceType.Food)
+        {
+            FarmlandActions farm = resource.GetComponent<FarmlandActions>();
+            if (farm.HasMaxFarmers())
+            {
+                return;
+            }
+            else
+            {
+                farmland = farm;
+            }
+        }
         StartCoroutine(ProcessCollectResource(resource));
     }
     public IEnumerator ProcessCollectResource(Resource resource)
     {
+        
         if (resource.Type == ResourceType.Food)
         {
             guyMovement.currentAction = UnitActions.Farm;
-            resource.GetComponent<FarmlandActions>().AddFarmer(guyMovement);
+           
+            farmland.AddFarmer(this);
+
         }
         else if (resource.Type == ResourceType.Wood)
         {
@@ -229,7 +246,14 @@ public class BuilderActions : MonoBehaviour
             }
 
         }
-        guyMovement.isCollectingResources = false;
+        if (farmland != null)
+        {
+            StopFarming();
+        }
+        else
+        {
+            guyMovement.isCollectingResources = false;
+        }
     }
     public void SearchForResource(ResourceType rType)
     {
@@ -374,7 +398,7 @@ public class BuilderActions : MonoBehaviour
                 returnValue.x -= 2;
                 returnValue.z -= 2;
             }
-            Debug.Log("The value is: "+ returnValue);
+            //Debug.Log("The value is: "+ returnValue);
             return returnValue;
         }
         else
@@ -387,4 +411,20 @@ public class BuilderActions : MonoBehaviour
     {
         guyMovement.destination = position;
     }
+
+    public void StopActions()
+    {
+        guyMovement.currentAction = UnitActions.Nothing;
+        guyMovement.isCollectingResources = false;
+        StopAllCoroutines();
+    }
+
+    public void StopFarming()
+    {
+        farmland.RemoveMe(this);
+        farmland = null;
+        StopActions();
+    }
+
+
 }

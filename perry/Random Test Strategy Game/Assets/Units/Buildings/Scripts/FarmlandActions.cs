@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FarmlandActions : MonoBehaviour
 {
-    List<GuyMovement> farmers = new List<GuyMovement>();
+    [SerializeField] List<BuilderActions> farmers = new List<BuilderActions>();
     int farmerLimit = 4;
     void Start()
     {
@@ -16,20 +16,32 @@ public class FarmlandActions : MonoBehaviour
         
     }
 
+    public bool HasMaxFarmers()
+    {
+
+        if(farmers.Count == farmerLimit)
+        {
+            Debug.Log("I already have max farmers.");
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void ClearFarmers()
     {
         foreach (var farmer in farmers)
-        {
-            farmer.currentAction = UnitActions.Nothing;
-            farmer.BuilderActions.StopAllCoroutines();
+        {            
+            farmer.StopFarming();
         }
     }
-    public void RemoveMe(GuyMovement farmer)
+    public void RemoveMe(BuilderActions farmer)
     {
-        farmers.Remove(farmer);
-        farmer.BuilderActions.StopAllCoroutines();
+        farmers.Remove(farmer);       
     }
-    public bool AddFarmer(GuyMovement farmer)
+    public bool AddFarmer(BuilderActions farmer)
     {
         if (farmers.Count < farmerLimit)
         {

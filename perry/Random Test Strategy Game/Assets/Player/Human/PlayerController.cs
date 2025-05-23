@@ -190,11 +190,18 @@ public class PlayerController : MonoBehaviour
                 {
                     unitControls.StopAllCoroutines();
                     unitControls.target = null;
-                    if (unitControls.isABuilder && !unitControls.isCurrentlyBuilding)
+                    if (unitControls.isABuilder)
                     {
-                        unitControls.currentAction = UnitActions.Nothing;
-                        unitControls.BuilderActions.StopAllCoroutines();
+                        if (unitControls.isABuilder && unitControls.currentAction == UnitActions.Farm)
+                        {
+                            unitControls.BuilderActions.StopFarming();
+                        }
+                        else if (!unitControls.isCurrentlyBuilding)
+                        {
+                            unitControls.BuilderActions.StopActions();
+                        }
                     }
+                    
                     if (groundLocation.HasValue)
                     {
                         actionDone = true;
