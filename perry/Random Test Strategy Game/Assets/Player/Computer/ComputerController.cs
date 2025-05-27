@@ -111,7 +111,14 @@ public class ComputerController : MonoBehaviour
         {
             StablesActions();
         }
-
+        if (uLib.pegasusStables.Count >= 1)
+        {
+            PegasusStablesActions();
+        }
+        if (uLib.wizardTowers.Count >= 1)
+        {
+            WizardTowerActions();
+        }
         if (currentTask == UnitType.None)
         {
             Debug.Log("We need a task.");
@@ -421,14 +428,11 @@ public class ComputerController : MonoBehaviour
         }
     }
     public void ShouldWeAttack()
-    {
-        
+    {    
         int units = uLib.archers.Count+uLib.menAtArms.Count;
-        //Debug.Log(units);
         if (units >= amountToAttack)
         {
-            Debug.Log("Got Here");
-            Attack();
+            // Attack();
         }
 
     }
@@ -526,7 +530,7 @@ public class ComputerController : MonoBehaviour
                 {
                     if (trainingField.BuildingActions.isBuilt == true && trainingField.currentAction == UnitActions.Nothing)
                     {
-                        if (uLib.menAtArms.Count < 12)
+                        if (uLib.menAtArms.Count < 6)
                         {
                             if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
                             {
@@ -541,7 +545,37 @@ public class ComputerController : MonoBehaviour
                                 break;
                             }
                         }
-                        else if(uLib.archers.Count < 8)
+                        else if(uLib.archers.Count < 4)
+                        {
+                            if (bank.Food >= 50 && bank.Wood >= 20 && bank.UnitLimit > unitsAlive)
+                            {
+                                if (!trainingField.isCurrentlyBuilding && trainingField.BuildingActions.isBuilt)
+                                {
+                                    trainingField.BuildingActions.BuildUnit(trainingField.UnitGameObjects[1], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        else if (uLib.menAtArms.Count < 12)
+                        {
+                            if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
+                            {
+                                if (!trainingField.isCurrentlyBuilding && trainingField.BuildingActions.isBuilt)
+                                {
+                                    trainingField.BuildingActions.BuildUnit(trainingField.UnitGameObjects[0], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        else if (uLib.archers.Count < 16)
                         {
                             if (bank.Food >= 50 && bank.Wood >= 20 && bank.UnitLimit > unitsAlive)
                             {
@@ -604,7 +638,6 @@ public class ComputerController : MonoBehaviour
         }
     }
 
-
     private void LibraryActions()
     {
         GuyMovement library = uLib.libraries[0];
@@ -625,7 +658,7 @@ public class ComputerController : MonoBehaviour
     {
         if (uLib.trainingFields.Count > 0)
         {
-            if (uLib.knights.Count < 6)
+            if (uLib.knights.Count < 12 || uLib.rangedCavalry.Count < 8)
             {
                 foreach (var stables in uLib.stables)
                 {
@@ -633,18 +666,67 @@ public class ComputerController : MonoBehaviour
                     {
                         if (stables.BuildingActions.isBuilt == true && stables.currentAction == UnitActions.Nothing)
                         {
-                            if (bank.Food >= 50 && bank.UnitLimit > unitsAlive)
+                            if(uLib.knights.Count < 6)
                             {
-                                if (!stables.isCurrentlyBuilding && stables.BuildingActions.isBuilt)
+                                if (bank.Food >= 200 && bank.Wood >= 25 && bank.UnitLimit > unitsAlive)
                                 {
-                                    stables.BuildingActions.BuildUnit(stables.UnitGameObjects[0], false);
-                                    unitsAlive++;
+                                    if (!stables.isCurrentlyBuilding && stables.BuildingActions.isBuilt)
+                                    {
+                                        stables.BuildingActions.BuildUnit(stables.UnitGameObjects[2], false);
+                                        unitsAlive++;
+                                    }
+                                }
+                                else
+                                {
+                                    break;
                                 }
                             }
-                            else
+                            else if (uLib.rangedCavalry.Count < 4)
                             {
-                                break;
+                                if (bank.Food >= 100 && bank.Wood >= 20 && bank.UnitLimit > unitsAlive)
+                                {
+                                    if (!stables.isCurrentlyBuilding && stables.BuildingActions.isBuilt)
+                                    {
+                                        stables.BuildingActions.BuildUnit(stables.UnitGameObjects[1], false);
+                                        unitsAlive++;
+                                    }
+                                }
+                                else
+                                {
+                                    break;
+                                }
                             }
+                            else if (uLib.knights.Count < 12)
+                            {
+                                if (bank.Food >= 200 && bank.Wood >= 25 && bank.UnitLimit > unitsAlive)
+                                {
+                                    if (!stables.isCurrentlyBuilding && stables.BuildingActions.isBuilt)
+                                    {
+                                        stables.BuildingActions.BuildUnit(stables.UnitGameObjects[2], false);
+                                        unitsAlive++;
+                                    }
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            else if (uLib.rangedCavalry.Count < 8)
+                            {
+                                if (bank.Food >= 100 && bank.Wood >= 20 && bank.UnitLimit > unitsAlive)
+                                {
+                                    if (!stables.isCurrentlyBuilding && stables.BuildingActions.isBuilt)
+                                    {
+                                        stables.BuildingActions.BuildUnit(stables.UnitGameObjects[1], false);
+                                        unitsAlive++;
+                                    }
+                                }
+                                else
+                                {
+                                    break;
+                                }
+                            }
+                            
                         }
                         else
                         {
@@ -656,7 +738,124 @@ public class ComputerController : MonoBehaviour
             }
         }
     }
+    private void PegasusStablesActions()
+    {
+        if (uLib.trainingFields.Count > 0)
+        {
+            if (uLib.pegasusArchers.Count < 12)
+            {
+                foreach (var stables in uLib.stables)
+                {
+                    if (currentTask != UnitType.PegasusStables)
+                    {
+                        if (stables.BuildingActions.isBuilt == true && stables.currentAction == UnitActions.Nothing)
+                        {
+                            if (bank.Food >= 200 && bank.Wood >= 25 && bank.UnitLimit > unitsAlive)
+                            {
+                                if (!stables.isCurrentlyBuilding && stables.BuildingActions.isBuilt)
+                                {
+                                    stables.BuildingActions.BuildUnit(stables.UnitGameObjects[2], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                            
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                }
 
+            }
+        }
+    }
+    private void WizardTowerActions()
+    {
+        if (uLib.trainingFields.Count > 0)
+        {
+            if (uLib.dragons.Count < 6 || uLib.wizards.Count < 8)
+            {
+                foreach (var towers in uLib.wizardTowers)
+                {
+                    if (towers.BuildingActions.isBuilt == true && towers.currentAction == UnitActions.Nothing)
+                    {
+                        if (uLib.wizards.Count < 4)
+                        {
+                            if (bank.Food >= 40 && bank.Wood >= 15 && bank.Gems >= 150 && bank.UnitLimit > unitsAlive)
+                            {
+                                if (!towers.isCurrentlyBuilding && towers.BuildingActions.isBuilt)
+                                {
+                                    towers.BuildingActions.BuildUnit(towers.UnitGameObjects[0], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        else if (uLib.dragons.Count < 3)
+                        {
+                            if (bank.Food >= 300 && bank.Wood >= 50 && bank.Gems >= 250 && bank.UnitLimit > unitsAlive)
+                            {
+                                if (!towers.isCurrentlyBuilding && towers.BuildingActions.isBuilt)
+                                {
+                                    towers.BuildingActions.BuildUnit(towers.UnitGameObjects[1], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        else if (uLib.wizards.Count < 8)
+                        {
+                            if (bank.Food >= 40 && bank.Wood >= 15 && bank.Gems >= 150 && bank.UnitLimit > unitsAlive)
+                            {
+                                if (!towers.isCurrentlyBuilding && towers.BuildingActions.isBuilt)
+                                {
+                                    towers.BuildingActions.BuildUnit(towers.UnitGameObjects[0], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+                        else if (uLib.dragons.Count < 6)
+                        {
+                            if (bank.Food >= 300 && bank.Wood >= 50 && bank.Gems >= 250 && bank.UnitLimit > unitsAlive)
+                            {
+                                if (!towers.isCurrentlyBuilding && towers.BuildingActions.isBuilt)
+                                {
+                                    towers.BuildingActions.BuildUnit(towers.UnitGameObjects[1], false);
+                                    unitsAlive++;
+                                }
+                            }
+                            else
+                            {
+                                break;
+                            }
+                        }
+
+                    }
+                    else
+                    {
+                        break;
+                    }
+
+                }
+
+            }
+        }
+    }
 
     bool Build(GuyMovement peasant, UnitType type)
     {

@@ -326,34 +326,34 @@ public class GuyMovement : MonoBehaviour
         GuyMovement guyMovement = newGameObject.GetComponent<GuyMovement>();
         guyMovement.coloredPart.material = buildingMaterial;
 
-        //if (techInfo != null)
-        //{
-        //    int healthies = 0;
-        //    int armories = 0;
-        //    int weaponies = 0;
-        //    foreach (ITech t in techInfo.Technologies)
-        //    {
-        //        if(t.techType == TechType.Health)
-        //        {
-        //            healthies++;
-        //        }
-        //        else if (t.techType == TechType.Weapon)
-        //        {
-        //            weaponies++;
-        //        }
-        //        else if (t.techType == TechType.Armor)
-        //        {
-        //            armories++;
-        //        }
-        //        else
-        //        {
-        //            Debug.Log("There is a problem with Technology.");
-        //        }
-        //    }
-        //    guyMovement.bonusAttackDamage += weaponies * 2;
-        //    guyMovement.armor += armories * 3;
-        //    guyMovement.maxHealth += healthies * 5;
-        //}
+        if (techInfo != null)
+        {
+            int healthies = 0;
+            int armories = 0;
+            int weaponies = 0;
+            foreach (ITech t in techInfo.Technologies)
+            {
+                if (t.techType == guyMovement.healthType)
+                {
+                    healthies++;
+                }
+                else if (t.techType == guyMovement.weaponType)
+                {
+                    weaponies++;
+                }
+                else if (t.techType == guyMovement.armorType)
+                {
+                    armories++;
+                }
+                else
+                {
+                    Debug.Log("There is a problem with Technology.");
+                }
+            }
+            guyMovement.bonusAttackDamage += weaponies * 2;
+            guyMovement.armor += armories * 3;
+            guyMovement.maxHealth += healthies * guyMovement.maxHealth * 0.2f;
+        }
 
 
         guyMovement.buildingMaterial = material;
