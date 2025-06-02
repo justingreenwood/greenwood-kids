@@ -161,6 +161,10 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: attackSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: coloredPart
       value: 
       objectReference: {fileID: 5116800370797947121}
@@ -331,3 +335,4 @@ MonoBehaviour:
   basicBuilding: {fileID: 0}
   buildSpeed: 0.05
   miningSpeed: 4.5
+  newBuilding: {fileID: 0}

@@ -197,7 +197,7 @@ public class Information : MonoBehaviour
             else
             {
                 technologies.Add(MagicDamageI);
-                viewableBlacksmithTech.Add(MagicDamageII);
+                viewableLibraryTech.Add(MagicDamageII);
             }
 
             foreach (var guy in uLib.MagicUnits())
@@ -207,20 +207,22 @@ public class Information : MonoBehaviour
         }
         else if (t == TechType.MountHP)
         {
+            var healthies = 1;
             if (technologies.Contains(MountHPI))
             {
                 technologies.Add(MountHPII);
+                healthies++;
             }
             else
             {
                 technologies.Add(MountHPI);
-                viewableBlacksmithTech.Add(MountHPII);
+                viewableLibraryTech.Add(MountHPII);
             }
             foreach (var guy in uLib.MountedUnits())
             {
-                guy.maxHealth += 10;
-                guy.currentHealth += 10;
-                guy.bonusHealth += 10;
+                var bonusHealth = guy.maxHealth * healthies * 0.2f;
+                guy.maxHealth += bonusHealth;
+                guy.currentHealth += bonusHealth;
             }
         }
         foreach(ITech tec in technologies) 

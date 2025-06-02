@@ -19,7 +19,6 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public float maxHealth = 50;
 
     [SerializeField] public float currentHealth = 0;
-    public float bonusHealth = 0;
     [SerializeField] int healthIncreaseIncrement = 2;
     public int healthIncInc { get { return healthIncreaseIncrement; } }
     [SerializeField] public int armor = 0;
@@ -341,18 +340,28 @@ public class GuyMovement : MonoBehaviour
                 {
                     weaponies++;
                 }
+                else if (t.techType == guyMovement.rangeType)
+                {
+                    guyMovement.attackRange += 3;
+                }               
                 else if (t.techType == guyMovement.armorType)
                 {
                     armories++;
                 }
-                else
+                else if (guyMovement.unitType == UnitType.Knight)
                 {
-                    Debug.Log("There is a problem with Technology.");
+                    if (t.techType == TechType.Armor)
+                    {
+                        armories++;
+                    }
                 }
             }
+
             guyMovement.bonusAttackDamage += weaponies * 2;
             guyMovement.armor += armories * 3;
-            guyMovement.maxHealth += healthies * guyMovement.maxHealth * 0.2f;
+            var healthAddition = healthies * guyMovement.maxHealth * 0.2f;
+            guyMovement.maxHealth += healthAddition;
+            guyMovement.currentHealth+= healthAddition;
         }
 
 

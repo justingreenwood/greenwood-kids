@@ -138,10 +138,20 @@ public class Building : MonoBehaviour
         bool willBuild = bank.HasEnoughResource(chosenGuyM.UnitFoodCost, chosenGuyM.UnitWoodCost, chosenGuyM.UnitGemCost);
         if (!willBuild)
         {
-            Debug.Log("Not enough Resources");
+            Debug.Log("Not enough Resources!");
 
             return false;
         }
+        if(computerController == null)
+        {
+            if (bank.UnitLimit <= guyMovement.playerController.unitLibrary.Units().Count)
+            {
+                Debug.Log("Need more houses!");
+
+                return false;
+            }
+        }
+        
         guyMovement.BorrowResources(chosenGuyM.UnitFoodCost,chosenGuyM.UnitWoodCost, chosenGuyM.UnitGemCost);
         if (CompareTag(player.tag))
         {

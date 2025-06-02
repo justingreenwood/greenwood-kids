@@ -3971,15 +3971,15 @@ PrefabInstance:
       objectReference: {fileID: 552755410}
     - target: {fileID: 8132214706231762174, guid: af09cf3b32f75e8499d3065b9a6d072d, type: 3}
       propertyPath: food
-      value: 300
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 8132214706231762174, guid: af09cf3b32f75e8499d3065b9a6d072d, type: 3}
       propertyPath: gems
-      value: 300
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 8132214706231762174, guid: af09cf3b32f75e8499d3065b9a6d072d, type: 3}
       propertyPath: wood
-      value: 300
+      value: 3000
       objectReference: {fileID: 0}
     - target: {fileID: 8132214706231762175, guid: af09cf3b32f75e8499d3065b9a6d072d, type: 3}
       propertyPath: m_RootOrder
