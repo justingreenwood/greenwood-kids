@@ -335,4 +335,13 @@ MonoBehaviour:
   basicBuilding: {fileID: 0}
   buildSpeed: 0.05
   miningSpeed: 4.5
+  peasantsBT: 10
+  menAtArmsBT: 20
+  archersBT: 20
+  knightsBT: 30
+  lightCavalryBT: 20
+  wizardsBT: 3
+  rangedCavalryBT: 0
+  pegasusArchersBT: 0
+  dragonsBT: 0
   newBuilding: {fileID: 0}

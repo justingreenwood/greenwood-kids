@@ -322,6 +322,18 @@ PrefabInstance:
       propertyPath: buildingPreview
       value: 
       objectReference: {fileID: 1965179720656117942, guid: 308f2a68eca928644baa36f8d08e9be4, type: 3}
+    - target: {fileID: 3592590011972228834, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: unitBT.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592590011972228834, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: unitBT.Array.data[0]
+      value: 23
+      objectReference: {fileID: 0}
+    - target: {fileID: 3592590011972228834, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: unitBT.Array.data[1]
+      value: 30
+      objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834240, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: m_Size.x
       value: 3.8
@@ -380,7 +392,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: unitSize
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: unitType

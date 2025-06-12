@@ -19,7 +19,8 @@ public class BuilderActions : MonoBehaviour
     FarmlandActions farmland;
     public GameObject newBuilding;
 
-    float actionRange = 5.5f;
+    float buildRange = 5.5f;
+    float harvestRange = 3f;
     float moveDelay;
     
     int gridSize = 4;
@@ -123,7 +124,7 @@ public class BuilderActions : MonoBehaviour
             }
             yield return new WaitForSeconds(buildSpeed);
             float distance = Vector3.Distance(newBuilding.transform.position, transform.position) - (buildingActions.width / 2);
-            if (distance <= actionRange)
+            if (distance <= buildRange)
             {
                 buildingGM.currentHealth += buildingGM.healthIncInc;
                 necessaryBuildingHealth += buildingGM.healthIncInc;
@@ -148,14 +149,21 @@ public class BuilderActions : MonoBehaviour
         if (buildingActions.raisesUnitLimit)
         {
             bank.RaiseUnitLimit();
-        }        
-
+        }
+        guyMovement.currentAction = UnitActions.Nothing;
+        buildingActions.hasBuilder = false;
         if (computerController != null)
         {
             computerController.needToCheck = true;
         }
-        guyMovement.currentAction = UnitActions.Nothing;
-        buildingActions.hasBuilder = false;
+        else
+        {
+            if (buildingGM.unitType == UnitType.FarmLand)
+            {
+                CollectResources(buildingGM.GetComponent<Resource>());
+            }
+        }
+
     }
     public void Repair(GuyMovement target)
     {
@@ -173,7 +181,7 @@ public class BuilderActions : MonoBehaviour
         {
             yield return new WaitForSeconds(0.5f);
             float distance = Vector3.Distance(target.gameObject.transform.position, transform.position);
-            if (distance <= actionRange)
+            if (distance <= buildRange)
             {
                 started = true;
                 Debug.Log("repairing");
@@ -233,9 +241,9 @@ public class BuilderActions : MonoBehaviour
         while (resource.Resources > 0)
         {
             float distance = Vector3.Distance(resource.transform.position, transform.position);
-            if (distance > actionRange)
+            if (distance > harvestRange)
             {
-                Vector3 destination = Vector3.MoveTowards(transform.position, resource.transform.position, distance - actionRange + 1);
+                Vector3 destination = Vector3.MoveTowards(transform.position, resource.transform.position, distance - harvestRange + 1);
                 guyMovement.Move(destination);
                 yield return new WaitForSeconds(moveDelay);
             }
@@ -264,11 +272,22 @@ public class BuilderActions : MonoBehaviour
         {
             
             if (c.TryGetComponent(out Resource resource))
-            {
+            {                
                 if (resource.Type == rType)
                 {
-                    
-                    resources.Add(resource);
+                    if (rType == ResourceType.Food)
+                    {
+                        FarmlandActions farmland = resource.GetComponent<FarmlandActions>();
+                        if (farmland.farmerCount < 4)
+                        {
+                            resources.Add(resource);
+                        }
+                    }
+                    else
+                    {
+                        resources.Add(resource);
+                    }
+
                 }
             }
         }

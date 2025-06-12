@@ -96,6 +96,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
+      propertyPath: unitSize
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: armorType
       value: 8
       objectReference: {fileID: 0}
@@ -244,13 +248,13 @@ MonoBehaviour:
   buildingUpgrade: {fileID: 0}
   buildingUpgradeType: 20
   buildingTimeLeft: 0
-  timeTakenToBuild: 20
   width: 8
   isBuilt: 0
   raisesUnitLimit: 0
   unitQueue: []
   isUpgradeable: 0
   hasBuilder: 0
+  builder: {fileID: 0}
   buildTimeVisTMP: {fileID: 0}
   buildGrid: {fileID: 0}
   vTwoPosition: {x: 0, y: 0}

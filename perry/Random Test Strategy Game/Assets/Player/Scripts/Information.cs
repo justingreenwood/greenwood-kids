@@ -6,6 +6,17 @@ using UnityEngine;
 
 public class Information : MonoBehaviour
 {
+
+    public int peasantsBT = 10;
+    public int menAtArmsBT = 14;
+    public int archersBT = 15;
+    public int knightsBT = 25;
+    public int lightCavalryBT = 16;
+    public int wizardsBT = 23;
+    public int rangedCavalryBT = 18;
+    public int pegasusArchersBT = 20;
+    public int dragonsBT = 30;
+
     UnitLibrary uLib;
     List<ITech> technologies = new List<ITech>();
     public List<ITech> Technologies { get { return technologies; } }

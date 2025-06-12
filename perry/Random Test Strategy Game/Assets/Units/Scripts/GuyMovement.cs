@@ -74,6 +74,7 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] int unitFoodCost = 0;
     [SerializeField] public int unitSize = 1;
 
+    [SerializeField] public int timeTakenToBuild = 20;
     public int UnitWoodCost { get { return unitWoodCost; } }
     public int UnitFoodCost { get { return unitFoodCost; } }
     public int UnitGemCost { get { return unitGemCost; } }
@@ -257,7 +258,7 @@ public class GuyMovement : MonoBehaviour
         while (enemy.currentHealth > 0)
         {
             float distance = Vector3.Distance(enemy.transform.position, transform.position);
-
+            distance = distance - enemy.unitSize / 2;
             if (distance > attackRange)
             {
 
@@ -361,7 +362,10 @@ public class GuyMovement : MonoBehaviour
             guyMovement.armor += armories * 3;
             var healthAddition = healthies * guyMovement.maxHealth * 0.2f;
             guyMovement.maxHealth += healthAddition;
-            guyMovement.currentHealth+= healthAddition;
+            if (!guyMovement.isABuilding)
+            {
+                guyMovement.currentHealth += healthAddition;
+            }
         }
 
 

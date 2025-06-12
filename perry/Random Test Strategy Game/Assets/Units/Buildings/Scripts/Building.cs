@@ -13,7 +13,6 @@ public class Building : MonoBehaviour
     [SerializeField] public GameObject buildingUpgrade;
     [SerializeField] public UnitType buildingUpgradeType;
     [SerializeField] float buildingTimeLeft = 0;//needs to be viewable on screen
-    [SerializeField] float timeTakenToBuild = 20f;
     [SerializeField] public int width = 8;
 
     [SerializeField] public bool isBuilt = false;
@@ -175,12 +174,13 @@ public class Building : MonoBehaviour
         }
         isCurrentlyBuilding = true;
         float x = 0;
-        float buildSpeed = timeTakenToBuild / 20;
-        while (x <= timeTakenToBuild)
+        var timeTakenToBuild = chosenUnit.GetComponent<GuyMovement>().timeTakenToBuild;
+        float buildTimeIncrement = timeTakenToBuild / 20;
+        while (x <= 20)
         {
 
-            yield return new WaitForSeconds(buildSpeed);
-            x += buildSpeed;
+            yield return new WaitForSeconds(buildTimeIncrement);
+            x += 1;
             buildingTimeLeft = timeTakenToBuild - x;
             if (computerController == null)
                 buildTimeVisTMP.text += "N";

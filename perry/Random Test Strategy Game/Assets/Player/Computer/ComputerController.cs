@@ -320,6 +320,7 @@ public class ComputerController : MonoBehaviour
             
             if (peasant.currentAction != UnitActions.Build)
             {
+                peasant.StopActivities();
                 if (requiresOneMin)
                 {
                     if (amountCollectingWood == 0)

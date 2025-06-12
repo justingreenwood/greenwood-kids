@@ -6,6 +6,7 @@ public class FarmlandActions : MonoBehaviour
 {
     [SerializeField] List<BuilderActions> farmers = new List<BuilderActions>();
     int farmerLimit = 4;
+    public int farmerCount { get=> farmers.Count;}
     void Start()
     {
 
@@ -13,7 +14,6 @@ public class FarmlandActions : MonoBehaviour
 
     void Update()
     {
-        
     }
 
     public bool HasMaxFarmers()
@@ -33,8 +33,10 @@ public class FarmlandActions : MonoBehaviour
     public void ClearFarmers()
     {
         foreach (var farmer in farmers)
-        {            
+        {
+
             farmer.StopFarming();
+            
         }
     }
     public void RemoveMe(BuilderActions farmer)
