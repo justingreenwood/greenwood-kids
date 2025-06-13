@@ -53,6 +53,7 @@ public class Building : MonoBehaviour
         {
             isUpgradeable = true;
         }
+        
     }
 
     private void Start()
@@ -96,6 +97,7 @@ public class Building : MonoBehaviour
 
         buildTimeVisTMP.text = "";
         buildTimeVisGO.SetActive(false);
+        
     }
 
     private void Update()

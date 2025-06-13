@@ -162,6 +162,11 @@ public class BuilderActions : MonoBehaviour
             {
                 CollectResources(buildingGM.GetComponent<Resource>());
             }
+            if (buildingGM.unitType == UnitType.BlackSmith || buildingGM.unitType == UnitType.Library)
+            {
+                playerController.TechInfo.EditViewableTech();
+                playerController.EditDisplay();
+            }
         }
 
     }

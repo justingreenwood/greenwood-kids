@@ -629,7 +629,7 @@ GameObject:
   m_Component:
   - component: {fileID: 489360958}
   m_Layer: 0
-  m_Name: Fix problems
+  m_Name: Stuff
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

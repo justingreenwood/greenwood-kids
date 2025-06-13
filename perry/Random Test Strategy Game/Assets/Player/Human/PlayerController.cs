@@ -600,7 +600,7 @@ public class PlayerController : MonoBehaviour
                                 }
                                 else
                                 {
-                                    tMPro.text = "X";
+                                   tMPro.text = "X";
 
                                 }
                             }
