@@ -32,6 +32,7 @@ public class GuyMovement : MonoBehaviour
 
     [SerializeField] public float moveDelay = 0.5f;
     [SerializeField] float sightRange = 20f;
+    public float SightRange { get { return sightRange; } }
     [SerializeField] public UnitType unitType;
 
     [SerializeField] public TechType weaponType;

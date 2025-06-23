@@ -21,6 +21,7 @@ public class ComputerController : MonoBehaviour
     public UnitLibrary uLib;
     public Information techInfo;
 
+    int timeBeforeAttack = 100000;
     bool canSpendWood = true;
 
     int farmersNeeded = 0;
@@ -71,11 +72,24 @@ public class ComputerController : MonoBehaviour
     void Update()
     {
 
-        if (mayNeedToAttack)
+        if(timeBeforeAttack <=0)
         {
-            ShouldWeAttack();
-            mayNeedToAttack = false;
+            Attack();
+            timeBeforeAttack = 10000;
+            Debug.Log("Attack TIme Oh Yeah?");
         }
+        else
+        {
+            timeBeforeAttack--;
+        }
+
+
+
+        //if (mayNeedToAttack)
+        //{
+        //    ShouldWeAttack();
+        //    mayNeedToAttack = false;
+        //}
 
         if(haveAnUnfinishedBuilding)
         {
@@ -876,24 +890,18 @@ public class ComputerController : MonoBehaviour
 
     private void Attack()
     {
+        var unitList = uLib.UnitsMinusPeasants();
         isAttacking = true;
         int i = 0;
-        if (uLib.menAtArms.Count > 0)
+        if (unitList.Count > 0)
         {
-            foreach (var unit in uLib.menAtArms)
+            foreach (var unit in unitList)
             {
                 i++;
                 unit.Move(targetCoordinate);
             }
         }
-        if (uLib.archers.Count > 0)
-        {
-            foreach (var unit in uLib.archers)
-            {
-                i++;
-                unit.Move(targetCoordinate);
-            }
-        }
+
 
     }
     public void GetJob(GuyMovement peasant)

@@ -230,7 +230,20 @@ public class UnitLibrary : MonoBehaviour
         if (requirements != "")return requirements;else return null;
 
     }
-
+    public List<GuyMovement> UnitsMinusPeasants()
+    {
+        List<GuyMovement> list = new List<GuyMovement>();
+        list.AddRange(archers);
+        list.AddRange(menAtArms);
+        list.AddRange(wizards);
+        list.AddRange(knights);
+        list.AddRange(lightCavalry);
+        list.AddRange(rangedCavalry);
+        list.AddRange(pegasusArchers);
+        list.AddRange(pegasusKnights);
+        list.AddRange(dragons);
+        return list;
+    }
     public List<GuyMovement> Units()
     {
         List<GuyMovement> list = new List<GuyMovement>();
