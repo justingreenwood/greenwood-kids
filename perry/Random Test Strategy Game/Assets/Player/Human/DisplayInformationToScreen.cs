@@ -19,7 +19,7 @@ public class DisplayInformationToScreen : MonoBehaviour
     public void DisplayUnitInfo(GuyMovement unit)
     {
         unitImage.sprite = unit.unitImage;
-        nameDisplay.text = unit.name;
+        nameDisplay.text = unit.unitType.ToString();
         healthDisplay.text = $"Health: {unit.currentHealth}/{unit.maxHealth}";
         armorDisplay.text = $"Armor: {unit.armor+ unit.bonusArmor}";
         damageDisplay.text = $"Damage: {unit.attackDamage+ unit.bonusAttackDamage}";

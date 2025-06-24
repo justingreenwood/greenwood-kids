@@ -109,7 +109,7 @@ public class Archer : IUnitTypeInformation
 }
 public class Peasant : IUnitTypeInformation
 {
-    public UnitType UnitType => UnitType.Builder;
+    public UnitType UnitType => UnitType.Peasant;
 
     public int woodCost => 0;
 

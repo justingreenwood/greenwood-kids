@@ -5,7 +5,7 @@ using UnityEngine;
 public enum UnitType
 {
     Archer,
-    Builder,
+    Peasant,
     Dragon,
     Knight,
     LightCavalry,

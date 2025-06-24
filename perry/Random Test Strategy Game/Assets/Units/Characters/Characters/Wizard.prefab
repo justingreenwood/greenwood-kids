@@ -454,7 +454,7 @@ PrefabInstance:
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: unitImage
       value: 
-      objectReference: {fileID: 21300000, guid: 8a711750e28ea424fa806bc1ad8704ef, type: 3}
+      objectReference: {fileID: 21300000, guid: b03678e7cdd0da540a69b2a1702b973d, type: 3}
     - target: {fileID: 489722392510816686, guid: fe4bdbab5de4be941abfeaa06760c0a8, type: 3}
       propertyPath: sightRange
       value: 50

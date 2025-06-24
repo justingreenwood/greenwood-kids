@@ -65,7 +65,7 @@ public class UnitLibrary : MonoBehaviour
             case UnitType.BlackSmith:
                 blackSmiths.Add(unitAction);
                 break;
-            case UnitType.Builder:
+            case UnitType.Peasant:
                 peasants.Add(unitAction);
                 break;
             case UnitType.Castle:
@@ -139,7 +139,7 @@ public class UnitLibrary : MonoBehaviour
             case UnitType.BlackSmith:
                 list = blackSmiths;
                 break;
-            case UnitType.Builder:
+            case UnitType.Peasant:
                 list = list = peasants;
                 break;
             case UnitType.Castle:

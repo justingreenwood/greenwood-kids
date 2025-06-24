@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5734814355041066619}
   - component: {fileID: 1402735989261015636}
   - component: {fileID: 4602029211793169385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Block
   m_TagString: Fog
   m_Icon: {fileID: 0}
