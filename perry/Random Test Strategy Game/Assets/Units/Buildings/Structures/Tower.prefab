@@ -339,6 +339,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
+      propertyPath: unitButtonImage
+      value: 
+      objectReference: {fileID: 21300000, guid: 29ae4d182bfaedc4db3a9d266f82fbdd, type: 3}
+    - target: {fileID: 5299942570169834244, guid: 201fbf5cbb8c66f41b6904ef655a226d, type: 3}
       propertyPath: targetsNearestEnemy
       value: 1
       objectReference: {fileID: 0}

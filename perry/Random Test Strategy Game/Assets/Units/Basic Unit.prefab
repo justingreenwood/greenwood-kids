@@ -91,12 +91,10 @@ MonoBehaviour:
   targetsNearestEnemy: 0
   canAttackFlying: 0
   isFlying: 0
-  isABuilding: 0
-  isABuilder: 0
-  isSelected: 0
-  isAttacking: 0
-  unitImage: {fileID: 21300000, guid: 9ce84ff0fdeb13d4a83f077d075dd9a5, type: 3}
   canProduceUnits: 0
+  isABuilder: 0
+  unitImage: {fileID: 21300000, guid: 9ce84ff0fdeb13d4a83f077d075dd9a5, type: 3}
+  unitButtonImage: {fileID: 21300000, guid: 9ce84ff0fdeb13d4a83f077d075dd9a5, type: 3}
   buildingMaterial: {fileID: 0}
   coloredPart: {fileID: 0}
   unitTypes: 
@@ -114,6 +112,9 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  isSelected: 0
+  isAttacking: 0
+  isABuilding: 0
   unitWoodCost: 0
   unitGemCost: 0
   unitFoodCost: 50

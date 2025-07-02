@@ -8,6 +8,7 @@ public class DisplayInformationToScreen : MonoBehaviour
 {
     [SerializeField] Canvas SUCanvas;
     [SerializeField] UnityEngine.UI.Image unitImage;
+
     [SerializeField] TextMeshProUGUI nameDisplay;
     [SerializeField] TextMeshProUGUI healthDisplay;
     [SerializeField] TextMeshProUGUI armorDisplay;

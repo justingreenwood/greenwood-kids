@@ -20,8 +20,11 @@ public class PlayerController : MonoBehaviour
     Camera cam;
     NavMeshAgent agent;
     public LayerMask groundLayerMask;
+    public LayerMask fogLayerMask;
+    public LayerMask UILayerMask;
     public LayerMask unitLayerMask;
     public LayerMask resourceMask;
+
 
     bool buildModeOn = false;
     bool buildButtonPressed = false;
@@ -94,20 +97,32 @@ public class PlayerController : MonoBehaviour
         if (leftButtonPressed || rightButtonPressed)
         {
             Vector3? groundLocation = null;
+            bool WasUIHit = false;
             GameObject objectHit = null;
-            RaycastHit unitHit, groundHit, resourceHit;
+            RaycastHit unitHit, groundHit, resourceHit, fogHit, UIHit;
 
             Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(ray, out unitHit, Mathf.Infinity, unitLayerMask))
+            if (Physics.Raycast(ray, out UIHit, Mathf.Infinity, UILayerMask))
+            {
+                WasUIHit = true;
+            }
+            else if (Physics.Raycast(ray, out fogHit, Mathf.Infinity, fogLayerMask))
+            {
+                objectHit = fogHit.collider.gameObject;
+                if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, groundLayerMask))
+                    groundLocation = groundHit.point;
+            }
+            else if (Physics.Raycast(ray, out unitHit, Mathf.Infinity, unitLayerMask))
                 objectHit = unitHit.collider.gameObject;
-            else if(Physics.Raycast(ray, out resourceHit, Mathf.Infinity, resourceMask))
+            else if (Physics.Raycast(ray, out resourceHit, Mathf.Infinity, resourceMask))
                 objectHit = resourceHit.collider.gameObject;
             else if (Physics.Raycast(ray, out groundHit, Mathf.Infinity, groundLayerMask))
                 groundLocation = groundHit.point;
 
+
             if (leftButtonPressed)
             {
-                UnitSelection(groundLocation, objectHit);
+                UnitSelection(groundLocation, objectHit, WasUIHit);
             }
             else if (rightButtonPressed && selectedUnits.Count > 0)
             {
@@ -365,7 +380,7 @@ public class PlayerController : MonoBehaviour
 
     }
    
-    void UnitSelection(Vector3? groundLocation, GameObject objectHit)
+    void UnitSelection(Vector3? groundLocation, GameObject objectHit, bool UIHit)
     {
         bool shiftIsPressed = false;
         if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
@@ -383,6 +398,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (objectHit == null || groundLocation.HasValue)
                 {
+                    Debug.Log("You Suck");
                     if (!shiftIsPressed)
                     {
                         ClearAllSelectedUnits();
@@ -405,7 +421,7 @@ public class PlayerController : MonoBehaviour
                     selectedUnitIsBadguy = true;
                     SelectUnit(objectHit);
                 }
-                else 
+                else
                 {
                     if (selectedUnitIsBadguy)
                     {
@@ -446,7 +462,9 @@ public class PlayerController : MonoBehaviour
                         SelectUnit(objectHit);
                     }
                 }
-                
+
+
+
             }
         }
         else

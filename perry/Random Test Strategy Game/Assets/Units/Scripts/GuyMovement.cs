@@ -46,13 +46,13 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public bool targetsNearestEnemy = false;
     [SerializeField] public bool canAttackFlying = false;
     [SerializeField] public bool isFlying = false;
-    public bool isABuilding = false;
-    [SerializeField] public bool isABuilder = false;
-    public bool isSelected = false;
-    public bool isAttacking = false;
-    [SerializeField] public Sprite unitImage;
-
     [SerializeField] public bool canProduceUnits = true;
+    [SerializeField] public bool isABuilder = false;
+    [SerializeField] public Sprite unitImage;
+    [SerializeField] public Sprite unitButtonImage;
+
+
+    
 
     [SerializeField] public Material buildingMaterial;
     [SerializeField] public Renderer coloredPart;
@@ -65,7 +65,9 @@ public class GuyMovement : MonoBehaviour
     [SerializeField] public AudioClip[] IncapableAudio;
     [SerializeField] public AudioClip[] ActionAudio;
 
-   
+    public bool isSelected = false;
+    public bool isAttacking = false;
+    public bool isABuilding = false;
     public List<GameObject> UnitGameObjects { get { return unitGameObjects; } }
     public List<UnitType> UnitTypes { get { return unitTypes; } }
     

@@ -9,7 +9,6 @@ public interface ITech
     public int woodCost { get; }
     public int gemCost { get; }
     public int foodCost { get; }
-
     public List<UnitType> RequiredUnitType { get;}
     public List<ITech> RequiredTechnologies { get;}
 
