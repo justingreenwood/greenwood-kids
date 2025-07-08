@@ -26,6 +26,14 @@ public class DisplayInformationToScreen : MonoBehaviour
         damageDisplay.text = $"Damage: {unit.attackDamage+ unit.bonusAttackDamage}";
         SUCanvas.enabled = true;
     }
+    public void DisplayResourceInfo(Resource resource)
+    {
+        ResetDisplay();
+        unitImage.sprite = resource.image;
+        nameDisplay.text = resource.ResourceType.ToString();
+        healthDisplay.text = $"{resource.AmountOfResource}";
+        SUCanvas.enabled = true;
+    }
     public void EditUnitInfo(float health, float maxHealth)
     {
         healthDisplay.text = $"Health: {health}/{maxHealth}";
@@ -38,6 +46,7 @@ public class DisplayInformationToScreen : MonoBehaviour
         nameDisplay.text = null;
         healthDisplay.text = null;
         armorDisplay.text = null;
+        damageDisplay.text = null;
         SUCanvas.enabled = false;
         foreach(var button in buildQueueButtons)
         {

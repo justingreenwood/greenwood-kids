@@ -243,7 +243,7 @@ public class BuilderActions : MonoBehaviour
             guyMovement.currentAction = UnitActions.Mine;
         }
         guyMovement.isCollectingResources = true;
-        while (resource.Resources > 0)
+        while (resource.AmountOfResource > 0)
         {
             float distance = Vector3.Distance(resource.transform.position, transform.position);
             if (distance > harvestRange)
@@ -256,6 +256,13 @@ public class BuilderActions : MonoBehaviour
             {
                 yield return new WaitForSeconds(miningSpeed);
                 bank.AddResource(resource.Type, resource.CollectResource(8));
+                if(computerController == null)
+                {
+                    if (playerController.selectedResource != null)
+                    {
+                        playerController.EditDisplay();
+                    }
+                }
             }
 
         }

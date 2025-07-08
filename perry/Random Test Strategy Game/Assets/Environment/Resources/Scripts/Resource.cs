@@ -6,12 +6,17 @@ using UnityEngine;
 public class Resource : MonoBehaviour
 {
 
-    [SerializeField] int resources = 100;
-    public int Resources {  get { return resources; } }
+    [SerializeField] int amountOfResource = 100;
+    public int AmountOfResource {  get { return amountOfResource; } }    
     [SerializeField] ResourceType resourceType;
+    public ResourceType ResourceType { get { return resourceType; } }
+    [SerializeField] public Sprite image;
     public ResourceType Type { get {  return resourceType; } }
+    public bool isSelected = false;
     BuildingGrid buildingGrid;
     Vector2Int vTwoPosition;
+
+
     private void Start()
     {
         buildingGrid = FindObjectOfType<BuildingGrid>();
@@ -22,24 +27,30 @@ public class Resource : MonoBehaviour
     private void Update()
     {
         
-        if (resources <= 0)
+        if (amountOfResource <= 0)
         {
             buildingGrid.gridSqrsDict[vTwoPosition] = false;
+            if (isSelected)
+            {
+                PlayerController PC = FindObjectOfType<PlayerController>();
+                PC.selectedResource = null;
+                PC.EditDisplay();
+            }
             Destroy(gameObject);
         }
     }
 
     public int CollectResource(int amount)
     {
-        if(resources>=amount)
+        if(amountOfResource>=amount)
         {
-            resources -= amount;
+            amountOfResource -= amount;
             return amount;
         }
         else 
         {
-            int newAmount = resources;
-            resources = 0;
+            int newAmount = amountOfResource;
+            amountOfResource = 0;
             return newAmount;           
         }
 

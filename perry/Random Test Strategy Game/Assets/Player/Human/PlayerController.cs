@@ -55,6 +55,7 @@ public class PlayerController : MonoBehaviour
     AudioSource audioSource;
     public UnitLibrary unitLibrary;
     Information techInfo;
+    public Resource selectedResource = null;
     public Information TechInfo { get { return techInfo; } }
 
     bool selectedUnitIsBadguy = false;
@@ -382,6 +383,7 @@ public class PlayerController : MonoBehaviour
    
     void UnitSelection(Vector3? groundLocation, GameObject objectHit, bool UIHit)
     {
+        
         bool shiftIsPressed = false;
         if(Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift))
         {
@@ -398,31 +400,44 @@ public class PlayerController : MonoBehaviour
             {
                 if (objectHit == null || groundLocation.HasValue)
                 {
-                    Debug.Log("You Suck");
                     if (!shiftIsPressed)
                     {
                         ClearAllSelectedUnits();
                         selectedUnitIsBadguy = false;
+                        DeselectResource();
                         Debug.Log("No more selected.");
                     }
                 }
                 else if (objectHit.TryGetComponent<GuyMovement>(out GuyMovement gM) == false)
                 {
+                    DeselectResource();
                     if (!shiftIsPressed)
                     {
                         ClearAllSelectedUnits();
                         selectedUnitIsBadguy = false;
-                        Debug.Log("You hit a resource.");
+                        if (objectHit.TryGetComponent<Resource>(out Resource resource))
+                        {
+                            Debug.Log("You hit a resource.");
+                            selectedResource = resource;
+                            resource.isSelected = true;
+                        }
+                        else
+                        {
+                        }
+                        
                     }
                 }
                 else if (!CompareTag(objectHit.tag))
                 {
+                    DeselectResource();
                     ClearAllSelectedUnits();
                     selectedUnitIsBadguy = true;
                     SelectUnit(objectHit);
                 }
                 else
                 {
+                    
+                    DeselectResource();
                     if (selectedUnitIsBadguy)
                     {
                         ClearAllSelectedUnits();
@@ -461,6 +476,7 @@ public class PlayerController : MonoBehaviour
                         ClearAllSelectedUnits();
                         SelectUnit(objectHit);
                     }
+
                 }
 
 
@@ -475,6 +491,15 @@ public class PlayerController : MonoBehaviour
         Debug.Log(selectedUnits.Count);
         EditDisplay();
 
+    }
+
+    private void DeselectResource()
+    {
+        if (selectedResource != null)
+        {
+            selectedResource.isSelected = false;
+            selectedResource = null;
+        }
     }
 
     public void EditDisplay()
@@ -496,7 +521,7 @@ public class PlayerController : MonoBehaviour
                 asdf.GetComponentInChildren<TextMeshProUGUI>().text = "X";
             }
 
-        }
+        }       
         else
         {
             //This is for the UI Build Buttons changing
@@ -738,6 +763,10 @@ public class PlayerController : MonoBehaviour
             GuyMovement unitAction = selectedUnits[0].GetComponent<GuyMovement>();
             displayInfo.DisplayUnitInfo(unitAction);
         }
+        else if (selectedResource != null)
+        {
+            displayInfo.DisplayResourceInfo(selectedResource);
+        }
         else
         {
             displayInfo.ResetDisplay();
@@ -818,7 +847,6 @@ public class PlayerController : MonoBehaviour
         
         selectedUnits.Add(unit);
     }
-
     bool buttonActionOn = false;
 
     public void ButtonActionWait()

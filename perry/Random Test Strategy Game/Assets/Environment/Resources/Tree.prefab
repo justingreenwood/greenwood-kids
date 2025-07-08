@@ -64,8 +64,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24a56d2d22bbe7a4c9c30cdb6e09b8bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resources: 200
+  amountOfResource: 100
   resourceType: 0
+  image: {fileID: 21300000, guid: 04b0f7288248dc948bff7799f2c9d61a, type: 3}
 --- !u!136 &8893227786639118946
 CapsuleCollider:
   m_ObjectHideFlags: 0
