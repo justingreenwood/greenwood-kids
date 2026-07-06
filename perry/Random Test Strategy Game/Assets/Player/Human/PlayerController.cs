@@ -51,6 +51,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] UnityEngine.UI.Button[] unitActionButtons;
     [SerializeField] UnityEngine.UI.Button[] buildQueueButtons;
     [SerializeField] UnityEngine.UI.Button[] housedUnitButtons;
+    [SerializeField] Sprite defaultSprite;
 
     AudioSource audioSource;
     public UnitLibrary unitLibrary;
@@ -515,10 +516,10 @@ public class PlayerController : MonoBehaviour
             GuyMovement unitAction = selectedUnits[0].GetComponent<GuyMovement>();
             displayInfo.ResetDisplay();
             displayInfo.DisplayUnitInfo(unitAction);
-            foreach (var asdf in unitActionButtons)
+            foreach (var unitAB in unitActionButtons)
             {
-                asdf.onClick.RemoveAllListeners();
-                asdf.GetComponentInChildren<TextMeshProUGUI>().text = "X";
+                unitAB.onClick.RemoveAllListeners();
+                unitAB.GetComponent<UnityEngine.UI.Image>().sprite = defaultSprite;
             }
 
         }       
@@ -551,10 +552,11 @@ public class PlayerController : MonoBehaviour
                     {
                         unitActionButtons[i].onClick.RemoveAllListeners();
                         var tMPro = unitActionButtons[i].GetComponentInChildren<TextMeshProUGUI>();
-
+                        var unitABI = unitActionButtons[i].GetComponent<UnityEngine.UI.Image>().sprite; //Start Here for Images
                         if (i > unitAction.UnitGameObjects.Count - 1)
                         {
                             tMPro.text = "X";
+                            unitABI = defaultSprite;
                             if (unitAction.isABuilding)
                             {
 
